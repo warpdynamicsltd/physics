@@ -1,0 +1,139 @@
+\documentclass[a4paper,12pt]{book}
+%\documentclass{amsart}
+\usepackage{subfiles}
+%\usepackage{dsfont}
+
+\usepackage[utf8]{inputenc}
+\usepackage[OT4]{fontenc}
+\usepackage{pdfpages}
+\usepackage{bookmark}
+\usepackage{listings}
+\usepackage{setspace}
+\usepackage{tabulary}
+\usepackage{physics}
+\usepackage{cancel}
+
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!50!black},
+    citecolor={green!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage{natbib}
+%\setcitestyle{authoryear}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{moresize}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+
+
+%\newcommand*{\grf}[1]{{Gr(f|#1)}}
+\newcommand*{\grf}[1]{{f|#1}}
+%\newcommand*{\bd}{{\rm bd}}
+\newcommand*{\bd}{{bd}}
+\newcommand*{\pr}{\pi}
+\newcommand*{\sgn}{\text{sgn}}
+
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+\newcommand*{\Q}{\ensuremath{\mathbb Q}}
+\newcommand*{\N}{\ensuremath{\mathbb{N}}}
+\newcommand*{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand*{\C}{\ensuremath{\mathbb{C}}}
+\newcommand*{\D}{\mathcal{D}}
+\newcommand*{\T}{\mathcal{T}}
+\newcommand*{\M}{\mathcal{M}}
+\newcommand*{\supp}{\text{supp}}
+\newcommand*{\eq}{=_2}
+\newcommand*{\bs}{\boldsymbol}
+\renewcommand{\S}{\mathcal{S}}
+\renewcommand{\L}{\mathcal{L}}
+
+
+%\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\eae}{\underset{\text{a.e.}}{=}}
+
+%\newcommand{\clo}[1]{\overline{#1}}
+\newcommand{\fr}[1]{{\rm bd}(#1)}
+\newcommand{\dist}{{\rm dist}}
+\newcommand*{\e}{\varepsilon}
+
+
+\newcommand*{\all}{\forall}
+\newcommand*{\exi}{\exists}
+\newcommand*{\clo}{\overline}
+\newcommand*{\Clo}{\overline}
+\newcommand*{\reals}{\ensuremath{\mathbb{R}}}
+\newcommand*{\nat}{\ensuremath{\mathbb{N}}}
+\newcommand*{\Gtop}{\mathcal{G}}
+\newcommand*{\ratio}{\mathbb{Q}}
+\newcommand*{\F}{\mathcal{F}}
+\newcommand*{\RE}{\text{Re}}
+\newcommand*{\IM}{\text{Im}}
+\renewcommand*{\epsilon}{\varepsilon}
+\newcommand*{\conti}{\ensuremath{\mathfrak{c}}}
+\newcommand*{\form}{{\ssmall \wedge}}
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}[theorem]{Axiom}
+
+\numberwithin{equation}{subsection}
+
+\title{Introduction to Theoretical Physics}
+\author{Michal Stanislaw Wojcik}
+
+
+\begin{document}
+\maketitle
+\newpage \vspace*{16cm}
+\thispagestyle{empty}
+\tableofcontents
+\chapter*{Preface}
+\subfile{motiv}
+\chapter{Introduction to Physics}
+\subfile{planck}
+\chapter{Classical Mechanics}
+\subfile{classic}
+\chapter{Classical Electromagnetism}
+\subfile{electromagnetism}
+\chapter{Special Relativity}
+\subfile{str}
+\chapter{General Relativity}
+\subfile{gtr}
+\chapter{Quantum Mechanics}
+\subfile{quantum}
+\chapter{Quantum Field Theory}
+\subfile{qft}
+\chapter{Experiments}
+\subfile{experiments}
+\chapter{Examples}
+\subfile{examples}
+\chapter{Ideas}
+\subfile{ideas}
+\chapter{Mathematics}
+\subfile{math}
+\chapter{Mathematical Methods}
+\subfile{math_loose}
+\chapter{Physical Diary}
+\subfile{diary.tex}
+%\bibliographystyle{plain}
+\bibliographystyle{alpha}
+\bibliography{references}
+\end{document}

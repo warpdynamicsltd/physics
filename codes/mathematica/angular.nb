@@ -1,0 +1,124 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3770,        116]
+NotebookOptionsPosition[      3355,        100]
+NotebookOutlinePosition[      3690,        115]
+CellTagsIndexPosition[      3647,        112]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Alpha]", "[", "t_", "]"}], ":=", 
+   RowBox[{"\[CapitalOmega]", " ", "*", "t"}]}], " "}], "\n", 
+ RowBox[{
+  RowBox[{"\[Beta]", "[", "t_", "]"}], " ", ":=", " ", 
+  RowBox[{"\[Omega]", "*", "t"}]}], "\n", 
+ RowBox[{
+  RowBox[{"\[Theta]", "[", "t_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"\[Alpha]", "[", "t", "]"}], "-", 
+   RowBox[{"\[Beta]", "[", "t", "]"}]}]}], "\n", 
+ RowBox[{
+  RowBox[{"x", "[", 
+   RowBox[{"\[Theta]_", ",", "t_"}], "]"}], " ", ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"R", "*", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"\[Alpha]", "[", "t", "]"}], "]"}]}], " ", "+", " ", 
+     RowBox[{"r", "*", 
+      RowBox[{"Cos", "[", 
+       RowBox[{
+        RowBox[{"\[Alpha]", "[", "t", "]"}], " ", "+", " ", 
+        RowBox[{"\[Beta]", "[", "t", "]"}], "+", "\[Theta]"}], "]"}]}]}], ",", 
+    RowBox[{
+     RowBox[{"R", "*", 
+      RowBox[{"Sin", "[", 
+       RowBox[{"\[Alpha]", "[", "t", "]"}], "]"}]}], " ", "+", " ", 
+     RowBox[{"r", "*", 
+      RowBox[{"Sin", "[", 
+       RowBox[{
+        RowBox[{"\[Alpha]", "[", "t", "]"}], " ", "+", " ", 
+        RowBox[{"\[Beta]", "[", "t", "]"}], "+", "\[Theta]"}], "]"}]}]}], ",",
+     "0"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xdot", "[", 
+   RowBox[{"\[Theta]_", ",", "t_"}], "]"}], " ", ":=", " ", 
+  RowBox[{"D", "[", 
+   RowBox[{
+    RowBox[{"x", "[", 
+     RowBox[{"\[Theta]", ",", "t"}], "]"}], ",", " ", "t"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"TrigReduce", "[", " ", 
+  RowBox[{
+   RowBox[{"x", "[", 
+    RowBox[{"\[Theta]", ",", " ", "t"}], "]"}], "\[Cross]", 
+   RowBox[{"xdot", "[", 
+    RowBox[{"\[Theta]", ",", " ", "t"}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.75428362882446*^9, 3.7542836370410852`*^9}, {
+  3.754283667808414*^9, 3.754283729295108*^9}},
+ CellLabel->"In[19]:=",ExpressionUUID->"edf47952-7081-4aee-abac-ad9301b9c0b9"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0", ",", "0", ",", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["r", "2"], " ", "\[Omega]"}], "+", 
+    RowBox[{
+     SuperscriptBox["r", "2"], " ", "\[CapitalOmega]"}], "+", 
+    RowBox[{
+     SuperscriptBox["R", "2"], " ", "\[CapitalOmega]"}], "+", 
+    RowBox[{"r", " ", "R", " ", "\[Omega]", " ", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"\[Theta]", "+", 
+       RowBox[{"t", " ", "\[Omega]"}]}], "]"}]}], "+", 
+    RowBox[{"2", " ", "r", " ", "R", " ", "\[CapitalOmega]", " ", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"\[Theta]", "+", 
+       RowBox[{"t", " ", "\[Omega]"}]}], "]"}]}]}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.754283709937805*^9, 3.754283745345604*^9}, 
+   3.7542840091003323`*^9},
+ CellLabel->"Out[24]=",ExpressionUUID->"6d9d3e02-170e-4655-a025-b1a4824e252f"]
+}, Open  ]]
+},
+WindowSize->{808, 876},
+WindowMargins->{{324, Automatic}, {35, Automatic}},
+FrontEndVersion->"11.3 for Linux x86 (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1930, 53, 170, "Input",ExpressionUUID->"edf47952-7081-4aee-abac-ad9301b9c0b9"],
+Cell[2513, 77, 826, 20, 40, "Output",ExpressionUUID->"6d9d3e02-170e-4655-a025-b1a4824e252f"]
+}, Open  ]]
+}
+]
+*)
+

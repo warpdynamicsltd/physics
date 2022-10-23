@@ -1,0 +1,225 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Introduction}
+\subsection{Maxwell's equations}
+Despite we are in the realm of classical theory we will still use Plank units. We are all the time able to restore constants.
+\begin{definition}
+We say that in some region $\Omega$ there exists an electric field $\vec{E}:\Omega\to\reals^3$, if in each point of $\Omega$ a force $\vec{F} = q\vec{E}$ acts on an test charge $q$.  
+\end{definition}
+
+\begin{definition}
+We say that in some region $\Omega$ there exists a magnetic field $\vec{B}:\Omega\to\reals^3$, if in each point of $\Omega$ a force $\vec{F} = q\vec{v} \times \vec{B}$ acts on a test charge moving with a velocity $\vec{v}$.
+\end{definition}
+
+According to Maxwell's theory relations between charge, electric field and magnetic filed are governed by four Maxwell's equations.
+
+\begin{equation}
+\nabla \cdot \vec{E} = 4 \pi \rho.
+\end{equation}
+
+\begin{equation}
+\label{maxwell-div}
+\nabla \cdot \vec{B} = 0.
+\end{equation}
+
+\begin{equation}
+\nabla \times \vec{E} = -\frac{\partial \vec{B}} {\partial t}.
+\end{equation}
+
+\begin{equation}
+\nabla \times \vec{B} = 4 \pi \vec{J} + \frac{\partial \vec{E}} {\partial t}.
+\end{equation}
+Where $\rho$ is electric charge density in space and $\vec{J}$ is an electric charge current in space.
+\subsection{Magnetic Moment}
+\label{magnetic-moment}
+Imagine a closed circuit $\Gamma$. Let $(\Gamma, \vec{l})$ be an orientation of the circuit consistent with direction of movemet of positive charges. Consider an infinitesimal element $ds$ of $\Gamma$.
+Define a strength of electric current as
+\begin{equation}
+I = \cfrac{dq}{dt}.
+\end{equation}
+where $dq$ is a portion of charge which passes through element $ds$ in time $dt$.
+Assume that the strength of electric current is constant through the whole circuit $\Gamma$.\\
+Let's investigate what is an infinitesimal force $d\vec{F}$ acting on an infinitesimal element $ds$ in the presence of magnetic field $\vec{B}$. Let's calculate a velocity $\vec{v}$ of an infinitesimal charge $dq$ in an infinitesimal element $ds$ of the ciruit $\Gamma$.
+\begin{equation}
+\vec{v} = \cfrac{(ds)\vec{l}}{dt}.
+\end{equation} 
+Thus
+\begin{equation}
+d\vec{F} = dq \vec{v} \times \vec{B} = \cfrac{dq(ds)\vec{l}}{dt} \times \vec{B} = I(ds)\vec{l}\times \vec{B}.
+\end{equation}
+\begin{equation}
+\label{partial-force-in-magnetic}
+\boxed{d\vec{F} = I(ds)\vec{l}\times \vec{B}}
+\end{equation}
+Assume that $\Gamma$ is an edge of certain $C^1$ surface $(S, \vec{n})$ oriented consistently with $\Gamma$. We will calculate torque $\vec{M}$ which homogenous magnetic filed $\vec{B}$ exerts on $\Gamma$.
+\begin{equation}
+\vec{M} = \int_\Gamma \vec{r}\times d\vec{F}.
+\end{equation}
+Thus
+\begin{multline} 
+\vec{M} = I \int_\Gamma \vec{r}\times ((ds)\vec{l}\times \vec{B}) = I\int_\Gamma [x_1,x_2,x_3]\times([dx_1,dx_2,dx_3]\times[B_1,B_2,B_3])= \\
+I\int_\Gamma \\
+[B_2 x_2 dx_1 -B_1 x_2dx_2 +B_3 x_3 dx_1 -B_1 x_3 dx_3, \\
+-B_2 x_1 dx_1 +B_1 x_1 dx_2 + B_3 x_3 dx_2 -B_2 x_3 dx_3 ,\\
+-B_3 x_1 dx_1 +B_1 x_1 dx_3 -B_3
+   x_2 dx_2 +B_2 x_2 dx_3 ]\\
+\end{multline}
+By Stokes Theorem (Theorem \ref{par-manifold-stokes}), we have:
+\begin{multline}
+\\\vec{M} = I \int_S \\
+[B_3 dx_3\form dx_1 - B_2 dx_1\form dx_2,\\
+B_1 dx_1\form dx_2 - B_3 dx_2\form dx_3,\\
+B_2 dx_2\form dx_3 - B_1 dx_3 \form dx_1]\\  
+\end{multline}
+Now, by Example \ref{form2normal-surface}, we have
+\begin{multline}
+\\\vec{M} = I \int_S \\
+[n_2 B_3 - n_3 B_2,\\
+n_3 B_1 - n_1 B_3,\\
+n_1 B_2 - n_2 B_1]dS\\
+= I \int_S \vec{n}\times\vec{B} dS = (I\int_S \vec{n} dS)\times \vec{B}.
+\end{multline}
+Thus
+\begin{equation}
+\label{circuit-torque}
+\vec{M} = (I\int_S \vec{n} dS)\times \vec{B}.
+\end{equation}
+Equation (\ref{circuit-torque}) tells us two important things. 1. $\vec{M}$ doesn't depend on choice of a central point, and thus total force exerted by homogenous magnetic field $\vec{B}$ on $\Gamma$ is $\vec{F} = 0$. 2. $I\int_S \vec{n} dS$ doesn't depend on choice of surface $S$. Then we can define magnetic moment $\vec{\mu}$ of circuit $\Gamma$.
+\begin{equation}
+\boxed{\vec{\mu} := I\int_S \vec{n} dS}
+\end{equation}
+\begin{equation}
+\boxed{\vec{M} = \vec{\mu} \times \vec{B}}
+\end{equation} 
+Note that if $\Gamma$ is contained in plane, $\vec{\mu}$ is perpendicular to the plane and from its tip the positive current is going counter-clockwise, moreover $\norm{\vec{\mu}} = IS$ where $S$ is an area cut by circuit $\Gamma$.
+\subsection{Magnetic Moment in Inhomogenous Magnetic Field}
+Imagine a closed circuit $\Gamma$ in inhomogenous magnetic field $\vec{B}$. Let $(\Gamma, \vec{l})$ be an orientation of the circuit consistent with direction of movemet of positive charges.
+By equation (\ref{partial-force-in-magnetic}) the force exerted on the circiut is
+\begin{multline}
+\vec{F} = \int_\Gamma I(ds)\vec{l}\times \vec{B} = \\
+I \int_\Gamma
+[B_3 dx_2-B_2 dx_3,B_1 dx_3-B_3 dx_1,B_2 dx_1-B_1 dx_2]
+\end{multline}
+Assume that $\Gamma$ is an edge of certain $C^1$ surface $(S, \vec{n})$ oriented consistently with $\Gamma$. We will prepare to use Stokes's Theorem (Theorem \ref{par-manifold-stokes}).
+Let's do a bit of form calculus (see \ref{simplified-manifolds})
+\begin{multline}
+d(B_3 dx_2 - B_2 dx_3) = \\
+\cfrac{\partial B_3}{\partial x_1} dx_1\form dx_2 + \cfrac{\partial B_3}{\partial x_3} dx_3\form dx_2 \\
+-\cfrac{\partial B_2}{\partial x_1} dx_1\form dx_3 - \cfrac{\partial B_2}{\partial x_2} dx_2\form dx_3 = \\
+\cfrac{\partial B_3}{\partial x_1} dx_1\form dx_2 - \cfrac{\partial B_3}{\partial x_3} dx_2\form dx_3 \\
++\cfrac{\partial B_2}{\partial x_1} dx_3\form dx_1 - \cfrac{\partial B_2}{\partial x_2} dx_2\form dx_3\\
+\end{multline}
+By Maxwell Equation (\ref{maxwell-div}) $\nabla \cdot \vec{B} = 0$.
+Thus
+\begin{equation}
+d(B_3 dx_2 - B_2 dx_3) = 
+\cfrac{\partial B_1}{\partial x_1} dx_2\form dx_3 +
+\cfrac{\partial B_2}{\partial x_1} dx_3\form dx_1 +
+\cfrac{\partial B_3}{\partial x_1} dx_1\form dx_2.
+\end{equation}
+Hence
+\begin{equation}
+F_1 = \int_S \cfrac{\partial \vec{B}}{\partial x_1} \cdot \vec{n} dS.
+\end{equation}
+Making analogous calculations for the rest of coordinates of $\vec{F}$, we get
+\begin{equation}
+F_i = \int_S \cfrac{\partial \vec{B}}{\partial x_i} \cdot \vec{n} dS \text{ for } i = 1,2,3.
+\end{equation}
+Assuming that $\nabla \vec{B}$ is changing insignificanlty within the size of circuit $\Gamma$, we can write
+\begin{equation}
+\boxed{
+F_i = \vec{\mu} \cdot \cfrac{\partial \vec{B}}{\partial x_i} \text{ for } i = 1,2,3.}
+\end{equation}
+\subsection{Classical Relation Between Angular Momentum and Magnetic Moment}
+Consider one particle with mass $m$ and charge $q$ moving around in a circle of radious $r$ with velocity $v$. Angular Momentum of such a particle is
+\begin{equation}
+\vec{L} = rmv\vec{n}
+\end{equation}
+where $\vec{n}$ is a unit vector normal to the plain of rotation from which tip the rotation is counter-clockwise.
+
+The electric current caused by circulation of the charge is $I = \cfrac{qv}{2\pi r}$. As we proved in the subsection \ref{magnetic-moment}, the magnetic moment will be $\vec{\mu} = \pi r^2 I \vec{n} = \cfrac{1}{2} rqv\vec{n}$.
+Thus we have a relation
+\begin{equation}
+\boxed{
+\vec{\mu} = \cfrac{q}{2m}\vec{L}.
+}
+\end{equation} 
+Because of additivity the equation above is also true for rotating rigid body with charge and mass homogonously distributed.
+
+\subsection{Lagrangian and Hamiltonian Formulation of Magnetic Field}
+
+In this subsection we will use bold font to indicate space vectors.
+Let $\bs{x}$ indicate trajectory of the charged particle, we assume that $\bs{x}$ is dependent on time $t$.
+
+Assume that Lagrangian for the charged particle with charge $q$ and mass $m$ is
+\begin{equation}
+L = \cfrac{m\bs{\dot{x}}^2}{2} + q(\bs{A}\cdot\bs{\dot{x}}),
+\end{equation}
+where $\bs{A}$ is a vector field (vector dependent on position). In case of analysing trajectory, we can assume that $\bs{A}$ depends on $\bs{x}$. Vector $\bs{A}$ is usually called a vector potencial. 
+
+Let's recall Euler-Lagrange equation, which is satisfied along trajectory $\bs{x}$:
+\begin{equation}
+\cfrac{\partial L}{\partial \bs{x}} - \cfrac{d}{dt}\cfrac{\partial L}{\partial \bs{\dot{x}}} = 0.
+\end{equation} 
+
+Since $\bs{A}$ depends on $\bs{x}$ note that
+\begin{equation}
+\cfrac{\partial L}{\partial \bs{x}} = q\sum_{k=1}^3 \cfrac{\partial A_k}{\partial \bs{x}} \dot{x}_k,
+\end{equation}
+
+
+Also, note that 
+\begin{equation}
+\cfrac{\partial L}{\partial \bs{\dot{x}}} = m\bs{\dot{x}} + q\bs{A},
+\end{equation}
+and
+\begin{equation}
+\cfrac{d}{dt}\cfrac{\partial L}{\partial \bs{\dot{x}}} = m\bs{\ddot{x}} + q\cfrac{\partial \bs{A}}{\partial \bs{x}} \bs{\dot{x}}.
+\end{equation}
+Mind that in the above equation $\cfrac{\partial \bs{A}}{\partial \bs{x}}$ is simply a Jacobian matrix acting on vector $\bs{\dot{x}}$.
+
+From Euler-Lagrange equation, we have then
+\begin{equation}
+\label{magnetic-prep}
+m\bs{\ddot{x}} = q\sum_{k=1}^3 \cfrac{\partial A_k}{\partial \bs{x}} \dot{x}_k - q\cfrac{\partial \bs{A}}{\partial \bs{x}} \bs{\dot{x}}.
+\end{equation}
+Let's see the above equation in the index notation:
+\begin{equation}
+m \ddot{x}_i = q\sum_{k=1}^3 \big(\cfrac{\partial A_k}{\partial x_i} \dot{x}_k - \cfrac{\partial A_i}{\partial x_k} \dot{x}_k\big) = q\sum_{k=1}^3 \dot{x}_k 
+\big(\cfrac{\partial A_k}{\partial x_i} - \cfrac{\partial A_i}{\partial x_k}\big).
+\end{equation}
+
+Note that for $i=k$, we have $\cfrac{\partial A_k}{\partial x_i} - \cfrac{\partial A_i}{\partial x_k} = 0$. Thus, 
+\begin{equation}
+m \ddot{x}_i = q\sum_{k\in\{1,2,3\}\setminus\{i\}} \dot{x}_k 
+\big(\cfrac{\partial A_k}{\partial x_i} - \cfrac{\partial A_i}{\partial x_k}\big).
+\end{equation}
+Let's define a new vector field $\bs{B} = \nabla \times \bs{A}$, which means simply that
+\begin{equation}
+B_1 = \cfrac{\partial A_3}{\partial x_2} - \cfrac{\partial A_2}{\partial x_3}, 
+\end{equation}
+\begin{equation}
+B_2 = \cfrac{\partial A_1}{\partial x_3} - \cfrac{\partial A_3}{\partial x_1}, 
+\end{equation}
+\begin{equation}
+B_3 = \cfrac{\partial A_2}{\partial x_1} - \cfrac{\partial A_1}{\partial x_2}. 
+\end{equation}
+
+[Compare the above with (\ref{rel_magnetic})]. 
+
+Then from equation \ref{magnetic-prep}, we have:
+\begin{equation}
+m \ddot{x}_1 = q\dot{x}_2 \big(\cfrac{\partial A_2}{\partial x_1} - \cfrac{\partial A_1}{\partial x_2}\big) + q\dot{x}_3 \big(\cfrac{\partial A_3}{\partial x_1} - \cfrac{\partial A_1}{\partial x_3}\big) = q(\dot{x}_2 B_3 - \dot{x}_3 B_2),
+\end{equation}
+\begin{equation}
+m \ddot{x}_2 = q\dot{x}_1 \big(\cfrac{\partial A_1}{\partial x_2} - q\cfrac{\partial A_2}{\partial x_1}\big) + \dot{x}_3 \big(\cfrac{\partial A_3}{\partial x_2} - \cfrac{\partial A_2}{\partial x_3}\big) = q(-\dot{x}_1 B_3  + \dot{x}_3 B_1),
+\end{equation}
+\begin{equation}
+m \ddot{x}_3 = q\dot{x}_1 \big(\cfrac{\partial A_1}{\partial x_3} - \cfrac{\partial A_3}{\partial x_1}\big) + q\dot{x}_2 \big(\cfrac{\partial A_2}{\partial x_3} - \cfrac{\partial A_3}{\partial x_2}\big) = q(\dot{x}_1 B_2 - \dot{x}_2 B_1).
+\end{equation}
+Now, we can go back to vector notation to get:
+\begin{equation}
+m\bs{\ddot{x}} = q(\bs{\dot{x}} \times \bs{B}),
+\end{equation}
+which is well known equation of force exerted by magnetic filed $\bs{B}$ on particle with charge $q$ and velocity $\bs{\dot{x}}$.
+\end{document}

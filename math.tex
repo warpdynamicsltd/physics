@@ -1,0 +1,2651 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Vector Analysis}
+\begin{definition}(\textbf{Cross product})
+Let $x, y\in \reals^3$ such that 
+\begin{equation}
+x = (x_1, x_2, x_3) \text{ and } y = (y_1, y_2, y_3).
+\end{equation}
+We define
+\begin{equation}
+x \times y = (x_2y_3 - x_3y_2, x_3y_1 - x_1y_3, x_1y_2 - x_2y_1).
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{algebraic-cross}
+Let $a,b,c\in \reals^3$. The following conditions holds:
+\begin{enumerate}
+\item $a\times a = 0$
+\item $a\times b = - b\times a$.
+\item $(ta)\times b = t(a\times b)$ for any $t\in\reals$.
+\item $(a + b)\times c = a\times c + b \times c$.
+\item $a\times(b\times c) + b \times (c\times a) + c \times (a\times b) = 0$.
+\end{enumerate}
+\end{theorem}
+\label{inner-cross}
+By $\cdot$ we will denote inner product.
+\begin{theorem}
+Let $a,b,c\in \reals^3$. The following conditions holds:
+\begin{enumerate}
+\item $a \cdot (a\times b) = 0$.
+\item $a \cdot (b\times c) = b \cdot (c \times a) = c \cdot (a \times b)$.
+\item $\norm{a\times b}^2 + (a\cdot b)^2 = \norm{a}^2\norm{b}^2$.
+\end{enumerate}
+\end{theorem}
+\subsection{Vector Spaces}
+In this chapter when ranges of summation are evident, we will also use Einstein summation convention. We will also use symbol $\delta$ for Kronecker delta.
+\begin{equation}
+\delta_{\mu\nu} = \delta^\mu_\nu = \delta^{\mu\nu} =
+\begin{cases}
+1 \text{ for } \mu = \nu, \\
+0 \text{ for } \mu \not= \nu.
+\end{cases}
+\end{equation}
+
+\begin{definition}
+Let $X$ be a vector space over field $\mathbb{K}$. By $X^\star$ we will denote a space of all linear functions $X\to \mathbb{K}$. 
+\end{definition}
+
+If $u_1, \dots, u_k$ is a set of vectors in vector space $X$, for any $y\in X^\star$ we might write a row vector $[y(u_1), \dots, y(u_k)]$.
+
+\begin{lemma}
+\label{linear-dependence-lemma}
+Let $X$ be a vector space. For any sequence of vectors $u_1, \dots, u_k\in X$, for any sequence of  functionals $y^1, \dots, y^k\in X^\star$ and for any sequence of scalars $\lambda_1, \dots, \lambda_k\in \mathbb{K}$, we have
+\begin{equation}
+\label{functional-zero}
+\lambda_\mu y^\mu = 0
+\end{equation}
+if and only if
+\begin{equation}
+\label{row-vector-zero}
+\lambda_\mu [y^\mu(u_1), \dots, y^\mu(u_k)] = 0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Implication from (\ref{functional-zero}) to (\ref{row-vector-zero}). Now, assume that (\ref{row-vector-zero}) holds. Take any $x\in X$, assume that $x = x^\nu u_\nu$.
+\begin{equation}
+\lambda_\mu y^\mu(x) = \lambda_\mu y^\mu(x^\nu u_\nu) = \lambda_\mu x^\nu y^\mu(u_\nu) = x^\nu \lambda_\mu  y^\mu(u_\nu) = 0.
+\end{equation}
+\end{proof}
+As a simple conclusion, we will formulate the following.
+\begin{theorem}
+Let $X$ be a vector space and let $u_1, \dots, u_n$ be a linear basis. Then there exist a basis of $X^\star$ $e^1, \dots, e^n$ such that
+\begin{equation}
+e^\mu(u_\nu) = 
+\begin{cases}
+1 \text{ for } \mu = \nu, \\
+0 \text{ for } \mu \not= \nu.
+\end{cases}
+\end{equation}
+\end{theorem}
+\begin{proof}
+We can easily define functionals by $e^\mu(x^\nu u_\nu) := x^\mu$. Linearity is easy to show. By Lemma \ref{linear-dependence-lemma} $u^1, \dots, e^n$ are linearly independent. Now we will show that all $y\in X^\star$ can be represented linearly by $e^1, \dots, e^n$. Take any $x=x^\nu u_\nu$ and calculate
+\begin{equation}
+y(x) = y(x^\nu u_\nu) = x^\nu y(u_\nu) = y(u_\nu) e^\nu(x) = (y(u_\nu) e^\nu)(x).  
+\end{equation}
+\end{proof}
+\begin{corollary}
+Let $X$ be a vector space with $\dim X < \infty$, then $\dim X = \dim X^\star$.
+\end{corollary}
+
+\begin{definition}
+Let $X$ be a vector space and $u_1, \dots, u_n$ be an linear basis. We define a dual basis in $X^\star$ as $u^1, \dots, u^n$ where
+\begin{equation}
+u^\mu(u_\nu) = \delta^\mu_\nu. 
+\end{equation} 
+\end{definition}
+
+The above tells us that for any chosen basis of $X$, for functionals $y\in X^\star$ there exists a natural parametrisation 
+\begin{equation}
+y \mapsto [y(u_1), \dots, y(u_n)]\in \R^n. 
+\end{equation}
+Note that this parametrisation doesn't establish identity between elements of $X$ and $X^\star$. For this we will need a metric tensor.
+
+If not stated other wise we will use the following convention. If $\{\hat{u}_\mu\}$ is also a basis of a vector space $X$, then we will denote transformation matrices using a capital letter - in this case $U$ like this
+
+\begin{equation}
+\hat{u}_\mu = U^\nu_{\hat{\mu}} u_\nu
+\end{equation}
+and
+\begin{equation}
+u_\mu =  U^{\hat{\nu}}_\mu  \hat{u}_\nu.
+\end{equation}
+
+Where $U^{\hat{\dot}}$ and $U_{\hat{\dot}}$ are treated as a different variable which denote matrices.
+
+\begin{theorem}
+\label{basis-functional-basis-relation}
+Let $X$ be a real vector space where $\dim X = n$ and let $u_1, \dots, u_n$ and $\hat{u}_1, \dots, \hat{u}_n$ be two bases of $X$, then
+\begin{equation}
+\hat{u}^\mu =  U^{\hat{\mu}}_{\nu} u^\nu
+\end{equation}
+and 
+\begin{equation}
+\label{functionals-transformation-law}
+u^\mu = U^{\mu}_{\hat{\nu}} u^\nu
+\end{equation}
+\end{theorem}
+\begin{proof}
+Note that $U^{\hat{\mu}}_{\nu} U^{\nu}_{\hat{\sigma}} = \delta^\mu_\sigma$. Assume that 
+\begin{equation}
+\hat{u}^\mu = X^{\mu}_\nu u^\nu.
+\end{equation}
+Then
+\begin{multline*}
+\\
+\delta^\mu_\sigma = X^\mu_\nu u^\nu(\hat{u}_\sigma) = X^\mu_\nu u^\nu(U^\rho_{\hat{\sigma}} u_\rho) = 
+X^\mu_\nu U^\rho_{\hat{\sigma}} \delta^\nu_\rho = X^\mu_\nu U^\nu_{\hat{\sigma}}.
+\\
+\end{multline*}
+Thus $X^\mu_\nu = U^{\hat{\mu}}_{\nu}$.
+We prove (\ref{functionals-transformation-law}) analogously.
+\end{proof}
+
+
+\subsection{Metric Tensor}
+It is called otherwise inner product.
+\begin{definition}
+\label{metric-tensor-def}
+Let $X$ be a real vector space. A functional $g:X^2\to \R$ is called a metric tensor iff
+\begin{enumerate}
+\item $\forall_{x,y\in X} \, g(x,y) = g(y,x)$,
+\item $\forall_{x, y, z\in X}\forall_{a,b\in K} \, g(z, ax + by) = ag(z,x) + bg(z,y)$,
+\item \label{point-3}$\forall_{x\not=0}\exists_y g(x, y)\not= 0$. 
+\end{enumerate}
+\end{definition}
+
+The property in the point \ref{point-3} is called \textit{nondegeneracy} of metric tensor.
+Throughout this chapter if not stated otherwise $g$ will denote a metric tensor.
+
+\begin{lemma}
+\label{zero-subspace}
+Let $X$ be a real vector space with a metric tensor $g$. If $S$ is a subspace of $X$ such that $g(x, x)=0$ for all $x\in S$, 
+then $g(x, y) = 0$ for all $x, y\in S$.
+\end{lemma}
+\begin{proof}
+Take any $x, y\in S$
+\begin{equation}
+0 = g(x + y, x + y) = g(x, x) + 2g(x,y) + g(y,y) = 2g(x,y).
+\end{equation}
+\end{proof}
+\begin{lemma}
+Let $X$ be a real vector space with a metric tensor $g$. If $S$ is a proper subspace of $X$, then there exists $u\not\in S$ such that $g(u, u) \not= 0$.
+\end{lemma}
+\begin{proof}
+Assume by contradiction that $g(v, v)=0$ for all $v\not\in S$.
+Let $V$ be a vector subspace such that $X = S + V$ and $S\cap V = \{0\}$. Then we have $g(v, v) =0$ for all $v\in V$ and by Lemma \ref{zero-subspace}, we have $g(p, q) = 0$ for all $p, q\in V$. Take a non-zero vector $x\in V$. By definition of metric tensor (Definition \ref{metric-tensor-def}), we have $y\in X$ such that $g(x,y)\not= 0$. But $y = s + v$ where $s\in S$ and $v\in V$.
+\begin{equation}
+g(x,y) = g(x,s) + g(x,v) = g(x,s).  
+\end{equation}
+Thus $g(x,s)\not = 0$. Let $\lambda$ be an arbitrary scalar.
+Consider
+\begin{equation}
+g(x + \lambda s, x + \lambda s) = 2\lambda g(x, s) + \lambda^2 g(s, s).
+\end{equation}
+Since $g(x, s)\not= 0$, we can choose such a $\lambda$ that $g(x + \lambda s, x + \lambda s)\not = 0$. Let $u=x + \lambda s$. We have $g(u, u)\not =0$ and since $x\not\in S$, $u\not\in S$.   
+\end{proof}
+\begin{corollary}
+Let $X$ be a real vector space with a metric tensor $g$ where $\dim X < +\infty$. There exists a basis $u_1, \dots, u_n$ such that $g(u_i, u_i)\not = 0$ for any $i=1, \dots, k$.
+\end{corollary}
+
+\begin{definition}
+Let $X$ be a real vector space and $g$ be a metric tensor. We say that vectors $u_1, \dots, u_k$ are orthogonal with respect to $g$ iff 
+\begin{equation}
+g(u_i, u_i) \not=0 \text{ for } i=1, \dots, k,
+\end{equation}
+and
+\begin{equation}
+g(u_i, u_j) = 0 \text{ for } i\not=j. 
+\end{equation}
+\end{definition}
+
+\begin{theorem}
+Let $X$ be a real vector space with a metric tensor $g$. If vectors $u_1, \dots, u_k$ are orthogonal with respect to $g$, then vectors $u_1, \dots, u_k$ are linearly independent.
+\end{theorem}
+\begin{proof}
+We will prove this by induction. For $k=1$, thesis is trivially true. By induction, assume that thesis holds for $k-1$. Thus vectors $u_1, \dots, u_{k-1}$ are linearly independent. Assume to the contrary that vectors $u_1, \dots, u_{k-1}, u_k$ are linearly dependent. Therefore we have parameters for which $u_k = \sum_{i=1}^{k-1} \lambda_i u_i$. But then
+\begin{equation}
+g(u_k, u_k) = g(u_k, \sum_{i=1}^{k-1} \lambda_i u_i) =  \sum_{i=1}^{k-1} g(u_k, u_i) \lambda_i = 0.
+\end{equation}
+Hence, contradiction with $g(u_k, u_k)\not= 0$, which proves that $u_1, \dots, u_{k-1}, u_k$ are linearly independent which completes proof by induction. 
+\end{proof}
+
+\begin{lemma}
+Let $X$ be a real vector space with $\dim X = n$. If $u_1, \dots, u_k$ are orthogonal and $k < n$ then there exists such $u\in X$ that $u_1, \dots, u_k, u$ are orthogonal.
+\end{lemma}
+\begin{proof}
+Let $S = \text{span}\{u_1, \dots, u_k\}$. Choose $v_i, \dots, v_{n - k}\in X$ such that
+ 
+$u_1, \dots, u_k, v_1, \dots, v_{n-k}$ form a linear basis of $X$.
+Let's define
+\begin{equation}
+\hat{v}_j = v_j - \sum_{i=1}^k \frac{g(u_i, v_j)}{g(u_i, u_i)}u_i
+\end{equation} 
+for $j=1, \dots, n - k$.
+Note that 
+\begin{equation}
+\label{gram-shmidt}
+g(u_i, \hat{v}_j) = g(u_i, v_j) - \frac{g(u_i, v_j)}{g(u_i, u_i)}g(u_i, u_i) = 0
+\end{equation}
+for $i=1, \dots, k$ and $j=1, \dots, n - k$. Note that $u_1, \dots, u_k, \hat{v}_1, \dots, \hat{v}_{n-k}$ is an independent linear basis of $X$. Let $V = \text{span}\{\hat{v}_1, \dots, \hat{v}_{n-k}\}$. It is enough to show that we have a $v\in V$ such that $g(v, v)\not=0$. Assume to the contrary that for any $v\in V$, we have $g(v, v)=0$. From Lemma \ref{zero-subspace}, we have $g(v_0, v)=0$ for all $v_0, v\in V$. Take any $z\in X$, since $S + V = X$, we have $z = v + s$ where $v\in V$ and $s\in S$.
+Let's calculate
+\begin{equation}
+g(v_0, z) = g(v_0, v + s) = g(v_0, v) + g(v_0, s) = g(v_0, s) = 0.
+\end{equation}
+Where the last equality is because of (\ref{gram-shmidt}). But this is in contradiction with nondegeneracy of $g$.
+\end{proof}
+
+As a conclusion we can formulate the following:
+\begin{theorem}
+Let $X$ be a real vector space with $\dim X = n$. There exists an orthogonal linear basis of $X$. 
+\end{theorem}
+
+\begin{definition}
+Let $X$ be a real vector space with a tensor metric $g$.
+We say that vectors $e_1, \dots, e_k$ are orthonormal with respect to $g$ iff 
+\begin{equation}
+g(e_i, e_i) =  \pm 1 \text{ for } i=1, \dots, k,
+\end{equation}
+and
+\begin{equation}
+g(e_i, e_j) = 0 \text{ for } i\not=j. 
+\end{equation}
+\end{definition}
+If we have orthogonal vectors $u_1, \dots, u_k$, we can transform them easily into orthonormal by
+\begin{equation}
+e_i = |g(u_i, u_i)|^{-\frac{1}{2}} u_i.
+\end{equation}
+
+\begin{corollary}
+Let $X$ be a real vector space with $\dim X = n$. There exists an orthonormal linear basis of $X$. 
+\end{corollary}
+
+\begin{theorem}
+Let $X$ be a real vector space with $\dim X = n$ and let $g$ be a metric tensor. If $e_1, \dots e_n$ and $f_1, \dots f_n$ are orthonormal bases with respect to tensor $g$ then
+\begin{equation}
+|\{i: g(e_i, e_i) = 1 \}| = |\{i: g(f_i, f_i) = 1 \} |.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Assume to the contrary that thesis doesn't hold. Let $g(e_i, e_i)=1$ for $i=1, \dots, k_e$ and $g(e_i, e_i) = -1$ for $i=k_e + 1, \dots, n$ and $g(f_i, f_i)=1$ for $i=1, \dots, k_f$ and $g(f_i, f_i) = -1$ for $i=k_f + 1, \dots, n$. By symmetry assume that $k_f < k_e$.
+
+Assume that $A_i^j$ is a transition matrix and $e_i = \sum_{j=1}^n A_i^j f_j$. Let $V^{+} = \text{span}\{e_1, \dots, e_{k_e}\}$. Take any  $v = \lambda^1e_1 + \dots + \lambda^{k_e}e_{k_e}\in V^{+}$. 
+Note that
+\begin{equation}
+\label{v-plus-vector} 
+v = \sum_{i=1}^{k_e} \sum_{j=1}^n \lambda^i A_i^j f_j = \sum_{j=1}^n (\sum_{i=1}^{k_e} \lambda^i A_i^j) f_j.
+\end{equation}
+Let's consider a linear mapping $L$
+\begin{equation}
+\R^{k_e} \ni (\lambda^1, \dots, \lambda^{k_e}) \mapsto (\sum_{i=1}^{k_e} \lambda^i A_i^1, \dots, \sum_{i=1}^{k_e} \lambda^i A_i^{k_f}) \in \R^{k_f}.
+\end{equation}
+Since $\dim(\ker L ) + \dim(\text{im} L) = k_e$, we have  $k_e - k_f \leq \dim(\ker L )$. Thus we have a non-zero 
+\begin{equation}
+\label{plus-reason}
+v_0 = \lambda_0^1e_1 + \dots + \lambda_0^{k_e}e_{k_e}\in V^{+}
+\end{equation}
+
+such that $(\sum_{i=1}^{k_e} \lambda_0^i A_i^1, \dots, \sum_{i=1}^{k_e} \lambda_0^i A_i^{k_f}) = 0$.
+Therefore, by (\ref{v-plus-vector}) we have
+\begin{equation}
+\label{minus-reason}
+v_0 = (\sum_{i=1}^{k_e} \lambda_0^i A_i^{k_f + 1}) f_{k_f + 1} + \dots + (\sum_{i=1}^{k_e} \lambda_0^i A_i^{n}) f_n.
+\end{equation}
+By (\ref{plus-reason}), we have
+\begin{equation}
+g(v_0, v_0) = \sum_{i=1}^{k_e} (\lambda_0^i)^2 > 0.
+\end{equation}
+But by (\ref{minus-reason}), we have
+\begin{equation}
+g(v_0,v_0) = \sum_{j=k_f + 1}^n (\sum_{i=1}^{k_e} \lambda_0^i A_i^j))^2 (-1) < 0,
+\end{equation}
+which concludes proof by contradiction.
+\end{proof}
+\begin{lemma}
+Let $X$ be a real vector space and $e_1, \dots, e_n$ is an orthonormal basis. Then for any $x$ such that $g(x, e_i) = 0$ for all $i=1,\dots, n$, we have $x=0$.
+\end{lemma}
+\begin{proof}
+It follows from non-degeneracy of $g$.
+\end{proof}
+\begin{corollary}
+\label{vector-equality}
+Let $X$ be a real vector space and $e_1, \dots, e_n$ is an orthonormal basis. Then for any $x,y$ such that $g(x, e_i) = g(y, e_i)$ for all $i=1,\dots, n$, we have $x=y$.
+\end{corollary}
+\begin{theorem}
+Let $X$ be a real vector space. If $e_1, \dots, e_n$ is an orthonormal basis, then for any $x\in X$, we have
+\begin{equation}
+x = \sum_{i=1}^n \cfrac{g(x,e_i)}{g(e_i, e_i)} e_i.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Note that for all $k=1,\dots, n$
+\begin{equation}
+g(\sum_{i=1}^n \cfrac{g(x, e_i)}{g(e_i, e_i)} e_i, e_k) = g(x, e_k).
+\end{equation}
+Thus by Lemma \ref{vector-equality} we have thesis.
+\end{proof}
+\begin{corollary}
+Let $X$ be a real vector space. If $e_1, \dots, e_n$ is an orthonormal basis, then for any $x, y\in X$
+\begin{equation}
+g(x, y) = \sum_{i=1}^n g(x,e_i)g(y,e_i)g(e_i, e_i).
+\end{equation}
+\end{corollary}
+
+From now on when it is obvious we will use Einstein summation convention.
+
+\begin{theorem}
+Let $X$ be a real vector space and $u_1, \dots, u_n$
+is any linear basis of $X$. If $x = x^\mu u_\mu$ and $y = y^\mu u_\mu$, then
+\begin{equation}
+g(x, y) = g_{\mu\nu} x^\mu y^\nu,
+\end{equation}
+where 
+\begin{equation}
+g_{\mu \nu} = g(u_\mu, u_\nu).
+\end{equation}
+\end{theorem}
+\begin{proof}
+Follows directly from bilinearity of $g$. 
+\end{proof}
+
+We will call $g_{\mu\nu}$ a representation of $g$ in basis $\{u_\mu\}$. It also follows that if $g_{\mu\nu}$ is a representation of $g$ in orthonormal basis 
+$g_{\mu\nu} = 0$ 
+for $\mu\not=\nu$ 
+and $g_{\mu\mu} = \pm 1$.
+
+In this convention if $g_{\mu\nu}$ is a representation of a metric tensor $g$ in basis $u_\mu$, then by $\hat{g}_{\mu\nu}$ we will denote a representation of a metric tensor $g$ in basis $\{\hat{u}_\mu\}$ (i.e. $\hat{g}_{\mu\nu} = g(\hat{u}_\mu, \hat{u}_\nu)$).
+
+\begin{theorem}
+\label{metric-transformation}
+Let $X$ be a real vector space where $\dim X = n$ with a metric tensor $g$. If $\{u_\mu\}$ and $\{\hat{u}_\mu\}$ are two linear bases of $X$, then
+\begin{equation}
+\hat{g}_{\mu\nu} = g_{\rho\sigma} U^{\rho}_{\hat{\mu}} U^{\sigma}_{\hat{\nu}}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+\begin{equation}
+g(\hat{u}_\mu, \hat{u}_\nu) = g(U^{\rho}_{\hat{\mu}} u_\rho, U^{\sigma}_{\hat{\nu}} u_\sigma) = 
+g(u_\rho, u_\sigma)  U^{\rho}_{\hat{\mu}} U^{\sigma}_{\hat{\nu}}.
+\end{equation}
+\end{proof}
+
+As a particular case of the above theorem we will formulate the following: 
+
+\begin{theorem}
+Let $X$ be a real vector space with a metric tensor $g$ and let $e_1, \dots, e_n$ be an orthonormal basis of $X$ and let $g_{\mu\nu} = g(e_\mu, e_\nu)$. If $f_1, \dots f_n$ is an orthonormal basis of $X$ and
+\begin{equation}
+F^\mu_\nu = \cfrac{g(f_\nu, e_\mu)}{g(e_\mu, e_\mu)}, 
+\end{equation} 
+(i.e. $f_\mu = F^\mu_\nu e^\nu$), then
+\begin{equation}
+g_{\mu\nu} F^\mu_\sigma F^\nu_\rho = \eta_{\sigma\rho},
+\end{equation}
+where $\eta_{\sigma\rho} = g(f_\sigma, f_\rho)$. 
+\end{theorem}
+
+Next we will show how metric tensor $g$ induces a natural linear isomorphism between $X$ and $X^\star$.
+
+\begin{theorem}
+\label{space-dual-identity-theorem}
+Let $X$ be a real vector space where $\dim X < +\infty$ with a tensor metric $g$. If $L: X\to X^\star$ is defined as
+\begin{equation}
+(Ly)(x) = g(y, x) \text{ for all } x\in X. 
+\end{equation}
+then $L$ is a linear isomorphism  $L:X\underset{\text{onto}}{\overset{1-1}{\to}} X^\star$.
+Moreover
+\begin{equation}
+\label{space-dual-identity}
+L y = g(y, u_\mu) u^\mu
+\end{equation} 
+where $u_1, \dots, u_n$ is any basis of $X$.
+\end{theorem}
+\begin{proof}
+Since $\dim X = \dim X^\star$, to show that $L$ is an isomorphism it is enough to show that $\ker L = \{0\}$. But this follows from nondegeneracy of $g$. Let $u_1, \dots, u_n$ be any basis of $X$.  Take any $y\in X$ and any $x\in X$. Assume that $x = x^\mu u_\mu$.
+Let's calculate
+\begin{multline*}
+\\
+(Ly)(x) = g(y, x) = g(y, x^\mu u_\mu)= x^\mu g(y, u_\mu) = x^\nu \delta^\mu_\nu g(y, u_\mu)\\
+\\ = x^\nu u^\mu(u_\nu) g(y, u_\mu) = g(y, u_\mu) u^\mu(x^\nu u_\nu) = g(y,u_\mu)u^\mu(x).
+\\
+\end{multline*} 
+\end{proof}
+
+\begin{lemma}
+\label{metric-tensor-inversibility}
+Let $X$ be a real vector space where $\dim X < +\infty$ with a tensor metric $g$ and let $u_1, \dots, u_n$ be a basis of $X$. If $g_{\mu\nu} = g(u_\mu, u_\nu)$ then $g_{\mu\nu}$ understood as matrix is invertible.
+\end{lemma}
+\begin{proof}
+Because $L$ from Theorem \ref{space-dual-identity-theorem} is linear isomorphism, for any $\sigma = 1, \dots, n$ we have such $x^{\sigma\nu}$ that
+\begin{equation}
+u^\sigma = g(x^{\sigma\nu} u_\nu, u_\mu) u^\mu.
+\end{equation}
+Thus 
+\begin{equation}
+\delta^\sigma_\mu = g(x^{\sigma\nu} u_\nu, u_\mu) = x^{\sigma\nu} g(u_\nu, u_\mu) = x^{\sigma\nu} g(u_\nu, u_\mu) = x^{\sigma\nu} g_{\mu\nu}.
+\end{equation}
+Hence thesis.
+\end{proof}
+
+Note that for a real vector space $X$ where $\dim X < \infty$ with metric tensor $g$, $g$ induces an isometric metric tensor $g^\star$ on $X^\star$ in a following way:
+\begin{equation}
+g^\star (p, q) = g(L^{-1}p, L^{-1}q) \text{ for } p, q\in X^\star.
+\end{equation}
+where $L$ is from Theorem \ref{space-dual-identity-theorem}.
+
+\begin{theorem}
+Let $X$ be a real vector space where $\dim X < +\infty$ with a tensor metric $g$ and let $u_1, \dots, u_n$ be a basis of $X$ and $u^1, \dots, u^n$ be dual basis of $X^\star$. If $g_{\mu\nu} = g(u_\mu, u_\nu)$ and $g^{\mu\nu} = g^\star(u^\mu, u^\nu)$ then
+\begin{equation}
+g_{\rho\nu} g^{\mu\nu} = \delta^\mu_\rho.
+\end{equation}
+\end{theorem}
+\begin{proof}
+For $u_\sigma$ and $u_\rho$ we have
+\begin{equation}
+g^\star(Lu_\sigma, Lu_\rho) = g(u_\sigma, u_\rho).
+\end{equation}
+Thus
+\begin{equation}
+g^\star(g(u_\sigma, u_\mu)u^\mu, g(u_\rho, u_\nu)u^\nu) = g_{\sigma\rho}. 
+\end{equation}
+Hence
+\begin{equation}
+g_{\sigma\mu}g_{\rho\nu}g^{\mu\nu} = g_{\sigma \rho} = g_{\sigma\mu} \delta^\mu_\rho.
+\end{equation}
+But by Lemma \ref{metric-tensor-inversibility}, we have
+\begin{equation}
+g_{\rho\nu}g^{\mu\nu} = \delta^\mu_\rho.
+\end{equation}
+\end{proof}
+
+This establishes an interesting fact that if $g_{\mu\nu}$ is representation of $g$ in certain basis, then its inverse denoted as $g^{\mu\nu}$ is representation of $g^\star$ in a dual basis.
+
+Assume we talk about real vector space $X$ with $\dim X < +\infty$ with a metric tensor $g$. We know already that metric tensor $g$ induces metric tensor $g^\star$ on $X^\star$ through establishing a natural linear isomorphism $L$ between $X$ and $X^\star$. But then $g^\star$ establishes a natural linear isomorphism $L^\star$ between $X^\star$ and $X^{\star\star}$. Because $X^{\star\star}$ has a natural isomorphism with $X$ defined by $x(y):=y(x)$, $L^\star$ will really establish a linear isomorphism between $X^\star$ and $X$. In that sense we will consider it as $L^\star:X^\star \to X$ such that for any $y, z\in X^\star$
+
+\begin{equation}
+(L^\star y)(z) = z(L^\star y) = g^\star(y, z).
+\end{equation}
+
+We will show now that $L^\star = L^{-1}$, which means that this is exactly the same isomorphism as $L$, thus $g^{\star\star} = g$.  First we will show that for a chosen basis $u_1, \dots, u_n$
+\begin{equation}
+L^\star y = g^\star(y, u^\mu) u_\mu \text{ for any } y\in X^\star.
+\end{equation}
+
+Let's calculate
+\begin{multline}
+\\
+(L^\star y)(z) = g^\star(y, z) = g^\star(y, z_\mu u^\mu)\\ 
+= g^\star(y, u^\mu) z(u_\mu) = z(L^\star y) =
+z(g^\star(y, u^\mu) u_\mu)). \\
+\end{multline}
+
+To show that $L^{-1} = L^\star$ it is enough to show that $L^\star L u_\sigma = u_\sigma$.
+\begin{multline*}\\
+L^\star L u_\sigma = g^\star(g(u_\sigma, u_\nu)u^\nu, u^\mu)u_\mu = g(u_\sigma, u_\nu) g^\star(u^\nu, u^\mu)u_\mu\\
+ = g_{\sigma \nu} g^{\nu\mu} u_\mu = \delta_\sigma^\mu u_\mu = u_\sigma.
+\\
+\end{multline*}
+
+It is trivial now to show that $g^{\star\star} = g$.
+
+Take any $x, y\in X$ 
+\begin{equation}
+g^{\star\star}(x, y) = g^\star((L^\star)^{-1}x, (L^\star)^{-1}x) = g^\star(Lx, Ly) = g(x, y).
+\end{equation}
+
+All the above can be summarised shortly that metric tensor $g$ establishes an identity between elements of $X$ and $X^*$ by transformation $x\mapsto g(x, \cdot)$. By doing so we obtain a metric tensor $g^\star$ on $X^\star$ which assumes the same values as metric tensor $g$ on corresponding elements of $X$. Next when you repeat this operation for $g^\star$ with respect to $X^\star$ and $X^{\star\star} = X$, we go back to $X$ and to the same metric tensor $g$ (i.e. $g^{\star\star} = g$).
+
+\subsection{Contravariant and covariant coordinates}
+
+Let $X$ be a vector space with a metric tensor $g$ where $\dim X = n < +\infty$. Let $u_1, \dots, u_n$ be a basis of $X$ and let $u^1, \dots, u^n$ be a dual basis of $X^\star$.
+
+When we consider any vector $x\in X$ we might write this as
+\begin{equation}
+x = x^\mu u_\mu.
+\end{equation}
+
+We call $x^1, \dots, x^n$ contravariant coordinates of $x$. Recall that the metric tensor $g$ establishes a linear isomorphism between $X$ and $X^\star$. In this isomorphism a functional $x^\star(z) = g(x, z)$ corresponds to $x$. We might write $x^\star$ as
+\begin{equation}
+x^\star = x_\mu u^\mu.
+\end{equation}
+
+We call $x_1, \dots, x_n$ covariant coordinates of $x$ (sic: we describe $x$ in 2 ways because under the isomorphism we treat $x$ and $x^\star$ as if there were the same object).
+
+Theorem \ref{space-dual-identity-theorem} establishes a relation between $x^\mu$ and $x_\mu$. Indeed
+\begin{multline*}
+\\
+x_\mu u^\mu = x^\star = Lx = 
+g(x, u_\mu) u^\mu = 
+g(x^\nu u_\nu, u_\mu)u^\mu 
+\\= x^\nu g(u_\nu, u_\mu)u^\mu = x^\nu g_{\nu\mu} u^\mu.
+\\
+\end{multline*}
+Thus
+\begin{equation}
+\boxed{
+x_\mu = g_{\nu\mu} x^\nu}
+\end{equation}
+
+The operation above is so called "index lowering". Because situation is symmetrical if we talk about linear isomorphism from $X^\star$ to $X$, we have:
+\begin{equation}
+\boxed{
+x^\mu = g^{\nu\mu} x_\mu}
+\end{equation}
+
+The operation above is so called "index raising". 
+
+
+Let's now investigate how $x^\mu$ and $x_\mu$ transform under change of coordinates. Assume that we have other basis of $X$ - $\hat{u}_1, \dots, \hat{u}_n$ and $\hat{u}^1, \dots, \hat{u}^1$ is a dual basis in $X^\star$.
+
+Recall that by convention 
+\begin{equation}
+\hat{u}_\mu = U^{\nu}_{\hat{\mu}} u_\nu,
+\end{equation}
+and
+\begin{equation}
+u_\mu =  U^{\hat{\nu}}_\mu  \hat{u}_\nu.
+\end{equation}
+
+By Theorem \ref{basis-functional-basis-relation} we have
+\begin{equation}
+\hat{u}^\mu =  U^{\hat{\mu}}_{\nu} u^\nu,
+\end{equation}
+and 
+\begin{equation}
+u^\mu = U^{\mu}_{\hat{\nu}} u^\nu.
+\end{equation}
+Note the following
+\begin{equation}
+\hat{x}^\nu \hat{u}_\nu = x^\mu u_\mu = x^\mu U^{\hat{\nu}}_\mu  \hat{u}_\nu.
+\end{equation}
+
+Thus
+\begin{equation}
+\boxed{
+\hat{x}^\nu = U^{\hat{\nu}}_\mu x^\mu 
+}
+\end{equation}
+Note that that coordinates $x^\mu$ transform with the inverse of transformation matrix for vectors of basis - thus the name "contravariant".
+
+On the other hand note following
+\begin{equation}
+\hat{x}_\mu \hat{u}^\mu = x_\nu u^\nu = x_\nu U^{\mu}_{\hat{\nu}} u^\nu.
+\end{equation}
+
+Thus
+\begin{equation}
+\boxed{
+\hat{x}_\mu = U^{\mu}_{\hat{\nu}} x_\nu}
+\end{equation}
+
+Note that the coordinates $x_\mu$ transform with the same transformation matrix as vectors of basis - thus the name "covariant".
+
+\section{Mathematical Analysis}
+\begin{definition}
+Let $U\subset \reals^n$.
+By $C^n(U, \reals)$ we denote a set of all functions $f:U\to R$ for which a mapping
+\begin{equation}
+    U\ni (x^1, \dots, x^n) \to \cfrac{\partial^n f}{\partial x^{k_1} \dots \partial x^{k_m} } (x^1, \dots, x^n)
+\end{equation}
+is continuous for any ordered $(k_1, \dots, k_m)$ where $k_i\in\{1, \dots, m\}$ and $m\leq n$.
+\end{definition}
+
+The above definition in equivalent to the one you can find in \cite{warner1983}. 
+
+\begin{theorem}
+\label{continous_functions_space_complete}
+Let $(X, d)$ be a metric space, let $(Y, \rho)$ be complete metric space. If $BC(X, Y)$ is a space of all continuous and bounded functions from $X$ to $Y$ with a metric $\delta(f, g) = \sup_{x\in X} \rho(f(x), g(x))$, then $BC(X, Y)$ is a complete metric space.
+\end{theorem}
+\begin{proof}
+You may find a proof in \cite{maurin1976} (V.4).
+\end{proof}
+
+\begin{definition}
+Let $(X, d), (Y, \rho)$ be metric spaces. We say that $f_n:X\to Y$ converges uniformly to $f_0:X\to Y$, if and only if
+\begin{equation}
+    \lim_{n\to\infty} \sup_{x\in X}\rho(f_n(x), f_0(x)) = 0.
+\end{equation}
+We will also denote uniform convergence as $f_n \rightrightarrows f_0.$
+\end{definition}
+\begin{definition}
+Let $(X, d), (Y, \rho)$ be metric spaces. We say that $f_n:X\to Y$ converges almost uniformly to $f_0:X\to Y$, if and only if $f|_K \rightrightarrows f_0|_K$ for each compact $K\subset X$.
+\end{definition}
+\begin{theorem}
+Let $U$ be an open and connected subset of $\reals$. If $g_n\in C^1(U)$, $\cfrac{dg_n}{dt}\to g$ almost uniformly and there exists at least one $x_0\in U$ such that $g_n(x_0)$ converges to a certain real value, then $g_n\to g_0$ almost uniformly, where $\cfrac{dg_0}{dt} = g$.
+\end{theorem}
+\begin{proof}
+You will find a proof in \cite{maurin1976} (V.4).
+\end{proof}
+\begin{theorem}
+\label{diff_closed1}
+Let $f_n:[a, b]\to \reals$ be a sequence of differentiable functions. If  $\cfrac{df_n}{dt} \rightrightarrows g$
+and there exists $t_0 \in [a, b]$ such that $\lim\limits_{n\to\infty}f_n(t_0)\in \reals$, then $f_n \rightrightarrows f$ and $\cfrac{df}{dt} = g$.
+\end{theorem}
+\begin{proof}
+You may find a proof in \cite{rudin1976} (Uniform Convergence and Differentiation).
+\end{proof}
+\begin{theorem}
+\label{dominated_covergence}
+(\textbf{Lebesgue's Dominated Convergence Theorem})
+Let $X$ be a measurable space with a positive measure $\mu$. Let $f_n$ be a sequence of a complex measurable functions, $$f(x) = \lim_{n\to\infty} f_n(x)$$ for each $x\in X$ and $|f_n| \leq g$ where $g\in L^1(X)$, then $f\in L^1(X)$ and
+\begin{equation}
+    \int_X f(x) \mu(dx) = \lim_{n\to\infty} \int_X f_n \mu(dx).
+\end{equation}
+\end{theorem}
+\begin{proof}
+You may find a proof in \cite{rudin1987}  (Abstract Integration).
+\end{proof}.
+
+\begin{theorem}
+\label{lim_under_int_helper}
+Let $X$ be a measurable space with a positive measure $\mu$, $U$ be an open subset of $\R$ and let $f:U\times X\to\reals$. If
+\begin{enumerate}
+\item
+the mapping $X\ni x \to f(t, x)$ is a $L^1(X)$ function for each $t\in U$,
+
+\item
+the mapping $U\ni t \to \cfrac{\partial f}{\partial t}(t,x)$ is continuous for each $x\in X$,
+
+\item
+$\bigg\rvert\cfrac{\partial f}{\partial t}(U, x)\bigg\lvert \leq g(x)$ for each $x\in X$, where $g\in L^1(X)$,
+\end{enumerate}
+then
+the mapping $X\ni x \to \cfrac{\partial f}{\partial t}(t, x)$ is a $L^1(X)$ function for each $t\in U$ and
+\begin{equation}
+\cfrac{\partial }{\partial t}\int_X f(t, x) \mu(dx) = \int_X \cfrac{\partial f}{\partial t}(x, t) \mu(dx)  
+\end{equation}
+for each $t\in U$.
+
+\end{theorem}
+\begin{proof}
+Take any $t_0 \in U$. Let $U \supset K(t_0, \epsilon) \ni \Delta t \to 0.$
+Since the mapping $U\ni t \to \cfrac{\partial f}{\partial t}(t,x)$ is differentiable on $U$ (thus on $(t_0 - \Delta t, t_0 + \Delta t)$) for each $x\in X$, by Lagrange's Theorem we have
+\begin{equation}
+    \cfrac{f(t_0 + \Delta t, x) - f(t_0, x)}{\Delta t} =
+    \cfrac{\partial f}{\partial t}(t(t_0, \Delta t, x), x)
+\end{equation}
+where $|t_0 - t(t_0, \Delta t, x)| < \Delta t$ for each $x\in X$.
+Note that since the mapping $U\ni t \to \cfrac{\partial f}{\partial t}(t,x)$ is continuous and $t(t_0, \Delta t, x) \to t_0$ for each $x\in X$, we have
+\begin{equation}
+    \cfrac{f(t_0 + \Delta t, x) - f(t_0, x)}{\Delta t} =
+    \cfrac{\partial f}{\partial t}(t(t_0, \Delta t, x), x) \to \cfrac{\partial f}{\partial t}(t_0, x)
+\end{equation}
+for each $x\in X$.
+Since by assumptions, we have $|\cfrac{\partial f}{\partial t}(t(t_0, \Delta t, x), x)| \leq g(x)$ for each $x\in X$ and $g\in L^1(X)$, we can apply Theorem \ref{dominated_covergence} (Lebesgue's Dominated Convergence Theorem).
+Thus
+\begin{equation}
+    \int_X  \cfrac{f(t_0 + \Delta t, x) - f(t_0, x)}{\Delta t} \mu(dx) \to \int_X \cfrac{\partial f}{\partial t}(t_0, x) \mu(dx),
+\end{equation}
+which is the same as
+\begin{equation}
+    \cfrac{\int_X f(t_0 + \Delta t, x) \mu(dx) - \int_X f(t_0, x) \mu(dx)}{\Delta t}  \to \int_X \cfrac{\partial f}{\partial t}(t_0, x) \mu(dx).
+\end{equation}
+Hence, we have proved our thesis.
+\end{proof}
+
+\begin{theorem}
+\label{lim_under_int}
+Let $X$ be a compact space with a Borel additive measure $\mu$ where $\mu(X) < +\infty$, $U$ be an open subset of $\reals$ and $f:U\times X\to\reals$. If
+\begin{enumerate}
+\item
+the mapping $X\ni x \to f(t, x)$ is a $L^1(X)$ function for each $t\in U$,
+\item
+the mapping $U\times X \ni (t, x) \to \cfrac{\partial f}{\partial t}(x, t)$ is continuous,
+\end{enumerate}
+then
+the mapping $X\ni x \to \cfrac{\partial f}{\partial t}(t, x)$ is a $L^1(X)$ function for each $t\in U$ and
+\begin{equation}
+\cfrac{\partial }{\partial t}\int_X f(t, x) \mu(dx) = \int_X \cfrac{\partial f}{\partial t}(x, t) \mu(dx)  
+\end{equation}
+for each $t\in U$.
+
+\end{theorem}
+\begin{proof}
+Take any $t_0\in U$. We have an open neighbourhood $V\subset U$ of the point $t_0$ such that $Clo(V)$ is compact. Since $\cfrac{\partial f}{\partial t}$ is continous on $Clo(V)\times X$, we have $M > 0$ such that $\bigg\rvert\cfrac{\partial f}{\partial t}(V, x)\bigg\lvert \leq M$ for each $x\in X$. Now, since $\int_X M \mu(dx) = M\mu(X) < +\infty$, the assumptions of Theorem \ref{lim_under_int_helper} are satisfied for the open set $V$. Thus
+\begin{equation}
+\cfrac{\partial }{\partial t}\int_X f(t_0, x) \mu(dx) = \int_X \cfrac{\partial f}{\partial t}(x, t_0) \mu(dx).  
+\end{equation}
+\end{proof}
+\begin{theorem} (\textbf{Fubini theorem})
+\label{fubini-theorem}
+Let $(X, \mathcal{M}_X, \mu)$, $(Y, \mathcal{M}_Y, \nu)$ be measurable spaces and $\mu$ and $\nu$ are $\sigma$-finite. If $f$ is $\mathcal{M}_X\times\mathcal{M}_Y$ measurable and 
+\begin{equation}
+\int_X \int_Y |f(x,y)|d\nu(y) d\mu(x) < +\infty,
+\end{equation}
+then 
+\begin{equation}
+\int_X \int_Y f(x,y)d\nu(y) d\mu(x) = \int_Y \int_X f(x,y)d\mu(x) d\nu(y) < +\infty.
+\end{equation}
+\end{theorem}
+\begin{proof}
+\cite[See][Integration on Product Spaces. The Fubini theorem]{rudin1987}
+\end{proof}
+\begin{definition} (\textbf{Fréchet derivative})
+Let $X, Y$ be Banach spaces and $T:X\to Y$. We will say that $T$ is differentiable at a point $x_0\in X$, if and only if there exist a mapping $A_{x_0}\in L(X,Y)$ such that
+\begin{equation}
+    T(x_0 + h) - T(x_0) = A_{x_0}h + r(x_0, h),
+\end{equation}
+where
+\begin{equation}
+    \lim_{h\to 0} \cfrac{\norm{r(x_0, h)}}{\norm{h}} = 0.
+\end{equation}
+Let $\nabla T(x_0) := A_{x_0}$.
+\end{definition}
+You will find basic properties of $\nabla$ proven in \cite{maurin1976} (VII).
+\begin{definition}
+Let $X, Y$ be Banach spaces and $U$ be an open subset of $X$. Let's define by induction.
+\begin{enumerate}
+\item
+$L_1 := L(X, Y)$,
+\item
+$T\in C^1(U, Y)$ iff. $\nabla T\in C(U, L_1)$, i.e. $U\ni x\to (\nabla T(x))\in L_1$.
+\item
+$L_{n + 1} := L(X, L_n)$,
+\item
+$\nabla^{n+1} T(x_0) := \nabla(\nabla^{n}(T))(x_0)$,
+\item
+$T\in C^{n+1}(U, X)$ iff. $T\in C^n(U, Y)$ and $\nabla(\nabla^n T)\in C(U, L_{n+1})$, i.e. $U\ni x \to \nabla(\nabla^n T)(x)\in L_{n+1}$ is continuous.
+\end{enumerate}
+\end{definition}
+
+Because of the isometry
+\begin{equation}
+    L(X_1 \times \dots \times X_n; Y) \cong L(X_1, L(X_2, \dots, L(X_{n-1}, L(X_n, Y))\dots ))
+\end{equation}
+proven in \cite{maurin1976} (VII.7), we have
+\begin{equation}
+    L_n \cong L(\underbrace{X, \dots, X}_\text{n times}; Y).
+\end{equation}
+and we can exchangeably use
+\begin{equation}
+    \nabla^n T(x_0)(h_1, h_2, ..., h_n):= (\dots(\nabla^nT(x_0)h_1)h_2\dots )h_n. 
+\end{equation}
+The below propositions will be written in Einstein summation convention.
+\begin{proposition}
+Let $U$ be an open subset of $R^n$. If $f\in C^1(U, \reals^m)$, then
+\begin{equation}
+    \nabla f (x)(\Delta x) = \cfrac{\partial f^i}{\partial x_j}(x)\Delta x^j.
+\end{equation}
+
+\end{proposition}
+
+\begin{proposition}
+\begin{equation}
+\nabla^n f (x)(\Delta x_1, \dots, \Delta x_n) = 
+\cfrac{\partial^n f^i}{\partial x_{j_1}\dots \partial x_{j_1}}(x)\Delta x^{j_1}_1 \dots \Delta x^{j_n}_n.
+\end{equation}
+\end{proposition}
+In the theorem below $h^{(k)}$ is just an abbreviation of $(\underbrace{h, \dots, h}_\text{k times})$.
+\begin{theorem}
+\textbf{(The Taylor Formula)}
+Let $X, Y$ be Banach spaces, $U$ be an open subset of $X$ and $T\in C^{n+1}(U, Y)$. If the interval $[x, x+h]\subset U$ then
+\begin{equation}
+T(x + h) = T(x) + \sum_{k = 1}^n \cfrac{1}{k!}(\nabla^kT(x))h^{(k)} + R_{n+1}(x)h^{(n + 1)},
+\end{equation}
+where
+\begin{equation}
+    R_{n+1}(x) = \int_0^1 \cfrac{(1-s)^n}{n!}(\nabla^{n+1}T)(x + sh)ds.
+\end{equation}
+\end{theorem}
+\begin{proof}
+You may find a proof in \cite{maurin1976} (VII.9).
+\end{proof}
+
+\begin{theorem}
+Let $V$, $Y$ be normed vector spaces and let $X$ be a topological space. If $A:X\to L(V, Y)$ is continuous at $x_0$ and $u:X\to V$ is continuous at $x_0$, then the mapping $X\ni x \to A(x)u(x) \in Y$ is continous at $x_0$.  
+\end{theorem}
+
+\begin{theorem}
+Let $E$ be a compact Hausdorff space, let $X, Y$ be Banach spaces.
+We consider $C(E, X)$ and $C(E, Y)$ as Banach spaces with supremum norm $\norm{}_{\infty}$.
+If $A\in C(E, L(X, Y))$ and $\hat{A} : C(E, X)\to C(E, Y)$ is defined as
+\begin{equation}
+    \hat{A}(u)(t) = A(t)u(t)
+\end{equation}
+for each $t\in E$, then $\hat{A}\in L(C(E, X),  C(E, Y))$.
+\end{theorem}
+
+\begin{theorem}
+Let $E$ be a compact Hausdorff space, let $X, Y$ be Banach spaces and let $\mathcal{L}\in C^2(X, Y)$.
+We consider $C(E, X)$ and $C(E, Y)$ as Banach spaces with supremum norm $\norm{}_{\infty}$.
+Let $\hat{\mathcal{L}}: C(E, X)\to C(E, Y)$ be defined as
+\begin{equation}
+    \hat{\mathcal{L}}(u)(t) = \mathcal{L}(u(t)),
+\end{equation}
+then $\nabla \hat{\mathcal{L}}$ exists for all $u\in C(E, X)$ and
+\begin{equation}
+    (\nabla \hat{\mathcal{L}}(u)(\Delta u))(t) = \nabla \mathcal{L}(u(t))(\Delta u(t)). 
+\end{equation}
+\end{theorem}
+\subsection{Fourier Transforms and Related Theorems}
+In this subsection, if not stated otherwise, we assume that $L^p(X)$ is a space of complex valued functions $f:X\to \C$ for which $\int|f|^p < +\infty$.
+\begin{theorem}
+\label{basic-integral-inequality}
+Let X be a measurable space with a positive measure $\mu$.
+If $f\in L^1(X)$, then
+\begin{equation}
+    \bigg\vert\int f\mu\bigg\vert \leq \int|f|d\mu. 
+\end{equation}
+\end{theorem}
+\begin{proof}
+\cite[see][Abstract Integration]{rudin1987}
+\end{proof}
+\begin{theorem}(\textbf{Hölder's inequality})
+\label{holder-inequality}
+Let X be a measurable space with a positive measure $\mu$.
+Let $p,q\in(1, +\infty)$ such that $\frac{1}{p} + \frac{1}{q} = 1$. If $f,g:X\to[0,\infty]$ are measurable, then
+\begin{equation}
+    \int fg d\mu \leq \bigg(\int f^p d\mu\bigg)^{\frac{1}{p}} \bigg(\int g^p d\mu\bigg)^{\frac{1}{p}}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+\cite[see][$L^p$-Spaces]{rudin1987}
+\end{proof}
+\begin{definition}
+\label{fourier}
+Let $f\in L^1(\reals)$.
+\begin{equation}
+    \F(f)(t) := \cfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(x)e^{-ixt}dx.
+\end{equation}
+\end{definition}
+
+In many equations with Fourier transform we will be using $u$ as identity function $u(t) := t$ but we will be omitting $t$ for a purpose, making a silent assumption that everything is a function of $t$. In this convention i.e. $uf(u)$ is the function $t\to u(t)f(u(t)) = tf(t)$.
+
+\begin{theorem}
+If $f\in L^1(\reals)$, then $\F(f)(t)\in\reals$ is well defined for each $t\in\reals$.
+\end{theorem}
+\begin{proof}
+You may find a proof in \cite{rudin1987} (Fourier Transforms. Formal Properties.)
+\end{proof}
+
+\begin{definition}
+\label{inv_fourier}
+Let $f\in L^1(\reals)$.
+\begin{equation}
+    \F^{-1}(f)(t) := \F(f)(-t). 
+\end{equation}
+\end{definition}
+
+\begin{theorem}
+If $f\in L^1(\reals)$ and $\F(f)\in L^1(\reals)$, then
+\begin{equation}
+    f \underset{\text{a.e.}}{=} \F^{-1}(\F(f)) \in C_0(\reals).
+\end{equation} 
+\end{theorem}
+\begin{proof}
+You may find a proof in \cite{rudin1987} (Fourier Transforms. The Inversion Theorem.)
+\end{proof}
+
+\begin{theorem}
+If $f\in L^1(\reals)$, then
+\begin{equation}
+    \F^{-1}(f) = -\F(f(-u)).
+\end{equation}
+\end{theorem}
+\begin{proof}
+By definition \ref{inv_fourier} we have
+\begin{equation}
+     \F^{-1}(f)(t) = \cfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(x)e^{ixt}dx.
+\end{equation}
+Make the substitution $z = -x$, so $dz = -dx$. Thus
+\begin{equation}
+    \F^{-1}(f)(t) = -\cfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(-z)e^{-izt}dz.
+\end{equation}
+\end{proof}
+
+\begin{theorem}
+\label{fourier_formal}
+Let $f\in L^1(\reals)$ and let $\alpha, \gamma\in\reals$. The following conditions holds:
+\begin{enumerate}
+\item
+$\F(f(u)e^{i\alpha u})(t) = \F(f)(t - \alpha)$.
+\item
+$\F(f(u - \alpha))(t) =e^{-i\alpha t}\F(f)(t)$.
+\item
+$\F(\, \overline{f(-u}) \,) = \overline{\F(f)}.$    
+
+\item
+If $\gamma > 0$ then $\F({f(\frac{u}{\gamma})})(t) = \gamma \F(f)(\gamma t)$.
+
+\item
+If $-iuf(u)\in L^1(\reals)$, then $\F(f)$ is differentiable and
+\begin{equation}
+    \cfrac{d}{dt}\F(f) = \F(-iuf(u)).
+\end{equation}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+You may find a proof in \cite{rudin1987} (Fourier Transforms. Formal Properties.)
+\end{proof}
+
+\begin{theorem}
+\label{fourier_deriv}
+If $iuf(u)\in L^1(\reals)$, then
+\begin{equation}
+    \cfrac{d}{dt}\F^{-1}(f) = \F^{-1}(iuf(u)).
+\end{equation}
+\end{theorem}
+\begin{proof}
+
+\begin{equation}
+\begin{split}
+ \cfrac{d}{dt}\F^{-1}(f) = -\cfrac{d}{dt}\F(f(-u)) = -\F(-iuf(-u)) = \F(iuf(-u)) \\
+ = - \F^{-1}(i(-u)f(u)) = \F^{-1}(iuf(u)).
+ \end{split}
+\end{equation}
+
+\end{proof}
+\begin{theorem}\label{plancherel}(\textbf{The Parseval Formula}) If $f,g\in L^1(\reals)\cap L^2(\reals)$, then
+\begin{equation}
+    \int_{-\infty}^{\infty} f\overline{g}\,dx = \int_{-\infty}^{\infty} \F(f)\overline{\F(g)}\,dx.
+\end{equation}
+\end{theorem}
+\begin{proof}
+You may find a proof in \cite{rudin1987} (Fourier Transforms. The Plancherel Theorem.)
+\end{proof}
+\begin{corollary}
+\label{plancherel_corollary}
+If $f,g\in L^1(\reals)\cap L^2(\reals)$, then
+\begin{equation}
+    \int_{-\infty}^{\infty} f\overline{g}\,dx = \int_{-\infty}^{\infty} \F^{-1}(f)\overline{\F^{-1}(g)}\,dx.
+\end{equation}
+\end{corollary}
+
+\begin{corollary}
+If $f\in L^1(\reals)\cap L^2(\reals)$, then $\F(f)\in L^2(\reals)$.
+\end{corollary}
+
+\begin{theorem}
+If $\psi_1, \psi_2\in L^1(\reals) \cap L^2(\reals)$ and the function $x\to x\F(\psi_1)(x)$ is in $L^{1}(\reals)\cap L^{2}(\reals)$, then
+\begin{equation}
+    \int_{-\infty}^{\infty} -i\cfrac{d\psi_1}{dx}(x) \cdot \overline{\psi_2(x)} \,dx = \int_{-\infty}^{\infty} x\F(\psi_1)(x) \cdot \overline{\F(\psi_2)(x)}\, dx.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let
+\begin{equation}
+     P = \int_{-\infty}^{\infty} \cfrac{d\psi_1}{dx}(x) \cdot \overline{\psi_2(x)} \,dx =
+     \int_{-\infty}^{\infty} \cfrac{d}{d x}\F^{-1}(\F(\psi_1))\cdot \overline{\F^{-1}(\F(\psi_2))} dx.
+\end{equation}
+
+By Theorem \ref{fourier_deriv} we have
+\begin{equation}
+    P = \int_{-\infty}^{\infty} \F^{-1}(ix\F(\psi_1)(x))\cdot \overline{\F^{-1}(\F(\psi_2))}\, dx.
+\end{equation}
+Now, by Corollary \ref{plancherel_corollary} we have
+\begin{equation}
+    P = \int_{-\infty}^{\infty} ix\F(\psi_1)(x) \cdot \overline{\F(\psi_2)(x)}\,dx,
+\end{equation}
+which completes the proof.
+\end{proof}
+
+\begin{theorem}
+\label{position_to_momentum}
+If $\psi_1, \psi_2\in L^1(\reals) \cap L^2(\reals)$ and the function $x\to x\psi_1(x)$ is in $L^{1}(\reals)\cap L^{2}(\reals)$, then
+\begin{equation}
+    \int_{-\infty}^{\infty} x\psi_1(x) \cdot \overline{\psi_2(x)}\, dx = \int_{-\infty}^{\infty} i\cfrac{d}{d x}\F(\psi)(x) \cdot \overline{\F(\psi)(x)} \,dx.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let 
+\begin{equation}
+    Q = \int_{-\infty}^{\infty} x\psi_1(x) \cdot \overline{\psi_2(x)}\, dx.
+\end{equation}
+By Theorem \ref{plancherel} we have
+\begin{equation}
+    Q = \int_{-\infty}^{\infty} \F(x\psi_1(x)) \cdot \overline{\F(\psi_2(x))}\, dx 
+    = \int_{-\infty}^{\infty} i \F(-ix\psi_1(x)) \cdot \overline{\F(\psi_2(x))}\, dx. 
+\end{equation}
+Now, by Theorem \ref{fourier_formal}
+\begin{equation}
+    Q = \int_{-\infty}^{\infty} i\cfrac{d}{d x}\F(\psi_1)(x) \cdot \overline{\F(\psi_2)(x)} \,dx,
+\end{equation}
+which completes the proof.
+\end{proof}
+\begin{lemma}
+Let $p_1, p_2\in[1,+\infty)$ and $f:\reals \to \reals$. If $f\in L^{p_1}(\reals)$ and $\cfrac{df}{dx}\in L^{p_2}(\reals)$, then
+\begin{equation}
+\lim_{x\to-\infty} f(x) = 0,
+\end{equation}
+and
+\begin{equation}
+    \lim_{x\to+\infty} f(x) = 0.
+\end{equation}
+\end{lemma}
+\begin{proof} Without lost of generality we will show only $\lim_{x\to+\infty} f(x) = 0$.
+By proof by contracdiction, assume that $\limsup\limits_{x\to \infty}|f(x)| > 0$. Without lost of generality we may assume that we have such $\epsilon > 0$ and a sequence $b_n\to\infty$ such that $f(b_n) > \epsilon$. Fix some  $\Delta s > 0$. There must be 
+\begin{equation}
+     \inf_{x\in (c_n - \Delta s, c_n)} f(x) < \frac{1}{2}\epsilon
+\end{equation}
+for almost all $n\in \N$. Otherwise $f\not\in L^{p_1}(\reals)$.
+Hence, we have a sequence $a_n\to \infty$ such that $a_n\in (b_n - \Delta s, b_n)$ and $f(a_n) <  \frac{1}{2}\epsilon$ for almost all $n\in\N$. 
+Since $f(b_n) > \epsilon$ and $f(a_n) < \frac{1}{2}\epsilon$ we have
+\begin{equation}
+    \int_{a_n}^{b_n} \frac{df}{dx} = f(b_n) - f(a_n) > \frac{1}{2}\epsilon
+\end{equation}
+for almost all $n\in \N$. This imediatelly contradicts $\frac{df}{dx}\in L^{p_2}(\reals)$ for $p_2=1$. Assume now that $p_2 > 1$.
+By Theorem \ref{basic-integral-inequality} and Theorem \ref{holder-inequality} (Hölder's inequality), for almost all $n\in \N$ we are getting
+\begin{equation}
+    \frac{1}{2}\epsilon < \int_{a_n}^{b_n} \bigg\vert \frac{df}{dx} \bigg\vert \cdot 1 dx \leq \bigg(\int_{a_n}^{b_n} \bigg\vert \frac{df}{dx} \bigg\vert^{p_2} dx\bigg)^\frac{1}{p_2}(b_n - a_n)^\frac{1}{q_2},
+\end{equation}
+where $q_2$ is such that $\frac{1}{p_2} + \frac{1}{q_2} = 1$.
+But $b_n - a_n < \Delta s$. Thus
+\begin{equation}
+\bigg(\frac{\epsilon}{(\Delta s)^\frac{1}{q_2}}\bigg)^{p_2} < \bigg(\frac{\epsilon}{(b_n - a_n)^\frac{1}{q_2}}\bigg)^{p_2} < \int_{a_n}^{b_n} \bigg\vert \frac{df}{dx} \bigg\vert^{p_2} dx. 
+\end{equation}
+Since $b_n\to \infty$ the above contradicts $\cfrac{df}{dx}\in L^{p_2}(\reals)$.
+\end{proof}
+The assumption that $\cfrac{df}{dx}\in L^{p_2}(\reals)$ is important, for counterexample \cite[see][Example 2]{gieres2000}. 
+\begin{theorem}
+\label{limit-for-hermitian}
+Let $p_1, p_2\in[1,+\infty)$ and $f:\reals \to \C$. If $f\in L^{p_1}(\reals)$ and $\cfrac{df}{dx}\in L^{p_2}(\reals)$, then
+\begin{equation}
+\lim_{x\to-\infty} f(x) = 0,
+\end{equation}
+and
+\begin{equation}
+    \lim_{x\to+\infty} f(x) = 0.
+\end{equation}
+\end{theorem}
+\begin{proof}
+It is enough to notice $f(x) = \RE(f(x)) + i\IM(f(x))$. From $\max\{|a|,|b|\} \leq |a + ib|$ follows that $\RE(f),\IM(f)\in L^{p_1}(\reals)$ and $\cfrac{d\RE f}{dx},\cfrac{d\IM f}{dx}\in L^{p_2}(\reals)$. Thus, applying the above Lemma to both $\RE f$ and $\IM f$ completes the proof.
+\end{proof}
+\begin{theorem}
+Let $\mathcal{D} = \{f:\R\to\C \vert f\in L^2(\R) \text{ and } \cfrac{df}{dx}\in L^{2}(\reals)\}$. If $f,g\in \mathcal{D}$, then
+\begin{equation}
+\label{hermitian-equation}
+\int_{-\infty}^{\infty} i\cfrac{df}{dx}\cdot \overline{g}\, dx = \int_{-\infty}^{\infty} f \cdot \overline{i\cfrac{dg}{dx}}\, dx.
+\end{equation}
+\begin{proof}
+Note that by Theorem \ref{limit-for-hermitian} we have
+\begin{equation}
+    \int_{-\infty}^{\infty} i\frac{d}{dx}(f\overline{g}) = 0.
+\end{equation}
+From the above, we get the equation (\ref{hermitian-equation}).
+\end{proof}
+\end{theorem}
+
+\subsection{Euler-Lagrange Equations}
+Let $I = [a, b]$. In this subsection we will consider a function $\mathcal{L}\in C^2(I\times \reals^n \times\reals^n, \reals)$. We will also consider a space $C^1(I, \reals^n)$ equipped with the norm
+\begin{equation}
+\norm{u}_{C^2} := \sum_{i=1}^n \sup|u_i(I)| + \sum_{i=1}^n \sup|\cfrac{d u_i}{dt}(I)|.
+\end{equation}
+
+By Theorem \ref{continous_functions_space_complete} and Theorem \ref{diff_closed1} one can easily prove that $(C^1(I, \reals^n), \norm{\cdot}_{C^2})$ is a Banach space.
+Define a function $J$ on $C^1(I, \reals^n)$.
+\begin{equation}
+    J(u) := \int^a_b \mathcal{L}(t, u(t), \cfrac{du}{dt}(t)) dt.
+\end{equation}
+\begin{definition}
+We will say that $F_\epsilon: \reals^n \to \reals^n$ is a continuous symmetry group iff.
+\begin{equation}
+F_\epsilon(x) = v(\epsilon) + A_\epsilon x,
+\end{equation}
+where $\cfrac{d}{d\epsilon}v \vert_{\epsilon = 0} \in \reals$ and $A_\epsilon$ is a continuous group of linear mappings, for which there exists a linear mapping $Q_A$ such that 
+\begin{equation}
+\lim_{\epsilon\to 0} \norm{\cfrac{1}{\epsilon}(A_\epsilon - I)  - Q_A} = 0.
+\end{equation}
+We will say that $Q_F:=\cfrac{d}{d\epsilon} v \vert_{\epsilon = 0} +Q_A$ is an infinitesimal generator of $F_\epsilon$.
+\end{definition}
+\begin{lemma}
+\label{symetry_group_lemma}
+Let $F_\epsilon$ be a continuous symmetry group, let $u\in C^1(I, \reals^n)$.
+Let
+\begin{equation}
+    \Phi(t, \epsilon) = F_\epsilon(u(t)).
+\end{equation}
+Then
+\begin{equation}
+    \cfrac{d}{dt} \cfrac{d}{d\epsilon} \Phi(t, \epsilon) \bigg\vert_{\epsilon = 0} = 
+    \cfrac{d}{d\epsilon} \cfrac{d}{dt} \Phi(t, \epsilon) \bigg\vert_{\epsilon = 0} = Q_F \dot{u}(t).
+\end{equation}
+\end{lemma}
+\begin{theorem} (\textbf{Noether's Theorem})
+\label{noether}
+Let $\mathcal{L}\in C^2(I\times \reals^n \times\reals^n, \reals)$, let $u\in C^1(\reals, \R^n)$ and
+\begin{equation}
+\label{lagrange_equation}
+    \cfrac{d}{dt} \cfrac{\partial \mathcal{L}}{\partial \dot{x}}(t, u, \dot{u}) - \cfrac{\partial \mathcal{L}}{\partial x}(t, u, \dot{u}) = 0.
+\end{equation}
+Let $F_\epsilon$ be a continuous symmetry group with an infinitesimal generator $Q_F$ and let $Q_T\in \reals$.
+Let $T_\epsilon(t) = t + Q_T\epsilon$ and  $u_\epsilon(t) = F_\epsilon(u(t))$.
+If 
+\begin{equation}
+\label{lagrange_invariant_symetry}
+\mathcal{L}(T_\epsilon, u_\epsilon, \dot{u}_\epsilon) = \mathcal{L}(t, u, \dot{u})
+\end{equation}
+for all $\epsilon\in \reals$, then
+\begin{equation}
+\label{noether_thesis}
+    (\mathcal{L} - \cfrac{\partial \mathcal{L}}{\partial \dot{x}}\dot{u})Q_T +  \cfrac{\partial \mathcal{L}}{\partial \dot{x}} Q_Fu = const.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let
+\begin{equation}
+    \psi_t(\epsilon) := (t + Q_T\epsilon, F_\epsilon(u(t)), \cfrac{d}{dt} F_\epsilon(u(t))).
+\end{equation}
+For fixed $t\in \reals$, $\psi_t$ is differentiable in $\epsilon = 0$ and by Lemma \ref{symetry_group_lemma}, we have
+\begin{equation}
+    \cfrac{d}{d\epsilon} \psi_t(\epsilon) \bigg\vert_{\epsilon = 0}
+    = (Q_T, Q_F u(t),  Q_F \dot{u}(t)). 
+\end{equation}
+By equation (\ref{lagrange_invariant_symetry}) we have
+\begin{equation}
+    \mathcal{L}( \psi_t(\epsilon)) - \mathcal{L}(\psi_t(0)) = 0
+\end{equation}
+for all $\epsilon\in \reals$.
+Thus
+\begin{equation}
+    \cfrac{d}{d\epsilon}  \mathcal{L}( \psi_t(\epsilon)) \bigg\vert_{\epsilon = 0} = 0.
+\end{equation}
+By the law of derivatives composition (\cite{maurin1976} VII.4), we have
+\begin{equation}
+    \nabla \mathcal{L}(\psi_t(0)) \cfrac{d}{d\epsilon} \psi_t(\epsilon) \bigg\vert_{\epsilon = 0} = 0,
+\end{equation}
+Since $\psi_t(0) = (t, u(t), \dot{u}(t))$, the above expands to
+\begin{equation}
+    \cfrac{\partial \mathcal{L}}{\partial t}(t, u, \dot{u})Q_T + 
+    \cfrac{\partial \mathcal{L}}{\partial x}(t, u, \dot{u})Q_Fu + \cfrac{\partial \mathcal{L}}{\partial \dot{x}}(t, u, \dot{u})Q_F\dot{u} = 0.
+\end{equation}
+By (\ref{lagrange_equation})
+\begin{equation}
+    \cfrac{\partial \mathcal{L}}{\partial t}(t, u, \dot{u})Q_T + 
+     \cfrac{d}{dt} \cfrac{\partial \mathcal{L}}{\partial \dot{x}}(t, u, \dot{u})Q_Fu + \cfrac{\partial \mathcal{L}}{\partial \dot{x}}(t, u, \dot{u})Q_F\dot{u} = 0.
+\end{equation}
+From that point we will omit $(t,u,\dot{u})$ but we will consider $\mathcal{L}$ and its all derivatives at point $(t, u(t), \dot{u}(t))$.
+From the above we get immediately 
+\begin{equation}
+\label{almost_final}
+    \cfrac{\partial \mathcal{L}}{\partial t}Q_T + 
+    \cfrac{d}{dt}(\cfrac{\partial \mathcal{L}}{\partial \dot{x}} Q_Fu) = 0.
+\end{equation}
+Note that we have
+\begin{equation}
+    \cfrac{d}{dt}\mathcal{L} =
+    \cfrac{\partial \mathcal{L}}{\partial t} + 
+    \cfrac{\partial \mathcal{L}}{\partial x} \dot{u} + \cfrac{\partial \mathcal{L}}{\partial \dot{x}}\ddot{u}.
+\end{equation}
+But again from (\ref{lagrange_equation}) we get
+\begin{equation}
+    \cfrac{d}{dt}\mathcal{L} =
+    \cfrac{\partial \mathcal{L}}{\partial t} + \cfrac{d}{dt} (\cfrac{\partial \mathcal{L}}{\partial \dot{x}} \dot{u}).
+\end{equation}
+Thus using (\ref{almost_final}) we get
+\begin{equation}
+\cfrac{d}{dt}\big((\mathcal{L} - \cfrac{\partial \mathcal{L}}{\partial \dot{x}} \dot{u})Q_T + \cfrac{\partial \mathcal{L}}{\partial \dot{x}} Q_Fu\big) = 0,
+\end{equation}
+which gives (\ref{noether_thesis}).
+\end{proof}
+\section{Spectral Theory}
+\subsection{Spectral Measure}
+For any vector space $X$, by $\mathcal{B}(X)$ we will mean a space of all bounded linear operators.
+\begin{definition}
+Let $\mathfrak{M}$ be a $\sigma$-algebra in a set $\Omega$ and let $H$ be a Hilbert space. The mapping
+\begin{equation}
+E:\mathfrak{M}\to \mathcal{B}(H)
+\end{equation}
+is a spectral measure iff
+\begin{enumerate}
+\item $E(\Omega) = I$.
+\item $E(\omega)$ is a selfadjoint projection for any $\omega\in\mathfrak{M}.$
+\item $E(\omega_1\cup \omega_2) = E(\omega_1) + E(\omega_2)$ where $\omega_1\cap\omega_2=\emptyset$ for any $\omega_1, \omega_2\in\mathfrak{M}$.
+\item $E(\bigcup_{i=1}^\infty\omega_i)\psi=\sum_{i=1}^\infty E(\omega_i)\psi$ for any pairwise disjoint sequence of sets $\omega_i\in\mathfrak{M}$ and any $\psi\in H$. 
+\end{enumerate}
+\end{definition}
+\begin{theorem}
+Let $\mathfrak{M}$ be a $\sigma$-algebra in a set $\Omega$ and let $H$ be a Hilbert space. If $E:\mathfrak{M}\to \mathcal{B}(H)$ is a spectral measure, then the following holds:
+\begin{enumerate}
+\item
+$E(\Omega\setminus\omega) = I - E(\omega)$ for any $\omega\in\mathfrak{M}$, in particular $E(\emptyset)=0$.
+\item
+$E(\omega_1\cap\omega_2) = E(\omega_1)E(\omega_2)$ for any $\omega_1,\omega_2\in \mathfrak{M}$.
+\item $\mu^E_{\psi, \phi}(\omega) := \langle E(\omega)\psi, \phi \rangle$ is a complex valued measure on $\mathfrak{M}$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\cite[see][The Spectral Theorem]{teschl2014}
+\end{proof}
+We will denote
+\begin{equation}
+\mu^E_\psi(\omega) := \mu^E_{\psi, \psi}(\omega).
+\end{equation}
+Note that because of $E(\omega)$ is a projection $\mu^E_\psi(\omega)\geq 0$.
+\begin{definition}
+Let $H$ be a Hilber space. We say that $E$ is a spectral measure on real line iff $E:\mathfrak{M}\to \mathcal{B}(H)$ where $\mathfrak{M}$ is $\sigma$-algebra of Lebesgue measurable sets on $\reals$.
+\end{definition}
+\begin{definition}
+\label{functional-domain-definition}
+Let $H$ be a Hilbert space, let $f:\reals\to\C$ be a measurable function and let $E:\mathfrak{M}\to \mathcal{B}(H)$ be a spectral measure.
+\begin{equation}
+\mathcal{D}^E_f := \{\psi\in H: \int |f|^2 d\mu^E_\psi\ < +\infty\}.
+\end{equation}
+\end{definition}
+\begin{theorem}
+Let $\mathcal{D}^E_f$ be like in Definition \ref{functional-domain-definition}, then $\mathcal{D}^E_f$ is a dense subspace of $H$.
+\end{theorem}
+\begin{proof}
+\cite[see][Unbounded Operators on a Hilbert Space, Resolution of Identity]{rudin1991}
+\end{proof}
+\begin{theorem}
+Let $H$ be a Hilbert space, let $f:\reals\to\C$ be a measurable function and let $E:\mathfrak{M}\to \mathcal{B}(H)$ be a spectral measure. Then
+\begin{equation}
+\int |f|d|\mu^E_{\psi, \phi}| \leq ||\phi||\bigg(\int |f|^2 d\mu^E_\psi\bigg)^\frac{1}{2} \text{ for } \psi,\phi\in H.
+\end{equation}
+\begin{proof}
+\cite[see][Unbounded Operators on a Hilbert Space, Resolution of Identity]{rudin1991}
+\end{proof}
+\end{theorem}
+\begin{theorem}
+\label{central-functional-analisys}
+Let $H$ be a Hilbert space, let $f:\reals\to\C$ be a measurable function and let $E:\mathfrak{M}\to \mathcal{B}(H)$ be a spectral measure. There exists a densly defined normal operator $\Psi^E(f)$ with a domain $\mathcal{D}({\Psi^E(f)}) = \mathcal{D}^E_f$ such that 
+\begin{equation}
+\langle \Psi^E(f)\psi, \phi \rangle = \int f d\mu^E_{\psi, \phi} \text{ for all } \psi\in\mathcal{D}^E_f \text{ and } \phi\in H.
+\end{equation}
+Moreover
+\begin{enumerate}
+\item $\norm{\Psi^E(f)\psi} = \int |f|^2 d\mu^E_\psi$ for all $\psi\in \mathcal{D}^E_f$.
+\item $\Psi^E(f)^* = \Psi^E(\overline{f})$.
+\item
+If $f,g:\reals\to\C$ are measurable, then $\Psi^E(f)\Psi^E(g) \subset \Psi^E(fg)$ and $\mathcal{D}(\Psi^E(f)\Psi^E(g)) = \mathcal{D}^E_g \cap \mathcal{D}^E_{fg}$.
+\item $\Psi^E(f)\Psi^E(g) = \Psi^E(fg)$ iff $\mathcal{D}^E_{fg}\subset\mathcal{D}^E_g$.
+
+\end{enumerate} 
+\end{theorem}
+\begin{proof}
+\cite[see][Unbounded Operators on a Hilbert Space, Resolution of Identity]{rudin1991}
+\end{proof}
+\begin{corollary}
+\label{self-adjoint-corollary}
+If $E$ is a spectral measure on real line, then for $\Psi^E$ from Theorem \ref{central-functional-analisys}, $\Psi^E(\text{id})$ is self-adjoint.
+\end{corollary}
+\begin{proof}
+It follows from Therem \ref{central-functional-analisys} Moreover part point 1.
+\end{proof}
+We will use symbol $E(f):=\Psi^E(f)$ as defined in the theorem above. Note that in this convention $E(1_\omega) = E(\omega)$. We will use also another convention, if we consider operator $A = E(\text{id})$, we will write $f(A):=\Psi^E(f)$.
+\begin{definition}
+Let $H$ be Hilbert space and let $E:\mathfrak{M}\to \mathcal{B}(H)$ be a spectral measure on real line. Let $\psi\in H$.
+\begin{equation}
+H^E_\psi := \{E(f)\psi : \int |f|^2 d\mu^E_\psi\ < +\infty\}.
+\end{equation}
+\end{definition}
+\begin{definition}
+Let $H$ be Hilbert space and let $E:\mathfrak{M}\to \mathcal{B}(H)$ be a spectral measure on real line. Let $\psi\in H$.
+We will say that $\psi$ is \textbf{cyclic} in $E$ iff $H^E_\psi = H$.
+\end{definition}
+\begin{definition}
+Let $H_1, H_2$ be Hilbert spaces. $U:H_1\to H_2$ is called a unitary mapping, if $U$ is a linear bijection and
+\begin{equation}
+\langle U(\psi), U(\phi) \rangle_{H_2} = \langle \psi, \phi \rangle_{H_1} \text{ for all } \psi,\phi\in H_1. 
+\end{equation}
+\end{definition}
+\begin{definition}
+Let $H$ be Hilbert space and let $E:\mathfrak{M}\to \mathcal{B}(H)$ be a spectral measure on real line. Let $\psi\in H$.
+We define
+\begin{equation}
+U^E_\psi:H_\psi^E\to L^2(\reals, \mu^E_\psi),
+\end{equation}
+such that
+\begin{equation}
+U^E_\psi(E(f)\psi) := f \text{ for all } f\in L^2(\reals, \mu^E_\psi).
+\end{equation}
+\end{definition}
+\begin{theorem}
+Let $H$ be Hilbert space and let $E:\mathfrak{M}\to \mathcal{B}(H)$ be a spectral measure on real line. Let $\psi\in H$ Then $U_\psi^E$ is a unitary mapping between $H_\psi$ and $L^2(\reals, \mu^E_\psi)$ and 
+\begin{equation}
+\label{unitary-transformat}
+U_\psi^E(E(f)\phi) = f\cdot U_\psi^E(\phi) \text{ for any } f\in L^2(\reals, \mu^E_\psi) \text{ and } \phi\in H_\psi\cap\mathcal{D}_f.
+\end{equation}
+Moreover $U^E_f(\mathcal{D}_f \cap H_\psi) = \mathcal{D}(g \to f\cdot g)$ for any $f\in L^2(\reals, \mu^E_\psi)$.
+\end{theorem}
+\begin{proof}
+\cite[see][The Spectral Theorem]{teschl2014}
+Note that to prove equation (\ref{unitary-transformat}), 
+you represent $\phi$ as $\phi=E(g)\psi$ 
+for some $g\in L^2(\reals, \mu^E_\psi)$ and then use Theorem \ref{central-functional-analisys} for
+\begin{equation}
+U_\psi^E(E(f)\phi) = U_\psi^E(E(f)E(g)\psi) = U_\psi^E(E(fg))\psi = fg = f\cdot U_\psi^E(\phi).
+\end{equation}
+\end{proof}
+\begin{definition}
+Let $H$ be a seperable Hilbert space and let $E:\mathfrak{M}\to \mathcal{B}(H)$ be a spectral measure on real line.
+A set of vectors $\{\psi_i\}_{i\in J}$ is a spectral basis with respect to a spectral measure on real line $E$ iff
+\begin{enumerate}
+\item $\norm{\psi_i} = 1$ for each $i\in J$.
+\item $H^E_{\psi_i} \bot H^E_{\psi_j}$ for all $i, j\in J$ where $i\not=j$.
+\item $H = \bigoplus H^E_{\psi_i}$.  
+\end{enumerate} 
+\end{definition}
+\begin{theorem}
+Let $H$ be a separable Hilbert space and let $E:\mathfrak{M}\to \mathcal{B}(H)$ be a spectral measure on real line. There exist at least countanable spectral basis $\{\psi_i\}_{i\in J}$ and an unitary mapping $U^E$ such that
+\begin{equation}
+U^E: H \to \bigoplus L^2(\reals, \mu^E_{\psi_{i}}),
+\end{equation}
+and
+for any measurable function $f:\reals\to\C$ and $\psi\in \mathcal{D}_f$.
+\begin{equation}
+U^E(E(f)\psi) = f^{M}U^E(\psi) \text{ and } U^E(\mathcal{D}_f) = \mathcal{D}(f^M),
+\end{equation}
+where $f^M := \bigoplus f_i^M$ and $f_i^M(g):= f\cdot g$ on $L^2(\reals, \mu^E_{\psi_{i}})$, 
+in particular
+\begin{equation}
+\label{spectral-measure-reconstruction}
+E(\omega)\psi = (U^E)^{-1}(1^M_\omega \cdot U^E(\psi)).
+\end{equation}
+\end{theorem}
+\begin{proof}
+\cite[see][The Spectral Theorem]{teschl2014}
+\end{proof}
+Treat the above theorem also as a definition of $U^E$. Note the equation (\ref{spectral-measure-reconstruction}) shows that having a unitary mapping $U^E$ we can reconstruct spectral measure $E$.
+\begin{theorem}
+Let $H$ be a Hilbert space and $U:H\to L^2(\reals, \nu)$ be a unitary mapping. If 
+\begin{equation}
+E(\omega)\psi = U^{-1}(1_\omega\cdot U(\psi)) \text{ for all } \psi\in H
+\end{equation}
+and any Lebesgue measurable $\omega\subset\reals$, 
+then $E$ is a spectral measure on real line and $A = E(\text{id})$ is a densly defined self-adjoint linear operator. Moreover
+\begin{equation}
+\langle f(A)\psi, \phi \rangle = \int_{-\infty}^{\infty} f(\lambda) U(\psi)\overline{U(\phi)} d\nu(\lambda) 
+\end{equation}
+and
+\begin{equation}
+f(A)\psi = U^{-1}(f\cdot U(\psi))
+\end{equation}
+for any measurable $f:\reals\to\C$ and all $\psi\in\mathcal{D}^E_f=\mathcal{D}(f(A))$ and $\phi\in H$.
+\end{theorem}
+\subsection{Spectral Measure - Multidimentional representation}
+\begin{theorem}
+\label{observable-representation}
+Let $H$ be a Hilbert space and let $(X, \mathfrak{M}, \nu)$ be a measurable space. Let $U:H\to L^2(X, \nu)$ be a unitary mapping and $g:X\to \reals$ be a measurable function.
+\begin{equation}
+E(\omega)\psi = U^{-1}(1_\omega(g)\cdot U(\psi)) \text{ for all } \psi\in H,
+\end{equation}
+and any Lebesgue measurable $\omega\subset\reals$, 
+then $E$ is a spectral measure on real line 
+and $A = E(\text{id})$ is a densly defined self-adjoint linear operator. Moreover
+\begin{equation}
+\langle f(A)\psi, \phi \rangle = \int_{-\infty}^{\infty} f(g(x)) U(\psi)\overline{U(\phi)} d\nu 
+\end{equation}
+and
+\begin{equation}
+f(A)\psi = U^{-1}(f(g)\cdot U(\psi))
+\end{equation}
+for any measurable $f:\reals\to\C$ and all $\psi\in\mathcal{D}(f(A))$ and $\phi\in H$.
+Also 
+\begin{equation}
+\label{observable-domain}
+\mathcal{D}(f(A)) = D^E_f = \{\psi\in H: f(g)\cdot U(\psi)\in L^2(X, \nu)\}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Note first that if $u\in L^1(X,\nu)$ then 
+\begin{equation}
+\label{observable-measure-representation}
+\mu(\omega) = \int 1_\omega(g)ud\nu
+\end{equation}
+is a finite measure on $\reals$. From that show that
+$\langle E(\omega)\psi,\phi \rangle = \int 1_\omega(g)U(\psi)\overline{U(\phi)}d\nu.$ is a complex valued measure on $\reals$ for fixed $\psi, \phi\in H$. From that it is easy to show that $E$ is a spectral measure and all other properties using Theorem \ref{central-functional-analisys}. Self-adjointness of $A$ follows easily from Corollary \ref{self-adjoint-corollary}.
+To prove (\ref{observable-domain}), recall that by Definition \ref{functional-domain-definition} and Theorem \ref{central-functional-analisys} we have
+\begin{equation}
+\mathcal{D}(f(A)) = \mathcal{D}^E_f = \{\psi\in H: \int |f|^2 d\mu^E_\psi\ < +\infty\}.
+\end{equation}
+But since (\ref{observable-measure-representation}),
+\begin{equation}
+\int |f|^2 d\mu^E_\psi = \int |f(g)|^2 U(\psi)\overline{U(\psi)}d\nu.
+\end{equation}
+And this proves (\ref{observable-domain}).
+\end{proof}
+
+The following form of ``inverse'' theorem is possible.
+\begin{theorem} (spectral theorem--multiplication operator form)
+\label{spectral-operator-form}
+Let $H$ be a seperale Hilbert space and let $A$ be a densly defined self-adjoint operator. Then, there exists a measurable space $(X, \mathfrak{M}, \nu)$ 
+with $\nu(X)<+\infty$, a unitary mapping $U:H\to L^2(X, \nu)$ and a measurable function $g:X \to \reals$ such that
+\begin{equation}
+\psi\in\mathcal{D}(A) \text{ iff } g\cdot U(\psi)\in L^2(X,\nu)
+\end{equation}
+and 
+\begin{equation}
+A\psi = U^{-1}(g\cdot U(\psi)) \text{ for any } \psi\in\mathcal{D}(A).
+\end{equation}
+\end{theorem}
+\begin{proof}
+\cite[see][VIII.3 The spectral theorem]{reed-simon1980}
+\end{proof}
+\begin{definition}
+\label{L2-representation}
+Let $H$ be a Hilbert space. 
+$(X, \nu, U, g)$ is $L^2-representation$ of an self-adjoint operator $A$ iff
+$U:H\to L^2(X, \nu)$ is a unitary mapping and $g:X\to \reals$ is measurable, such that
+\begin{equation}
+\mathcal{D}(A) = \{\psi\in H: g\cdot U(\psi)\in L^2(X, \nu)\}
+\end{equation}
+and
+\begin{equation}
+A\psi = U^{-1}(g\cdot U(\psi)) \text{ for any } \psi\in\mathcal{D}(A).
+\end{equation}
+\end{definition}
+Theorem \ref{observable-representation} shows that if we have $L^2$-representation of an self-adjoint operator, it is densly defined and we know what its spectral measure is. Theorem \ref{observable-representation} shows that if we are in seperable Hilbert space, $L^2$-representation exists for each densly defined self-adjoint operator.
+\section{Multidimensional Fourier Transform and Schwartz space}
+We will use multindexes as introduced e.g in \cite[V.3]{reed-simon1980} By $C_0(\reals^n)$ we denote a space of of continous coplex valued functions which converge to $0$ in infinity.
+\begin{definition}
+\label{schwartz-space}
+$S_n$ will denote all functions $f\in C^\infty(\reals^n)$ such that
+\begin{equation}
+\label{schwartz-space-condition}
+\sup_{x\in\reals^n}|x^\beta (D^\alpha f)(x)| < \infty \text{ for all multi-indicies } \alpha, \beta.
+\end{equation}
+We call $S_n$ Schwartz space. 
+\end{definition}
+\begin{theorem}
+If $f\in S_n$, then $D^\alpha f\in S_n$ for any multi-index $\alpha$.
+\end{theorem}
+\begin{proof}
+This follows directly from the Definition \ref{schwartz-space}.
+\end{proof}
+\begin{theorem}
+\label{schwartz-d-closed}
+If $f,g \in S_n$, then $f\cdot g\in S_n$.
+\end{theorem}
+\begin{proof}
+We will show this by induction. It is trivial to note that 
+\begin{equation}
+\sup x^\beta|f||g| < \infty.
+\end{equation}
+Assume that for any $f,g\in S_n$ and each index $\beta$ and index $\alpha$ such that $|\alpha | \leq m$, we have
+\begin{equation}
+\sup|x^\beta D^\alpha(f\cdot g)| < \infty.
+\end{equation}
+Now take any index $i$.
+\begin{equation}
+\sup|x^\beta D^{\alpha + i}(f\cdot g)| \leq \sup|x^\beta D^\alpha(D^i f\cdot g)| + \sup|x^\beta D^\alpha(f \cdot D^i g)| < \infty.
+\end{equation}
+The last inequality above follows from Theorem \ref{schwartz-d-closed}.
+\end{proof}
+
+\begin{theorem}
+\label{schwartz-dense-in-Lp}
+$S_n$ is dense in $L^p(\reals^n)$ for any $p\in[1, \infty)$. 
+\end{theorem}
+\begin{proof}
+\cite[see][3.2 Fourier Transform]{miklavcic1998}
+\end{proof}
+\begin{definition}
+\label{multi-fourier-transform}
+Let $f\in L^1(\reals^n)$.
+\begin{equation}
+\F(f)(x) := (2\pi)^{-\frac{n}{2}}\int_{\reals^n} e^{-ix\cdot s}f(s)ds.
+\end{equation}
+\end{definition}
+\begin{theorem}
+If $f\in L^1(\reals^n)$, then $\F(f)\in C_0(\reals^n)$ and $\norm{\F(f)}_{\infty}\leq \norm{f}_1$.
+\end{theorem}
+\begin{proof}
+\cite[see][II.7 Fourier Transforms]{rudin1991}
+\end{proof}
+\begin{definition}
+Let $f\in L^1(\reals)$.
+\begin{equation}
+\F^{-1}(f)(x) := \F(f)(-x).
+\end{equation}
+\end{definition}
+\begin{theorem}
+If $f\in L^1(\reals)$ and $\F(f)\in L^1(\reals)$, then 
+\begin{equation}
+f \underset{\text{a.e.}}{=} \F^{-1}(\F(f)) \in C_0(\reals).
+\end{equation}
+\end{theorem}
+\begin{proof}
+\cite[see][II.7 Fourier Transforms]{rudin1991}
+\end{proof}
+\begin{theorem}
+\label{fourier-complex-conjugate}
+If $f\in L^1(\R^k)$ then $\F(\overline{f}) = \overline{\F^{-1}(f)}$ 
+\end{theorem}
+\begin{proof}
+Follows directly from definitions.
+\end{proof}
+\begin{theorem}
+\label{perserval-multi}
+If $f,g\in S_n$, then 
+\begin{equation}
+\int f\overline{g} = \int \F(f) \overline{\F(g)}.
+\end{equation}
+Also $\norm{f}_2 = \norm{\F(f)}_2$.
+\end{theorem}
+\begin{proof}
+\cite[see][3.2 Fourier Transform]{miklavcic1998}
+\end{proof}
+\begin{definition}
+\label{extended_fourier}
+We will extend $\F$ to $L^2(\reals^n)$. For any $f\in L^2(\reals^n)$
+\begin{equation}
+\F(f) := \lim_{m\to\infty} \F(f_m),
+\end{equation}
+where $S_n\ni f_m\to f\in L^2(\reals)$.
+\end{definition}
+Sometimes we will use $\F_n$ if we need to keep track of $\reals^n$ dimension. 
+Theorems \ref{schwartz-dense-in-Lp} and \ref{perserval-multi} guarantee the existence of $\lim_{m\to\infty} \F(f_m)$ for each $f$ and its independence of choice of $f_m$.
+\begin{theorem}
+$\F$ is a unitary mapping from $L^2(\reals^n)$ onto $L^2(\reals^n)$. Moreover
+\begin{equation}
+\F(f)(x) = (2\pi)^{-\frac{n}{2}}\int_{\reals^n} e^{-ix\cdot s}f(s)ds \text{ for } f\in L^1(\reals^n)\cap L^2(\reals^n).
+\end{equation}
+\end{theorem}
+\begin{proof}
+\cite[see][3.2 Fourier Transform]{miklavcic1998}
+\end{proof}
+\begin{definition}
+Let $\Omega$ be an nonempty open set in $\reals^n$.
+$g\in L^p(\Omega)$ iff $g\in L^p(K)$ for each compact $K\subset\Omega$.
+\end{definition}
+\begin{theorem}
+Let $\Omega$ be an nonempty open set in $\reals^n$. Let $u\in C^m(|Omega)$ and $\phi\in C_0^{m}(\Omega)$ and let $\alpha$ be a multi-index with $|\alpha| \leq m$. Then
+\begin{equation}
+\int_{\Omega}uD^\alpha\phi = (-1)^{|\alpha|} \int_{\Omega}(D^\alpha u)\phi.
+\end{equation} 
+\end{theorem}
+\begin{proof}
+For a very elegant proof of this theorem \cite[see][2.4]{miklavcic1998}. 
+\end{proof}
+
+\begin{definition}
+$J_\epsilon$ with $\epsilon > 0$ is said to be mollifier iff $J_\epsilon \geq 0$, $J_\epsilon(x) = 0$ for $|x|\geq \epsilon$ and $\int_{\reals^n} J_\epsilon = 1$.
+\end{definition}
+For construction of mollifier see \cite[3.1]{miklavcic1998}.
+
+\begin{theorem}
+\label{ground-for-weak-d}
+Let $\Omega$ be an nonempty subset of $\reals^n$. Let $p,q\in[0, \infty)$, $u\in L_{\text{loc}}^p(\Omega)$, $v\in L_{\text{loc}}^q(\Omega)$. Let $K\subset \Omega$ be a compact set. Let $\alpha$ be a multi-index. If
+\begin{equation}
+(-1)^{|\alpha|}\int_{\Omega} uD^\alpha \phi = \int_{\Omega}v\phi \text{ for all } \phi\in C_0^\infty(\Omega)
+\end{equation}
+and
+\begin{equation}
+u_\epsilon=\int_{K+B(0,d)}J_\epsilon(x - y)u(y)dy,
+\end{equation}
+\begin{equation}
+v_\epsilon=\int_{K+B(0,d)}J_\epsilon(x - y)v(y)dy
+\end{equation}
+with such a $d>0$ that $K + \text{Clo}(B(0, d))\subset \Omega$, $x\in \reals^n$ and $J_\epsilon$ mollifier, then the following statements are true.
+\begin{enumerate}
+\item $u_\epsilon, v_\epsilon\in C_0^\infty(\Omega)$ for every $\epsilon > 0$.
+\item $(D^\alpha u_\epsilon)(x) = v(x)$ for $x\in K$ and $0 < \epsilon < d$.
+\item $\lim\limits_{\epsilon\to 0}\int_{K}|u_\epsilon - u|^p = \lim\limits_{\epsilon\to 0}\int_{K}|D^\alpha u_\epsilon - v|^q = 0$.
+\item If $u = 0$, then $v\eae 0$ in $\Omega$.
+\end{enumerate} 
+\end{theorem}
+\begin{proof}
+\cite[see][3.4]{miklavcic1998}
+\end{proof}
+\begin{definition}
+Let $\Omega$ be an nonempty subset of $\reals^n$.
+Let $u\in L^1_{\text{loc}}(\Omega)$ and $\alpha$ be a multi-index.
+We say that $u$ has the $\alpha$th weak derivative and $\mathsf{D}^\alpha u = v$ iff
+\begin{equation}
+(-1)^{|\alpha|}\int_{\Omega} uD^\alpha \phi = \int_{\Omega}v\phi \text{ for all } \phi\in C_0^\infty(\Omega).
+\end{equation} 
+\end{definition}
+Theorem \ref{ground-for-weak-d} guarantees the corectness of the above definition.
+\begin{theorem}
+Let $\Omega$ be an nonempty subset of $\reals^n$.
+If $u\in C^m(\Omega)$ and $\alpha$ is an multi-index with $|\alpha | \leq m$, then
+\begin{equation}
+\mathsf{D}^\alpha u \eae D^\alpha u.
+\end{equation}
+\end{theorem}
+\begin{proof}
+\cite[see][3.4]{miklavcic1998}
+\end{proof}
+\begin{theorem}
+\label{fourier-weak-d}
+Let $\alpha$ be an multi-index and let  $f\in L^2(\reals^n)$. Then
+\begin{enumerate}
+\item $x^\alpha\F(f)(x) \in L^2(\reals^n)$ iff $\mathsf{D}^\alpha f \in L^2(\reals^n)$.
+\item If $\mathsf{D}^\alpha f \in L^2(\reals^n)$ then
+\begin{equation}
+ \F(\mathsf{D}^{\alpha}f)(x) = i^{|\alpha|}x^\alpha (\F(f))(x).
+\end{equation} 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\cite[see][3.4]{miklavcic1998}
+\end{proof}
+
+\subsection{Some important Integrals}
+
+The following facts can be found e.g. in \cite{dudley2002}
+
+\begin{fact}
+\begin{equation}
+\int^{+\infty}_{-\infty} \frac{1}{\sigma \sqrt{2\pi} } e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}dx = 1.
+\end{equation}
+\end{fact}
+
+\begin{fact}
+\begin{equation}
+\label{normal-characteristic}
+\int^{+\infty}_{-\infty} \frac{1}{\sigma \sqrt{2\pi} } e^{ixy} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}dx = \exp(i\mu y - \frac{\sigma^2 y^2}{2}).
+\end{equation}
+\end{fact}
+
+\section{Theory of Distributions}
+Majority of theorems and definitions in this section are citations from \cite{rudin1991} and \cite{treves1970}.
+
+In the context of topological vector spaces local base will always mean local base of open neigbourhoods of 0.
+\subsection{Measure Theory Preliminaries}
+\begin{theorem}
+\label{zero-on-all-sets}
+Let $(\Omega, , \M, \mu)$ be a measurable space. If $\int_E f d\mu = 0$ for any $E\in \M$, then $f \underset{\text{a.e.}}{=} 0$.
+\end{theorem}
+\begin{proof}
+\cite[See][1.39]{rudin1987}
+\end{proof}
+
+\begin{lemma}
+\label{zero-on-all-finite-sets}
+Let $(\Omega, , \M, \mu)$ be a measurable space with $\mu$ being $\sigma-$finite. If $\int_E f d\mu = 0$ for any $E\in \M$ such that $\mu(E) < +\infty$, then $f \underset{\text{a.e.}}{=} 0$.  
+\end{lemma}
+\begin{proof}
+Since $\mu$ is $\sigma-$finite, then we have $\Omega = \bigcup_{n=1}^\infty E_n$ where $E_n$ are pairwise disjoint and $\mu(E_n) < +\infty$ for $n=1,2, \dots$. Take any $A\in \M$, we have
+\begin{equation}
+\int_A fd\mu = \sum_{n=1}^\infty \int_{A\cap E_n} f d\mu = 0.
+\end{equation}
+Now we have thesis by Theorem \ref{zero-on-all-sets}.
+\end{proof}
+ 
+\subsection{Topological Preliminaries}
+
+\begin{definition}
+Let $V$ be a vector space over field $K$. A subset $B\subset V$ is called \textbf{ballanced} iff $\lambda B \subset B$ for any $\lambda\in K$ such that $|\lambda|\leq 1$.
+\end{definition}
+
+\begin{definition}
+Let $V$ be a vector space over field $K$. A subset $A \subset V$ is called \textbf{absorbing} iff for any $x\in V$ there exists $c_x > 0$ such that for all $\lambda\in K$ such that $|\lambda| \leq c_x$, we have $\lambda x\in A$.
+\end{definition}
+
+\begin{corollary}
+Let $V$ be a vector space. Let $A\subset V$. If $0 \in \text{Int} A$, then $A$ is absorbing.
+\end{corollary}
+
+\begin{definition}
+Let $V$ be a vector space over field $K\in\{\R, \C\}$. A subset $A \subset V$ is \textbf{convex} iff for any $x,y\in A$, we have $\lambda x + (1-\lambda)y\in A$ for any $\lambda\in [0, 1]$.
+\end{definition}
+
+\begin{theorem}
+\label{full-convex-tvs}
+Let $V$ be a vector space and $A$ be a subset of $V$. If $A$ is convex, then for any $\lambda_i \geq 0$ for $i=1, \dots, n$ such that $\sum_{i=1}^n \lambda_i = 1$ and for any $x_i\in A$ for $i=1, \dots, n$, we have $\sum_{i=1}^n \lambda_i x_i \in A$.
+\end{theorem}
+\begin{proof}
+We will prove this by induction over $n$. For $n=1$ the thesis is obvious. Let's assume that thesis holds for $n-1$. Take any $\lambda_i \geq 0$ for $i=1, \dots, n$ such that $\sum_{i=1}^n \lambda_i = 1$ and take any $x_i\in A$ for $i=1, \dots, n$. Let $\lambda := \sum_{i=1}^{n - 1} \lambda_i$. Note that $\lambda\in [0, 1]$. By induction hypothesis $\sum_{i=1}^{n - 1} \lambda_i\lambda^{-1} x_i \in A$. But since $A$ is convex, we have
+\begin{equation}
+A \ni \lambda(\sum_{i=1}^{n - 1} \lambda_i\lambda^{-1} x_i) + (1-\lambda)x_n = \sum_{i=1}^{n - 1} \lambda_i x_i + \lambda_n x_n = \sum_{i=1}^{n} \lambda_i x_i. 
+\end{equation}
+\end{proof}
+
+\begin{definition}
+We say that $X$ is a topological vector space iff $X$ is equiped with topology in which addition and scalar multiplication are continuous.
+\end{definition}
+
+We will abreviate topological vector space as TVS. By $L(X, Y)$ we will denote all continous linear mappings between two TVS $X, Y$. 
+
+\begin{theorem}
+If $X$ is TVS, then $X$ is Hausdorff iff $\{x\}$ is closed for each $x\in X$. 
+\end{theorem}
+\begin{proof}
+\cite[See][1.12]{rudin1991}
+\end{proof}
+
+\begin{definition}
+Let $X$ be a TVS. We will say that $X$ is a \textbf{locally convex space} iff there exists a local base of convex and open sets.
+\end{definition}
+
+\begin{definition}
+Let $X$ be a TVS. We say that set $B\subset X$ is \textbf{bounded} iff for every open neighbourhood $U$ of $0$ there exists a scalar $\lambda \geq 0$ such that $B\subset \lambda U$.
+\end{definition}
+
+\begin{theorem}
+\label{base-of-locally-convex}
+Let $X$ be TVS. Every convex open neighbourhood of $0$ contains a convex and balanced open neighbourhood of $0$.
+\end{theorem}
+\begin{proof}
+\cite[See][1.14]{rudin1991}
+\end{proof}
+
+\begin{corollary}
+Let $X$ be a locally convex space. Then $X$ has a local base of convex and balanced open sets.
+\end{corollary}
+
+\begin{theorem}
+If $X$ is a Hausdorff TVS with countable base, then there exists a metric $d$ in $X$ such that
+\begin{enumerate}
+\item $d$ is compatible with $X$ topology,
+\item the open balls centered at $0$ are ballanced,
+\item $d$ is invariant: i.e. $d(x,y) = d(x+z,y+z)$ for each $x,y,z\in X$.
+\\
+\\
+Moreover, if $X$ is locally convex, then $d$ can be chosen so as to satisfy (1), (2) and (3) and also
+\item Every open ball is convex. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\cite[see][1.24]{rudin1991}
+\end{proof}
+\begin{definition}
+X is called an F-space iff $X$ is TVS, where topology is generated by a complete and invariant metric.
+\end{definition}
+
+\begin{theorem}
+\label{closed-graph-theorem} 
+(\textbf{The closed graph theorem})
+Let $X,Y$ be $F-spaces$. If $A:X\to Y$ is a linear mapping such that $\{(x, Ax): x\in X\times Y\}$ is closed in $X\times Y$, then $A$ is continuous.
+\end{theorem}
+\begin{proof}
+\cite[See][2.15 The closed graph theorem]{rudin1991}
+\end{proof}
+
+\begin{definition}
+X is called a Fr\'echet space iff X is locally convex TVS, where topology is generated by a complete and invariant metric.
+\end{definition}
+
+\begin{definition}
+A seminorm on a vector space $X$ is a function $p:X\to \reals$ such that
+\begin{enumerate}
+\item $p(x+y) \leq p(x) + p(y)$,
+\item $p(\lambda x) = |\lambda|p(x)$
+for all $x,y\in X$ and all scalars $\lambda$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+A family of seminorms $\mathcal{P}$ on a vector space $X$ is said to be separating if for each $x\not=0$ there exists $p\in \mathcal{P}$ such that $p(x)\not=0$. 
+\end{definition}
+
+\begin{theorem}
+\label{seminorms-topology}
+Let $X$ be a vector space and $\mathcal{P}$ be a separating family of seminorms. Let
+\begin{equation}
+V(p,n) = \{x\in X: p(x) < \cfrac{1}{n}\} 
+\end{equation}
+for any positive integer $n$ and $p\in\mathcal{P}$.
+If $\mathcal{B}$ is a collection of all finite intersections of the sets $V(p,n)$, then $\mathcal{B}$ is convex balanced local base for a topology on X, which turns X into a locally convex Hausdorff TVS such that every $p\in\mathcal{P}$ is continuous.
+\end{theorem}
+\begin{proof}
+\cite[see][1.37]{rudin1991}
+\end{proof}
+
+We will say that such a family of seminorms $\mathcal{P}$ generates topology on $X$.
+
+\begin{corollary}
+\label{convergence-seminorms}
+Let $X$ be a vector space with topology generated by a countable family  of separating seminorms $\mathcal{P}$, then $x_n \to x$ iff
+$p(x_n - x) \to 0$ for each $p\in\mathcal{P}$. 
+\end{corollary}
+
+\begin{theorem}
+\label{minkowski-functional}
+Let $X$ be Hausdorff TVS. For any $A\subset X$ we define
+\begin{equation}
+\mu_A(x) := \inf\{\lambda > 0: x\in \lambda A\}.
+\end{equation} 
+\begin{enumerate}
+\item If $p$ is a seminorm on X, then set $B=\{x:p(x) < 1\}$ is convex, balanced, absorbing and $p=\mu_B$.
+\item If $A$ is convex absorbing and balanced, then $\mu_A$ is a seminorm.
+\item If $A$ is bounded then for any $x\in X$, $\mu_A(x) = 0$ implies $x = 0$.
+\item If $X$ is a locally convex space and $\mathcal{B}$ is a convex and balanced local base then $\{\mu_V: V\in \mathcal{B}\}$ is a family of separating seminorms generating an original topology of $X$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+For 1., 2. and 4. 
+\cite[See][Seminorms and Local Convexity]{rudin1991}
+We will prove 3. Take $x\in X$ such that $\mu_A(x) = 0$.
+Let $U$ be an arbitrary open neighbourhood of $0$. Since $A$ is bounded there exists $\lambda \geq 0$ such that $\lambda A\subset U$. If $\lambda = 0$, then $A=\{0\}$ and thesis is shown. Assume then that $\lambda > 0$. Since $\mu_A(x) = 0$, $x\in \lambda A$. Thus $x\in U$. But since $U$ was arbitrary open neighbourhood of $0$ and $X$ is Hausdorff, then $x = 0$.
+\end{proof}
+\begin{corollary}
+If $X$ is a locally convex Hausdorff TVS, then there exists a family of separating seminorms which generates an original topology on $X$.
+\end{corollary}
+\begin{proof}
+This folows from Theorem \ref{base-of-locally-convex} and Theorem \ref{minkowski-functional}.
+\end{proof}
+
+\begin{definition}
+Let $X$ be a locally convex space. A family of continuous seminorms $\mathcal{P}$ is called a \textbf{basis of continuous seminorms} iff for any continuous seminorm $q$ on $X$, there exists a seminorm $p\in\mathcal{P}$ and $C > 0$ such that 
+\begin{equation}
+q(x) \leq Cp(x) \text{ for any } x\in X.
+\end{equation} 
+\end{definition}
+
+\begin{theorem}
+Let $X$ be a locally convex space and $\mathcal{P}$ a family of seminorms which generates topology on $X$. Let
+\begin{equation}
+p_B(x) := \max\{p(x):p\in B\}
+\end{equation}
+where $B$ is a finite subset of $\mathcal{P}$.
+The family of all such seminorms $p_B$ is a basis of continuous seminorms in $X$. 
+\end{theorem}
+\begin{proof}
+\cite[See][Locally convex spaces. Seminorms.]{treves1970}
+\end{proof}
+
+\begin{theorem}
+If $X$ is a locally convex space and $\mathcal{P}$ is a basis of continuous seminorms, then the topology generated by $\mathcal{P}$ conincides with the original topology of $X$.
+\end{theorem}
+\begin{proof}
+It is enough to show that given two basis of continous seminorms $\mathcal{P}_1$ and $\mathcal{P}_2$ generates the same topologies on $X$. This is obvious considering that for any $p_1\in \mathcal{P}_1$ there exists $p_2\in \mathcal{P}_2$ and $C > 0$ such that 
+\begin{equation}
+p_1 \leq C p_2,
+\end{equation}
+and on the other hand for any $q_2\in \mathcal{P}_2$ there exists $q_1\in\mathcal{P}_1$ and $K > 0$ such that
+\begin{equation}
+q_2 \leq K q_1.
+\end{equation}
+\end{proof}
+
+\begin{definition}
+Let $X$ be a vector space. By $X^*$ we denote a space of all linear functionals.
+\end{definition}
+
+\begin{definition}
+Let $X$ be a TVS. By $X'$ we denote a space of all \textbf{continuous} linear functionals.
+\end{definition}
+
+Note that this convention is oposit to \cite{rudin1991}.
+\begin{definition}
+Let X be a TVS. A weak-* topology on $X'$ is the weakest topology for which all mappings $X'\ni y\mapsto y(x)$ are continuous for any fixed $x\in X$. 
+\end{definition}
+\begin{theorem}
+\label{weak-star-locally-convex}
+If $X$ is a Hausdorff TVS, then $X'$ with weak-* topology is a locally convex Hausdorff TVS.
+\end{theorem}
+\begin{proof}
+\cite[See][3.14]{rudin1991}
+\end{proof}
+
+\begin{theorem}
+If $X$ and $Y$ are locally convex spaces, then a linear operator $A:X\to Y$ is continous iff for any continuous seminorm $q$ in $Y$, there exists a continous seminorm $p$ in $X$ such that
+\begin{equation}
+q(Ax) \leq p(x) \text{ for any } x\in X.
+\end{equation}
+\end{theorem}
+\begin{proof}
+\cite[See][Locally convex spaces. Seminorms.]{treves1970}
+\end{proof}
+
+\begin{fact}
+If $X$ is a locally convex space, then for any $u\in X'$, $X\ni x\mapsto |u(x)|$ is a continuous seminorm. 
+\end{fact}
+
+\begin{corollary}
+If $X$ is a locally convex space and $\mathcal{P}$ is a basis of continuous seminorms, then for each $u\in X'$ there exists $C>0$ and $p\in \mathcal{P}$ such that
+\begin{equation}
+|u(x)| \leq C p(x) \text{ for any } x\in X.
+\end{equation}
+\end{corollary}
+
+\begin{theorem}
+If $X$ is a locally convex space and let $\norm{\cdot}$ be a continuous norm and let $\mathcal{P}$ be a base of continous seminorms in $X$. Then there exists a base of continous seminorms which constists only of norms.  
+\end{theorem}
+\begin{proof}
+Note that for any seminorm $p\in \mathcal{P}$, $p + \norm{\cdot}$ is a norm. Take any continuous seminorm $q$ in $X$. We have such $p\in \mathcal{P}$ and $C > 0$ that 
+\begin{equation}
+q(x)\leq Cp(x) \leq C(p(x) + \norm{x}).
+\end{equation}
+Thus a family
+\begin{equation}
+\{p + \norm{\cdot}: p\in \mathcal{P}\}
+\end{equation}
+is a base of continuous seminorms on $X$.
+\end{proof}
+
+\begin{definition}
+Let $X$ be a locally convex Hausdorff space and $B$ be its bounded, convex and balanced subset. Let $X_B$ be a linear subspace spanned by $B$.
+Let
+\begin{equation}
+\mu_B(x):= \inf\{\lambda > 0 : x\in \lambda B\}
+\end{equation}
+We say that $B$ is \textbf{infracomplete} iff $X_B$ with norm $\mu_B$ is a Banach space.
+\end{definition}
+
+\begin{theorem}
+Let $X$ be a locally convex Hausdorff space and $B$ be its bounded, convex and balanced subset. Let $X_B$ be a linear subspace spanned by $B$. Then $\mu_B$ is norm on $X_B$.
+\end{theorem}
+\begin{proof}
+We will first show that $B$ is absorbing in $X_B$. Any $x\in X_B$ is of the form $x = \sum_{i=1}^n \lambda_i x_i$. Where $\lambda_i\not = 0$ and $x_i\in B$ for $i=1,\dots, n$. Let $z_i := \cfrac{|\lambda_i|}{\overline{\lambda_i}} x_i$. Since $B$ is balanced, $z_i\in B$ for $i=1, \dots, n$. Thus
+\begin{equation}
+x = \sum_{i=1}^n \lambda_i \cfrac{\overline{\lambda_i}}{|\lambda_i|} z_i = \sum_{i=1}^n |\lambda_i| z_i.
+\end{equation}
+Let $\lambda_0 := (\sum_{i=1}^n |\lambda_i|)^{-1}$. Since $B$ is convex, by Theorem \ref{full-convex-tvs}, we have $\lambda_0 x\in B$. Take any $\lambda\in \C$ such that $|\lambda| < \lambda_0$. Obvioulsy $|\cfrac{\lambda}{\lambda_0}| < 1$. Since $B$ is balanced,
+\begin{equation}
+B \ni \cfrac{\lambda}{\lambda_0} \lambda_0 x = \lambda x.
+\end{equation}
+We showed that $B$ is absorbing in $X_B$. Now, by Theorem \ref{minkowski-functional} $\mu_B$ is a norm on $X_B$.
+\end{proof}
+
+\begin{definition}
+Let $X$ be a topological space and $Y$ be a TVS. Let $F$ be a set of functions from $X$ to $Y$. We will say that the set $F$ is \textbf{equicontinuous} at point $x_0\in X$ iff for any open $V$ neighbourhood of $0$, we have an open $U$ neighbourhood of $x_0$ such that 
+\begin{equation}
+f(x) - f(x_0)\in V 
+\end{equation}
+for any $f\in F$ and any $x\in U$.
+\end{definition}
+
+We will say that $F$ is equicontinuous iff $F$ is equicontinuous at each $x\in X$.
+
+\begin{definition}
+Let $X, Y$ be two locally convex Hausdorff spaces and $A\in L(X, Y)$.
+We will say that $A$ is \textbf{nuclear} iff
+there is an equicontinous sequence $\{f_k\}$ in $X'$, a sequence $\{y_k\}$ contained in a convex balanced infracomplete bouned subset $B$ of $Y$ and a complex sequence $\{\lambda_k\}$ with $\sum_{k=1}^\infty |\lambda_k| < + \infty$ such that
+\begin{equation}
+A x = \sum_{k=1}^\infty  \lambda_k f_k(x)y_k.
+\end{equation}
+\end{definition}
+\begin{theorem}
+Let $H_1$ and $H_2$ be Hilbert spaces and $A\in L(H_1, H_2)$. $A$ is nuclear iff
+there is a sequence of orthonormal vectors $\{e_k\}$ in $H_1$, a sequence of orthonormal vectors $\{y_k\}$ in $H_2$ and a complex sequence $\{\lambda_k\}$ with $\sum_{k=1}^\infty |\lambda_k| < + \infty$ such that
+\begin{equation}
+A x = \sum_{k=1}^\infty  \lambda_k (x|e_k)y_k.
+\end{equation}
+\end{theorem} 
+\begin{proof}
+\cite[See][48.7]{treves1970}
+\end{proof}
+
+\subsection{Regular Distributions}
+
+Let $C^\infty_0(\Omega)$ denotes all functions $\phi\in C^\infty(\Omega)$ such that its support i.e. $\supp(\phi) = \text{Clo}(\{x\in \Omega: \phi(x)\not=0\})$ is compact.
+We will use traditional notation $\D(\Omega):=C^\infty_0(\Omega)$.
+
+We will construct certain topology on $\D(\Omega)$.
+
+\begin{definition}
+Let $\Omega$ be an open subset of $\reals^n$ and let $K\subset \Omega$ be compact.
+\begin{equation} 
+\D_K(\Omega) := \{\phi\in\D(\Omega): \supp(\phi)\subset K\}. 
+\end{equation}
+\end{definition}
+Let's introduce norms
+\begin{definition}
+\begin{equation}
+\norm{\phi}_N := \max\{|D^\alpha \phi(x)|: x\in\Omega, |\alpha| \leq N \}
+\end{equation}
+for any $\phi\in\D(\Omega)$ and $N=0,1, \dots$.
+\end{definition}
+Recall that for multindex $\alpha = (\alpha_1, \dots, \alpha_2)$, $|\alpha| = \alpha_1 + \cdots + \alpha_2$.
+
+\begin{definition}
+Let $\Omega$ be an open subset of $\reals^n$ and let $K\subset \Omega$ be compact. 
+We define a Hausdorff TVS $(\D_K(\Omega),\tau_K)$, where $\tau_K$ is a topology generated by a family of norms $\norm{.}_N$ for $N=0,1, \dots$ like in Theorem \ref{seminorms-topology}.
+\end{definition}
+
+\begin{corollary}
+Let $\Omega$ be an open subset of $\reals^n$ and let $K\subset \Omega$ be compact. $(\D_K(\Omega),\tau_K)$ is a Fr\'echet space.
+\end{corollary}
+\begin{proof}
+\cite[See][1.46]{rudin1991}
+\end{proof}
+\begin{definition}
+Let $\Omega$ be an open subset of $\reals^n$.
+We define a topological space $(\D(\Omega), \tau)$, where $\tau$ is a topology generated by a local base of all convex and balanced sets $W\subset \D(\Omega)$, such that $W\cap K \in \tau_K$ for every compact $K\subset \Omega$. 
+\end{definition}
+\begin{theorem}
+Let $\Omega$ be an open subset of $\reals^n$.
+$(\D(\Omega), \tau)$ is a locally convex Hausdorff TVS. 
+\end{theorem}
+\begin{proof}
+\cite[See][6.4]{rudin1991}
+\end{proof}
+\begin{definition}
+Let $\Omega$ be an open subset of $\reals^n$.
+By $\D'(\Omega)$ we denote a space of all linear functionals on $\D(\Omega)$ which are continuous in $\tau$. Elements of $\D'(\Omega)$ are called \textbf{distributions}.
+\end{definition}
+\begin{theorem}
+\label{distribution-characteristic}
+Let $\Omega$ be an open subset of $\reals^n$.
+If $\Lambda$ is a linear functional on $\D(\Omega)$ the following conditions are equivalent:
+\begin{enumerate}
+\item $\Lambda\in\D'(\Omega)$
+\item For every compact $K\subset\Omega$ there exists a positive integer $N$ and a positive constant $C<+\infty$ such that
+\begin{equation}
+|\Lambda\phi| \leq C\norm{\phi}_N
+\end{equation}
+for every $\phi\in\D_K(\Omega)$.
+\end{enumerate} 
+\end{theorem}
+\begin{proof}
+\cite[see][6.8]{rudin1991}
+\end{proof}
+\begin{definition}
+\label{distribution-order}
+Let $\Omega$ be an open subset of $\reals^n$. Let $\Lambda\in\D'(\Omega)$. The order of $\Lambda$ is a minimal positive integer $N$ for which for every compact $K\subset\Omega$ there exists a positive constant $C<+\infty$ such that
+\begin{equation}
+|\Lambda\phi| \leq C\norm{\phi}_N
+\end{equation}
+for every $\phi\in\D_K(\Omega)$.
+If such $N$ doesn't exists, we say that $\Lambda$ is of infinite order.
+\end{definition}
+By $L_\text{loc}(\Omega)$ we denote a space of all functions $f$ for which $\int_K |f| < +\infty$ for any compact $K\subset \Omega$.
+\begin{theorem}
+Let $\Omega$ be an open subset of $\reals^n$. If $f\in L_\text{loc}(\Omega)$ and 
+\begin{equation}
+\Lambda_f(\phi) := \int_\Omega f(x)\phi(x)dx \text{ for any } \phi\in\D(\Omega),
+\end{equation}
+then $\Lambda\in\D'(\Omega)$.
+\end{theorem}
+\begin{proof}
+\cite[see][6.11]{rudin1991}
+\end{proof}
+We usually identify distribution $\Lambda_f$ with function $f$ and we say that such distributions ``are'' functions \cite[see][6.11]{rudin1991}.
+\begin{theorem}
+\label{probe-function-compact-aprox}
+Let $\Omega$ be an open subset of $\R^n$. If $K\subset\Omega$ and $K$ is compact, then there exists $\phi\in C^\infty_0(\Omega)$ such that $\phi(x)\in[0,1]$ for all $x\in\Omega$ and $\phi(z) = 1$ for all $z\in K$. 
+\end{theorem}
+\begin{proof}
+\cite[see][Chapter 3. Sobolev Spaces. 3.1. Introduction]{miklavcic1998}
+\end{proof}
+\begin{definition}
+Let $\Omega$ be an open subset of $\reals^n$. We say that 
+$\Lambda\in\\D'(\Omega)$ vanishes on an open $\omega\subset\Omega$ iff
+we have $\Lambda\phi = 0$ for every $\phi\in\D(\Omega)$ such that $supp(\phi)\subset\omega$.
+\end{definition}
+\begin{definition}
+Let $\Omega$ be an open subset of $\reals^n$. Let $\Lambda\in\\D'(\Omega)$. We define
+\begin{equation}
+\supp(\Lambda) := \Omega \setminus \bigcup 
+\{\omega\subset \Omega: \omega \text{ is open and } \Lambda \text{ vanishes on } \omega\}.
+\end{equation}
+\end{definition}
+
+\begin{definition}(Dirac delta)
+\label{dirac-delta}
+Let $x\in\R^n$. We define a functional $\delta_x:\D(\R^n)\to\C$ as
+\begin{equation}
+\delta_x(\phi):= \phi(x).
+\end{equation}
+$\delta_0$ is called Dirac delta. 
+\end{definition}
+\begin{theorem}
+Let $x\in\R^n$, then $\delta_x\in\D'(\Omega)$ and $\delta_x$ is of order $0$.
+\end{theorem}
+\begin{proof}
+Take any compact $K\subset \R^n$. Take any $\phi\in D_K(\R^n)$.
+We have
+\begin{equation}
+|\delta_x(\phi)| = |\phi(x)| \leq \norm{\phi}_0.
+\end{equation}
+Thus by Theorem \ref{distribution-characteristic} $\delta_x\in\D'(\Omega)$ and by Definition \ref{distribution-order} $\delta_x$ is of order $0$.
+\end{proof}
+\begin{theorem}
+Let $x\in\R^n$, then $\supp(\delta_x)=\{x\}$.
+\end{theorem}
+\begin{proof}
+It is enough to show that for any open $\omega\subset\R^n$, we have $\delta_x$ vanishes on $\omega$ iff $x\not\in\omega$.
+Assume that $\delta_x$ vanishes on $\omega$. If $x\in\omega$ we can choose $\phi\in\D(\R^n)$ such as $\phi(x)\not=0$ and $supp(\phi)\subset \omega$, but as $\delta_x$ vanishes on $\omega$, we must have $0 = \delta_x(\phi) = \phi(x)$. Contradiction, thus $x\not=\omega$.
+Assume on the other hand that $x\not\in\omega$. Take any $\phi\in\D(\R^n)$ such that $supp(\phi)\subset \omega$, then obviously $0 = \phi(x) = \delta_x(\phi)$. Thus $\delta_x$ vanishes on $\omega$. 
+\end{proof}
+\subsection{Tempered Distributions}
+\begin{definition}
+\begin{equation}
+\norm{\phi}^S_N := \sup_{|\alpha|\leq N} \sup_{x\in \R^n} (1 + |x|^2)^N |D^\alpha \phi(x)|
+\end{equation}
+for any $\phi\in S_n$.
+\end{definition}
+Note that condition \ref{schwartz-space-condition} in the Definition \ref{schwartz-space} of $S_n$ is equivalent with the requirement that $\norm{\phi}^S_N$ is finite for all $N=0,1\dots$.
+\begin{definition}
+We equip $S_n$ in topology generated by a family of norms $\norm{\phi}^S_N$ for $N=0,1\dots$.
+\end{definition}
+\begin{theorem}
+\label{schwartz-Lp-embeding}
+If $p\geq 1$, then the identity mapping $i:S_n\to L^p(\R^n)$ is continuous. 
+\end{theorem}
+\begin{proof}
+\cite[See][Problem 1.30]{georgiev2015}
+\end{proof}
+
+\begin{theorem}
+\label{tempered-fretchet}
+The following statements are true:
+\begin{enumerate}
+\item $S_n$ is a Fr\'echet space.
+\item The Fourier transform $\F:S_n\to S_n$ is a continuous linear transformation.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\cite[see][7.4]{rudin1991}
+\end{proof}
+\begin{theorem}
+The following statemts are true:
+\begin{enumerate}
+\item $\D(\R^n)$ is dense in $S_n$.
+\item Identity mapping from $\D(\R^n)$ to $S_n$ is continuous. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\cite[see][7.10]{rudin1991}
+\end{proof}
+Let $S_n'$ be a space of all continous linear functionals on $S_n$.
+\begin{theorem}
+\label{tempred-theorem}
+For any $L\in S_n'$ there exists $u_L\in \D'(\R^n)$ such that
+\begin{equation}
+u_L = L \circ i
+\end{equation}
+where $i:\D(\R^n)\to S_n$ is an identity mapping.  
+\end{theorem}
+\begin{proof}
+\cite[see][7.11]{rudin1991}
+\end{proof}
+\begin{definition}
+Any $u_L$ from Theorem \ref{tempred-theorem} is called tempered distribution.
+\end{definition}
+Note that $L$ is a unique extension of $u_L$ to $S_n$. We will sometimes call tempered distributions elements of $S_n'$.
+
+\begin{theorem}
+\label{theorem-schwartz-in-tempered-embedding}
+There exists an unique continous mapping $\Lambda:S_n\to S'_n$ ($S'_n$ with weak-* topology) such that
+\begin{equation}
+\label{schwartz-in-tempered-embedding}
+\Lambda_\phi(\psi) = \int_{R^n} \phi(x)\psi(x) dx
+\end{equation}
+for any $\phi\in S_n$ and $\psi\in S_n$. 
+\end{theorem}
+\begin{proof}
+Let's assume equation (\ref{schwartz-in-tempered-embedding}) as definition of $\Lambda$.
+Note that $|\Lambda_\phi(\psi)| \leq \norm{\phi}_{L^2} \norm{\psi}_{L^2}$ for any $\phi,\psi\in S_n$. By Theorem \ref{schwartz-Lp-embeding} $S_n$ is continously embedded in $L^2(\R^n)$. Thus $\Lambda_\phi\in S'_n$ for any $\phi\in S_n$. Now take any $\phi_n\to \phi$ in $S_n$. We have $\phi_n\to \phi$ in $L^2$ and $|\Lambda_{\phi_n}(\psi) - \Lambda_\phi(\psi)| \leq \norm{\phi_n - \phi}_{L^2} \norm{\psi}_{L^2}$. Thus $\Lambda_{\phi_n} \to \Lambda_\phi$ in $S'_n$ with weak-* topology.
+\end{proof}
+\begin{theorem}
+If $u\in \D'(\R^n)$ and $\supp(u)$ is compact, then $u$ is a tempered distribution. 
+\end{theorem}
+\begin{proof}
+\cite[see][7.12]{rudin1991}
+\end{proof}
+\begin{corollary} Let $x\in \R^n$.
+$\delta_x$ is a tempered distribution and as extended to $S_n$ it's still
+\begin{equation}
+\delta_x(\phi) = \phi(x)
+\end{equation}
+for every $\phi\in S_n$.
+\end{corollary}
+\begin{example}
+\label{exponent-tempered}
+Let $\alpha\in R^n$ and $u_\alpha\in \D'(\R^n)$ be a distribution identified with the function $\R^n \ni x \mapsto e^{-i\alpha\cdot x}$. Then $u_\alpha$ is a tempered distribution. In this sense $e^{-i\alpha\cdot x}\in S_n'$.
+\end{example}
+\begin{proof}
+Let's define a linear functional $\tilde{u}_\alpha$ on $S_n$.
+\begin{equation}
+\tilde{u}_\alpha(\phi):=(2\pi)^\frac{n}{2} \F(\phi)(\alpha) = \int_{\R^n} e^{-i\alpha\cdot x} \phi(x) dx.
+\end{equation}
+for all $\phi\in S_n$.
+$\tilde{u}_\alpha$ is well defined because Fourier tramsform exists for all $\phi$ in $S_n$. Because $\F:S_n \to S_n$ is continuous, for any $\phi_m \to \phi$, $\F(\phi_n)\to \F(\phi)$ uniformly. Thus $\tilde{u}_\alpha(\phi_n) \to \tilde{u}_\alpha(\phi)$. Hence $\tilde{u}_\alpha\in S_n'$. By definition $\tilde{u}_\alpha$ is an extension of $u_\alpha$, thus $u_\alpha$ is a tempered distribution. 
+\end{proof}
+Now we will extend Fourier transform on $S'_n$.
+\begin{definition}
+\label{fourier-tempered}
+Let $u\in S'_n$.
+\begin{equation}
+\F(u)(\phi) := u(\F(\phi))
+\end{equation}
+for all $\phi \in S_n$.
+\end{definition}
+\begin{fact}
+If $u,v\in S_n$, then
+\begin{equation}
+\int \F(u)v = \int u\F(v). 
+\end{equation}
+\end{fact}
+\begin{proof}
+Follows from Theorem \ref{perserval-multi} and Theorem \ref{fourier-complex-conjugate}.
+Indeed, 
+$\int fg = \int f\bar{\bar{g}} = \int \F(f)\overline{\F(\bar{g})}=\int \F(f){\F}^{-1}(g)$. Now substitute $f = v$ and $g=\F(u)$.
+\end{proof}
+From the fact above, Definition \ref{fourier-tempered} is consistent with Fourier transform of function in case $u\in S'_n$ is a function, because for any $\phi\in S_n$
+\begin{equation}
+u(\F(\phi)) = \int u\F(\phi) = \int \F(u) \phi. 
+\end{equation}
+\begin{theorem}
+If $\F$ is a Fourier transform defined in Definition \ref{fourier-tempered}, $\F:S'_n\to S'_n$ is a linear mapping, continous in weak-* topology.
+\end{theorem}
+\begin{proof}
+\cite[see][7.15]{rudin1991}
+\end{proof}
+\subsection{Schwartz Kernel Theorems}
+\begin{definition}
+Let $X$, $Y$ be any vector spaces of functions valued in $\mathbb{K}\in\{\R, \C\}$.
+Let $U:X\times Y \to \mathbb{K}$.
+We will define operation:
+\begin{equation}
+(U\bullet \phi)(\psi) := U(\phi\otimes\psi) 
+\end{equation}
+for any $\phi\in X$ and any $\psi\in Y$.
+\end{definition}
+
+The following two theorems are corollaries from \cite[51. Examples of Nuclear Spaces. The Kernels Theorem]{treves1970}
+
+\begin{theorem}
+Let $\Omega_1$ be an open subset of $\R^{k_1}$ and $\Omega_2$ be an open subset of $\R^{k_2}$.
+Let $L:\D(\Omega_1)\to \D'(\Omega_2)$ be linear.
+The following two statements are equivalent.
+\begin{enumerate}
+\item
+$L$ is continuous with $\D'(\Omega_2)$ equiped with weak-* topology.
+\item
+There exists unique $U\in D'(\Omega_1\times\Omega_2)$ such that
+\begin{equation}
+L\phi = U\bullet \phi.
+\end{equation} 
+\end{enumerate} 
+\end{theorem}
+
+\begin{theorem}
+\label{swartz-kernel-tempered}
+Let $L:S_{k_1}\to S_{k_2}'$ be linear.
+The following two statements are equivalent.
+\begin{enumerate}
+\item
+$L$ is continuous with $S_{k_2}$ equiped with weak-* topology.
+\item
+There exists unique $U\in S'_{k_1 + k_2}$ such that
+\begin{equation}
+L\phi = U\bullet \phi.
+\end{equation} 
+\end{enumerate} 
+\end{theorem}
+
+\subsection{Properties of $\delta_0$}
+\begin{example}
+Let $f_m:\R^n\to\C$ be a sequence of functions such that
+\begin{equation}
+f_m(\alpha) = (2\pi)^{-n} \int_{K_m} e^{-ix\cdot\alpha}dx,  
+\end{equation}
+where $K_m$ is a sequence of compact sets such that $K_m\nearrow \R^n$. Then 
+\begin{equation}
+\lim_{m\to\infty} f_m  = \delta_0 \text{ in } \D'(\R^n) \text{ with weak-* topology.}  
+\end{equation}
+\end{example}
+\begin{proof}
+Let $\Lambda_m\in \D'(\R^n)$ be a distribution corresponding to $f_n$. Note that
+\begin{equation}
+\int_K \int_{K_m} |e^{-ix\cdot\alpha}|dxd\alpha = \int_K dx \int_{K_m}d\alpha < +\infty,
+\end{equation}
+for any compact $K\subset \R^n$.
+Thus by Theorem \ref{fubini-theorem} (Fubini theorem), $f_n\in L_{\text{loc}}(\R^n)$.
+
+Take any $\phi\in\D(\R^n)$.
+Note that
+\begin{equation}
+\Lambda_m(\phi) = (2\pi)^{-n} \int_{\R^n} \bigg(\int_{K_m} e^{-ix\cdot\alpha} dx\bigg) \phi(\alpha) d\alpha.
+\end{equation}
+Since 
+\begin{equation}
+\int_{\R^n} \bigg(\int_{K_m} |e^{-ix\cdot\alpha}| dx\bigg) \phi(\alpha) d\alpha = \int_{K_m}dx \int_{\R^n} \phi(\alpha)d\alpha < +\infty,
+\end{equation}
+then again by Theorem \ref{fubini-theorem} (Fubini theorem)
+\begin{equation}
+\Lambda_m(\phi) = (2\pi)^{-\frac{n}{2}}\int_{K_m} \F(\phi)(x) dx = (2\pi)^{-\frac{n}{2}}\int_{K_m} e^{ix\cdot 0}\F(\phi)(x) dx.
+\end{equation}
+Hence
+\begin{equation}
+\lim_{m\to \infty} \Lambda_m(\phi) = \F^{-1}(\F(\phi))(0) = \phi(0).
+\end{equation}
+Thus by Definition \ref{dirac-delta}, we have thesis.
+\end{proof}
+\begin{lemma}
+\label{where-delta-vanish}
+If $f_n\in C(\R^k)$ is a sequence of non-negative real functions (i.e. $f_n \geq 0$ ) for which 
+$\lim_{n\to\infty} f_n = \delta_0$ in $\D'(\R^k)$ with weak-* topology, then for each compact $K$ such that $0\not\in K$ we have
+\begin{equation}
+\lim_{n\to\infty}\int_{K} f_n = 0,
+\end{equation}
+\end{lemma}
+\begin{proof}
+Since $\R^k$ is $T_3$, we have an open $\Omega$ such that $K\subset \Omega$ and $0\not\in\Omega$. 
+By Theorem \ref{probe-function-compact-aprox}, we have $\phi\in C^\infty_0(\R^k)$ such that $0 \leq \phi \leq 1$, $\supp(\phi)\subset \Omega$ and $\phi(x) = 1$ for all $x\in K$. Since $f_n \geq 0$ and $\phi \geq 0$ we have
+\begin{equation}
+0 \leq \int_K f_n = \int_K f_n\phi \leq \int_{R^k} f_n \phi \to \phi(0) = 0. 
+\end{equation}
+ 
+%Since $\R^k$ is $T_3$, we have a compact set $E$ and bounded open set $\Omega_1$ such that $K\subset \Omega_1\subset E$ and $0\not\in E$. Again since $\R^k$ is $T_3$, we have open $\Omega_0$ such that $E\subset \Omega_0$ and $0\not\in\Omega_0$.
+%
+%Let's put
+%\begin{equation}
+%B_n := \bigg(\int_{\Omega_0\setminus K} |f_n|^2 \bigg)^\frac{1}{2}.
+%\end{equation}
+%Since $\Omega_0$ is bounded and $f_n\in C(\R^k)$, $B_n < +\infty$ for all $n=1,2,\dots$.
+%
+%\noindent
+%Choose a sequence of open bounded sets $\Omega_n$ for $n=1, \dots$ such that $\Omega_n\searrow K$ and $0\not\in\Omega_n$ for any integer $n$ and  
+%
+%\begin{equation}
+%\mu(\Omega_n\setminus K) \leq \min\{\cfrac{1}{n}, \cfrac{1}{B_n}\}.
+%\end{equation}
+%
+%Since $\R^k$ is $T_3$, we have guaranteed existence of such a sequence. By Theorem \ref{probe-function-compact-aprox}, we have $\phi_0\in C^\infty_0(\R^k)$ such that $0 \leq \phi_0 \leq 1$, $\supp(\phi_0)\subset \Omega_0$ and $\phi_0(x) = 1$ for all $x\in E$.
+%Let
+%\begin{equation}
+%A_n := \int_{\Omega_n} f_n
+%\end{equation}
+%Since $\Omega_n\subset E$ for $n=1,2,\dots$ and $f_n$ and $\phi_0$ are positive functions, note that 
+%
+%\begin{equation}
+%0 \leq A_n \leq \int_{E} f_n \leq \int_{\R^k }f_n \phi_0.
+%\end{equation}
+%and since $f_n \to \delta_0$ in $\D'(\R^k)$ with weak-* topology, we have $\int_{\R^k} f_n\to \phi_0 = \phi_0(0) = 0$. Thus $A_n\to 0$.
+%Note that 
+%\begin{equation}
+%A_n = \int_{\Omega_n} f_n\phi_n = \int_K f_n + \int_{\Omega_n\setminus K} f_n.
+%\end{equation}
+%Thus
+%\begin{multline}
+%\\
+%|A_n - \int_K f_n| = \big|\int_{\Omega_n\setminus K} f_n\big| \leq \bigg(\int_{\Omega_0\setminus K} |f_n|^2 \bigg)^\frac{1}{2}
+%\bigg(\int_{\Omega_n\setminus K} 1 \bigg)^\frac{1}{2}\\
+%\leq \bigg(\int_{\Omega_0\setminus K} |f_n|^2 \bigg)^\frac{1}{2} \mu(\Omega_n\setminus K)^\frac{1}{2} = B_n \mu(\Omega_n\setminus K)^\frac{1}{2} \leq \cfrac{1}{n}.
+%\\
+%\end{multline}
+
+\end{proof}
+\begin{lemma}
+If $f_n\in C(\R^k)$ is a sequence of non-negative real functions (i.e. $f_n \geq 0$ ) for which 
+$\lim_{n\to\infty} f_n = \delta_0$ in $\D'(\R^k)$ with weak-* topology, then for each open $\Omega\subset \R^k$ such that $0\in\Omega$ we have
+\begin{equation}
+\lim_{n\to\infty}\int_{\Omega} f_n = 1,
+\end{equation} 
+\end{lemma}
+\begin{proof}
+Choose an open and bounded $U$ such that $\text{Clo}(\Omega)\subset U$.
+By Theorem \ref{probe-function-compact-aprox} we have we have $\phi\in C^\infty_0(\R^k)$ such that $0 \leq \phi \leq 1$, $\supp(\phi)\subset U$ and $\phi(x) = 1$ for all $x\in \text{Clo}(\Omega)$.
+Let $A_n = \int_{\R^k}f_n \phi$. Since $\lim_{n\to\infty} f_n = \delta_0$ in $\D'(\R^k)$ with weak-* topology, $A_n\to \phi(0)=1$.
+Note that
+\begin{equation}
+A_n = \int_\Omega f_n + \int_{\text{Clo}(U) \setminus \Omega} f_n \phi.
+\end{equation}
+Thus
+\begin{equation}
+A_n - \int_\Omega f_n = \int_{\text{Clo}(U) \setminus \Omega} f_n \phi \leq \int_{\text{Clo}(U) \setminus \Omega} f_n \to 0.
+\end{equation}
+We have the convergence above by Lemma \ref{where-delta-vanish}.
+Thus
+\begin{equation}
+\lim_{n\to\infty}\int_{\Omega} f_n = 1.
+\end{equation}
+\end{proof}
+%\begin{definition}
+%Let $\{u_\alpha\}_{\alpha\in\R^n} \subset S'_n$.
+%\end{definition}
+\section{Tensor Product of Hilbert Spaces (first aproach)}
+We will briefly summarize a construction of tensor product of Hilbert spaces from \cite{kadison-ringrose1983_I}. In this section, we are not very precise if Hilbert spaces are separable or not. This should be fixed in subsequent revisions and editions, but for now assume that all Hilbert spaces in this section are sparable. 
+\begin{theorem}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces. Let $l:\Pi_{i=1}^n H_i\to\C$ be a bounded multi-lineral functional. 
+then the sum (finite or infinite)
+\begin{equation}
+\label{hilbert-schmidt}
+\sum_{(y_1,\dots, y_n)\in Y_1\times\cdots\times Y_n} |l(y_1,\dots, y_n)|^2 
+\end{equation}
+doesn't depend on choice of orthonormal bases $Y_1,\dots,Y_n$, where $Y_i$ is an orthonormal base of $H_i$.
+\end{theorem}
+\begin{proof}
+\cite[see][2.6 Constructions with Hilbert Spaces]{kadison-ringrose1983_I}
+\end{proof}
+In the context of the above theorem, we can correctly define
+\begin{equation}
+\norm{l}_2:= \sum_{(y_1,\dots, y_n)\in Y_1\times\cdots\times Y_n} |l(y_1,\dots, y_n)|^2. 
+\end{equation}
+\begin{definition}
+A bounded multi-lineral functional $l:\Pi_{i=1}^n H_i\to\C$ is a Hilbert-Schmidt functional if the sum in (\ref{hilbert-schmidt}) is finite. $\text{HS}(\Pi_{i=1}^n H_i)$ is a space of all Hilbert-Schmidt functionals.
+\end{definition}
+\begin{theorem}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces. $\text{HS}(\Pi_{i=1}^n H_i)$ is a Hilbert space with an inner product
+\begin{equation}
+\label{hilbert-schmidt-product}
+\langle l_1, l_2 \rangle :=
+\sum_{(y_1,\dots, y_n)\in Y_1\times\cdots\times Y_n}
+l_1(y_1,\dots, y_n)\overline{l_2(y_1,\dots, y_n)}, 
+\end{equation}
+where $Y_i$ is an orthonormal base of $H_i$. The sum in (\ref{hilbert-schmidt-product}) is absolutely convergent and doesn't depend on choice of orthonormal bases $Y_1,\dots,Y_n$.
+\end{theorem}
+\begin{proof}
+\cite[see][2.6 Constructions with Hilbert Spaces]{kadison-ringrose1983_I}
+\end{proof}
+\begin{definition}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces. Let $H$ be a Hilbert space.
+A bounded multi-linear mapping $L:\Pi_{i=1}^n H_i\to H$ is a weak Hilbert-Schmidt mapping if the following conditions hold.
+\begin{enumerate}
+\item
+For each $u\in H$ a functional $L_u$, defined as
+\begin{equation}
+L_u(y_1,\dots, y_n) = \langle L(y_1,\dots, y_n), u \rangle,
+\end{equation}
+is a  Hilbert-Schmidt functional.
+\item
+There exists $c\geq 0$ such that $\norm{L_u}_2 \leq c\norm{u}$ for each $u\in H$.
+\end{enumerate}
+Moreover we define
+\begin{equation}
+\norm{L}_2:=\inf\{c\geq 0:  \norm{L_u}_2 \leq c\norm{u} \text{ for each } u\in H\}.
+\end{equation}
+\end{definition}
+\begin{theorem}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces.
+\begin{enumerate}
+\item
+There exists a Hilbert space $H$ and a weak Hilbert-Schmidt mapping $p:\Pi_{i=1}^n H_i\to H$, such that for any Hilbert space $K$ and any  weak Hilbert-Schmidt mapping $L:\Pi_{i=1}^n H_i\to K$, there exists $T\in\mathcal{B}(H,K)$ such that
+\begin{equation}
+L = Tp.
+\end{equation}
+\item If there exists $p'$ and $H'$ with properties attributed in 1. to $p$ and $H$, there exists an unitary mapping $U:H\to H'$ such that
+\begin{equation}
+p' = Up.
+\end{equation}
+
+\item
+\begin{equation}
+\langle p(x_1, \dots, x_n), p(z_1, \dots, z_n) \rangle = \Pi_{i=1}^n\langle x_i, z_i \rangle
+\end{equation}
+for any $x_i, z_i\in H_i$ for $i=1, \dots, n$ and
+\begin{equation}
+\{p(y_1,\dots, y_n): (y_1,\dots, y_n)\in Y_1\times\cdots\times Y_n\}
+\end{equation}
+is an orthonormal basis of $H$, where $Y_i$ is an orthonormal basis of $H_i$ for $i=1, \dots, n$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\cite[see][2.6 Constructions with Hilbert Spaces]{kadison-ringrose1983_I}
+\end{proof}
+\begin{definition}
+Being in the context of the above theorem, we define
+\begin{equation}
+H_1 \hat{\otimes} \dots \hat{\otimes} H_n := H
+\end{equation}
+and
+\begin{equation}
+x_1 \otimes \dots \otimes x_n := p(x_1, \dots, x_n).
+\end{equation}
+\end{definition}
+We will write also $\hat{\bigotimes}_{i=1}^n H_i$.
+\begin{theorem}
+\label{hilbert-tensor-characteristic}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces.
+\begin{enumerate}
+\item $\hat{\bigotimes}_{i=1}^n H_i$ is a Hilbert space.
+\item A mapping 
+\begin{equation}
+\Pi_{i=1}^n H_i \ni (x_1,\dots x_n)\mapsto x_1 \otimes \dots \otimes x_n \in \hat{\bigotimes}_{i=1}^n H_i
+\end{equation}
+is multi-linear.
+\item
+\begin{equation}
+\langle x_1 \otimes \dots \otimes x_n, z_1 \otimes \dots \otimes z_n \rangle = \Pi_{i=1}^n\langle x_i, z_i \rangle
+\end{equation}
+for for any $x_i, z_i\in H_i$ for $i=1, \dots, n$.
+\item
+\begin{equation}
+\{y_1 \otimes \dots \otimes y_n: (y_1,\dots, y_n)\in Y_1\times\cdots\times Y_n\}
+\end{equation}
+is an orthonormal basis of $\hat{\bigotimes}_{i=1}^n H_i$, where $Y_i$ is an orthonormal basis of $H_i$ for $i=1, \dots, n$.
+\end{enumerate}
+\end{theorem}
+There are many alternative ways of introducing tensor product of Hilbert Spaces (e.g \cite[see][3.4 Tensor products of Hilbert spaces]{weidmann1980} -- through algebraic tensor product and then completition), however they always lead to the Theorem \ref{hilbert-tensor-characteristic}. Let's reserve symbol $\otimes$ for algebraic tensor product, while we will use $\hat{\otimes}$ for completition. In this sense $\bigotimes_{i=1}^n H_i$ is a dense subspace of $\hat{\bigotimes}_{i=1}^n H_i$.
+\begin{definition}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces and let $A_i$ with $\mathcal{D}(A_i)\subset H_i$ be linear operators.
+\begin{equation}
+\mathcal{D}(A_1 \otimes \dots \otimes A_n):=\mathcal{D}(A_1) \otimes \dots \otimes \mathcal{D}(A_n)
+\end{equation}
+and
+\begin{equation}
+(A_1 \otimes \dots \otimes A_n)(\sum_{i=1}^m x^1_i \otimes \dots \otimes x^n_i):= \sum_{i=1}^m A_1 x^1_i \otimes \dots \otimes A_n x^n_i
+\end{equation}
+for any integer $m$ and any $(x^1_i, \dots, x^n_i)\in\Pi_{k=1}^n \mathcal{D}(A_k)$ for $i=1, \dots, m$.
+\end{definition}
+We can prove that the definition is correct by similiar argument as in \cite[see][8.5 Analytic vectors and tensor products of
+self-adjoint operators]{weidmann1980}.
+\begin{definition}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces and let $A_i$ with $\mathcal{D}(A_i)\subset H_i$ be linear operators.
+\begin{equation}
+A_1 \hat{\otimes} \dots \hat{\otimes} A_n := \text{Clo}(A_1 \otimes \dots \otimes A_n).
+\end{equation}
+\begin{equation}
+A_1 \hat{\otimes} I \hat{\otimes} \dots \hat{\otimes} I + \dots
++ I \hat{\otimes}\dots I \hat{\otimes} A_n:=\text{Clo}(A_1 \otimes I \otimes \dots \otimes I + \dots
++ I \otimes\dots I \otimes A_n)
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{bounded-operators-equaliser}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces and $\{K_i\}_{i=1}^n$ be Hilbert spaces. 
+Let $A_i\in\mathcal{B}(H_i, K_i)$ for $i=1,\dots, n$. Then there exists 
+an unique $A\in \mathcal{B}(\hat{\bigotimes}_{i=1}^n H_i, \hat{\bigotimes}_{i=1}^n K_i)$ such that
+\begin{equation}
+A(x_1 \otimes \dots \otimes x_n) = A_1 x_1 \otimes \dots \otimes A_n x_n
+\end{equation} 
+for all $(x_1 \otimes \dots \otimes x_n)\in \Pi_{i=1}^n H_i$.
+Moreover 
+\begin{equation}
+\norm{A} = \norm{A_1}\cdot \dots \cdot \norm{A_n}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+\cite[see][2.6 Constructions with Hilbert Spaces]{kadison-ringrose1983_I}
+\end{proof}
+\begin{theorem}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces and $\{K_i\}_{i=1}^n$ be Hilbert spaces. 
+Let $A_i,B_i \in\mathcal{B}(H_i, K_i)$ for $i=1,\dots, n$. Then
+\begin{equation}
+A_1 \hat{\otimes} \dots \hat{\otimes} A_n \in \mathcal{B}(\hat{\bigotimes}_{i=1}^n H_i, \hat{\bigotimes}_{i=1}^n K_i),
+\end{equation}
+\begin{equation}
+\norm{A_1 \hat{\otimes} \dots \hat{\otimes} A_n} = \norm{A_1}\cdot \dots \cdot \norm{A_n}.
+\end{equation}
+\begin{equation}
+(A_1 \hat{\otimes} \dots \hat{\otimes} A_n)(B_1 \hat{\otimes} \dots \hat{\otimes} B_n) = A_1 B_1 \hat{\otimes} \dots \hat{\otimes} A_n B_n.
+\end{equation}
+\end{theorem}
+\begin{theorem}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces and $\{K_i\}_{i=1}^n$ be Hilbert spaces. 
+Let $U_i \in\mathcal{B}(H_i, K_i)$ for $i=1,\dots, n$ be unitary mappings. Then
+\begin{equation}
+U_1 \hat{\otimes} \dots \hat{\otimes} U_n: \hat{\bigotimes}_{i=1}^n H_i\to \hat{\bigotimes}_{i=1}^n K_i
+\end{equation}
+is also a unitary mapping.
+\end{theorem}
+\begin{proof}
+Unitary mapping map orthonormal basis into orthonormal basis. Thus, by Theorem \ref{hilbert-tensor-characteristic} we can show thesis.
+\end{proof}
+
+\begin{theorem}
+\label{self-adjoint-tensor-product}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces and $A_i$ be self-adjoint with $\mathcal{D}(A_i)\subset H_i$ for $i=1,\dots,n$. Then $A_1 \hat{\otimes} \dots \hat{\otimes} A_n$ is self-adjoint and
+\begin{equation}
+A_1 \hat{\otimes} I \hat{\otimes} \dots \hat{\otimes} I + \dots
++ I \hat{\otimes}\dots I \hat{\otimes} A_n.
+\end{equation}
+is self-adjoint.
+\end{theorem}
+\begin{proof}
+\cite[see][8.5 Analytic vectors and tensor products of
+self-adjoint operators]{weidmann1980}.
+\end{proof}
+The following theorem is an convinient instruction, what minimal domain we need egzamine if we want to establish equality between some self-adjoint operator and closed product of self-adjoint operators.
+\begin{lemma}
+\label{self-adjoint-ext}
+Let $H$ be a hilbert space and $B$ be a self adjoint-operator. If $A \subset B$ and $\text{Clo}(A)$ is self-adjoint, then $\text{Clo}(A) = B$.
+\end{lemma}
+\begin{proof}
+Since $B$ is self-adjoint, $B$ is closed. So, $\text{Clo}(A)\subset B$. But $\text{Clo}(A)$ is self-adjoint, hence it's maximal symetric operator, thus $\text{Clo}(A)=B$.
+\end{proof}
+\begin{theorem}
+Let $\{H_i\}_{i=1}^n$ be Hilbert spaces, and let $A_i$ be self-adjoint with $\mathcal{D}(A_i)\subset H_i$ for $i=1,\dots,n$ and let $B$ be a self-adjoint operator on $\hat{\bigotimes}_{i=1}^n H_i$.
+If
+\begin{equation}
+\mathcal{D}(A_1) \otimes \dots \otimes \mathcal{D}(A_n) \subset \mathcal{D}(B)
+\end{equation}
+and 
+\begin{equation}
+B(x_1 \otimes \dots \otimes x_n) = A_1 x_1 \otimes \dots \otimes A_n x_n
+\end{equation}
+for all $(x_1, \dots, x_n)\in\Pi_{k=1}^n \mathcal{D}(A_k)$, then
+\begin{equation}
+B = A_1 \hat{\otimes} \dots \hat{\otimes} A_n.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $A = A_1 \otimes \dots \otimes A_n$. By linearity we get $A\subset B$. By Theorem \ref{self-adjoint-tensor-product}, $\text{Clo}(A)$ is self-adjoint. Now, by Lemma \ref{self-adjoint-ext}, we get $\text{Clo}(A) = B$.
+\end{proof}
+\begin{theorem}
+If $(X_1,\mu_1)$ and $(X_2, \mu_2)$ are measurable spaces, then 
+\begin{equation}
+L^2(X_1, \mu_1) \hat{\otimes} L^2(X_1, \mu_2) = L^2(X_1\times X_2, \mu_1 \times \mu_2),
+\end{equation}
+where
+\begin{equation}
+(\psi_1 \otimes \psi_2)(x_1, x_2) = \psi_1(x_1) \cdot \psi_2(x_2) \text{ for } \psi_i\in L^2(X_i, \mu_i) \text{ for } i=1,2. 
+\end{equation}
+\end{theorem}
+\begin{proof}
+\cite[see][2.6 Constructions with Hilbert Spaces]{kadison-ringrose1983_I}
+\end{proof}
+\begin{example}
+Let $\F_k$ be a $k$-dimensional Fourier transform extended to $L^2(\reals^k)$.
+\begin{equation}
+\label{multi-fourier-tensor}
+\F_n \hat{\otimes} \F_m = \F_{n + m}.
+\end{equation}
+\end{example}
+\begin{proof}
+Take any $\psi_1\in L^1(\reals^n)\cap L^2(\reals^n)$ and $\psi_2\in L^1(\reals^m)\cap L^2(\reals^m)$.
+\begin{multline}
+(\F_n \hat{\otimes} \F_m)(\psi_1 \otimes \psi_2)(x_1, x_2) = \F_n\psi_1(x_1) \otimes \F_m\psi_2(x_2) = \\
+\bigg((2\pi)^{-\frac{n}{2}} \int_{\reals^n} \psi_1(s_1)\exp(-ix_1\cdot s_1)ds_1\bigg)
+\bigg((2\pi)^{-\frac{m}{2}} \int_{\reals^m} \psi_2(s_2)\exp(-ix_2\cdot s_2)ds_2\bigg) = \\
+= (2\pi)^{-\frac{n + m}{2}} \int_{\reals^n} \int_{\reals^m} \psi_1(s_1)\psi_1(s_2)\exp(-i(x_1\cdot s_1 + x_2\cdot s_2))ds_1ds_2 = \\
+\F_{n+m}(\psi_1 \otimes \psi_2)(x_1, x_2).
+\end{multline}
+By continuity we have shown $\F_n \hat{\otimes} \F_m(\psi_1 \otimes \psi_2) = \F_{n+m}(\psi_1 \otimes \psi_2)$ for any $\psi_1\in L^2(\reals^n)$ and $\psi_2\in L^2(\reals^m)$. Now by Theorem \ref{bounded-operators-equaliser}, we have (\ref{multi-fourier-tensor}).
+\end{proof}
+In the theorem below we will use $L^2$-representations of self-adjoint operators as defined by Definition \ref{L2-representation}.
+\begin{theorem}
+Let $H$ be a Hilbert space and $A,B$ be self-adjoint densly defined operators on $H$ and let $(X_A, \nu_A, U_A, g_A)$ and $(X_B, \nu_B, U_B, g_B)$ be respectively their $L^2$-representations, then
+\begin{enumerate}
+\item
+$$(X_A\times X_B, \nu_A\times\nu_B, U_A \hat{\otimes} U_B, g_A + g_B)$$
+is $L^2$-representation of
+$A\hat{\otimes} I + I \hat{\otimes} B$.
+\item
+$$(X_A\times X_B, \nu_A\times\nu_B, U_A \hat{\otimes} U_B, g_A \cdot g_B)$$
+is $L^2$-representation of $A\hat{\otimes} B$.
+\end{enumerate} 
+\end{theorem}
+\begin{proof}
+By Theorem \ref{observable-representation}, it's easy to prove that 
+\begin{equation}
+C\psi:= (U_A \hat{\otimes} U_B)^{-1}((g_A + g_B)\cdot (U_A \hat{\otimes} U_B)(\psi))
+\end{equation}
+is densly defined and self-adjoint. Take any $\psi_1\in\mathcal{D}(A)$ and $\psi_2\in\mathcal{D}(B)$.
+Note that 
+\begin{multline}
+C(\psi_1 \otimes \psi_2) = (U_A \hat{\otimes} U_B)^{-1}(g_A\cdot U_A(\psi_1)\cdot U_B(\psi_2) + U_A(\psi_1)\cdot g_B \cdot U_B(\psi_2))
+= \\ 
+(U_A \hat{\otimes} U_B)^{-1}((g_A\cdot U_A(\psi_1))\otimes U_B(\psi_2) + U_A(\psi_1)\otimes (g_B \cdot U_B(\psi_2))) = \\
+(U_A^{-1}(g_A\cdot U_A(\psi_1))\otimes U_B^{-1}U_B(\psi_2) + U_A^{-1}U_A(\psi_1)\otimes U_B^{-1}(g_B \cdot U_B(\psi_2)) = \\
+A\psi_1 \otimes \psi_2 + \psi_1 \otimes B\psi_2.
+\end{multline}
+By linearity we showed $A\otimes I + I \otimes B \subset C$. By Lemma \ref{self-adjoint-ext}, we have $\text{Clo}(A\otimes I + I \otimes B) = C$. Point 2 can be showed analogously.
+\end{proof}
+\end{document}

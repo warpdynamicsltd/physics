@@ -1,0 +1,290 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Energy}
+\subsection{System with potential energy}
+\label{potential_energy}
+In the considerations below, we will not distiguish between column and raw vectors.
+We will consider a system of particles, which positions will be denoted by
+\begin{equation}
+q = 
+\begin{bmatrix}
+\vec{q}_1 &
+\vec{q}_2 &
+\dots &
+\vec{q}_n 
+\end{bmatrix}
+\end{equation}
+where
+\begin{equation}
+\vec{q}_i = 
+\begin{bmatrix}
+q^1_i & 
+q^2_i & 
+q^3_i
+\end{bmatrix}.
+\end{equation}
+We consider $q$ as depentent on $t$. By $\dot{q}$ we denote $\cfrac{dq}{dt}$.
+
+
+Let
+\begin{equation}
+F = 
+\begin{bmatrix}
+\vec{F}_1 & \vec{F}_2 \dots \vec{F}_n
+\end{bmatrix}
+\end{equation} 
+where $\vec{F}_i$ is a force acting on $i$-th partcile.
+
+Assume that we have some scalar value $V$ which dependents on $q$ and
+\begin{equation}
+\label{force_in_potential}
+F = -\cfrac{\partial V}{\partial q}.
+\end{equation}
+
+By this we assume that for our system of partciles forces depend only on position of particles.
+
+Assume now that our system evolve from a state $q_0$ at $t=t_0$ to a state $q_1$ at $t=t_1$. Let's try to calculate work of the forces $F$ when system changed from $q_0$ to $q_1$ for an arbitrary evolution in time $q(t)$ with this constrain only that $q(t_0) = q_0$ and $q(t_1) = q_1$.
+\begin{equation}
+W = \int_{t_0}^{t_1} F\cdot \cfrac{dq}{dt} dt=-\int_{t_0}^{t_1} \cfrac{\partial V}{\partial q}\cdot \cfrac{dq}{dt} dt = - \int_{t_0}^{t_1} \cfrac{dV}{dt} = V(q_0) - V(q_1).
+\end{equation}
+\begin{equation}
+\boxed{
+W = V(q_0) - V(q_1)
+}
+\end{equation}
+
+That's why we call $V$ a potential energy in a state $q$. The energy that the forces of system needs to use is independent on the path of evolution. You can know this just but substracting respectively potential energy of an start poit and end point.
+
+\subsection{Lagrangian picture}
+\label{lagrange-picture}
+Assume that the system from Subsection \ref{potential_energy} is described by Lagranian 
+\begin{equation}
+\label{lagrange_kinetic_assumption}
+L = T - V.
+\end{equation}
+Where $T$ is a kinetic energy of the system
+\begin{equation}
+T = \sum_{i=1}^n \cfrac{1}{2}m_i|\dot{\vec{q}}_i|^2.
+\end{equation}
+And we know about $V$ only that it is dependent only on $q$.
+Now, let's check what we can get from Lagrange equation
+\begin{equation}
+\label{lagrange_equation2}
+\cfrac{\partial L}{\partial q} - \cfrac{d}{dt}\cfrac{\partial L}{\partial \dot{q}} = 0.
+\end{equation}
+Firstly, note that it translates into
+\begin{equation}
+-\cfrac{\partial V}{\partial q} - \cfrac{d}{dt}\cfrac{\partial T}{\partial \dot{q}} = 0,
+\end{equation}
+hence 
+\begin{equation}
+\cfrac{d}{dt}\cfrac{\partial T}{\partial \dot{q}} = -\cfrac{\partial V}{\partial q}.
+\end{equation}
+Note that
+\begin{equation}
+\cfrac{\partial T}{\partial \dot{\vec{q_i}}} = m_i\dot{\vec{q_i}},
+\end{equation}
+thus
+\begin{equation}
+\cfrac{d}{dt}\cfrac{\partial T}{\partial \dot{\vec{q_i}}} = m_i\ddot{\vec{q_i}} = \vec{F}_i.
+\end{equation} 
+Where  $\vec{F}_i$ is just a newtonian dynamical force, which can be measured just by mass times acceleration.
+
+From that we get
+\begin{equation}
+F = -\cfrac{\partial V}{\partial q},
+\end{equation}
+which is the equation (\ref{force_in_potential}) and thus the rest of the Subsection \ref{potential_energy} applies, so we can call $V$ potential energy.
+
+Because $L$ doesn't depend on $t$, we get
+\begin{equation}
+L - \cfrac{\partial L}{\partial \dot{q}} \dot{q} = \text{const}.
+\end{equation}
+The above follows imediatelly from Noether Theorem (Theorem \ref{noether}) but also can be derived directly from calculating $\frac{d}{dt}(L - \frac{\partial L}{\partial \dot{q}} \dot{q})$ and applying (\ref{lagrange_equation2}) to $\frac{dL}{dt}$.
+\begin{equation}
+\cfrac{\partial L}{\partial \dot{q}} \dot{q} = \cfrac{\partial T}{\partial \dot{q}} \dot{q} = \sum_{i=1}^n \cfrac{\partial T}{\partial \dot{\vec{q_i}}} \cdot \dot{\vec{q_i}} = \sum_{i=1}^n m_i|\dot{\vec{q}}_i|^2 = 2T.
+\end{equation}
+Thus $L - 2T = \text{const}$, from which by (\ref{lagrange_kinetic_assumption}) follows imediatelly
+\begin{equation}
+T + V = \text{const}.
+\end{equation}
+Which is energy conservation principle.
+\subsection{Hamiltonian picture}
+Assume that the system from from Subsection \ref{potential_energy} is described by Hamiltonian
+\begin{equation}
+\label{hamilton-kinematic-assumption}
+H = T + V,
+\end{equation}
+where $V$ is defined like in Subsection \ref{lagrange-picture} and
+\begin{equation}
+T = \sum_{i=1}^n \cfrac{1}{2m_i}|\vec{p}_i|^2.
+\end{equation}
+System satisfies Hamilton's equations:
+\begin{equation}
+\cfrac{\partial H}{\partial q} = -\dot{p},
+\end{equation}
+\begin{equation}
+\label{hamilton-second-1}
+\cfrac{\partial H}{\partial p} = \dot{q}.
+\end{equation}
+Let's try to calculate $\ddot{q}$.
+\begin{multline}
+\\
+\ddot{\vec{q_i}} = \cfrac{d}{dt}\cfrac{\partial H}{\partial \vec{p_i}} = \cfrac{\partial^2 H}{\partial \vec{p_i}\partial t}+ \cfrac{\partial^2 H}{\partial \vec{p_i}\partial q}\cfrac{dq}{dt}+\cfrac{\partial^2 H}{\partial \vec{p_i}\partial p}\cfrac{dp}{dt}\\
+= \cfrac{\partial^2 H}{\partial \vec{p_i}\partial p}\dot{p} = \cfrac{\partial^2 H}{\partial \vec{p_i}\partial \vec{p_i}}\dot{\vec{p_i}} = \cfrac{1}{m_i} \dot{\vec{p_i}}.
+\end{multline}
+Thus
+\begin{equation}
+m_i \ddot{\vec{q_i}} = \dot{\vec{p_i}}.
+\end{equation}
+Therefore, from definition
+$\vec{F_i} = \dot{\vec{p_i}}$ and $F = \dot{p}$.
+Hence, from (\ref{hamilton-second-1})
+\begin{equation}
+F = -\cfrac{\partial V}{\partial q},
+\end{equation}
+which is the equation (\ref{force_in_potential}) and thus the rest of the Subsection \ref{potential_energy} applies, so we can call $V$ potential energy.
+Note that
+\begin{equation}
+\cfrac{d}{dt} H = \cfrac{\partial H}{\partial t} + \cfrac{\partial H}{\partial q}\dot{q} + \cfrac{\partial H}{\partial p}\dot{p} = \cfrac{\partial H}{\partial q}\cfrac{\partial H}{\partial p} - \cfrac{\partial H}{\partial p}\cfrac{\partial H}{\partial q} = 0.
+\end{equation}
+Thus $H = \text{const}$ and it imediatelly follows from (\ref{hamilton-kinematic-assumption}) that
+\begin{equation}
+T + V = \text{const}.
+\end{equation}
+Which is energy conservation principle.
+\section{Reduced Mass}
+Consider Lagrangian
+\begin{equation}
+\label{lagrangian-dist-dependent}
+L(q, \dot{q}) = \cfrac{1}{2}m_1 (\dot{\vec{q_1}})^2 + \cfrac{1}{2}m_2 (\dot{\vec{q_2}})^2 + V(|\vec{q_1} - \vec{q_2}|).
+\end{equation}
+We apply convention similiar as in Subsection \ref{potential_energy}, where $q=[\vec{q_1}, \vec{q_2}]$.
+Recall that we say that, $q_0$ extremises $L$, if $\int_{t_0}^{t_1} L(q_0, \dot{q_0})$ is a local extremum for all evolutions $q$ for which $q(t_0) = q_0(t_0)$ and $q(t_1) = q_0(t_1)$ for any moments of time $t_0, t_1$.
+
+Take any constant velocity $\vec{v}$ and constant ponit $c_0$. Let
+\begin{equation}
+\label{inertial-coordinates-change}
+\vec{x_i} := \vec{q_i} + t\vec{v} + c_0 \text{ for } i=1,2.
+\end{equation}
+Following our convention $x=[\vec{x_1}, \vec{x_2}]$. First, we will show that 
+\begin{fact}
+$x$ extremises $L(x, \dot{x})$ if and only if $q$ extremises $L(q, \dot{q})$.
+\end{fact}
+
+Obviously $V$ part of $L$ stays the same as $\vec{q_1} - \vec{q_2} = \vec{x_1} - \vec{x_2}$. Let's calculate
+\begin{multline}
+\cfrac{1}{2}m_1 (\dot{\vec{x_1}})^2 + \cfrac{1}{2}m_2 (\dot{\vec{x_2}})^2 = \\
+\cfrac{1}{2}m_1 (\dot{\vec{q_1}})^2 + \cfrac{1}{2}m_2 (\dot{\vec{q_2}})^2 + (m_1\dot{\vec{q_1}} + m_2\dot{\vec{q_2}})\cdot \vec{v} + (m_1 + m_2)(\vec{v})^2.
+\end{multline}
+Assume that $q$ maximises $L$. From Noether Theorem, we know that $\cfrac{\partial L}{\partial \dot{q}} = \text{const}$, which is a momentum conservation principle, thus $m_1\dot{\vec{q_1}} + m_2\dot{\vec{q_2}}=\text{const}$. Hence,
+\begin{equation}
+\cfrac{1}{2}m_1 (\dot{\vec{x_1}})^2 + \cfrac{1}{2}m_2 (\dot{\vec{x_2}})^2 = \cfrac{1}{2}m_1 (\dot{\vec{q_1}})^2 + \cfrac{1}{2}m_2 (\dot{\vec{q_2}})^2 + \text{const}.
+\end{equation}
+And from that 
+\begin{equation}
+L(q,\dot{q}) = L(x,\dot{x}) + \text{const}.
+\end{equation}
+From the above $x$ extremises $L$. The situation is symetric if we want to show that $x$ extremises $L$ implies $q$ extremises $L$.
+This means that for Lagrangian of type (\ref{lagrangian-dist-dependent}) any change of choordinates between frames of reference moving with constant velocity relative to each other does not change the Lagrangian of the system.
+
+From the statement above follows that without loss of generality in case of the Lagrangian of type (\ref{lagrangian-dist-dependent}), we can always assume that the center of the mass is in the point $(0,0,0)$, i.e.
+\begin{equation}
+\label{mass-center-in-rest}
+m_1\vec{q_1} + m_2\vec{q_2} = 0
+\end{equation}
+
+Now, if we take
+\begin{equation}
+\label{r-vector-diff}
+\vec{r} := \vec{q_1} - \vec{q_2}, 
+\end{equation}
+from equations (\ref{mass-center-in-rest}) and (\ref{r-vector-diff}), we have
+\begin{equation}
+\begin{cases}
+\vec{q_1} = \cfrac{m_2}{m_1 + m_2}\vec{r},\\
+\vec{q_2} = - \cfrac{m_1}{m_1 + m_2}\vec{r}.
+\end{cases}
+\end{equation}
+Now, after simple calculation
+\begin{equation}
+L = \cfrac{1}{2}\cfrac{m_1m_2}{m_1 + m_2}(\dot{\vec{r}})^2 + V(|\vec{r}|). 
+\end{equation}
+Hence $\vec{r}$ evolves in the same way as one particle of mass
+\begin{equation}
+\boxed{
+m = \cfrac{m_1m_2}{m_1 + m_2}
+}
+\end{equation}
+In a central force field $\vec{F} = - \cfrac{\partial V}{\partial \vec{r}}$. We call $m$ a reduced mass.
+\section{Statistical Mechanics}
+\subsection{Flux}
+Let $\rho(t,x)$ will be a density of a certain abstract continous entity in time $t$ and point $x\in\reals^n$. Let $\vec{v}(t,x)$ will be a velocity of an infinitesimal element of the continous entity in time $t$ at point $x\in\reals^n$.
+The current of the continous entity is
+\begin{equation}
+\vec{j} = \rho \vec{v}.
+\end{equation}
+Imagine an infinitesimal $n-1$-dimentional almost hyperplanar surfice elment $dS$ with it's normal unit vector $\vec{n}$. We will try to calculate an amount of the continous entity $dm$ which flew through surface $dS$ in the direction of the arrow of $\vec{n}$ during infenitesimal time $\Delta t$.
+ 
+If we consider an infenitesimal element of the entity, the component of its movement which is in a plane of $dS$ doesn't play any role in its going through surface element $dS$. Since $\vec{v}\cdot \vec{n}$ is a component of veliocity $\vec{v}$ which is perpendicular to $dS$, this is the velocity with which the entity passes through $dS$. Thus
+\begin{equation}
+\Delta m = \rho dS\Delta t(\vec{v}\cdot\vec{n}).
+\end{equation}
+Hence 
+\begin{equation}
+\Delta m = \vec{j}\cdot\vec{n} dS\Delta t.
+\end{equation}
+If we take any nice enough connected open $\Omega\subset \reals^n$ with compact clousure.
+We assume that entity is conserved in time, which simply means that it's not disapearing anywhere. Thus, the entity gain inside $\Omega$ during time $\Delta t$ must be equal to the negative total flux of the entity through $\partial \Omega$. Thus
+\begin{equation}
+\int_\Omega \rho(t + \Delta t, x)dx - \int_\Omega \rho(t, x)dx = 
+-\int_{\partial \Omega} \Delta m = -\Delta t \int_{\partial \Omega} \vec{j}\cdot\vec{n} dS.
+\end{equation}
+Hence
+\begin{equation}
+\int_\Omega \cfrac{\partial \rho}{\partial t} dx = -\int_{\partial \Omega} \vec{j}\cdot\vec{n} dS.
+\end{equation}
+Note that the reasoning above has sense, because by continuity of $\rho$ the change of $\rho$ during time $\Delta t$ is infinitesimal while at the same time $$\cfrac{\rho(t + \Delta t, x) - \rho(t, x)}{\Delta t} = \cfrac{\partial \rho}{\partial t}(x,t)$$ is a significant value because of differentiability of $\rho$ over $t$. We need as well assume continuity of $\cfrac{\partial \rho}{\partial t}(x,t)$ to be able to go with diffrentiation under the intergral.
+
+Now by Theorem \ref{gauss-theorem-multidimensional} (Gauss's Theorem), we have
+\begin{equation}
+\int_\Omega \cfrac{\partial \rho}{\partial t}dx = -\int_\Omega \nabla \cdot \vec{j}dx.
+\end{equation}
+Since $\Omega$ can be arbitrary, we have
+\begin{equation}
+\boxed{\cfrac{\partial \rho}{\partial t} = -\nabla \cdot \vec{j}}
+\end{equation}
+This is the relation between current and density of any continous entity which is conserved in time.
+
+\subsection{Liouville's equation}
+\label{liouville-equation}
+Consider a phase space with hamiltonian $H$. Let's recall Hamilton equations
+\begin{equation}
+\cfrac{\partial H}{\partial x} = -\dot{p},
+\end{equation}
+\begin{equation}
+\cfrac{\partial H}{\partial p} = \dot{x}.
+\end{equation}
+For convenience, in phase space we usually use Poisson brackets
+\begin{equation}
+\{f, g\} := \sum_i \cfrac{\partial f}{\partial x_i}\cfrac{\partial g}{\partial p_i} - \cfrac{\partial g}{\partial x_i}\cfrac{\partial f}{\partial p_i}. 
+\end{equation}
+Let $\vec{v} = (\dot{x}, \dot{p}) = (\cfrac{\partial H}{\partial p}, -\cfrac{\partial H}{\partial x})$ be a veliocity of a point in phase space. Assume that we have certain probability density of position and momentum $f(t, x, p)$.
+Let $\vec{j} = f(t, x, p) \vec{v}$ be a current of probability. We assume that probability is conserved in time. Which means
+\begin{equation}
+\cfrac{\partial f}{\partial t} = -\nabla \cdot \vec{j}.
+\end{equation}
+Now,
+\begin{multline}
+\nabla \cdot \vec{j} = (\cfrac{\partial}{\partial x}, \cfrac{\partial}{\partial p}) \cdot (f\cfrac{\partial H}{\partial p}, -f\cfrac{\partial H}{\partial x}) = \\
+\cfrac{\partial f}{\partial x} \cdot\cfrac{\partial H}{\partial p} + f\cfrac{\partial H}{\partial x} \cdot \cfrac{\partial H}{\partial p} - \cfrac{\partial f}{\partial p} \cdot\cfrac{\partial H}{\partial x} - f\cfrac{\partial H}{\partial p} \cdot \cfrac{\partial H}{\partial x} = \\
+\cfrac{\partial f}{\partial x} \cdot\cfrac{\partial H}{\partial p} - \cfrac{\partial f}{\partial p} \cdot\cfrac{\partial H}{\partial x} =
+\{f, H\}.
+\end{multline}
+Thus the time evolution of probability density is described by Liouville's equation
+\begin{equation}
+\boxed{
+\cfrac{\partial f}{\partial t} = - \{f, H\}
+}
+\end{equation}
+\end{document}

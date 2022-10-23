@@ -1,0 +1,247 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\subsection{Planck Units}
+We will give values of physical constants up to 4 digits in SI units.
+\begin{equation}
+    c = 2.9979 \cdot 10^8\; [\cfrac{m}{s}].
+\end{equation}
+\begin{equation}
+    G = 6.6741 \cdot 10^{-11}\; [\cfrac{m^3}{kg\,s^2}].
+\end{equation}
+\begin{equation}
+    \hbar = 1.0546 \cdot 10^{-34}\; [\cfrac{kg\, m^2}{s}].
+\end{equation}
+\begin{equation}
+    k_e = 8.9876 \cdot 10^9\; [\cfrac{m^3\, kg}{s^2 C}].
+\end{equation}
+\begin{equation}
+    k_b = 1.3806 \cdot 10^{-23}\; [\cfrac{kg\,m^2}{s^2 K}].
+\end{equation}
+Planck units will be $t_p, l_p, m_p, q_p, T_p$ which satisfies the below 5 equations.
+\begin{equation}
+\label{plank_light}
+    l_p = c t_p.
+\end{equation}
+\begin{equation}
+\label{plank_gravitation_dynamic}
+    F_p = \cfrac{m_pl_p}{t^2_p} = G\cfrac{m_p^2}{l_p^2}.
+\end{equation}
+\begin{equation}
+\label{plank_energy}
+    E_p = F_p l_p = \cfrac{\hbar}{t_p}.
+\end{equation}
+\begin{equation}
+\label{plank_electrostatic}
+    F_p = k_e \cfrac{q_p^2}{l_p^2}.
+\end{equation}
+\begin{equation}
+\label{plank_temperature}
+    E_p = k_b T_p.
+\end{equation}
+\begin{enumerate}
+    \item Equation (\ref{plank_light}) says that the light in a vacuum travels length $l_p$ in time $t_p$.
+    \item Equation (\ref{plank_gravitation_dynamic}) introduces Planck unit of force $F_p$ which by definition is equal to $m_p$ times acceleration $\cfrac{l_p}{t^2_p}$. Also we require $F_p$ to be equal to the gravitational force between two physical points with mass $m_p$ being at distance $l_p$.
+    \item Equation (\ref{plank_energy}) introduces Planck unit of energy as an energy needed to shift an object at distance $l_p$ with a friction force $F_p$. Also we require $E_p$ to be equal to an energy of photon with an angular frequency $1/t_p$.
+    \item Equation (\ref{plank_electrostatic}) States that the force $F_p$ is also set to be equal to the electrostatic force between two physical points with charge $q_p$ being at distance $l_p$.
+    \item Equation (\ref{plank_temperature}) provides a mapping from this characteristic microscopic energy $E_p$ to the macroscopic temperature $T_p$.
+\end{enumerate}
+\begin{corollary}
+In Planck units $c = G = \hbar = k_e = k_b = 1$.
+\end{corollary}
+\begin{theorem}
+Equations (\ref{plank_light}), (\ref{plank_gravitation_dynamic}) and (\ref{plank_energy}) are sufficient to uniquely establish $l_p, t_p, m_p$ as
+\begin{equation}
+    t_p = \sqrt{\cfrac{G\hbar}{c^5}},
+\end{equation}
+\begin{equation}
+\label{plank_distance}
+    l_p = \sqrt{\cfrac{G\hbar}{c^3}},
+\end{equation}
+\begin{equation}
+\label{plank_mass}
+    m_p = \sqrt{\cfrac{\hbar c}{G}}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Substituting $l_p$ with $ct_p$ in equation (\ref{plank_gravitation_dynamic}) leads to relation
+\begin{equation}
+    m_p = t_p \cfrac{c^3}{G}.
+\end{equation}
+On the other hand substituting $l_p$ with $ct_p$ in equation (\ref{plank_energy}) leads to relation
+\begin{equation}
+    m_p = \cfrac{\hbar}{c^2t_p}.
+\end{equation}
+From those two we get directly $t_p = \sqrt{\cfrac{G\hbar}{c^5}}$, which leads to (\ref{plank_distance}) and (\ref{plank_mass}).
+\end{proof}
+\begin{corollary}
+Additionally from equations (\ref{plank_electrostatic}) and (\ref{plank_temperature}) follows:
+\begin{equation}
+    q_p = \sqrt{\cfrac{\hbar c}{k_e}},
+\end{equation}
+\begin{equation}
+    T_p = \sqrt{\cfrac{\hbar c^5}{Gk_b}}.
+\end{equation}
+\end{corollary}
+In equations in Planck units, all mentioned above physical constants are set to $1$, like
+\begin{equation}
+\label{relative_energy_example}
+    E = \sqrt{p^2 + m^2}
+\end{equation}
+or 
+\begin{equation}
+\label{schrodinger_example}
+    i\frac{d\psi}{dt} = H\psi.
+\end{equation}
+Taking the above equations as an example, we will investigate how to reconstruct constants to get equations in SI.
+In equation (\ref{relative_energy_example}) we have $E [\cfrac{m_pl_p^2}{t_p^2}]$ and $p [\cfrac{m_pl_p}{t_p}]$ and $m [m_p]$. Thus in SI we need 2 constants $C_1$ and $C_2$ such that $E = \sqrt{C_1^2p^2 + C_2^2m^2}$. We have
+\begin{equation}
+    \cfrac{m_pl_p^2}{t_p^2} = C_1 \cfrac{m_pl_p}{t_p}
+\end{equation}
+and
+\begin{equation}
+    \cfrac{m_pl_p^2}{t_p^2} = C_2 m_p.
+\end{equation}
+Thus
+\begin{equation}
+    C_1 = \cfrac{l_p}{t_p} = c.
+\end{equation}
+and
+\begin{equation}
+    C_2 =  \cfrac{l_p^2}{t_p^2} = c^2.
+\end{equation}
+Therefore equation (\ref{relative_energy_example}) in SI has a form
+\begin{equation}
+    E = \sqrt{c^2p^2 + c^4m^2}.
+\end{equation}
+In equation (\ref{schrodinger_example}) we have $\cfrac{d\psi}{dt} [\cfrac{1}{t_p}]$ and
+$H [E_p]$, thus for SI we need constant $C$ such that $i C\frac{d\psi}{dt} = H\psi$. We have
+\begin{equation}
+    C\cfrac{1}{t_p} = \cfrac{\hbar}{t_p},
+\end{equation}
+Thus
+\begin{equation}
+    C = \hbar.
+\end{equation}
+Therefore equation (\ref{schrodinger_example}) in SI has a form
+\begin{equation}
+    i \hbar \frac{d\psi}{dt} = H\psi.
+\end{equation}
+\subsection{Natural Units}
+Assume we have a unit of energy $U_E$. We will express time, length and momentum as powers of $U_E$.
+
+\begin{definition}
+\label{length_definition}
+The unit of length $1 U_E^{-1}$ is equal to a wavelength of a photon with energy of $2\pi U_E$.
+\end{definition}
+
+\begin{definition}
+\label{time_definition}
+The unit of time $1 U_E^{-1}$ is equal to the period of the wave of a photon with energy of $2\pi U_E$.
+\end{definition}
+
+\begin{corollary}
+In the above units $c=1$.
+\end{corollary}
+
+\begin{corollary}
+In the above units $\hbar = 1$
+\end{corollary}
+\begin{proof}
+For a photon, we have 
+\begin{equation}
+E = \cfrac{2\pi \hbar c}{\lambda},
+\end{equation}
+where $E$ is energy of the photon and $\lambda$ is a wavelength. We already established that $c = 1$, thus
+\begin{equation}
+\label{plank_equation}
+\hbar = \cfrac{E}{2\pi} \lambda.
+\end{equation}
+The above equation holds for a photon with energy $2\pi U_E$ but such a photon, by Definition \ref{length_definition} has a wavelength $1 U_E^{-1}$. Thus, after substitution to (\ref{plank_equation}) we get $\hbar=1$.
+\end{proof}
+
+\begin{proposition}
+To covert length of $1 U_E^{-1}$ to units system $X$, one needs to calculate in the units system $X$
+\begin{equation}
+\lambda = \cfrac{\hbar c}{U_E}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Follows from the equation (\ref{plank_equation}).
+\end{proof}
+\begin{proposition}
+\label{time_recalculation}
+To covert time of $1 U_E^{-1}$ to units system $X$, one needs to calculate in the units system $X$
+\begin{equation}
+t = \cfrac{\hbar}{U_E}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Follows directly from the Definition (\ref{time_definition}).
+\end{proof}
+\begin{definition}
+The unit of mass $1U_E$ is equal to the mass of an object with an rest energy $U_E$.
+\end{definition}
+\begin{proposition}
+To covert mass of $1 U_E$ to units system $X$, one needs to calculate in the units system $X$
+\begin{equation}
+m = \cfrac{U_E}{c^2}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Follows from the equation $E = mc^2$.
+\end{proof}
+\begin{definition}
+\label{momentum_definition}
+The unit of momentum $1U_E$ is equal to the magnitude of momentum of a photon in an energy $U_E$.
+\end{definition}
+\begin{proposition}
+\label{momentum_recalculation}
+To convert momentum of $1 U_E$ to units system $X$, one needs to calculate in the units system $X$
+\begin{equation}
+p = \cfrac{U_E}{c}.
+\end{equation}
+\end{proposition}
+\begin{definition}
+The unit of force $1U_E^2$ is equal to the force which is equivalent to the change of $1 U_E$ momentum in $1U_E^{-1}$ time.
+\end{definition}
+
+\begin{proposition}
+To convert a force of $1U_E^2$ to units of system X, one needs to calculate in the units of system X
+\begin{equation}
+F=\cfrac{U_E^2}{\hbar c}.
+\end{equation} 
+\end{proposition}
+\begin{proof}
+By Preposition (\ref{momentum_recalculation}) and Proposition (\ref{time_recalculation})
+\end{proof}
+
+Assume that we will take $Q = \sqrt{\epsilon_0\hbar c}$ in SI as our unit of electric charge. Let's calculate a force $F$ with which 2 $Q$ charges will repel each other from the distance of $1U_E^{-1}$. Let's do calculations in $SI$.
+\begin{equation}
+F = \cfrac{(\sqrt{\epsilon_0\hbar c})^2}{4\pi \epsilon_0(\cfrac{\hbar c}{U_E})^2} = \cfrac{1}{4\pi} \cfrac{U_E^2}{\hbar c}.
+\end{equation}
+
+That means that in units $U_E$, $F = \cfrac{1}{4\pi} U_E^2$. Therefore that equation for the Coulomb force in units $U_E$ is
+\begin{equation}
+F = \frac{q^2}{4\pi r^2},
+\end{equation} 
+where $q$ is charge dimensionless (or $U_E^0$) and $r$ is in $U_E^{-1}$. From that follows that in $U_E$ system $\epsilon_0 = 1$. 
+
+\begin{proposition}
+To convert 1  unit of electric charge to the units of system X, one needs to calculate in units of system $X$
+\begin{equation}
+Q = \sqrt{\epsilon_0\hbar c}
+\end{equation}
+\end{proposition}
+For example in SI $Q = 5.290817690\cdot 10^{-19} C$.
+Since elementary charge (electron charge) in SI is
+\begin{equation}
+e = 1.60218\cdot10^{-19} C,
+\end{equation}
+$e = 0.3028221209$ dimensionless in units $U_E$.
+
+Note that we established a system where time and length have dimension $U_E^{-1}$, mass, energy and momentum have dimension $U_E$, force has dimension $U_E^2$ and charge is dimensionless. Moreover
+\begin{equation}
+\boxed{\hbar = c = \epsilon_0 = 1}
+\end{equation}
+and elementary charge is $0.3028221209$.  
+\end{document}

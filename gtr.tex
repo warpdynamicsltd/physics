@@ -1,0 +1,539 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Basic properties}
+\subsection{Preliminaries}
+$\eta =
+\left[
+\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & -1 & 0 & 0 \\
+0 & 0 & -1 & 0 \\
+0 & 0 & 0 & -1
+\end{array}
+\right] 
+$
+$\delta =
+\left[
+\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{array}
+\right] 
+$
+\subsection{Tensors}
+$(\hat{T})^{i_1\dots i_n}_{i_{n+1}\dots i_m} =
+\frac{\partial \hat{x}^{i_1}}{\partial x^{j_1}}
+\cdots
+\frac{\partial \hat{x}^{i_n}}{\partial x^{j_n}}
+\frac{\partial x^{j_{n+1}}}{\partial \hat{x}^{i_{n+1}}}
+\cdots
+\frac{\partial x^{j_m}}{\partial \hat{x}^{i_m}}
+T^{j_1\dots j_n}_{j_{n+1}\dots j_m}$
+
+\noindent
+$(\hat{A})^\mu =  \cfrac{\partial \hat{x}^\mu}{\partial x^\nu}A^\nu$
+
+\subsection{Metric Tensor}
+$$
+\boxed{d\tau^2 =  g_{\mu\nu} dx^\mu dx^\nu}
+$$
+
+\begin{theorem}
+$g_{\mu\nu}$ is a tensor.
+\end{theorem}
+\begin{proof}
+Notice that $dx^\mu = \frac{\partial x^\mu}{\partial \hat{x}^\alpha} d\hat{x}^\alpha$.\\
+Hence $d\tau^2 = g_{\mu\nu} dx^\mu dx^\nu = (g_{\mu\nu} \frac{\partial x^\mu}{\partial \hat{x}^\alpha}\frac{\partial x^\nu}{\partial \hat{x}^\beta}) d\hat{x}^\alpha d\hat{x}^\beta$.
+\end{proof}
+
+\begin{theorem}
+For each point $\omega$ there exists a frame of reference 
+$$(x^0, x^1, x^2, x^3)$$ 
+such that $g_{\mu\nu} = \eta_{\mu\nu}$ at $\omega$.
+\end{theorem}
+
+$$
+\boxed{g_{\mu\lambda}g^{\lambda\nu} = g^\nu_\mu = \delta^\nu_\mu}
+$$
+
+\subsection{Christoffel symbols}
+$$
+\boxed{\Gamma^\lambda_{\mu\nu} = \frac{1}{2} g^{\lambda\rho} \left( \frac{\partial g_{\rho\mu}}{\partial x^\nu} + \frac{\partial g_{\rho\nu}}{\partial x^\mu} - \frac{\partial g_{\mu\nu}}{\partial x^\rho} \right)}
+$$
+
+\subsection{Geodecis}
+$$
+\boxed{\cfrac{d^2\phi^\mu}{d\tau^2} + \Gamma^\mu_{\alpha\beta}\cfrac{d\phi^\alpha}{d\tau}\cfrac{d\phi^\beta}{d\tau} = 0}
+$$
+
+\subsection{Motionless particle}
+Assume that we have a frame of reference $(t = x_0, x_1, x_2, x_3)$. Let's consider a motionless particle
+$$(\phi^0(t) = t, \phi^1(t), \phi^2(t), \phi^3(t)). $$
+As the particle is motionless, we have $\cfrac{d\phi^n}{dt} = 0$ for $n=1,2,3$ at the moment $t=0$. The particle is motionless in our space frame of reference $(x,y,z)$ at the moment $t=0$, but we assume that it's still following geodesic in the space-time.
+$$
+0 = \cfrac{d^2\phi^\mu}{d\tau^2} + \Gamma^\mu_{\alpha\beta}\cfrac{d\phi^\alpha}{d\tau}\cfrac{d\phi^\beta}{d\tau} = \cfrac{d^2\phi^\mu}{d\tau^2} + \Gamma^\mu_{\alpha\beta}\cfrac{d\phi^\alpha}{dt}\cfrac{d\phi^\beta}{dt}\Big(\cfrac{dt}{d\tau}\Big)^2 = \cfrac{d^2\phi^\mu}{d\tau^2} + \Gamma^\mu_{00}\Big(\cfrac{dt}{d\tau}\Big)^2.
+$$
+
+$$
+\cfrac{d^2\phi^\mu}{d\tau^2} = -\Gamma^\mu_{00}\Big(\cfrac{dt}{d\tau}\Big)^2.
+$$
+The above holds in the point $(0, \phi^1(0), \phi^2(0), \phi^3(0))$.
+$$
+\cfrac{d^2\phi^n}{d\tau^2} = \cfrac{d}{d\tau}\Big(\cfrac{d\phi^n}{dt}\cfrac{dt}{d\tau}\Big) = 
+\cfrac{d}{d\tau}\Big(\cfrac{d\phi^n}{dt}\Big)\cfrac{dt}{d\tau} + \cfrac{d\phi^n}{dt}\cfrac{d^2t}{d\tau^2} = 
+\cfrac{d}{dt}\Big(\cfrac{d\phi^n}{dt}\Big)\Big(\cfrac{dt}{d\tau}\Big)^2 = \cfrac{d^2\phi^n}{dt^2}\Big(\cfrac{dt}{d\tau}\Big)^2
+$$
+for $n=1,2,3$. Thus,
+$$
+\cfrac{d^2\phi^n}{dt^2} = -\Gamma^n_{00} \text{ for } n=1,2,3.
+$$
+Therefore, 
+$$
+\cfrac{d^2\phi^n}{dt^2} = -\Gamma^n_{00} = -\frac{1}{2} g^{n\rho} \left( \frac{\partial g_{\rho 0}}{\partial x^0} + \frac{\partial g_{\rho 0}}{ \partial x^0} - \frac{\partial g_{0 0}}{\partial x^\rho} \right).
+$$
+Now we will assume that the curvature is constant in time.
+\begin{assumption}
+$\cfrac{\partial g_{\mu\nu}}{\partial x^0} = 0$. 
+\end{assumption}
+Now,
+$$
+\cfrac{d^2\phi^n}{dt^2} = \frac{1}{2} g^{nm}\frac{\partial g_{0 0}}{\partial x^m}.
+$$
+\subsection{The Ricci tensor}
+$$
+\boxed{
+R_{\mu\nu} = \cfrac{\partial \Gamma^\alpha_{\mu\alpha}}{\partial x^\nu}
+- \cfrac{\partial \Gamma^\alpha_{\mu\nu}}{\partial x^\alpha}
+- \Gamma^\alpha_{\mu\nu}\Gamma^\beta_{\alpha\beta}
++ \Gamma^\alpha_{\mu\beta}\Gamma^\beta_{\nu\alpha}
+}
+$$
+
+Einstein assumption for empty space:
+$$
+\boxed{R_{\mu\nu} = 0}
+$$
+
+\subsection{A slow particle in weakly curved empty spacetime: The Newtonian aproximation}
+Let's consider a slow particle
+$$(\phi^0(t) = t, \phi^1(t), \phi^2(t), \phi^3(t)).$$ Assume that $\phi^1(0) = \phi^2(0) = \phi^3(0) = 0$ and that for our frame of refrence $g_{\mu\nu} = \eta_{\mu\nu}$ in $(0,0,0,0)$. The particle is slow so we assume:
+\begin{assumption}
+$\cfrac{d\phi^n}{dt}$ is an infinitesimal of the first order for $n=1,2,3.$
+\end{assumption}
+We will asume that curvature is constant in time.
+\begin{assumption}\label{con_time}
+$\cfrac{\partial g_{\mu\nu}}{\partial x^0} = 0$. 
+\end{assumption}
+
+We will assume also that the curvature is weak.
+\begin{assumption}
+$\cfrac{\partial g_{\mu\nu}}{\partial x^n}$ is an infinitesimal of the first order for $n=1,2,3$.
+\end{assumption}
+
+\begin{proposition}\label{weak_curv}
+$g_{\mu\nu} = \eta_{\mu\nu} + \epsilon_{\mu\nu}$, where $\epsilon_{\mu\nu}$ is an infinitesimal of the second order in reasonable range that we care about. 
+\end{proposition}
+\begin{proof}
+$$
+g_{\mu\nu}(d\phi) = \eta_{\mu\nu} + \cfrac{\partial g_{\mu\nu}}{\partial x^n}d\phi^n
+$$ 
+\end{proof}
+
+The particle is following the geodecis in the spacetime, so with neglecting second-order infinitesimals we have:
+$$
+0 = \cfrac{d^2\phi^\mu}{d\tau^2} + \Gamma^\mu_{\alpha\beta}\cfrac{d\phi^\alpha}{d\tau}\cfrac{d\phi^\beta}{d\tau} = \cfrac{d^2\phi^\mu}{d\tau^2} + \Gamma^\mu_{\alpha\beta}\cfrac{d\phi^\alpha}{dt}\cfrac{d\phi^\beta}{dt}\Big(\cfrac{dt}{d\tau}\Big)^2 = \cfrac{d^2\phi^\mu}{d\tau^2} + \Gamma^\mu_{00}\Big(\cfrac{dt}{d\tau}\Big)^2.
+$$
+
+
+Thus
+
+\begin{equation}\label{acce}
+\cfrac{d^2\phi^\mu}{d\tau^2} = -\Gamma^\mu_{00}\Big(\cfrac{dt}{d\tau}\Big)^2.
+\end{equation}
+
+Putting $\mu = 0$ we may conclude that $\cfrac{d^2t}{d\tau^2}$ is a first order infinitesimal.
+
+$$
+\cfrac{d^2\phi^n}{d\tau^2} = \cfrac{d}{d\tau}\Big(\cfrac{d\phi^n}{dt}\cfrac{dt}{d\tau}\Big) = 
+\cfrac{d}{d\tau}\Big(\cfrac{d\phi^n}{dt}\Big)\cfrac{dt}{d\tau} + \cfrac{d\phi^n}{dt}\cfrac{d^2t}{d\tau^2} = 
+\cfrac{d}{dt}\Big(\cfrac{d\phi^n}{dt}\Big)\Big(\cfrac{dt}{d\tau}\Big)^2 = \cfrac{d^2\phi^n}{dt^2}\Big(\cfrac{dt}{d\tau}\Big)^2
+$$
+for $n=1,2,3$, neglecting second-order infinitesimals.
+Therefore applying the above to the (\ref{acce}) we get
+$$
+\cfrac{d^2\phi^n}{dt^2} = -\Gamma^n_{00} \text{ for } n=1,2,3.
+$$
+
+so 
+
+$$
+\cfrac{d^2\phi^n}{dt^2} = -\Gamma^n_{00} = -\frac{1}{2} g^{n\rho} \left( \frac{\partial g_{\rho 0}}{\partial x^0} + \frac{\partial g_{\rho 0}}{\partial x^0} - \frac{\partial g_{0 0}}{\partial x^\rho} \right).
+$$
+
+and by Assumption \ref{con_time}, neglecting second-order infinitesimals:
+
+$$
+\cfrac{d^2\phi^n}{dt^2} = \frac{1}{2} \frac{\partial g_{0 0}}{\partial x^n}.
+$$
+
+Since $R_{\mu\nu} = 0$, neglecting second-order infinitesimals we have:
+$$
+\cfrac{\partial \Gamma^\alpha_{\mu\alpha}}{\partial x^\nu}
+- \cfrac{\partial \Gamma^\alpha_{\mu\nu}}{\partial x^\alpha} = 0
+$$
+
+Note that with neglecting of second-order infinitesimals,
+$$
+\cfrac{\partial \Gamma^\alpha_{\mu\alpha}}{\partial x^\nu} = \cfrac{1}{2}g^{\alpha\rho}\Big(
+\cfrac{\partial^2 g_{\rho \mu}}{\partial x^\alpha \partial x^\nu} 
++ \cfrac{\partial^2 g_{\rho \alpha}}{\partial x^\mu \partial x^\nu} 
+- \cfrac{\partial^2 g_{\mu\alpha}}{\partial x^\alpha \partial x^\nu}\Big),
+$$
+
+$$
+\cfrac{\partial \Gamma^\alpha_{\mu\nu}}{\partial x^\nu} = \cfrac{1}{2}g^{\alpha\rho}\Big(
+\cfrac{\partial^2 g_{\rho \mu}}{\partial x^\nu \partial x^\alpha} 
++ \cfrac{\partial^2 g_{\rho \nu}}{\partial x^\mu \partial x^\alpha} 
+- \cfrac{\partial^2 g_{\mu\nu}}{\partial x^\rho \partial x^\alpha}\Big).
+$$
+
+Hence,
+$$
+\cfrac{1}{2}g^{\alpha\rho}
+\Big(
+\cfrac{\partial^2 g_{\rho \nu}}{\partial x^\mu \partial x^\alpha} 
+- \cfrac{\partial^2 g_{\mu\alpha}}{\partial x^\alpha \partial x^\nu}
+- \cfrac{\partial^2 g_{\rho \nu}}{\partial x^\mu \partial x^\alpha}
++ \cfrac{\partial^2 g_{\mu\nu}}{\partial x^\rho \partial x^\alpha}
+\Big) = 0.
+$$
+
+
+Choose $\mu=\nu = 0$. Then by Assumption \ref{con_time}
+$$
+g^{mn} \cfrac{\partial^2 g_{00}}{\partial x^m \partial x^n} = 0 \text{ for } n,m=1,2,3.
+$$
+
+By Proposition \ref{weak_curv} with neglecting second-order infinitesimals we have
+$$
+\eta_{nn} \cfrac{\partial^2 g_{00}}{\partial x^n \partial x^n} = 0  \text{ for } n=1,2,3.
+$$
+
+Which is a Laplace equation in $\R^3$.
+\subsection{Four-velocity}
+Assume that we describe a particle in a frame of reference $x^\mu$ as $(\phi^0(t) = t, \phi^1(t), \phi^2(t), \phi^3(t)).$ We define a four-velocity vector as:
+$$
+\boxed{
+v^\mu = \cfrac{d\phi^\mu}{d\tau}
+}
+$$
+where $d\tau$ is a infinitesimal length element of curve $\phi$.\\
+
+Note that 
+\begin{equation}\label{infi_shift}
+d\tau = (g_{\mu\nu}d\phi^\mu d\phi^\nu)^\frac{1}{2}.
+\end{equation}
+Hence
+$$
+\cfrac{d\tau}{dt} = (g_{\mu\nu}\frac{d\phi^\mu}{dt}\frac{d\phi^\nu}{dt})^\frac{1}{2}.
+$$
+Notive that
+$$
+v^0\cfrac{d\tau}{dt} = \cfrac{d\phi^0}{d\tau}\cfrac{d\tau}{dt} = \cfrac{d\phi^0}{dt} = 1.
+$$
+So
+$$
+\boxed
+{
+v^0 = (g_{\mu\nu}\frac{d\phi^\mu}{dt}\frac{d\phi^\nu}{dt})^{-\frac{1}{2}}
+}
+$$
+Note that $v^0$ is what we usually denote in literature as $\gamma$.
+On the other hand:
+$$
+\cfrac{d\tau}{dt} = (v^0)^{-1}
+$$
+And thus:
+$$
+\cfrac{d\phi^\mu}{dt} = \cfrac{d\phi^\mu}{d\tau}\cfrac{d\tau}{dt} = v^1(v^0)^{-1}. 
+$$
+$$
+\boxed{
+\cfrac{d\phi^\mu}{dt} = v^1(v^0)^{-1}
+}
+$$
+Which means that once you know the four-velocity in given frame of reference, you know space velocities as well.
+
+There is one more implication from (\ref{infi_shift}):
+\begin{equation}\label{one}
+\boxed{
+g_{\mu\nu}v^\mu v^\nu = 1
+}
+\end{equation}
+
+We will show that $v^\mu$ is a tensor.
+Assume that $y^\mu$ is a new frame of reference. Note that
+$$
+d\hat{\phi}^\mu = \cfrac{\partial y^\mu}{\partial x^\nu} d\phi^\nu.
+$$
+Since $d\tau$ is invariant $\hat{v}^\mu d\tau = \cfrac{\partial y^\mu}{\partial x^\nu} v^\nu d\tau$, hence
+$$
+\boxed{
+\hat{v}^\mu = \cfrac{\partial y^\mu}{\partial x^\nu} v^\nu
+}
+$$
+Let $\omega^\mu = \cfrac{d\phi^\mu}{dt}$. ($\omega^\nu$ is not a tensor). Then $\omega^\mu = v^\mu(v^0)^{-1}$.\\
+Note that usually encountered in literature $\beta = (\omega^1 + \omega^2 + \omega^3)^{\frac{1}{2}}$. Note
+\begin{equation}
+\boxed{
+v^0 = (1 - \beta^2)^{-\frac{1}{2}}}
+\end{equation} 
+To simplify calculations, we can assume that $g_{\mu\nu} = \eta_{\mu\nu}$ at $(0,0,0,0)$. $\phi^\mu(0) = 0$ and that particle at the moment $t=0$ is moving along $x^1$, i.e. $\omega^2 = \omega^3 = 0$. Thus $v^2 = v^3 = 0$.
+Let 
+\begin{equation}\label{lo1}
+\begin{cases}
+y^0 = v^0x^0 - v^1x^1\\
+y^1 = v^0x^1 - v^1x^0\\
+y^2 = x^2\\
+y^3 = x^3
+\end{cases}
+\end{equation}
+It's easy to show that $\hat{v}^0 = 1$ and $\hat{v}^1 = \hat{v}^2 = \hat{v}^3 = 0$, which simply means that for $t = 0$ the particle is in rest in the frame of reference $y^\mu$.
+Obviously
+\begin{equation}\label{lo2}
+\begin{cases}
+x^0 = v^0y^0 + v^1y^1\\
+x^1 = v^0y^1 + v^1y^0\\
+x^2 = y^2\\
+x^3 = y^3
+\end{cases}
+\end{equation}
+
+$$
+\hat{g}_{00} = g_{\mu\nu} \cfrac{\partial x^\mu}{\partial y^0}\cfrac{\partial x^\nu}{\partial y^0} = 
+(v^0)^2 - (v^1)^2 = 1,
+$$
+$$
+\hat{g}_{01} = g_{\mu\nu} \cfrac{\partial x^\mu}{\partial y^0}\cfrac{\partial x^\nu}{\partial y^1} = 
+v^0v^1 - v^1v^0 = 0,
+$$
+$$
+\hat{g}_{11} = g_{\mu\nu} \cfrac{\partial x^\mu}{\partial y^1}\cfrac{\partial x^\nu}{\partial y^1} = 
+(v^1)^2 - (v^0)^2 = -1.
+$$
+
+Thus also $\hat{g}_{\mu\nu} = \eta_{\mu\nu}$ for in $(0,0,0,0)$.
+
+Consider now particle $\phi$ in some very short (in fact as short as we need) time after $t=0$. We can assume that in the frame of reference $x$ we can describe it as:
+$$t \to (t, \omega^1t, 0, 0)$$.
+
+Let's see this particle in the frame $y$. Assume that time interval that we consider is so short that we all the time can use (\ref{lo1}):
+
+$$
+t \to (v^0t - v^1w^1t, v^0w^1t - v^1t, 0, 0) = (v^0(1-(w^1)^2)t, 0, 0, 0) =
+((v^0)^{-1}t, 0, 0, 0)
+$$
+It follows that if for the observer in $x$ interval $\Delta t$ passed, for observer in $y$ interval $(v^0)^{-1}\Delta t$ passed, which is of course time dilatation.  
+Note that $t$ in frame of reference $y$ is merely a parameter.
+To summarise, this is the law of time dilatation
+\begin{equation}
+\boxed{\Delta t' = (v^0)^{-1}\Delta t}
+\end{equation}
+Where is $\Delta t$ is time passed measured by an observer who is in rest relative to frame of reference $x^\mu$ and $\Delta t'$ is time passed measured by an observer who is in rest relative to a particle frame of reference $y^\mu$. 
+
+Now consider second particle that is moving in exactly the same direction as first one but proceeding it with a distance $\Delta x'$ in frame of reference $x$. We can describe it as:
+$$
+t \to (t, w^1t + \Delta x', 0, 0).
+$$
+Now look at this in frame of reference $y$.
+$$
+t \to ((v^0)^{-1}t - v^1\Delta x', v^0\Delta x', 0, 0).
+$$
+So the distance from particles in frame of reference $y$ is $v^0\Delta x'$.
+To summarise, this is the law of length contraction
+\begin{equation}
+\boxed{
+\Delta x' = (v^0)^{-1} \Delta x
+}
+\end{equation}
+Where $\Delta x$ is a rest distance between particles and $\Delta x'$ is a distance between particles measured by an observer who is in rest in the frame of refernce $x^\mu$.
+\begin{theorem}
+\label{metric_inter}
+If $u^\mu$, $v^\mu$ are 4-velocities of two observers at the point of intersection of their geodesics, then 
+\begin{equation}
+\label{energy_coef}
+g_{\mu\nu} u^\mu v^\nu = (1 - \omega)^{-\frac{1}{2}}
+\end{equation}
+where $\omega$ is a value of the relative velocity measured by observers,
+\begin{equation}
+\label{rel_vel}
+g_{\mu\nu} x^\mu v^\nu = -(1 - \omega)^{-\frac{1}{2}}\omega_x.
+\end{equation}
+where $x_\mu$ is a vector of length $-1$, orthogonal to $u_\mu$, and $\omega_x$ is a velocity of $v_\nu$ measured by an observer $u^\mu$ along the vector $x_\mu$.
+\end{theorem}
+\begin{proof}
+Let $p$ be the point of intersection. As the value of $g_{\mu\nu} u^\mu v^\nu$ doesn't depend on frame of reference, we are free to choose any frame of reference we need. Let's choose the frame of reference where $u = (1, 0, 0, 0)$ and $v=(v^0,v^1,v^2,v^3)$ and $g_{\mu\nu} = \eta_{\mu\nu}$ at point $p$. Such frame of reference will be just Riemannian coordinates with $0-axis$ along vector $u^\mu$. Thus $g_{\mu\nu} u^\mu v^\nu = \eta_{00} v_0 = v_0$, which proves equation \ref{energy_coef}.
+We may also require that in the frame of reference where $u = (1, 0, 0, 0)$, $x = (0,1,0,0)$. Thus $g_{\mu\nu} x^\mu v^\nu = - v_1 = -v_0\omega_1$. which proves equation \ref{rel_vel}.
+\end{proof}
+
+\begin{fact}
+If $u^\mu$, $v^\nu$ are 4-velocities of two observers at the point of intersection of their geodesics and
+ $\lambda$ is an arbitrary density of some quantity measured locally by an observer $v^\nu$, then 
+$\lambda g_{\mu\nu} u^\mu v^\nu$ is a density of this quantity measured locally by an observer $u^\mu$. 
+\end{fact}
+
+\begin{fact}
+If $p^\nu$ is a 4-momentum of a particle and $u^\mu$ is a 4-velocity of an observer at the point of interection with the geodesic of the particle, then
+\begin{equation}
+E = g_{\mu\nu} u^\mu p^\nu, 
+\end{equation}
+
+\begin{equation}
+p_x = g_{\mu\nu} x^\mu p^\nu.
+\end{equation}
+where $E$ is an energy of the particle measured by an observer, $x_\mu$ is a vector of length $-1$, orthogonal to $u_\mu$, and $p_x$ is a momentum of a particle measured by an observer $u^\mu$ along the vector $x_\mu$.  
+\end{fact}
+
+\subsection{Static spacetime}
+
+\begin{definition}
+We will say that system of coordinates $x$ is static if $\cfrac{\partial g_{\mu\nu}}{\partial x^0} = 0$ and $g_{m0} = 0$ for $m=1,2,3$.
+\end{definition}
+
+\begin{fact}
+If the system of coordinates $x$ is static, then
+\begin{equation}
+g^{00} = (g_{00})^{-1},
+\end{equation}
+\begin{equation}
+g^{n0} = 0,
+\end{equation}
+\begin{equation}
+g_{na}g^{am} = \delta^m_n,
+\end{equation} 
+\begin{equation}
+\Gamma^a_{00} = - \cfrac{1}{2} g^{ab}\cfrac{\partial g_{00}}{\partial x^b},
+\end{equation}
+\begin{equation}
+\Gamma^a_{nm} = \frac{1}{2} g^{ab} \left( \frac{\partial g_{bm}}{\partial x^n} + \frac{\partial g_{bn}}{\partial x^m} - \frac{\partial g_{mn}}{\partial x^b} \right),
+\end{equation}
+
+\begin{equation}
+\Gamma^a_{n0} = \Gamma^0_{00} = 0.
+\end{equation}
+\begin{proof}
+$$\Gamma^a_{00} = {1 \over 2} g^{ab} \left( {\partial g_{b0} \over \partial x^0} + {\partial g_{b0} \over \partial x^0} - {\partial g_{00} \over \partial x^b} \right) = - \cfrac{1}{2} g^{ab}\cfrac{\partial g_{00}}{\partial x^b}.$$
+
+\begin{gather*}
+\Gamma^a_{nm} = {1 \over 2} g^{ab} \left( {\partial g_{bm} \over \partial x^n} + {\partial g_{bn} \over \partial x^m} - {\partial g_{mn} \over \partial x^b}\right) + {1 \over 2} g^{a0} \left( \cdots \right)  = \\
+{1 \over 2} g^{ab} \left( {\partial g_{bm} \over \partial x^n} + {\partial g_{bn} \over \partial x^m} - {\partial g_{mn} \over \partial x^b}\right).
+\end{gather*}
+
+$$
+\Gamma^a_{n0} = {1 \over 2} g^{ab} \left( {\partial g_{b0} \over \partial x^n} + {\partial g_{bn} \over \partial x^0} - {\partial g_{0n} \over \partial x^b} \right) + {1 \over 2}g^{a0}\left(\cdots \right) = 0.
+$$
+\end{proof}
+
+Note that condition $g_{n0} = 0$ provides that $(dt, 0, 0, 0)$ and $(0,dx^1, dx^2, dx^3)$ are orthogonal at each point. We may say that all static observers agree locally on what is their space. Motivated by this we can define space as $t = const$.
+
+\end{fact}
+
+\begin{theorem}
+\label{space_est}
+If $x$ is a static coordinate system and $t\to(t,\phi_1(t), \phi_2(t), \phi_3(t))$ is an equation of free particle (geodesic in coordinates $x$) and $\omega_\nu = {d\phi^\nu \over dt}$, then
+\begin{equation}
+\omega^a \nabla_a \omega^b = - \Gamma^a_{00},
+\end{equation}
+\begin{equation}
+\text{i.e.  } {d^2\phi^a \over dt^2} + \Gamma^a_{nm} {d\phi^n \over dt} {d\phi^m \over dt} = - \Gamma^a_{00}.
+\end{equation}
+where $\nabla$ is a covariant derivative in 3 dimensional manifold with metric $g_{nm}$.
+\end{theorem}
+
+\begin{theorem}
+If $x$ is a static coordinate system and $t\to(t,\phi_1(t), \phi_2(t), \phi_3(t))$ is a null geodesic in coordinates $x$, then for $t\to(\phi_1(t), \phi_2(t), \phi_3(t))$, we have $\delta\int dt = 0$.
+\end{theorem}
+\begin{proof}
+Let's define a new metric $H_{\mu\nu} = g_{\mu\nu}(g_{00})^{-1}$. $H$ is conformally related to $g$. Thus they have the same null geodesics. Note that $x$ is a static coordinate system in $H$. Then by Theorem \ref{space_est}
+
+\begin{equation}
+{d^2\phi^a \over dt^2} + \overset{H}{\Gamma^a_{nm}} {d\phi^n \over dt} {d\phi^m \over dt} = - \overset{H}{\Gamma^a_{00}}.
+\end{equation} 
+But $\overset{H}{\Gamma^a_{00}} = 0$. Then $t\to(\phi_1(t), \phi_2(t), \phi_3(t))$ is a geodesic equation in a 3 dimensional manifold with metric $H_{mn}$. So $\delta \int ds_H = 0$. Note that
+$$
+ds^2_H = - H_{mn}dx^m dx^n = - (g_{00})^{-1}g_{mn}dx^m dx^n = (g_{00})^{-1} ds^2.
+$$ 
+Hence
+\begin{equation}
+\label{var_met}
+\delta \int g_{00}^{- {1 \over 2}}ds = 0.
+\end{equation}
+Because we are on the null geodesic in $x$ with metric $g$, we have
+
+$$
+0 = g_{00}dt^2 + g_{nm}dx^ndx^m = g_{00} dt^2 - ds^2.
+$$
+
+So
+$$
+dt = (g_{00})^{- {1 \over 2}}ds.
+$$
+\end{proof}
+And \ref{var_met} becomes
+$$
+\delta\int dt = 0.
+$$
+\subsection{Stress-energy tensor}
+
+We will construct some illustrative example of the stress-energy tensor. Assume that we have distribution of matter whose velocity varies continuously from one point to a neighboring one. Let $\rho$ be a scalar field of rest density measured in the rest frame of reference of an infinitesimal part of the matter distribution. Let $v^\mu$ be a vector field of 4-velocities of an infinitesimal part of the matter distribution at the point. Let define
+\begin{equation}
+T^{\mu\nu} = \rho v^\mu v^\nu.
+\end{equation}
+Let $\omega$ be a relative velocity between observer $u^\mu$ and an infenitesimal matter element $v^\mu$ at each point.
+Note that rest density of the matter distribution is just some quantity distributed in space. Forget for a moment that this is a rest density, let's treat this as some kind of abstract quantity. Then
+\begin{equation}
+\underbrace{\rho (1 - \omega)^{-\frac{1}{2}}}_{\text{rest density} * \frac{1}{\text{length contraction}}}
+\end{equation}
+is a density of this quantity measured by the observer $u^\mu$, i. e. density of rest density measured by the observer $u^\mu$.
+\begin{fact}
+$T_{\mu\nu} u^\mu u^\nu$ is a energy density measured locally by an observer $u^\nu$.
+\end{fact}
+\begin{proof}
+We will use notation from Theorem \ref{metric_inter}
+\begin{equation}
+T_{\mu\nu} u^\mu u^\nu = \rho v^\alpha v^\beta g_{\mu\alpha}g_{\mu\beta} u^\mu u^\nu = \overbrace{\underbrace{\rho (1 - \omega)^{-\frac{1}{2}}}_{\text{rest density} * \frac{1}{\text{length contraction}}} \cdot(1 - \omega)^{-\frac{1}{2}}}^\text{relative energy density}.
+\end{equation}
+\end{proof}
+
+\begin{fact}
+$T_{\mu\nu} x^\mu u^\nu$ is a density of momentum along the vector $x^\mu$, measured locally by an observer $u^\nu$ -- where $x^\mu$ is an orthogonal to $u^\mu$ vector of length $-1$.  
+\end{fact}
+\begin{proof}
+
+\begin{equation}
+T_{\mu\nu} x^\mu u^\nu = \rho v^\alpha v^\beta g_{\mu\alpha}g_{\mu\beta} x^\mu u^\nu = \overbrace{\underbrace{\rho (1 - \omega)^{-\frac{1}{2}}}_{\text{rest density} * \frac{1}{\text{length contraction}}} \cdot (1 - \omega)^{-\frac{1}{2}}\omega_x}^\text{relative momentum density}.
+\end{equation}
+\end{proof}
+
+\begin{fact}
+$T_{\mu\nu} u^\mu x^\nu$ is a energy flux across the surface with normal vector $x^\mu$, measured locally by an observer $u^\nu$ -- where $x^\mu$ is an orthogonal to $u^\mu$ vector of length $-1$.  
+\end{fact}
+\begin{proof}
+\begin{equation}
+T_{\mu\nu} u^\mu x^\nu = \rho v^\alpha v^\beta g_{\mu\alpha}g_{\mu\beta} u^\mu x^\nu = \overbrace{\underbrace{\rho (1 - \omega)^{-\frac{1}{2}}}_{\text{rest density} * \frac{1}{\text{length contraction}}} \cdot (1 - \omega)^{-\frac{1}{2}}}^\text{relative energy density} \omega_x.
+\end{equation}
+\end{proof}
+
+Of course $T_{\mu\nu} x^\mu u^\nu = T_{\mu\nu} u^\mu x^\nu$.
+
+\begin{fact}
+$T_{\mu\nu} x^\mu y^\nu$ is a flux of momentum along $x^\mu$ across the surface with normal vector $y^\mu$, measured locally by an observer $u^\nu$ -- where $x^\mu, y^\nu$ are orthogonal to $u^\mu$ vectors of length $-1$.  
+\end{fact}
+\begin{proof}
+\begin{equation}
+T_{\mu\nu} x^\mu y^\nu = \rho v^\alpha v^\beta g_{\mu\alpha}g_{\mu\beta} u^\mu x^\nu = \overbrace{\underbrace{\rho (1 - \omega)^{-\frac{1}{2}}}_{\text{rest density} * \frac{1}{\text{length contraction}}} \cdot (1 - \omega)^{-\frac{1}{2}}\omega_x}^\text{relative momentum density} \omega_y.
+\end{equation}
+\end{proof}   
+\end{document}
