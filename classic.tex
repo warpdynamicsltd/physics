@@ -102,8 +102,10 @@ L - \cfrac{\partial L}{\partial \dot{q}} \dot{q} = \text{const}.
 \end{equation}
 The above follows imediatelly from Noether Theorem (Theorem \ref{noether}) but also can be derived directly from calculating $\frac{d}{dt}(L - \frac{\partial L}{\partial \dot{q}} \dot{q})$ and applying (\ref{lagrange_equation2}) to $\frac{dL}{dt}$.
 \begin{equation}
+\label{energy-coserv-simple}
 \cfrac{\partial L}{\partial \dot{q}} \dot{q} = \cfrac{\partial T}{\partial \dot{q}} \dot{q} = \sum_{i=1}^n \cfrac{\partial T}{\partial \dot{\vec{q_i}}} \cdot \dot{\vec{q_i}} = \sum_{i=1}^n m_i|\dot{\vec{q}}_i|^2 = 2T.
 \end{equation}
+
 Thus $L - 2T = \text{const}$, from which by (\ref{lagrange_kinetic_assumption}) follows imediatelly
 \begin{equation}
 T + V = \text{const}.
@@ -179,7 +181,7 @@ where
 \delta q^n_i = \delta\epsilon(G^n_m q^m_i + a^n).
 \end{equation}
 
-We will show now how the assumption that lagrangian $L$ of the system remains invariant under this transformation leads to conservation principles.
+We will show now how the assumption that lagrangian $L$ of the system remains invariant under this transformation leads to certain conservation principles.
 
 Assume that 
 
@@ -197,7 +199,7 @@ Recall Lagrange equation
 \label{lagrange_equation3}
 \cfrac{\partial L}{\partial q} - \cfrac{d}{dt}\cfrac{\partial L}{\partial \dot{q}} = 0.
 \end{equation}
-Thus we know that $\cfrac{\partial L}{\partial q} = \cfrac{d}{dt}\cfrac{\partial L}{\partial \dot{q}}$ and we substitute $\cfrac{\partial L}{\partial q}$ in (\ref{conservation_stage1}) accordingli obtaining:
+Thus we know that $\cfrac{\partial L}{\partial q} = \cfrac{d}{dt}\cfrac{\partial L}{\partial \dot{q}}$ and we substitute $\cfrac{\partial L}{\partial q}$ in (\ref{conservation_stage1}) accordingly obtaining:
 \begin{equation}
 \cfrac{d}{dt}\cfrac{\partial L}{\partial \dot{q}}\delta q + \cfrac{\partial L}{\partial \dot{q}}\delta \dot{q} = 0. 
 \end{equation}
@@ -244,7 +246,49 @@ Hence, under the assumption that potential $V$ is invariant under space translat
 \end{equation} 
 
 This is of course a classical mechanical momentum conservation principle.
+\subsection{Energy Conservation Principle}
+We will show now how the assumption that Lagrangian $L$ doesn't depend on time leads to energy conservation principle.
+Assume that $\cfrac{\partial L}{\partial t} = 0$.
+In general, we have
+\begin{equation}
+\cfrac{d}{dt} L = \cfrac{\partial L}{\partial q}\dot{q} + \cfrac{\partial L}{\partial \dot{q}}\ddot{q} + \cfrac{\partial L}{\partial t},
+\end{equation}
+but because of our assumption, we get
+\begin{equation}
+\cfrac{d}{dt} L = \cfrac{\partial L}{\partial q}\dot{q} + \cfrac{\partial L}{\partial \dot{q}}\ddot{q}.
+\end{equation}
 
+Because of Lagrange equation, we have $\cfrac{\partial L}{\partial q} = \cfrac{d}{dt}\cfrac{\partial L}{\partial \dot{q}}$ and thus we can substitute $\cfrac{\partial L}{\partial q}$ in the above equation accordingly obtaining:
+
+\begin{equation}
+\cfrac{d}{dt} L = \cfrac{d}{dt}\cfrac{\partial L}{\partial \dot{q}}\dot{q} + \cfrac{\partial L}{\partial \dot{q}}\ddot{q},
+\end{equation}
+
+which simplifies to
+\begin{equation}
+\cfrac{d}{dt} L = \cfrac{d}{dt}(\cfrac{\partial L}{\partial \dot{q}}\dot{q}),
+\end{equation}
+
+and thus
+\begin{equation}
+\cfrac{d}{dt} \big( \cfrac{\partial L}{\partial \dot{q}}\dot{q} - L \big) = 0.
+\end{equation}
+ 
+And this gives us a conservation principle
+\begin{equation}
+\boxed{
+\cfrac{\partial L}{\partial \dot{q}}\dot{q} - L = \text{const}
+}
+\end{equation}
+We will call $\cfrac{\partial L}{\partial \dot{q}}\dot{q} - L$ an energy of a system of paricles with Lagrangian $L$.
+
+Note that we obtained this ealier for a particular example of Lagrangian (\ref{lagrange_kinetic_assumption})
+by calculations in (\ref{energy-coserv-simple}). In that case we had
+\begin{equation}
+\cfrac{\partial L}{\partial \dot{q}}\dot{q} - L = T + V,
+\end{equation}
+where $T$ was a kinetic energy of a system and $V$ its potential energy.
+Recall that the mentioned Lagranian does not depend on time which is in perfect agreement with our generic deriviation.
 \section{Reduced Mass}
 Consider Lagrangian
 \begin{equation}
