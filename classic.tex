@@ -153,6 +153,98 @@ Thus $H = \text{const}$ and it imediatelly follows from (\ref{hamilton-kinematic
 T + V = \text{const}.
 \end{equation}
 Which is energy conservation principle.
+\section{Conservation Principles}
+In this section we will replace $\vec{q}_i$ notation with $\bs{q}_i$ notation, as the latter seems to be more convenient. In this sense our generic trajectory $q$ of $N$ particles is 
+\begin{equation}
+q = [\bs{q}_1 \dots \bs{q}_N],
+\end{equation}
+where $\bs{q}_i$ are time dependent.
+Consider an infinitesimal symmetry transformation of $\R^3$
+\begin{equation}
+\bs{x} \mapsto \bs{x} + \delta\bs{x},
+\end{equation}
+where in a genric form (written in Einstein's summation convention)
+\begin{equation}
+\delta x^n = \delta\epsilon(G^n_m x^m + a^n)
+\end{equation}
+with $G$ is a generator of a certain symmetry group.
+This infinitesimal symmetry shifts the whole system of particles in direction $-\delta \bs{x}$.
+Under these shift the trajectories will transform in the following way
+\begin{equation}
+q \mapsto q + \delta q,
+\end{equation} 
+
+where 
+\begin{equation}
+\delta q^n_i = \delta\epsilon(G^n_m q^m_i + a^n).
+\end{equation}
+
+We will show now how the assumption that lagrangian $L$ of the system remains invariant under this transformation leads to conservation principles.
+
+Assume that 
+
+\begin{equation}
+L(q, \dot{q}, t) - L(q + \delta q, \dot{q} + \delta \dot{q}, t) = 0.
+\end{equation}
+
+Thus
+\begin{equation}
+\label{conservation_stage1}
+\cfrac{\partial L}{\partial q}\delta q + \cfrac{\partial L}{\partial \dot{q}}\delta \dot{q} = 0. 
+\end{equation}
+Recall Lagrange equation
+\begin{equation}
+\label{lagrange_equation3}
+\cfrac{\partial L}{\partial q} - \cfrac{d}{dt}\cfrac{\partial L}{\partial \dot{q}} = 0.
+\end{equation}
+Thus we know that $\cfrac{\partial L}{\partial q} = \cfrac{d}{dt}\cfrac{\partial L}{\partial \dot{q}}$ and we substitute $\cfrac{\partial L}{\partial q}$ in (\ref{conservation_stage1}) accordingli obtaining:
+\begin{equation}
+\cfrac{d}{dt}\cfrac{\partial L}{\partial \dot{q}}\delta q + \cfrac{\partial L}{\partial \dot{q}}\delta \dot{q} = 0. 
+\end{equation}
+But this is the same as
+\begin{equation}
+\cfrac{d}{dt}\big( \cfrac{\partial L}{\partial \dot{q}}\delta q \big) = 0,
+\end{equation}
+from which follows a conservation principle
+\begin{equation}
+\label{conservation_principle_main}
+\boxed{
+ \cfrac{\partial L}{\partial \dot{q}}\delta q = \text{const}
+ }
+\end{equation}
+\subsection{Canonical Momentum Conservation}
+Assume that $L$ is invariant over translations of $\R^3$. Thus (\ref{conservation_principle_main}) holds for
+\begin{equation}
+\delta q^{n}_i = \delta\epsilon a^{n}
+\end{equation}
+where $\bs{a}$ has $a^n = 0$ for all $n\not=n_0$ and $a^{n_0} = 1$, where $n_0$ is an arbitrary coordinate $n_0 = 1, 2, 3$.
+Hence
+\begin{equation}
+\sum_{i=1}^{N} \cfrac{\partial L}{\partial \dot{q}^{n_0}_i} = \text{const}.
+\end{equation}
+along each coordinate $n_0 = 1, 2, 3$. Thus
+\begin{equation}
+\boxed{
+\sum_{i=1}^{N} \cfrac{\partial L}{\partial \dot{\bs{q}}_i} = \text{const}.
+}
+\end{equation}
+
+The expression $\cfrac{\partial L}{\partial \dot{\bs{q}}_i}$ is called a \textit{conjugate} or \textit{canonical} momentum of an $i-th$ partcile of a system.
+
+Note that for a particular example of Lagrangian from \ref{lagrange_kinetic_assumption},
+we have 
+\begin{equation}
+\cfrac{\partial L}{\partial \dot{\bs{q}}_i} = m_i \bs{q}_i.
+\end{equation}
+
+Hence, under the assumption that potential $V$ is invariant under space translation (e.g. for gravitational multiparticle potential $V = \cfrac{1}{2}\sum_{i \not=j} G \cfrac{m_i m_j}{|\bs{q}_i - \bs{q}_j|}$), we have
+
+\begin{equation}
+\sum_{i=1}^{N}  m_i \bs{q}_i = \text{const}.
+\end{equation} 
+
+This is of course a classical mechanical momentum conservation principle.
+
 \section{Reduced Mass}
 Consider Lagrangian
 \begin{equation}
