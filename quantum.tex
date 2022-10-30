@@ -832,6 +832,116 @@ For any two observables $A$ and $B$ we have and state $\phi$, we have
 \sigma_\phi(Q)\sigma_\phi(P) \geq \cfrac{\hbar}{2}.
 \end{equation}
 \end{corollary}
+\section{Spin Formalism}
+We will assume that we have spin self-conjugate observables $S_x, S_y, S_z$ which satisfy the following commutation relations
+
+\begin{equation}
+[S_x, S_y] = iS_z,
+\end{equation}
+
+\begin{equation}
+[S_y, S_z] = iS_x,
+\end{equation}
+
+\begin{equation}
+[S_z, S_x] = iS_y.
+\end{equation}
+
+Moreover, we require
+\begin{equation}
+S^2 \vcentcolon= S^2_x + S^2_y + S^2_x = (s + 1)s,  
+\end{equation}
+for certain $s > 0$.
+
+Let's define certain auxiliary operators
+
+\begin{definition}
+\begin{equation}
+S_z^\pm \vcentcolon= S_x \pm iS_y.
+\end{equation}
+\end{definition}
+
+\begin{fact}
+If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$, we have
+\begin{equation}
+S_z S_z^\pm \ket{\phi} = (m \pm 1) S_z^\pm \ket{\phi}.
+\end{equation}
+\end{fact}
+
+
+\begin{fact}
+If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$, we have
+\begin{equation}
+m^2 \leq s(s + 1).
+\end{equation}
+\end{fact}
+
+\begin{fact}
+\begin{equation}
+S^2 = S^2_z + S_z^{+}S_z^{-} - S_z,
+\end{equation}
+\begin{equation}
+S^2 = S^2_z + S_z^{-}S_z^{+} + S_z.
+\end{equation}
+\end{fact}
+
+\begin{fact}
+If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$, then
+\begin{equation}
+S_z^{+}S_z^{-}\ket{\phi} = (s(s+1) - m^2 + m)\ket{\phi},
+\end{equation}
+\begin{equation}
+S_z^{-}S_z^{+}\ket{\phi} = (s(s+1) - m^2 - m)\ket{\phi}.
+\end{equation}
+\end{fact}
+
+\begin{corollary}
+If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$
+and $m \not= -s$, then 
+\begin{equation}
+S_z^{-}\ket{\phi} \not= 0.
+\end{equation}
+\end{corollary}
+
+\begin{corollary}
+If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$
+and $m \not= s$, then 
+\begin{equation}
+S_z^{+}\ket{\phi} \not= 0.
+\end{equation}
+\end{corollary}
+
+\begin{corollary}
+If there exists $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$,
+we have $\ket{\psi} \not= 0$ such that
+\begin{equation}
+S_z \ket{\psi} = s \ket{\psi}
+\end{equation}
+and
+\begin{equation}
+S^{+}_z \ket{\psi} = 0.
+\end{equation}
+\end{corollary}
+
+\begin{corollary}
+If there exists $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$,
+we have $\ket{\psi} \not= 0$ such that
+\begin{equation}
+S_z \ket{\psi} = -s \ket{\psi}
+\end{equation}
+and
+\begin{equation}
+S^{-}_z \ket{\psi} = 0.
+\end{equation}
+\end{corollary}
+
+The most important result of this section is the following.
+
+\begin{fact}
+If there exists $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$, then there exists such an integer $k$ such that $s = \cfrac{k}{2}$ and
+the spectrum of $S_z$ is $\{-s, -s + 1, \dots, s - 1, s\}$.
+\end{fact}
+
 
 \section{Hydrogen Atom}
 In this section we will restore SI units, as it will be more convenient to make references to measurable quantities.
