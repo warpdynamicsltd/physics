@@ -849,6 +849,7 @@ We will assume that we have spin self-conjugate observables $S_x, S_y, S_z$ whic
 
 Moreover, we require
 \begin{equation}
+\label{spin-length}
 S^2 \vcentcolon= S^2_x + S^2_y + S^2_x = (s + 1)s,  
 \end{equation}
 for certain $s > 0$.
@@ -867,6 +868,13 @@ If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$, we have
 S_z S_z^\pm \ket{\phi} = (m \pm 1) S_z^\pm \ket{\phi}.
 \end{equation}
 \end{fact}
+\begin{proof}
+\begin{multline*}
+S_z S_z^\pm \ket{\phi} = (S_zS_x \pm iS_zS_y) \ket{\phi}
+= ([S_z, S_x] + S_x S_z \pm i(S_y S_z - [S_y, S_z])) \ket{\phi} = \\
+(iS_y + S_x S_z \pm iS_y S_z \pm S_x) \ket{\phi} = mS^{\pm}_z \ket{\phi} \pm S^{\pm}_z \ket{\phi} = (m \pm 1) S_z^\pm \ket{\phi}.\\
+\end{multline*}
+\end{proof}
 
 
 \begin{fact}
@@ -875,8 +883,21 @@ If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$, we have
 m^2 \leq s(s + 1).
 \end{equation}
 \end{fact}
+\begin{proof}
+Without lost of generality, we can assume that $\bra{\phi}\ket{\phi} = 1$.
+From (\ref{spin-length}), we have
+\begin{equation}
+\bra{\phi}S^2_x\ket{\phi} + \bra{\phi}S^2_y\ket{\phi} + \bra{\phi}S^2_z\ket{\phi} = s(s + 1).
+\end{equation}
+Thus
+\begin{equation}
+\bra{\phi}S^2_x\ket{\phi} + \bra{\phi}S^2_y\ket{\phi} + m^2 = s(s + 1)
+\end{equation}
+and hence thesis.
+\end{proof}
 
 \begin{fact}
+\label{spin-length-in-z}
 \begin{equation}
 S^2 = S^2_z + S_z^{+}S_z^{-} - S_z,
 \end{equation}
@@ -884,6 +905,20 @@ S^2 = S^2_z + S_z^{+}S_z^{-} - S_z,
 S^2 = S^2_z + S_z^{-}S_z^{+} + S_z.
 \end{equation}
 \end{fact}
+\begin{proof}
+\begin{multline*}
+\\S^{+}_zS^{-}_z = (S_x + iS_y)(S_x - i S_y) = S^2_x + iS_y S_x - iS_x S_y + S^2_y = 
+S^s_x + S^2_y - i[S_x, S_y]\\
+=S^2_x + S^2_y + S_z = S^2 - S^2_z + S_z.\\
+\end{multline*}
+Analogously we can show
+
+\begin{equation}
+S^{-}_zS^{+}_z = S^2 - S^2_z - S_z.
+\end{equation}
+\end{proof}
+
+From (\ref{spin-length-in-z}) immediately follows:
 
 \begin{fact}
 If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$, then
@@ -897,25 +932,41 @@ S_z^{-}S_z^{+}\ket{\phi} = (s(s+1) - m^2 - m)\ket{\phi}.
 
 \begin{corollary}
 If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$
-and $m \not= -s$, then 
+and $m \not\in \{-s, s + 1 \}$, then 
 \begin{equation}
 S_z^{-}\ket{\phi} \not= 0.
 \end{equation}
 \end{corollary}
+\begin{proof}
+Note that
+\begin{equation}
+s(s+1) - m^2 + m = (s - m + 1)(s + m),
+\end{equation} 
+Thus for $m \not\in \{-s, s + 1 \}$, we have $S_z^{+}S_z^{-}\ket{\phi} \not= 0$, hence 
+$S_z^{-}\ket{\phi} \not= 0$.
+\end{proof}
 
 \begin{corollary}
 If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$
-and $m \not= s$, then 
+and $m \not\in \{-s - 1, s\}$, then 
 \begin{equation}
 S_z^{+}\ket{\phi} \not= 0.
 \end{equation}
 \end{corollary}
+\begin{proof}
+Note that
+\begin{equation}
+s(s+1) - m^2 - m = (s + 1 + m)(s - m),
+\end{equation} 
+Thus for $m \not\in \{-s - 1, s\}$, we have $S_z^{-}S_z^{+}\ket{\phi} \not= 0$, hence 
+$S_z^{+}\ket{\phi} \not= 0$.
+\end{proof}
 
 \begin{corollary}
 If there exists $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$,
-we have $\ket{\psi} \not= 0$ such that
+we have $\ket{\psi} \not= 0$ and integer $k$ such that
 \begin{equation}
-S_z \ket{\psi} = s \ket{\psi}
+S_z \ket{\psi} = s \ket{\psi}, s = \cfrac{k}{2}
 \end{equation}
 and
 \begin{equation}
@@ -925,9 +976,9 @@ S^{+}_z \ket{\psi} = 0.
 
 \begin{corollary}
 If there exists $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$,
-we have $\ket{\psi} \not= 0$ such that
+we have $\ket{\psi} \not= 0$ and integer $k$ such that
 \begin{equation}
-S_z \ket{\psi} = -s \ket{\psi}
+S_z \ket{\psi} = -s \ket{\psi}, s = \cfrac{k}{2}
 \end{equation}
 and
 \begin{equation}
