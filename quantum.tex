@@ -847,12 +847,23 @@ We will assume that we have spin self-conjugate observables $S_x, S_y, S_z$ whic
 [S_z, S_x] = iS_y.
 \end{equation}
 
-Moreover, we require
+Let's define
+
 \begin{equation}
-\label{spin-length}
-S^2 \vcentcolon= S^2_x + S^2_y + S^2_x = (s + 1)s,  
+S^2 \vcentcolon= S^2_x + S^2_y + S^2_z.
 \end{equation}
-for certain $s > 0$.
+
+\begin{fact}
+\begin{equation}
+[S^2, S_x] = [S^2, S_y] = [S^2, S_z] = 0. 
+\end{equation}
+\end{fact}
+\begin{definition}
+Let $\mathcal{E}(l)$ be a set of all such non-zero eigenstates 
+$\ket{\phi}$ 
+of $S_z$ 
+such that $S^2 \ket{\phi} = l \ket{\phi}$.    
+\end{definition}
 
 Let's define certain auxiliary operators
 
@@ -878,7 +889,7 @@ S_z S_z^\pm \ket{\phi} = (S_zS_x \pm iS_zS_y) \ket{\phi}
 
 
 \begin{fact}
-If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$, we have
+If $s > 0$ and $\ket{\phi} \in \mathcal{E}(s(s + 1))$ such that $S_z\ket{\phi} = m\ket{\phi}$, we have
 \begin{equation}
 m^2 \leq s(s + 1).
 \end{equation}
@@ -921,7 +932,7 @@ S^{-}_zS^{+}_z = S^2 - S^2_z - S_z.
 From (\ref{spin-length-in-z}) immediately follows:
 
 \begin{fact}
-If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$, then
+If $s > 0$ and $\ket{\phi} \in \mathcal{E}(s(s + 1))$ such that $S_z\ket{\phi} = m\ket{\phi}$, then
 \begin{equation}
 S_z^{+}S_z^{-}\ket{\phi} = (s(s+1) - m^2 + m)\ket{\phi},
 \end{equation}
@@ -931,7 +942,7 @@ S_z^{-}S_z^{+}\ket{\phi} = (s(s+1) - m^2 - m)\ket{\phi}.
 \end{fact}
 
 \begin{corollary}
-If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$
+If $s > 0$ and $\ket{\phi} \in \mathcal{E}(s(s + 1))$ such that $S_z\ket{\phi} = m\ket{\phi}$
 and $m \not\in \{-s, s + 1 \}$, then 
 \begin{equation}
 S_z^{-}\ket{\phi} \not= 0.
@@ -947,7 +958,7 @@ $S_z^{-}\ket{\phi} \not= 0$.
 \end{proof}
 
 \begin{corollary}
-If $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$
+If $s > 0$ and $\ket{\phi} \in \mathcal{E}(s(s + 1))$such that $S_z\ket{\phi} = m\ket{\phi}$
 and $m \not\in \{-s - 1, s\}$, then 
 \begin{equation}
 S_z^{+}\ket{\phi} \not= 0.
@@ -963,8 +974,8 @@ $S_z^{+}\ket{\phi} \not= 0$.
 \end{proof}
 
 \begin{corollary}
-If there exists $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$,
-we have $\ket{\psi} \not= 0$ and integer $k$ such that
+If $s > 0$ and there exists $\ket{\phi} \in \mathcal{E}(s(s + 1))$ such that $S_z\ket{\phi} = m\ket{\phi}$,
+we have a state $\ket{\psi} \in \mathcal{E}(s(s + 1))$ and integer $k$ such that
 \begin{equation}
 S_z \ket{\psi} = s \ket{\psi}, s = \cfrac{k}{2}
 \end{equation}
@@ -975,7 +986,7 @@ S^{+}_z \ket{\psi} = 0.
 \end{corollary}
 
 \begin{corollary}
-If there exists $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$,
+If $s > 0$ and there exists $\ket{\phi} \in \mathcal{E}(s(s + 1))$ such that $S_z\ket{\phi} = m\ket{\phi}$,
 we have $\ket{\psi} \not= 0$ and integer $k$ such that
 \begin{equation}
 S_z \ket{\psi} = -s \ket{\psi}, s = \cfrac{k}{2}
@@ -989,7 +1000,7 @@ S^{-}_z \ket{\psi} = 0.
 The most important result of this section is the following.
 
 \begin{fact}
-If there exists $\ket{\phi} \not= 0$ such that $S_z\ket{\phi} = m\ket{\phi}$, then there exists such an integer $k$ such that $s = \cfrac{k}{2}$ and
+If $s > 0$ and there exists $\ket{\phi} \in \mathcal{E}(s(s + 1))$ such that $S_z\ket{\phi} = m\ket{\phi}$, then there exists such an integer $k$ such that $s = \cfrac{k}{2}$ and
 the spectrum of $S_z$ is $\{-s, -s + 1, \dots, s - 1, s\}$.
 \end{fact}
 
