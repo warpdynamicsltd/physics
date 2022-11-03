@@ -857,6 +857,22 @@ S^2 \vcentcolon= S^2_x + S^2_y + S^2_z.
 \begin{equation}
 [S^2, S_x] = [S^2, S_y] = [S^2, S_z] = 0. 
 \end{equation}
+\begin{proof}
+It is enough to show $[S^2, S_z] = 0$.
+\begin{multline*}
+\\
+[S_x^2, S_z] =
+Sx^2 S_z - S_z S^2_x = S_x([S_x, S_z] + S_z S_x) + ([S_x, S_z] - S_x S_z)S_x = \\
+S_x[S_x, S_z] + [S_x, S_z]S_x = -iS_x S_y - i S_y S_x.
+\end{multline*}
+Analogously:
+\begin{equation}
+[S_y^2, S_z] =
+S_y[S_y, S_z] + [S_y, S_z]S_y = iS_y S_x + i S_x S_y.
+\end{equation}
+Hence $[S_x^2 + S_y^2, S_z] = 0$ and because $S_z$ and $S^2_z$ commute, $[S^2, S_z] = 0$.
+
+\end{proof}
 \end{fact}
 \begin{definition}
 Let $\mathcal{E}(l)$ be a set of all such non-zero eigenstates 
