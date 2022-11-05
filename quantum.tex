@@ -320,6 +320,45 @@ Bra-ket notation is described in first chapters of \cite{dirac1981}.
 \langle\phi| \bigl( c_1|\psi_1\rangle + c_2|\psi_2\rangle \bigr) = c_1\langle\phi|\psi_1\rangle + c_2\langle\phi|\psi_2\rangle \,.
 \end{equation}
 
+\subsection{Observables}
+
+\begin{definition}
+A non zero quantum state $\ket{\phi}$ is called an eigenstate of an linear operator $A$ belonging to the eigenvalue $a \in R$ iff $A\ket{\phi} = a\ket{\phi}$.
+\end{definition}
+
+\begin{definition}
+A linear opeartor $A$ acting on a space of quantum states is an observable iff for a given quantum system there exists a basis consisted of eigenstates of $A$.  
+\end{definition}
+
+\begin{proposition} If $A$ is an observable, then $A = A^\dagger$. 
+\end{proposition}
+\begin{proof}
+Lets assume $\ket{\alpha}$ is a basis of eigenstates of $A$ such that $A \ket{\alpha} = a(\alpha)\ket{\alpha}$. Take any quantum state $\ket{\phi}$ and express it in the basis $\ket{\alpha}$
+\begin{equation}
+\ket{\phi} = \int \bra{\alpha}\ket{\phi}\ket{\alpha} d\alpha.
+\end{equation}
+Note that 
+\begin{equation}
+A\ket{\phi} = \int a(\alpha) \bra{\alpha}\ket{\phi}\ket{\alpha} d\alpha.
+\end{equation}
+From the above follows
+\begin{equation}
+\bra{\psi}(A\ket{\phi}) = \int a(\alpha) \bra{\alpha}\ket{\phi}\bra{\psi}\ket{\alpha} d\alpha.
+\end{equation}
+for an arbitrary two quantum states $\ket{\phi}, \ket{\psi}$.
+Now, 
+\begin{multline*}
+\\
+(\bra{\phi}A^\dagger)\ket{\psi} = \bra{\psi}(A\ket{\phi})^* = \int a(\alpha)^* \bra{\phi}\ket{\alpha}\bra{\alpha}\ket{\psi} = \\ 
+\int a(\alpha) \bra{\alpha}\ket{\psi} \bra{\phi}\ket{\alpha} = \bra{\phi}(A\ket{\psi}).\\
+\end{multline*}
+Because the above equality holds for an arbitrary two quantum states $\ket{\phi}, \ket{\psi}$, we have $A = A^\dagger$.
+\end{proof}
+From the above reasoning it follows that that for an observable $A$ the below definition has sense
+\begin{equation}
+\bra{\phi}A\ket{\psi} := \bra{\psi}(A\ket{\phi}) = \bra{\phi}(A\ket{\psi}).
+\end{equation}
+
 \subsection{Momentum and Position operators}
 
 Let us consider states of one non-relativistic particle for which we assume that can be fully described as superpositions of locations in $R^3$. By $\ket{x}$ we will denote a quantum state which describe a particle being ``around" point $x\in \R^3$. We understand ``around" in Dirac delta sense
@@ -858,7 +897,7 @@ S^2 \vcentcolon= S^2_x + S^2_y + S^2_z.
 [S^2, S_x] = [S^2, S_y] = [S^2, S_z] = 0. 
 \end{equation}
 \begin{proof}
-We will show $[S^2, S_z] = 0$.
+We will show $[S^2, S_z] = 0$ (the rest can be shown analogously).
 \begin{multline*}
 \\
 [S_x^2, S_z] =
@@ -923,7 +962,7 @@ m^2 \leq s(s + 1).
 \end{fact}
 \begin{proof}
 Without lost of generality, we can assume that $\bra{\phi}\ket{\phi} = 1$.
-From (\ref{spin-length}), we have
+We have
 \begin{equation}
 \bra{\phi}S^2_x\ket{\phi} + \bra{\phi}S^2_y\ket{\phi} + \bra{\phi}S^2_z\ket{\phi} = s(s + 1).
 \end{equation}
@@ -1033,7 +1072,7 @@ the spectrum of $S_z$ for eigenstates in $\mathcal{E}(s(s + 1))$ is $\{-s, -s + 
 
 
 \section{Hydrogen Atom}
-In this section we will restore SI units, as it will be more convenient to make references to measurable quantities.
+In this section we will restore $\hbar$ units, as it will be useful to see it in equations.
 \subsection{Angular Momentum}
 Recall that for ``nice enough'' $\psi:\reals^3\to\C$, we define momentum operators along each axis as
 \begin{equation}
