@@ -305,35 +305,107 @@ Now we need to show that $A\psi \not= 0$. Indeed, if $A\psi=0$, then $N\psi = 0$
 Bra-ket notation is described in first chapters of \cite{dirac1981}.
 
 \begin{equation}
-\left(x^\dagger\right)^\dagger=x \,.
+\bra{\phi}^\dagger := \ket{\phi}, \ket{\phi}^\dagger := \bra{\phi}
 \end{equation}
 
 \begin{equation}
-\bigl(c_1|\psi_1\rangle + c_2|\psi_2\rangle\bigr)^\dagger = c_1^* \langle\psi_1| + c_2^* \langle\psi_2| \,.
+\langle\phi| \bigl( c_1|\psi_1\rangle + c_2|\psi_2\rangle \bigr) = c_1\langle\phi|\psi_1\rangle + c_2\langle\phi|\psi_2\rangle \,,
+\end{equation}
+
+
+
+\begin{equation}
+\bigl(c_1|\psi_1\rangle + c_2|\psi_2\rangle\bigr)^\dagger = c_1^* \langle\psi_1| + c_2^* \langle\psi_2| \,,
 \end{equation}
 
 \begin{equation}
-|\phi\rangle = A |\psi\rangle \quad \text{if and only if} \quad \langle\phi| = \langle \psi | A^\dagger \,.
+\{\bra{\phi}A\}\ket{\psi} = \bra{\phi}\{A\ket{\psi}\},
 \end{equation}
 
 \begin{equation}
-\langle\phi| \bigl( c_1|\psi_1\rangle + c_2|\psi_2\rangle \bigr) = c_1\langle\phi|\psi_1\rangle + c_2\langle\phi|\psi_2\rangle \,.
+A^\dagger \ket{\phi}:= \{\bra{\phi}A\}^\dagger,
+\end{equation}
+
+\begin{equation}
+\bra{\phi} A^\dagger:= \{A\ket{\phi}\}^\dagger.
 \end{equation}
 
 \subsection{Observables}
 
 \begin{definition}
-A non zero quantum state $\ket{\phi}$ is called an eigenstate of an linear operator $A$ belonging to the eigenvalue $a \in R$ iff $A\ket{\phi} = a\ket{\phi}$.
+A non zero quantum state $\ket{\phi}$ is called a ket related eigenstate of an linear operator $A$ belonging to the ket related eigenvalue $a \in R$ iff $A\ket{\phi} = a\ket{\phi}$.
 \end{definition}
 
 \begin{definition}
-A linear opeartor $A$ acting on a space of quantum states is an observable iff for a given quantum system there exists a basis consisted of eigenstates of $A$.  
+A non zero quantum state $\ket{\phi}$ is called a bra related eigenstate of an linear operator $A$ belonging to the bra related eigenvalue $a \in R$ iff $\bra{\phi}A = a\bra{\phi}$.
 \end{definition}
 
-\begin{proposition} If $A$ is an observable, then $A = A^\dagger$. 
+In \cite{dirac1981}, Dirac defines \textit{real linear operator} as self-adjoint (i.e. $A^\dagger = A$). The name is justified for a few reasons. The condition $A^\dagger = A$ is analogous for $a^* = a$ for numbers. But also, what we will prove next, \textit{real linear operators} have real eigenvalues.
+
+\begin{proposition}
+Let $A$ be a real linear operator and $\ket{\phi}$ be a non-zero quantum state. The following holds:
+\begin{equation}
+A\ket{\phi} = a\ket{\phi} \implies a\in\R,
+\end{equation}
+
+\begin{equation}
+\bra{\phi} A = a\bra{\phi} \implies a\in\R,
+\end{equation}
+
+\begin{equation}
+A\ket{\phi} = a\ket{\phi} \text{ and } \bra{\phi} A = b\bra{\phi} \implies a = b.
+\end{equation}
+
 \end{proposition}
 \begin{proof}
-Lets assume $\ket{\alpha}$ is a basis of eigenstates of $A$ such that $A \ket{\alpha} = a(\alpha)\ket{\alpha}$. Take any quantum state $\ket{\phi}$ and express it in the basis $\ket{\alpha}$
+Since $A = A^\dagger$, we have
+\begin{equation}
+a\bra{\phi}\ket{\phi} = \bra{\phi} a \ket{\phi} = \bra{\phi} A \ket{\phi} = \bra{\phi} A^\dagger \ket{\phi} = \bra{\phi} a^* \ket{\phi} = a^* \bra{\phi}\ket{\phi}.
+\end{equation}
+Also
+\begin{equation}
+a\bra{\phi}\ket{\phi} = \bra{\phi} a \ket{\phi} = \bra{\phi} A \ket{\phi} = \bra{\phi} b \ket{\phi} = a\bra{\phi}\ket{\phi},
+\end{equation}
+thus $a = b$.
+\end{proof}
+
+The above results justifies, that for real linear operators we speak only about eigenstates and eigenvalues not bothering with distinguishing ket and bra kinds.
+
+\begin{proposition}
+\label{orthogonal-fact}
+Let $A$ be a real linear operator. If two eigenstates $\ket{\phi}, \ket{\psi}$ belong to different eigenvalues, then $\bra{\phi}\ket{\psi} = 0$.
+\end{proposition}
+\begin{proof}
+Assume that eigenvalues for $\ket{\phi}, \ket{\psi}$ are correspondingly $a_\phi$ and $a_\psi$. Note that
+\begin{equation}
+\bra{\phi}A\ket{\psi} = \bra{\phi}a_\psi\ket{\psi} = \bra{\phi}a_\phi\ket{\psi},
+\end{equation}
+thus
+\begin{equation}
+(a_\psi - a_\phi) \bra{\phi}\ket{\psi} = 0.
+\end{equation}
+And since $a_\psi \not= a_\phi$, we have $\bra{\phi}\ket{\psi} = 0$.
+\end{proof} 
+
+\begin{definition}
+Let $A$ be a real linear operator.
+$\mathcal{E}_A(a)$ denotes a subspace of all eigenstates which belongs to the eigenvalue $a$.
+\end{definition}
+
+Note that if $A$ is a real linear operator, then $\mathcal{E}_A(a_1) \perp \mathcal{E}_A(a_1)$ for $a_1 \not= a_2$.
+
+\begin{definition}
+A real linear opeartor $A$ acting on a space of quantum states is an observable iff there exists a basis consisted of eigenstates of $A$.  
+\end{definition}
+
+Form \ref{orthogonal-fact} it follows that we can always orthogonalise such basis. Indeed, eigenstates which belongs to different eigenvalues are already orthogonal. All eigenstates belonging to one eigenvalue form a subspace of quantum states, so we can take all orthogonals bases from these subspaces and they will form orthogonal bases of the whole quantum state space.
+
+Also the converse holds, if we can find orthogonal base of eigenstates belonging to real eigenvalues, the linear operator is an observable. Let's formulate this in the following proposition.
+
+\begin{proposition} If $A$ is a linear opeartor whose all eigenstates belong to real eigenvalues and form an orthogonal basis, then $A = A^\dagger$ (thus $A$ is an observable). 
+\end{proposition}
+\begin{proof}
+Without loss of genarlity, we can assume that $\ket{\alpha}$ is an orthonormal basis which consits of eigenstates of $A$ such that $A \ket{\alpha} = a(\alpha)\ket{\alpha}$. Take any quantum state $\ket{\phi}$ and express it in the basis $\ket{\alpha}$
 \begin{equation}
 \ket{\phi} = \int \bra{\alpha}\ket{\phi}\ket{\alpha} d\alpha.
 \end{equation}
@@ -354,57 +426,88 @@ Now,
 \end{multline*}
 Because the above equality holds for an arbitrary two quantum states $\ket{\phi}, \ket{\psi}$, we have $A = A^\dagger$.
 \end{proof}
-From the above reasoning it follows that that for an observable $A$ the below definition has sense
+
+
+
+\begin{proposition}
+\label{eigenstate-representation}
+Let $A$ be an observable. If $\ket{a, x}$ is an orthonormal basis, such that $\ket{a, x}$ is an eigenstate belonging to the eigenvalue $a$ (we use $x$ to denote that there might be more than one eigenstates for eigenvalue $a$), then any eigenstate which belongs to eigenvalue $a$ can be represented as
 \begin{equation}
-\bra{\phi}A\ket{\psi} := \bra{\psi}(A\ket{\phi}) = \bra{\phi}(A\ket{\psi}).
+\ket{\phi} = \int \bra{a, x}\ket{\phi} \ket{a, x} d x.
+\end{equation}
+\end{proposition}
+\begin{proof}
+This becomes obvious if we remeber that eigenstates of different eigenvalues are orthogonal.
+\end{proof}
+\subsection{Commuting observables}
+
+Let's recall
+\begin{equation}
+[A, B] = AB - BA.
 \end{equation}
 
-\subsection{Momentum and Position operators}
-
-Let us consider states of one non-relativistic particle for which we assume that can be fully described as superpositions of locations in $R^3$. By $\ket{x}$ we will denote a quantum state which describe a particle being ``around" point $x\in \R^3$. We understand ``around" in Dirac delta sense
+\begin{definition}
+Two observables $A, B$ commute iff $[A, B] = 0$.
+\end{definition}
+\begin{theorem}
+If $A, B$ are commuting observables then there exists an orthogonal base of common eigenstates.
+\end{theorem}
+\begin{proof}
+Assume that $\ket{b,x}$ is an orthonormal basis such that $B \ket{b,x} = b \ket{b,x}$.
+Firstly, we will show that $A \ket{b,x} \in \mathcal{E}_B(b)$. Indeed,
 \begin{equation}
-\bra{x_1}\ket{x_2} = \delta(x_2 - x_1).
+B(A \ket{b,x}) = A(B \ket{b,x}) = A(b \ket{b,x}) = b A\ket{b,x}.
+\end{equation}
+Thus by Proposition \ref{eigenstate-representation}, we have 
+\begin{equation}
+\label{eigen-limitation}
+A \ket{b,x} = \int \bra{b, x'} A \ket{b, x} \ket{b, x'} d x'.
+\end{equation}
+Let $\ket{\phi}$ be an arbitrary eigenstate of $A$. Thus we have ceratin $a\in \R$ such that 
+$A \ket{\phi} = a \ket{\phi}$. Let's express $\ket{\phi}$ in basis $\ket{b,x}$:
+\begin{equation}
+\ket{\phi} = \int \phi_{b, x} \ket{b,x} db dx,
+\end{equation}
+where $\phi_{b, x}$ are some complex coefficients for which the equation holds.
+Because $\ket{\phi}$ is an eigenstate of $A$ belonging to eigenvalue $a$ we have:
+\begin{equation}
+\int \phi_{b, x} \big( A\ket{b, x} - a\ket{b, x}\big)dbdx = 0.
+\end{equation}
+\end{proof}
+
+Let's substitute $A\ket{b, x}$ using equation (\ref{eigen-limitation}) and expand $\ket{b, x}$ in the bases of subspace of all eigenstates of $B$ with eigenvalue $b$.
+
+\begin{equation}
+\int \phi_{b, x} \bigg( \int \bra{b, x'} A \ket{b, x}  \ket{b, x'} d x' - a\int \bra{b, x'}\ket{b, x}  \ket{b, x'} d x'\bigg)dbdx = 0.
+\end{equation}
+\begin{equation}
+\int \phi_{b, x} \bra{b, x'} A - a \ket{b, x}  \ket{b, x'}  d x'dbdx = 0.
 \end{equation}
 
-Dirac delta provides nice normalisation where
 \begin{equation}
-\int \ket{x}\bra{x}\ket{z}dx = \int \ket{x}\delta(z - x) dz = \ket{z},  
-\end{equation}    
-
-as expected.
-
-Similarity by $\ket{p}$ we denote a quantum state, which describes a quantum state of particle which has a momentum ``around" $p\in \R^3$ (as you can notice usage of letter $p$ is important for this convention, because only by usage of the letter we distinguish this from position representation).
-
-Now, it seems to be a law of the nature that
-\begin{equation}
-\boxed{
-\bra{x}\ket{p} = (2\pi\hbar)^{-\frac{3}{2}} \exp(-i\cfrac{p\cdot x}{\hbar})
-}
+\int \bigg(\int \phi_{b, x} \bra{b, x'} A - a \ket{b, x}dx\bigg)  \ket{b, x'} d x' db = 0.
 \end{equation}
 
-Where $(2\pi\hbar)^{-\frac{3}{2}}$ is a normalisation factor needed to have 
-
 \begin{equation}
-\bra{p_1}\ket{p_2} = \delta(p_2 - p_1).
+\int \bra{b, x'} (A - a)P_b \ket{\phi} \ket{b, x'} d x' db = 0,
+\end{equation}
+
+where $P_b$ is a projection into subspace $\mathcal{E}_B(b)$ (i.e.  $\ket{\phi} = \int \phi_{b, x} \ket{b, x}dx$.)
+
+Thus for any eigenvalue $b$ we have $\bra{b, x'} (A - a)P_b \ket{\phi} = 0$ for each $x'$ and therefore $(A - a)P_b \ket{\phi} = 0$. Thus $P_b \ket{\phi}\in \mathcal{E}_A(a)$.
+Since $\ket{\phi}$ was an arbitrary eigenstate of $\mathcal{E}_A(a)$, we showed that
+\begin{equation}
+P_b \mathcal{E}_A(a) \subset \mathcal{E}_A(a). 
 \end{equation} 
 
-Indeed, first note that (as proved for for (\ref{dirac-delta-as-one-distribution})):
-\begin{equation}
-\F(1)(x) = (2\pi)^\frac{n}{2}\delta(x). 
-\end{equation}
+Note that since $\mathcal{E}_A(a)$ for all eigenvalues $a$ span entire quantum state space, $P_b \mathcal{E}_A(a)$ for all eigenvalues $a$ span $\mathcal{E}_B(b)$ subspace. But this means that we can find an orthonormal base $\ket{a,u}$ of $\mathcal{E}_B(b)$ such that $A \ket{a,u} = a \ket{a,u}$ and obviously $B \ket{a,u} = b \ket{a,u}$. And sice $\mathcal{E}_B(b)$ for all eigenvalues $b$ span entire quantum space, this proves the thesis.
 
-in the context of distributions.
+The above theorem extends to 
 
-Now let's do calculations integrating in the sense of distributions:
-\begin{multline*}\\
-\bra{p_1}\ket{p_2} = \int\bra{p_1} \ket{x}\bra{x} \ket{p_2} dx = \\
-\\ (2\pi\hbar)^{-3} \int \exp(-i \cfrac{(p_2 - p_1)x}{\hbar})dx \underset{\hbar z\to x}{=}
-(2\pi\hbar)^{-3} \int \exp(-i(p_2 - p_1)z) |\det \frac{\partial x}{\partial z}|dz
-\\ = (2\pi)^{-\frac{3}{2}} \hbar^{-3} \hbar^3 \int (2\pi)^{-\frac{3}{2}} \exp(-i(p_2 - p_1)z)dz = (2\pi)^{-\frac{3}{2}} \F(1)(p_2 - p_1)
-\\ = (2\pi)^{-\frac{3}{2}} (2\pi)^{\frac{3}{2}} \delta(p_2 - p_1) = \delta(p_2 - p_1).
-\\
-\end{multline*}
-
+\begin{theorem}
+If $A_1, \dots, A_n$ are commuting observables then there exists an orthogonal base of common eigenstates.
+\end{theorem}
+  
 \subsection{Some properties of Dirac $\delta$}
 \begin{fact}
 \label{delta-zeros}
@@ -438,6 +541,7 @@ If $\delta$ is Dirac delta and $x\in \R$, then
 \end{equation}
 where $x_i$ are all discrete zeros of a real function $f$.
 \end{corollary}
+
 \subsection{Representations}
 
 Short and incomplete digest from \cite{dirac1981}[III. Representations]
@@ -445,7 +549,7 @@ Short and incomplete digest from \cite{dirac1981}[III. Representations]
 We will use all the time symbol $\delta$ but it depends on measure if it is Dirac delta or Kronecker delta.  
 Let $\ket{\alpha}$ be states of orthogonal basis normed in the following way $\bra{\alpha}\ket{\beta} = 0$ for $\alpha \not=\beta$ and $\int \bra{\alpha}\ket{\beta} d\alpha = 1$.
 \begin{definition}
-Let $A_1, \dots, A_k$ be set of commuting observables for which all basis states are eigenstates and $f$ is a real valued function. Then we define observable
+Let $A_1, \dots, A_k$ be set of commuting observables and $f$ is a real valued function. Then we define observable
 \begin{equation}
 f(A_1, \dots, A_k)\ket{\alpha} = f(\lambda_1, \dots, \lambda_n)\ket{\alpha},
 \end{equation}
@@ -453,19 +557,19 @@ where $A_i \ket{\alpha} = \lambda_i \ket{\alpha}$.
 \end{definition}
 
 \begin{definition}
-Commuting observables $A_1, \dots, A_k$ with the same eigenstates basis are called independent, if and only if for any observable 
+Commuting observables $A_1, \dots, A_k$ are called independent, if and only if for any observable 
 $A_i$ there is no real function $f$ such that $A_i = f(A_1, \cdots, A_{i-1}, A_{i+1}, \cdots A_k)$.
 \end{definition}
 
 \begin{definition}
-Commuting observables $A_1, \dots, A_k$ with the same eigenstates basis are called complete, if for any observable $B$ with the same eigenstates basis 
+Commuting observables $A_1, \dots, A_k$ are called complete, if for any observable $B$ with the same eigenstates basis 
 \begin{equation}
 B = f(A_1,  \dots, A_k).
 \end{equation}
 \end{definition}
 
 \begin{fact}
-If $A_1, \dots, A_n$ are commuting and complete observables with the same eigenstates basis then any basis states can be uniquely represented as 
+If $A_1, \dots, A_n$ are commuting and complete observables any basis states can be uniquely represented as 
 \begin{equation}
 \ket{\alpha} = \ket{\lambda_1, \dots, \lambda_n},
 \end{equation}
@@ -527,6 +631,56 @@ Indeed, it is enough to notice
 \begin{equation}
 \bra{\beta}U^\dag(UAU^\dag)U \ket{\alpha} = \bra{\beta} A \ket{\alpha}.
 \end{equation}
+
+
+
+\subsection{Momentum and Position operators}
+
+Let us consider states of one non-relativistic particle for which we assume that can be fully described as superpositions of locations in $R^3$. By $\ket{x}$ we will denote a quantum state which describe a particle being ``around" point $x\in \R^3$. We understand ``around" in Dirac delta sense
+\begin{equation}
+\bra{x_1}\ket{x_2} = \delta(x_2 - x_1).
+\end{equation}
+
+Dirac delta provides nice normalisation where
+\begin{equation}
+\int \ket{x}\bra{x}\ket{z}dx = \int \ket{x}\delta(z - x) dz = \ket{z},  
+\end{equation}    
+
+as expected.
+
+Similarity by $\ket{p}$ we denote a quantum state, which describes a quantum state of particle which has a momentum ``around" $p\in \R^3$ (as you can notice usage of letter $p$ is important for this convention, because only by usage of the letter we distinguish this from position representation).
+
+Now, it seems to be a law of the nature that
+\begin{equation}
+\boxed{
+\bra{x}\ket{p} = (2\pi\hbar)^{-\frac{3}{2}} \exp(-i\cfrac{p\cdot x}{\hbar})
+}
+\end{equation}
+
+Where $(2\pi\hbar)^{-\frac{3}{2}}$ is a normalisation factor needed to have 
+
+\begin{equation}
+\bra{p_1}\ket{p_2} = \delta(p_2 - p_1).
+\end{equation} 
+
+Indeed, first note that (as proved for for (\ref{dirac-delta-as-one-distribution})):
+\begin{equation}
+\F(1)(x) = (2\pi)^\frac{n}{2}\delta(x). 
+\end{equation}
+
+in the context of distributions.
+
+Now let's do calculations integrating in the sense of distributions:
+\begin{multline*}\\
+\bra{p_1}\ket{p_2} = \int\bra{p_1} \ket{x}\bra{x} \ket{p_2} dx = \\
+\\ (2\pi\hbar)^{-3} \int \exp(-i \cfrac{(p_2 - p_1)x}{\hbar})dx \underset{\hbar z\to x}{=}
+(2\pi\hbar)^{-3} \int \exp(-i(p_2 - p_1)z) |\det \frac{\partial x}{\partial z}|dz
+\\ = (2\pi)^{-\frac{3}{2}} \hbar^{-3} \hbar^3 \int (2\pi)^{-\frac{3}{2}} \exp(-i(p_2 - p_1)z)dz = (2\pi)^{-\frac{3}{2}} \F(1)(p_2 - p_1)
+\\ = (2\pi)^{-\frac{3}{2}} (2\pi)^{\frac{3}{2}} \delta(p_2 - p_1) = \delta(p_2 - p_1).
+\\
+\end{multline*}
+
+
 
 \subsection{Wave Packet}
 
