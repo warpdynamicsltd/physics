@@ -473,7 +473,7 @@ Because $\ket{\phi}$ is an eigenstate of $A$ belonging to eigenvalue $a$ we have
 \begin{equation}
 \int \phi_{b, x} \big( A\ket{b, x} - a\ket{b, x}\big)dbdx = 0.
 \end{equation}
-\end{proof}
+
 
 Let's substitute $A\ket{b, x}$ using equation (\ref{eigen-limitation}) and expand $\ket{b, x}$ in the bases of subspace of all eigenstates of $B$ with eigenvalue $b$.
 
@@ -502,7 +502,9 @@ P_b \mathcal{E}_A(a) \subset \mathcal{E}_A(a).
 
 Note that since $\mathcal{E}_A(a)$ for all eigenvalues $a$ span entire quantum state space, $P_b \mathcal{E}_A(a)$ for all eigenvalues $a$ span $\mathcal{E}_B(b)$ subspace. But this means that we can find an orthonormal base $\ket{a,u}$ of $\mathcal{E}_B(b)$ such that $A \ket{a,u} = a \ket{a,u}$ and obviously $B \ket{a,u} = b \ket{a,u}$. And sice $\mathcal{E}_B(b)$ for all eigenvalues $b$ span entire quantum space, this proves the thesis.
 
-The above theorem extends to 
+\end{proof}
+
+The above theorem extends to: 
 
 \begin{theorem}
 If $A_1, \dots, A_n$ are commuting observables then there exists an orthogonal base of common eigenstates.
@@ -682,7 +684,7 @@ Now let's do calculations integrating in the sense of distributions:
 
 
 
-\subsection{Wave Packet}
+\subsection{Wave packet}
 
 Let us consider a quantum state
 
@@ -1025,20 +1027,15 @@ For any two observables $A$ and $B$ we have and state $\phi$, we have
 \sigma_\phi(Q)\sigma_\phi(P) \geq \cfrac{\hbar}{2}.
 \end{equation}
 \end{corollary}
-\section{Spin Formalism}
+\section{Spin formalism}
 We will assume that we have spin self-conjugate observables $S_x, S_y, S_z$ which satisfy the following commutation relations
 
-\begin{equation}
-[S_x, S_y] = iS_z,
-\end{equation}
-
-\begin{equation}
-[S_y, S_z] = iS_x,
-\end{equation}
-
-\begin{equation}
-[S_z, S_x] = iS_y.
-\end{equation}
+\begin{multline}
+\label{spin-cummutators}\\
+[S_x, S_y] = iS_z,\\
+[S_y, S_z] = iS_x,\\
+[S_z, S_x] = iS_y.\\
+\end{multline}
 
 Let's define
 
@@ -1223,8 +1220,97 @@ The most important result of this section is the following.
 If $s > 0$ and there exists $\ket{\phi} \in \mathcal{E}(s(s + 1))$ such that $S_z\ket{\phi} = m\ket{\phi}$, then there exists such an integer $k$ such that $s = \cfrac{k}{2}$ and
 the spectrum of $S_z$ for eigenstates in $\mathcal{E}(s(s + 1))$ is $\{-s, -s + 1, \dots, s - 1, s\}$.
 \end{fact}
+\subsection{Pauli matrices and spin of $\cfrac{1}{2}$}
+Let's define matrices $\sigma_x, \sigma_y, \sigma_z$.
+
+\begin{equation}
+\sigma_x = \begin{bmatrix}
+    0 &  1 \\
+    1 & 0 \\
+\end{bmatrix},
+\sigma_y = \begin{bmatrix}
+    0 &  -i \\
+    i & 0 \\
+\end{bmatrix},
+\sigma_z = \begin{bmatrix}
+    1 &  0 \\
+    0 & -1 \\
+\end{bmatrix}.
+\end{equation}
+
+$\sigma_x, \sigma_y, \sigma_z$ are called Pauli matrices.
+
+Let's compute two multiplication schemas which will be useful to calculate products of the above matrices:
+
+\begin{equation}
+\begin{bmatrix}
+    a_{11} &  a_{12} \\
+    a_{21} & a_{22} \\
+\end{bmatrix}
+\begin{bmatrix}
+    d_1 & 0 \\
+    0 & d_2 \\
+\end{bmatrix}
+= \begin{bmatrix}
+    d_1 a_{11} &  d_2 a_{12} \\
+    d_1 a_{21} & d_2 a_{22} \\
+\end{bmatrix},
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+    a_{11} &  a_{12} \\
+    a_{21} & a_{22} \\
+\end{bmatrix}
+\begin{bmatrix}
+    0 & d_1 \\
+    d_2 & 0 \\
+\end{bmatrix}
+= \begin{bmatrix}
+    d_2 a_{12} &  d_1 a_{11} \\
+    d_2 a_{22} & d_1 a_{21} \\
+\end{bmatrix}.
+\end{equation}
 
 
+Now it is easy to see that:
+\begin{multline}\\
+\sigma_x \sigma_y = i\sigma_z, \sigma_y\sigma_x = -i\sigma_z,\\
+\sigma_x \sigma_z = -i\sigma_y, \sigma_z\sigma_x = i\sigma_y,\\
+\sigma_y \sigma_z = i\sigma_x, \sigma_z\sigma_y = -i\sigma_x,\\
+\end{multline}
+
+and
+
+\begin{equation}
+\sigma_x^2 = \sigma_z^2 = \sigma_y^2 = 1.
+\end{equation}
+
+Hence we have the following commutation relations:
+\begin{equation}
+[\sigma_x, \sigma_y] = 2i\sigma_z, [\sigma_y, \sigma_z] = 2i\sigma_x, [\sigma_z, \sigma_x] = i\sigma_y.
+\end{equation}
+
+Note that matrices
+
+\begin{equation}
+S_x = \cfrac{1}{2}\sigma_x, S_y = \cfrac{1}{2}\sigma_y, S_z = \cfrac{1}{2}\sigma_z,
+\end{equation}
+
+satisfy commutation relations (\ref{spin-cummutators}) and $S^2_x + S^2_y + S^2_z = \cfrac{3}{2} = s(s + 1)$, where $s=\cfrac{1}{2}$.
+
+
+Also note that
+\begin{equation}
+S^{+}_z = \begin{bmatrix}
+    0 &  1 \\
+    0 & 0 \\
+\end{bmatrix},
+S^{-}_z = \begin{bmatrix}
+    0 &  0 \\
+    1 & 0 \\
+\end{bmatrix}.
+\end{equation}
 \section{Hydrogen Atom}
 In this section we will restore $\hbar$ units, as it will be useful to see it in equations.
 \subsection{Angular Momentum}
