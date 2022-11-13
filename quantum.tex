@@ -955,6 +955,102 @@ With reinstated $\hbar$:
 
 Note that in case when $H = \text{const}$, since $U(0, t) = e^{-itH}$ and since it commutes with $H$, from (\ref{ha-ha}), we have $H_H = H$. Thus equation (\ref{time-independent-heisenberg}) is just a particular case of (\ref{time-dependent-heisenberg}).
 
+\section{Dirac's wave function decomposition}
+We will study here the idea from  \cite{dirac1981}[31].
+Consider a Schrödinger equation of quantum state evolution
+\begin{equation}
+i\hbar\cfrac{\partial}{\partial t} \ket{\phi} = H\ket{\phi}.
+\end{equation}
+Obviously $\ket{\phi}$ depends on time $t$. Consider amplitude $\bra{x}\ket{\phi}$ in a form 
+\begin{equation}
+\bra{x}\ket{\phi} = A e^{\frac{i}{\hbar}S},
+\end{equation}
+where $A$ and $S$ are real values which both depend on position $x$ and time $t$.
+
+Consider the following operator $U$
+\begin{equation}
+\bra{x}U(t)\ket{\psi} \stackrel{def}{=} \bra{x} e^{-\frac{i}{\hbar}S(x,t)} \ket{\psi}.
+\end{equation}
+
+Note that $U(t)$ is unitary, we can consider then the whole space of quantum states together with operators as transformed by $U(t)$ if required. Recall then operators transform as follows: $A_{U(t)}\mapsto U(t) A U(t)^\dagger$.
+
+Note that position operators are unchanged under $U(t)$ (i.e. $X_{U(t)k} = X_k$).
+
+Let 
+\begin{equation}
+\ket{u(t)}  \stackrel{def}{=} U(t)\ket{\phi(t)}.
+\end{equation}
+
+Note that
+\begin{equation}
+\bra{x}\ket{u} = A.
+\end{equation}
+
+Note that 
+\begin{equation}
+\bra{x} \cfrac{\partial}{\partial t} \ket{\phi} = \cfrac{\partial A}{\partial t} e^{\frac{i}{\hbar}S} + \cfrac{i}{\hbar} A\cfrac{\partial S}{\partial t}e^{\frac{i}{\hbar}S}.
+\end{equation}
+
+Thus 
+\begin{equation}
+e^{-\frac{i}{\hbar}S} \bra{x} H \ket{\phi} = i\hbar \cfrac{\partial A}{\partial t} - A \cfrac{\partial S}{\partial t}. 
+\end{equation}
+And from the above
+\begin{equation}
+\boxed{
+\bra{x} H_{U(t)} \ket{u} = i\hbar \cfrac{\partial A}{\partial t} - A \cfrac{\partial S}{\partial t}}
+\end{equation}
+
+Note that
+\begin{equation}
+\bra{x}P_k\ket{\phi} = -i\hbar \cfrac{\partial A}{\partial x^k}e^{\frac{i}{\hbar}S}
++ A \cfrac{\partial S}{\partial x^k}e^{\frac{i}{\hbar}S}
+\end{equation},
+
+\begin{equation}
+\bra{x}P_{U(t)k}\ket{u} = \bra{x}P_k\ket{u} + \bra{x} \cfrac{\partial S}{\partial x^k}\ket{u}.
+\end{equation}
+
+Hence we have explicit equation for transformed momentum operator acting on state $\ket{u}$:
+\begin{equation}
+\boxed
+{
+	P_{U(t)k}\ket{u} = P_k \ket{u} + \cfrac{\partial S}{\partial x^k} \ket{u}.
+}
+\end{equation}
+\subsection{Classical limit}
+
+Assume that $A$ changes very slowly in time and space. If we take $\hbar \to 0$, we can write
+
+\begin{equation}
+H_{U(t)} \ket{u} = -\cfrac{\partial S}{\partial t} \ket{u}
+\end{equation}
+and
+
+\begin{equation}
+P_{U(t)k}\ket{u} = \cfrac{\partial S}{\partial x^k} \ket{u}.
+\end{equation}
+
+Let $H_c$ be a classical Hamiltonian, where $p_k$ and $q_k$ lays exactly as $P_k$ and $X_k$ in $H$. Because $U(t)$ is unitary, operators $P_{U(t)k}$ and $X_k$ lays in $H_{U(t)}$ exactly as $P_k$ and $X_k$ in $H$. That means that 
+\begin{equation}
+H_{U(t)} \ket{u} = H_c(\cfrac{\partial S}{\partial x}, X)\ket{u},
+\end{equation}
+hence
+\begin{equation}
+-\cfrac{\partial S}{\partial t} \ket{u} = H_c(\cfrac{\partial S}{\partial x}, X)\ket{u}.
+\end{equation}
+Thus we have 
+\begin{equation}
+-\cfrac{\partial S}{\partial t} \ket{u} = H_c(\cfrac{\partial S}{\partial x}, X)\ket{u},
+\end{equation}
+which is exactly Hamilton-Jacobi equation (\ref{hamilton-jacobi-equation}).
+
+This equation is stisfied by action functional along stationary trajectory $q$:
+\begin{equation}
+S(x, t) = \int^t_{t_0} L(q, \dot{q}, t') dt',
+\end{equation}
+where $x = q(t)$.
+Recall that by (\ref{canonical-momentum-for-action}), $\cfrac{\partial S}{\partial x}$ is canonical momentum. This is why the eigenvalue of $P_{U(t)k}$ for $\ket{u}$ is a very good aproximation of canonical momentum in classical aproximation. This is of course the same eigenvalue as eigenvalue of $P_k$ for $\ket{\phi}$.
 \section{Uncertainty principle}
 \begin{lemma}
 For any two observables $A$ and $B$ we have
@@ -1040,7 +1136,7 @@ We will assume that we have spin self-conjugate observables $S_x, S_y, S_z$ whic
 Let's define
 
 \begin{equation}
-S^2 \vcentcolon= S^2_x + S^2_y + S^2_z.
+S^2  \stackrel{def}{=} S^2_x + S^2_y + S^2_z.
 \end{equation}
 
 \begin{fact}
@@ -1075,7 +1171,7 @@ Let's define certain auxiliary operators
 
 \begin{definition}
 \begin{equation}
-S_z^\pm \vcentcolon= S_x \pm iS_y.
+S_z^\pm  \stackrel{def}{=} S_x \pm iS_y.
 \end{equation}
 \end{definition}
 
@@ -1463,6 +1559,20 @@ E_n = -\cfrac{e^4 \mu }{32 \pi ^2 n^2 \epsilon_0^2 \hbar ^2}
 } 
 \end{equation} 
 is an energy level of hydrogen for $n=1,2,\dots$.
+
+We will now present energy levels dependent on fine-structure constant. Let's recall
+\begin{equation}
+\alpha = \cfrac{e^2}{4\pi\epsilon_0\hbar c}
+\end{equation}
+
+Thus
+
+\begin{equation}
+E_n = - \alpha^2 \cfrac{\mu c^2}{2 n^2} = - \cfrac{\alpha^2}{2} \cfrac{E_\mu}{n^2},
+\end{equation}
+
+where $E_\mu$ is energy equivalent to reduced mass of electron.
+
 \section{Perturbation Theory}
 \subsection{Stationary Perturbation}
 Let's assume our hamiltonian has a form

@@ -6,6 +6,7 @@
 In the considerations below, we will not distiguish between column and row vectors.
 We will consider a system of particles, which positions will be denoted by
 \begin{equation}
+\label{generalised-trajectory}
 q = 
 \begin{bmatrix}
 \vec{q}_1 &
@@ -67,7 +68,7 @@ Where $T$ is a kinetic energy of the system
 T = \sum_{i=1}^n \cfrac{1}{2}m_i|\dot{\vec{q}}_i|^2.
 \end{equation}
 And we know about $V$ only that it is dependent only on $q$.
-Now, let's check what we can get from Lagrange equation
+Now, let's check what we can get from Euler-Lagrange equation
 \begin{equation}
 \label{lagrange_equation2}
 \cfrac{\partial L}{\partial q} - \cfrac{d}{dt}\cfrac{\partial L}{\partial \dot{q}} = 0.
@@ -155,6 +156,58 @@ Thus $H = \text{const}$ and it imediatelly follows from (\ref{hamilton-kinematic
 T + V = \text{const}.
 \end{equation}
 Which is energy conservation principle.
+
+\section{Euler-Lagrange equation}
+
+We will give now more abstract treatment of classical mechanics. We will still use generalised trajectory $q$ as defined in (\ref{generalised-trajectory}). 
+We will assume we have a real value $L$ which depends on values of generalised vectors $q$, $\dot{q}$ and $t$. It is our intention to show how $L$ encodes the whole mechanics of the system.
+
+Let's define an action functional
+\begin{equation}
+\label{action-functional-def}
+S(t_0, q_0, t_1, q_1, q) \stackrel{def}{=} \int_{t_0}^{t_1} L(q(t), \dot{q}(t), t) dt,
+\end{equation}
+
+where $q_0$ is a generilised starting position of system of particles, $q_1$ is a generalised ending poistion of system of particles, $t_0$ is start time, $t_1$ is end time and by $q$ we denote an arbitrary trajectory for which $q_0 = q(t_0)$ and $q_1 = q(t_1)$. Note that by trajectory we understand positions in function of time, then in this sense trajectory encodes both position in given time and velocity as first derivative of $q$.
+
+It should be noted that $q$ in equations is slighlty ambigous. Once it denotes trajectory, other time position.
+\\
+\\
+\indent
+We define our mechanics by assumtion that only those trajectories are ``allowed" which are stationary trajectories of $S$ for established $t_0, q_0, t_1, q_1$. Trajectory $q$ is stationary in the above sense if for any infinitesimal variation $\delta q$ such that $\delta q(t_0) = \delta q(t_1) = 0$, we have $\delta S \stackrel{def}{=} S(q + \delta q) - S(q) = 0$ (i.e. difference in $S$ is 0 up to order of magnitute of $\delta q$).
+\\
+\\
+\indent
+Let us calculate $\delta S$ in case of general infinitesimal variation $\delta q$ not necesarily assuming that $\delta q(t_0) = \delta q(t_1) = 0$ (we will deal with this assumption later).
+
+\begin{multline}
+\\
+\delta S =  \int_{t_0}^{t_1} \cfrac{\partial L}{\partial q} \delta q + \cfrac{\partial L}{\partial \dot{q}} \delta \dot{q}dt =  \int_{t_0}^{t_1} \big(\cfrac{\partial L}{\partial q} - \cfrac{d}{dt} \cfrac{\partial L}{\partial \dot{q}}\big)\delta q + \cfrac{d}{dt}\big(\cfrac{\partial L}{\partial \dot{q}} \delta q\big)dt = \\
+= \int_{t_0}^{t_1} \big(\cfrac{\partial L}{\partial q} - \cfrac{d}{dt} \cfrac{\partial L}{\partial \dot{q}}\big)\delta qdt + \cfrac{\partial L}{\partial \dot{q}} \delta q \bigg|^{t_1}_{t_0}.
+\end{multline}
+
+Thus, we got
+\begin{equation}
+\label{variation-major}
+\boxed
+{
+\delta S = \int_{t_0}^{t_1} \big(\cfrac{\partial L}{\partial q} - \cfrac{d}{dt} \cfrac{\partial L}{\partial \dot{q}}\big)\delta qdt + \cfrac{\partial L}{\partial \dot{q}} \delta q \bigg|^{t_1}_{t_0}
+}
+\end{equation}
+
+Now, for an arbitrary infinitesimal variation which satisfies $\delta q(t_0) = \delta q(t_1) = 0$ the equation (\ref{variation-major}) becomes:
+
+\begin{equation}
+\delta S = \int_{t_0}^{t_1} \big(\cfrac{\partial L}{\partial q} - \cfrac{d}{dt} \cfrac{\partial L}{\partial \dot{q}}\big)\delta qdt.
+\end{equation}
+
+Hence if we want $\delta S = 0$ we can deduce from $\delta q$ being arbitrary that the stationary trajectory $q$ needs to saitsfy the following equation:
+\begin{equation}
+\cfrac{\partial L}{\partial q} - \cfrac{d}{dt} \cfrac{\partial L}{\partial \dot{q}} = 0.
+\end{equation}
+
+This is Euler-Lagrange equation.
+
 \section{Conservation Principles}
 In this section we will replace $\vec{q}_i$ notation with $\bs{q}_i$ notation, as the latter seems to be more convenient. In this sense our generic trajectory $q$ of $N$ particles is 
 \begin{equation}
@@ -289,6 +342,53 @@ by calculations in (\ref{energy-coserv-simple}). In that case we had
 \end{equation}
 where $T$ was a kinetic energy of a system and $V$ its potential energy.
 Recall that the mentioned Lagranian does not depend on time which is in perfect agreement with our generic deriviation.
+
+\subsection{Hamilton–Jacobi equation}
+Let's analyse an action functional $S$ as defined in (\ref{action-functional-def}) but now we will be only interested in action along stationary trajectories $q$. That's why we will see $S$ as dependent only on $t_0, q_0, t_1, q_1$. For the purpouse of notation we will replace $t_1$ and $q_1$ by $t$ and $q$. This will itroduce ambiguaty between $q$ as trajectory and $q$ as ending point of trajectory $q=q(t)$, but this ambiguity is not problematic if we remeber about it.
+
+Let's fix $q_0$ and $t_0$. In this context $S$ depends on end poition $q$ and end time $t$. Consider an infinitesimal viariation $\delta q$ of trajectory $q$ such that $\delta q(t_0) = 0$ where $q + \delta q$ is also stationary.
+
+Let's quote the equation (\ref{variation-major})
+\begin{equation}
+\delta S = \int_{t_0}^{t} \big(\cfrac{\partial L}{\partial q} - \cfrac{d}{dt'} \cfrac{\partial L}{\partial \dot{q}}\big)\delta qdt' + \cfrac{\partial L}{\partial \dot{q}} \delta q \bigg|^{t}_{t_0}.
+\end{equation}
+
+Because trajectory $q$ is stationary, Euler-Lagrange equation holds and we have
+\begin{equation}
+\delta S = \cfrac{\partial L}{\partial \dot{q}} \delta q \bigg|^{t}_{t_0} = \cfrac{\partial L}{\partial \dot{q}} \delta q(t).
+\end{equation} 
+
+If we see $S$ as dependedn on $t$ and $q$, then $dq = \delta q(t)$ and thus
+\begin{equation}
+\label{canonical-momentum-for-action}
+\boxed{
+\cfrac{\partial S}{\partial q} = \cfrac{\partial L} {\partial \dot{q}}\
+}
+\end{equation}
+
+Analise $S$ along stationary trajectory $q$. Then we have
+\begin{equation}
+\cfrac{dS}{dt} = \cfrac{\partial S}{\partial q}\dot{q} + \cfrac{\partial S}{\partial t}.
+\end{equation}
+
+On the other hand 
+\begin{equation}
+\cfrac{d S}{d t} = L.
+\end{equation}
+
+Thus
+\begin{equation}
+\cfrac{\partial S}{\partial t} = L - \cfrac{\partial S}{\partial q}\dot{q} = L - \cfrac{\partial L} {\partial \dot{q}} \dot{q} = -H,
+\end{equation}
+where $H$ is a Hamiltonian (if exists). 
+Then, when hamiltonian $H(q, p, t)$ exists action functional $S$ satisfies the following equation, known as Hamilton-Jacobi equation:
+\begin{equation}
+\label{hamilton-jacobi-equation}
+\boxed{
+-\cfrac{\partial S}{\partial t} = H(q, \cfrac{\partial S}{\partial q}, t)
+}
+\end{equation}
+
 \section{Reduced Mass}
 Consider Lagrangian
 \begin{equation}
@@ -423,4 +523,6 @@ Thus the time evolution of probability density is described by Liouville's equat
 \cfrac{\partial f}{\partial t} = - \{f, H\}
 }
 \end{equation}
+
+
 \end{document}
