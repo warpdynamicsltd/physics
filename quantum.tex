@@ -1008,49 +1008,42 @@ Note that
 \end{equation},
 
 \begin{equation}
-\bra{x}P_{U(t)k}\ket{u} = \bra{x}P_k\ket{u} + \bra{x} \cfrac{\partial S}{\partial x^k}\ket{u}.
-\end{equation}
-
-Hence we have explicit equation for transformed momentum operator acting on state $\ket{u}$:
-\begin{equation}
-\boxed
-{
-	P_{U(t)k}\ket{u} = P_k \ket{u} + \cfrac{\partial S}{\partial x^k} \ket{u}.
-}
+\boxed{
+\bra{x}P_{U(t)k}\ket{u} = \bra{x}P_k\ket{u} + \bra{x} \cfrac{\partial S}{\partial x^k}\ket{u}}
 \end{equation}
 \subsection{Classical limit}
 
 Assume that $A$ changes very slowly in time and space. If we take $\hbar \to 0$, we can write
 
 \begin{equation}
-H_{U(t)} \ket{u} = -\cfrac{\partial S}{\partial t} \ket{u}
+\bra{x} H_{U(t)} \ket{u} = \bra{x} -\cfrac{\partial S}{\partial t} \ket{u}
 \end{equation}
 and
 
 \begin{equation}
-P_{U(t)k}\ket{u} = \cfrac{\partial S}{\partial x^k} \ket{u}.
+\bra{x} P_{U(t)k}\ket{u} = \bra{x} \cfrac{\partial S}{\partial x^k} \ket{u}.
 \end{equation}
 
-Let $H_c$ be a classical Hamiltonian, where $p_k$ and $q_k$ lays exactly as $P_k$ and $X_k$ in $H$. Because $U(t)$ is unitary, operators $P_{U(t)k}$ and $X_k$ lays in $H_{U(t)}$ exactly as $P_k$ and $X_k$ in $H$. That means that 
+Let $H_c$ be a classical Hamiltonian, where $p_k$ and $q_k$ are laid exactly as $P_k$ and $X_k$ in $H$. Because $U(t)$ is unitary, operators $P_{U(t)k}$ and $X_k$ are laid in $H_{U(t)}$ exactly as $P_k$ and $X_k$ in $H$. That means that 
 \begin{equation}
-H_{U(t)} \ket{u} = H_c(\cfrac{\partial S}{\partial x}, X)\ket{u},
+\bra{x} H_{U(t)} \ket{u} = \bra{x} H_c(\cfrac{\partial S}{\partial x}, x)\ket{u},
 \end{equation}
 hence
 \begin{equation}
--\cfrac{\partial S}{\partial t} \ket{u} = H_c(\cfrac{\partial S}{\partial x}, X)\ket{u}.
+\bra{x}-\cfrac{\partial S}{\partial t} \ket{u} = \bra{x}H_c(\cfrac{\partial S}{\partial x}, x)\ket{u}.
 \end{equation}
 Thus we have 
 \begin{equation}
--\cfrac{\partial S}{\partial t} \ket{u} = H_c(\cfrac{\partial S}{\partial x}, X)\ket{u},
+\bra{x}-\cfrac{\partial S}{\partial t} \ket{u} = \bra{x}H_c(\cfrac{\partial S}{\partial x}, x)\ket{u},
 \end{equation}
-which is exactly Hamilton-Jacobi equation (\ref{hamilton-jacobi-equation}).
+which gives exactly Hamilton-Jacobi equation (\ref{hamilton-jacobi-equation}).
 
 This equation is stisfied by action functional along stationary trajectory $q$:
 \begin{equation}
 S(x, t) = \int^t_{t_0} L(q, \dot{q}, t') dt',
 \end{equation}
 where $x = q(t)$.
-Recall that by (\ref{canonical-momentum-for-action}), $\cfrac{\partial S}{\partial x}$ is canonical momentum. This is why the eigenvalue of $P_{U(t)k}$ for $\ket{u}$ is a very good aproximation of canonical momentum in classical aproximation. This is of course the same eigenvalue as eigenvalue of $P_k$ for $\ket{\phi}$.
+Recall that by (\ref{canonical-momentum-for-action}), $\cfrac{\partial S}{\partial x}$ is canonical momentum.
 \section{Uncertainty principle}
 \begin{lemma}
 For any two observables $A$ and $B$ we have
