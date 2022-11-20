@@ -512,6 +512,42 @@ If $A_1, \dots, A_n$ are commuting observables then there exists an orthogonal b
   
 \subsection{Some properties of Dirac $\delta$}
 \begin{fact}
+\begin{equation}
+\\
+(2\pi)^{n}\delta(k) = \int_{\R^n} e^{ikx}dx\\
+\end{equation}
+\end{fact}
+\begin{proof}
+Let's calculate now Fourier Transform of Dirac delta:
+\begin{multline}
+\F(\delta_0)(\phi) = \delta_0 (\F(\phi)) = \F(\phi)(0) =  \int_{\R^n} \phi(x) e^{-ix\cdot 0}dx = \\
+(2\pi)^{-\frac{n}{2}} \int_{\R^n} \phi(x) \cdot 1 dx =  (2\pi)^{-\frac{n}{2}} 1(\phi).
+\\
+\end{multline}
+Thus
+\begin{equation}
+\F(\delta_0) = (2\pi)^{-\frac{n}{2}} \cdot 1,
+\end{equation}
+and 
+\begin{equation}
+\delta_0 = (2\pi)^{-\frac{n}{2}} \cdot \F^{-1}(1).
+\end{equation}
+\end{proof}
+\begin{fact}
+\begin{equation}
+\label{sin2-delta}
+\lim_{n\to \infty} \cfrac{\sin^2(nx)}{\pi nx^2} = \delta(x).
+\end{equation}
+\end{fact}
+\begin{proof}
+It is known that
+\begin{equation}
+\int_{-\infty}^{\infty}\cfrac{\sin^2(z)}{z^2}dz = \pi.
+\end{equation}
+By substitution $z = nx$, $dz = ndx$ we will get thesis.
+\end{proof}
+
+\begin{fact}
 \label{delta-zeros}
 If $\delta$ is Dirac delta and $x\in \R^n$, then
 \begin{equation}
@@ -954,6 +990,61 @@ With reinstated $\hbar$:
 \end{equation}
 
 Note that in case when $H = \text{const}$, since $U(0, t) = e^{-itH}$ and since it commutes with $H$, from (\ref{ha-ha}), we have $H_H = H$. Thus equation (\ref{time-independent-heisenberg}) is just a particular case of (\ref{time-dependent-heisenberg}).
+\section{General Solution of $\cfrac{\partial}{\partial t}\ket{\phi(t)} = A(t) \ket{\phi(t)}$}
+
+Consider a general equation
+\begin{equation}
+\cfrac{\partial}{\partial t}\ket{\phi(t)} = A(t) \ket{\phi(t)}.
+\end{equation}
+Assume we have a solution $\ket{\phi(t)} = U(t)\ket{\phi(0)}$, where $U(0) = 1$. Note that 
+$U(t)$ satisfies
+\begin{equation}
+\label{integral-version-schrodinger}
+U(t) = 1 + \int_0^t ds A(s)U(s).
+\end{equation}
+
+Let
+\begin{equation}
+\begin{cases}
+R_0(t) = 1,\\
+R_n(t) = \int_0^t ds_n A(s_n) \int_0^{s_{n}} ds_{n - 1}A(s_{n-1}) \cdots \int_0^{s_2} ds_1 A(s_1)\text{ for } n > 0.
+\end{cases}
+\end{equation}
+
+Note that under the condition of convergence, which will be not studied further at this point, the following
+
+\begin{equation}
+\label{generic-linear-solution}
+U(t) = \sum_{n=0}^\infty R_n(t)
+\end{equation}
+satisfies equation (\ref{integral-version-schrodinger}).
+
+Let's introduce ordering operator:
+\begin{definition}
+\begin{equation}
+\mathcal{T} A(t_1)\cdot A(t_2) \dots \cdot A(t_n) \stackrel{def}{=} A(t_{a(1)})A(t_{a(2)})\cdots A(t_{a(n)}),
+\end{equation} 
+where $a$ is a permutation of $1, 2, \dots, n$ such that
+\begin{equation}
+t_{a(1)} \geq t_{a(2)} \dots \geq t_{a(n)}.
+\end{equation}
+\end{definition}
+
+Note that
+\begin{equation}
+R_n(t) = \frac{1}{n!} \int_0^t ds_n \dots\int_0^t ds_1 \mathcal{T} A(s_1)\cdot A(s_2) \dots \cdot A(s_n).
+\end{equation}
+
+Let's denote (\ref{generic-linear-solution}) in a compact form
+\begin{equation}
+\label{generic-linear-solution2}
+U(t) = \mathcal{T} \exp(\int_0^t ds A(s)).
+\end{equation}
+
+Hence, in particular case when $A(t_1)$ and $A(t_2)$ commutes for any $t_1, t_2$, we have
+\begin{equation}
+U(t) = \exp(\int_0^t ds A(s)).
+\end{equation}
 
 \section{Dirac's wave function decomposition}
 We will study here the idea from  \cite{dirac1981}[31].
@@ -1567,6 +1658,216 @@ E_n = - \alpha^2 \cfrac{\mu c^2}{2 n^2} = - \cfrac{\alpha^2}{2} \cfrac{E_\mu}{n^
 where $E_\mu$ is energy equivalent to reduced mass of electron.
 
 \section{Perturbation Theory}
+\subsection{Fermis's golden rule}
+We will begin this section with the following lemma:
+\begin{lemma}
+\begin{equation}
+\cfrac{e^{itE} - 1}{E}\cdot \cfrac{e^{-itE} - 1}{E} = \cfrac{\sin^2(\frac{tE}{2})}{(\frac{E}{2})^2}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+\begin{multline*}\\
+\cfrac{1 - e^{itE}}{E}\cdot \cfrac{1 - e^{-itE}}{E} = \cfrac{2 - e^{itE} - e^{-itE}}{E^2}
+= \cfrac{2(1 - \cos(tE))}{E^2} = 4 \cfrac{\sin^2(\frac{tE}{2})}{E^2}.
+\end{multline*}
+\end{proof}
+
+Assume we have a Hamiltonian $H$ with eigenstates bases $\ket{\phi_\alpha}$. Moreover, we assume normalisation $\bra{\phi_\alpha}\ket{\phi_\beta} = \delta(\alpha - \beta)$.
+\begin{equation}
+H \ket{\phi_\alpha} = E_{\alpha} \ket{\phi_\alpha}.
+\end{equation}
+
+Let's assume that $\ket{\phi_\alpha(t)}$ satisfies evolution equation
+
+\begin{equation}
+i\cfrac{\partial}{\partial t} \ket{\phi_\alpha(t)} = H\ket{\phi_\alpha(t)},
+\end{equation}
+and that $\ket{\phi_\alpha(0)} = \ket{\phi_\alpha}$. Thus, we have
+\begin{equation}
+\ket{\phi_\alpha(t)} = e^{-itE_\alpha} \ket{\phi_\alpha}.
+\end{equation}
+
+Note that $\ket{\phi_\alpha(t)}$ is a new basis of quantum states space.
+\begin{proposition}
+\label{timed-unity-decomposition}
+\begin{equation}
+\int \ket{\phi_\alpha(t)}\bra{\phi_\alpha(t)} d\alpha = 1.
+\end{equation}
+\end{proposition}
+\begin{proof}
+\begin{multline*}\\
+\int \ket{\phi_\alpha(t)}\bra{\phi_\alpha(t)}\ket{\phi_{\alpha_0}(t)} d\alpha = 
+\int \ket{\phi_\alpha(t)} e^{it(E_\alpha - E_{\alpha_0})}\bra{\phi_\alpha}\ket{\phi_{\alpha_0}} d\alpha\\
+= \int \ket{\phi_\alpha(t)} e^{it(E_\alpha - E_{\alpha_0})} \delta(\alpha - \alpha_0) d\alpha = \ket{\phi_{\alpha_0}(t)}.\\
+\end{multline*}
+\end{proof}
+
+Assume we have another Hamiltonian:
+\begin{equation}
+\hat{H} = H + \epsilon W.
+\end{equation} 
+
+Take an arbitrary $\ket{\psi(t)}$ which satisfies evolution equation
+\begin{equation}
+i\cfrac{\partial}{\partial t}\ket{\psi(t)} = (H + \epsilon W) \ket{\psi(t)}.
+\end{equation}
+
+Since (\ref{timed-unity-decomposition}), we can expand $\ket{\psi(t)}$ as 
+\begin{equation}
+\label{evolution-expansion}
+\ket{\psi(t)} = \int \bra{\phi_\alpha(t)}\ket{\psi(t)}\ket{\phi_\alpha(t)}d\alpha.
+\end{equation}
+
+Let's calculate
+\begin{multline*}\\
+i\cfrac{\partial}{\partial t} \bra{\phi_\alpha(t)}\ket{\psi(t)} = \{i \bra{\phi_\alpha(t)}\} \ket{\psi(t)} + \bra{\phi_\alpha(t)}\{i \cfrac{\partial}{\partial t} \ket{\psi(t)}\} = 
+\\
+= - \bra{\phi_\alpha(t)} H \ket{\psi(t)} + \bra{\phi_\alpha(t)} H + \epsilon W\ket{\psi(t)}= \bra{\phi_\alpha(t)} \epsilon W \ket{\psi(t)}.\\
+\end{multline*}
+
+And since (\ref{evolution-expansion}), we can write an equation:
+\begin{equation}
+\label{central-perturbation-equation}
+i\cfrac{\partial}{\partial t} \bra{\phi_\beta(t)}\ket{\psi(t)} = \int \bra{\phi_\alpha(t)}\ket{\psi(t)}\bra{\phi_\beta(t)}\epsilon W \ket{\phi_\alpha(t)}d\alpha.
+\end{equation}
+
+Let $c_\beta(t) \stackrel{def}{=}  \bra{\phi_\beta(t)}\ket{\psi(t)}$. Then (\ref{central-perturbation-equation}) will take a form:
+
+\begin{equation}
+\boxed{
+i\cfrac{\partial}{\partial t} c_\beta(t) = \int c_\alpha(t)\bra{\phi_\beta(t)} \epsilon W \ket{\phi_\alpha(t)}d\alpha
+}
+\end{equation}
+
+Let's define operator
+
+ 
+\begin{equation}
+W(t)\stackrel{def}{=} e^{itH} W e^{-itH}.
+\end{equation}
+
+Hence (\ref{central-perturbation-equation}) becomes
+\begin{equation}
+i\cfrac{\partial}{\partial t} c_\beta(t) = \int c_\alpha(t)\bra{\phi_\beta}\epsilon W(t) \ket{\phi_\alpha}d\alpha.
+\end{equation}
+
+Let's define
+\begin{equation}
+\ket{u(t)} \stackrel{def}{=}  \int c_\alpha(t) \ket{\phi_\alpha} d\alpha.
+\end{equation}
+
+Note that $\ket{u(t)}$ satisfies evolution equation
+\begin{equation}
+i\cfrac{\partial}{\partial t} \ket{u(t)} = \epsilon W(t) \ket{u(t)},
+\end{equation}
+
+and $\ket{u(0)} = \ket{\psi(0)}$.
+
+Let 
+\begin{equation}
+U(t) = \mathcal{T} \exp(-i\epsilon \int_0^t ds W(s)),
+\end{equation}
+
+then since (\ref{generic-linear-solution2})
+\begin{equation}
+\ket{u(t)} = U(t) \ket{\psi(0)}.
+\end{equation}
+
+We are assuming situation that the quatum system was in a state $\ket{\phi_\alpha}$ at time $0$. Then it was eveloved by Hamiltonian $H + \epsilon W$ an at a time $t$ part $\epsilon W$ was ``switched off". We are then interested in probability $P_{\alpha \to \beta}$ that system ``measured" by $H$ will collapse to the state $\ket{\phi_\beta}$.
+
+Assume then $\ket{\psi(0)} = \ket{\phi_\alpha}$.
+
+Note that
+\begin{equation}
+P_{\alpha \to \beta} = |\bra{\phi_\beta}\ket{\psi(t)}|^2 = |\bra{\phi_\beta}\ket{u(t)}|^2.
+\end{equation}
+
+Note that
+\begin{equation}
+\bra{\phi_\beta}\ket{u(t)} = \bra{\phi_\beta} U(t) \ket{\phi_\alpha}.
+\end{equation}
+
+The following substitiution will be useful in the deriviation of a general solution:
+$$W_{\beta \alpha} = \bra{\phi_\beta} W \ket{\phi_\alpha}.$$
+
+\begin{lemma}
+\begin{equation}
+\bra{\phi_\beta} U(t) \ket{\phi_\alpha} = \delta(\beta - \alpha) + \sum_{n=1}^\infty (-i\epsilon)^n \rho^{\beta,\alpha}_n(t),
+\end{equation}
+where
+\begin{equation}
+\rho^{\gamma_n, \gamma_0}_n(t) = \int_0^t ds_n \int_0^{s_n} ds_{n - 1}\dots \int_0^{s_2} ds_1 \int d\gamma_{n-1} \dots \int d\gamma_1
+\prod_{k=1}^n \exp(is_k(E_{\gamma_k} - E_{\gamma_{k - 1}})) W_{\gamma_k \gamma_{k - 1}}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+By \ref{integral-version-schrodinger} we have
+\begin{equation}
+U(t) = 1 - i\epsilon \int_0^t ds W(s) U(s).
+\end{equation}
+Thus
+
+\begin{equation}
+\bra{\phi_\beta} U(t) \ket{\phi_\alpha} = \delta(\beta - \alpha) - i\epsilon\int_0^t ds \bra{\beta}W(s) U(s)\ket{\phi_\alpha},
+\end{equation}
+
+and thus
+
+\begin{equation}
+\bra{\phi_\beta} U(t) \ket{\phi_\alpha} = \delta(\beta - \alpha) - \int_0^t ds e^{is(E_\beta - E_\gamma)} W_{\beta\gamma} \bra{\phi_\gamma}U(s)\ket{\phi_\alpha}.
+\end{equation}
+Let $K_{\beta, \alpha}(t) = \delta(\alpha - \beta) + \sum_{n=1}^\infty (-i\epsilon)^n \rho^{\beta,\alpha}_n(t)$ It is enough to show that $K_{\beta, \alpha}(t)$ satisfy equation :
+\begin{equation}
+K_{\beta, \alpha}(t) = \delta(\beta - \alpha) - i\epsilon \int_0^t ds \int d\gamma e^{is(E_\beta - E_\gamma)} W_{\beta\gamma} K_{\gamma, \alpha}(s).
+\end{equation} 
+Let's do calculations
+\begin{multline*}
+\\
+\int_0^t ds \int d\gamma e^{is(E_\beta - E_\gamma)} W_{\beta\gamma} K_{\gamma, \alpha}(s) = 
+\int_0^t ds \int d\gamma e^{is(E_\beta - E_\gamma)} W_{\beta\gamma} 
+\bigg(\delta(\gamma - \alpha) + \sum_{n=1}^\infty (-i\epsilon)^n \rho^{\gamma,\alpha}_n(s)  \bigg) \\
+= \int_0^t ds e^{is(E_\beta - E_\alpha)} W_{\beta\alpha} + 
+\sum_{n=1}^\infty (-i\epsilon)^n \int_0^t ds \int d\gamma e^{is(E_\beta - E_\gamma)} W_{\beta\gamma} \rho^{\gamma,\alpha}_n(s)\\
+=  \int_0^t ds e^{is(E_\beta - E_\alpha)} W_{\beta\alpha} + \sum_{n=1}^\infty (-i\epsilon)^n \rho^{\beta,\alpha}_{n+1}(s) = \rho_1^{\beta,\alpha}(t) + \sum_{n=1}^\infty (-i\epsilon)^n \rho^{\beta,\alpha}_{n+1}(s).\\
+\end{multline*}
+Thus
+\begin{multline*}\\
+\delta(\beta - \alpha) - i\epsilon \int_0^t ds \int d\gamma e^{is(E_\beta - E_\gamma)} W_{\beta\gamma} K_{\gamma, \alpha}(s) \\
+= \delta(\beta - \alpha)-i\epsilon \rho_1^{\beta,\alpha}(t) + \sum_{n=1}^\infty (-i\epsilon)^{n + 1} \rho^{\beta,\alpha}_{n+1}(s) = K_{\beta, \alpha}(t).\\
+\end{multline*}
+
+\end{proof}
+
+For established $\beta = \gamma_0, \gamma_1, \dots, \gamma_{n-1}, \gamma_n = \alpha$,
+let's define
+\begin{equation}
+\sigma_{n,m}(t)[f] = \int_0^t ds_n \int_0^{s_n} ds_{n - 1}\dots \prod_{k=m + 1}^{n} \exp(is_k(E_{\gamma_k} - E_{\gamma_{k - 1}})) \int_0^{s_{m + 1}} fds_m
+\end{equation}
+
+\begin{lemma}
+\begin{equation}
+\begin{cases}
+\sigma_{n,n}(t)[f] = \int_0^t f(s) ds,\\
+\sigma_{n,m}(t)[f] = \sigma_{n,m + 1}(t)[\exp(is(E_{\gamma_{m + 1}} - E_{\gamma_{m}}))\int^s_0 f(s') ds'].
+\end{cases}
+\end{equation}
+\end{lemma}
+
+\begin{lemma}
+\begin{multline}\\
+\sigma_{n,m}(t)[\exp(is(E_{\gamma_m} - E_{\gamma_k}))]\\
+= \cfrac{-i}{E_{\gamma_m} - E_{\gamma_k}}\bigg(\sigma_{n,m + 1}(t)[\exp(is(E_{\gamma_{m + 1}} - E_{\gamma_{k}}))] - \sigma_{n,m + 1}(t)[\exp(is(E_{\gamma_{m + 1}} - E_{\gamma_{m}}))]\bigg),\\
+\end{multline}
+where $k < m$. 
+\end{lemma}
+\begin{proof}
+\begin{multline*}\\
+\sigma_{n,m}(t)[\exp(is(E_{\gamma_m} - E_{\gamma_k}))]\\
+= \sigma_{n,m + 1}(t)[\exp(is(E_{\gamma_{m + 1}} - E_{\gamma_{m}}))\int^s_0 \exp(is'(E_{\gamma_m} - E_{\gamma_k})) ds']\\
+= -i \sigma_{n,m + 1}(t)[\exp(is(E_{\gamma_{m + 1}} - E_{\gamma_{m}}))\cfrac{e^{is(E_{\gamma_m} - E_{\gamma_k})} - 1}{E_{\gamma_m} - E_{\gamma_k}}]\\
+\end{multline*}
+\end{proof}
+
 \subsection{Stationary Perturbation}
 Let's assume our hamiltonian has a form
 \begin{equation}
