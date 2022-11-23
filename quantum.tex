@@ -1847,7 +1847,7 @@ Thus
 
 \end{proof}
 
-We will make now futher assumptions to simplify calculations. We will assume that perturbation is very slowly ``turned on'' in the past $t_0 \to -\infty$ and that there is ceratin fixed perturbation frequency $\omega$, so that $W(t) = e^{\eepsilon t}W e^{-i\omega t}$, where $W$ is certain constant in time perturbation operator. (Note that $\eepsilon$ is different small number than $\epsilon$.) 
+We will make now futher assumptions to simplify calculations. We will assume that perturbation is very slowly ``turned on'' in the past $t_0 \to -\infty$ and that there is ceratin fixed perturbation frequency $\omega$, so that $W(t) = e^{\eepsilon t}W e^{-i\omega t}$ (note that $\eepsilon$ is different small number than $\epsilon$), where $W$ is certain constant in time perturbation operator. Note also that such $W(t)$ is not self-adjoint. Purpouse of this will be explained later. If you feel uncomfortable with this, just set $\omega = 0$ for the time being.   
 
 To make notation simpler use $\omega_{\beta\alpha} = E_\beta - E_\alpha$ and
 $W_{\beta\alpha} = \bra{\phi_\beta}W\ket{\phi_\alpha}$.
@@ -1891,6 +1891,16 @@ Hence
 \begin{multline*}
 \rho^{\beta, \alpha}_n(t) = \\(-i)^n \cfrac{e^{n\eepsilon t}e^{it(\omega_{\beta\alpha} - n\omega)}}{\omega_{\beta\alpha} - n\omega - ni\eepsilon}\int d\gamma_{n-1} \dots \int d\gamma_1 \prod_{k=1}^n W_{\gamma_k \gamma_{k - 1}} \prod_{k=1}^{n-1} \cfrac{1}{\omega_{\gamma_{k}\alpha} - k\omega -ik\eepsilon}. 
 \end{multline*}
+
+Let's give explicit formulas for $\omega = 0$:
+
+\begin{equation}
+\rho^{\beta, \alpha}_1(t) = -i \cfrac{e^{\eepsilon t}e^{it\omega_{\beta\alpha}}}{\omega_{\beta\alpha} - i\eepsilon}W_{\beta\alpha},
+\end{equation}
+
+\begin{equation}
+\rho^{\beta, \alpha}_2(t) = -i \cfrac{e^{2\eepsilon t}e^{it\omega_{\beta\alpha}}}{\omega_{\beta\alpha} - i2\eepsilon}\int d \gamma \cfrac{ W_{\beta\gamma}W_{\gamma\alpha}}{\omega_{\gamma\alpha} - i\eepsilon}.
+\end{equation}
 
 \subsection{Stationary Perturbation}
 Let's assume our hamiltonian has a form
