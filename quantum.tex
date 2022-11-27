@@ -532,6 +532,7 @@ and
 \begin{equation}
 \delta_0 = (2\pi)^{-\frac{n}{2}} \cdot \F^{-1}(1).
 \end{equation}
+The thesis holds in distrubutions sense.
 \end{proof}
 \begin{fact}
 \begin{equation}
@@ -545,6 +546,55 @@ It is known that
 \int_{-\infty}^{\infty}\cfrac{\sin^2(z)}{z^2}dz = \pi.
 \end{equation}
 By substitution $z = nx$, $dz = ndx$ we will get thesis.
+\end{proof}
+
+\begin{lemma}
+\begin{equation}
+\cfrac{e^{itE} - 1}{E}\cdot \cfrac{e^{-itE} - 1}{E} = \cfrac{\sin^2(\frac{tE}{2})}{(\frac{E}{2})^2}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+\begin{multline*}\\
+\cfrac{1 - e^{itE}}{E}\cdot \cfrac{1 - e^{-itE}}{E} = \cfrac{2 - e^{itE} - e^{-itE}}{E^2}
+= \cfrac{2(1 - \cos(tE))}{E^2} = 4 \cfrac{\sin^2(\frac{tE}{2})}{E^2}.
+\end{multline*}
+\end{proof}
+
+\begin{corollary}
+\begin{equation}
+\lim_{t\to\infty} \cfrac{1}{t} \cdot  \cfrac{1 - e^{itE}}{E}\cdot \cfrac{1 - e^{-itE}}{E} = \delta(E).
+\end{equation}
+\end{corollary}
+
+\begin{fact}
+\begin{equation}
+\lim_{\epsilon\to 0} \cfrac{1}{\pi}\cfrac{\epsilon}{x^2 + \epsilon^2} = \delta(x),
+\end{equation}
+
+\end{fact}
+\begin{proof}
+Recall that
+\begin{equation}
+\cfrac{d}{dz}\arctan(z) = \cfrac{1}{1 + z^2},
+\end{equation}
+thus
+\begin{equation}
+\int_{-\infty}^\infty \cfrac{1}{1 + z^2} dz = \pi.
+\end{equation}
+
+By substitution $x = \epsilon z$, we have
+
+\begin{equation}
+\int_{-\infty}^\infty \cfrac{1}{1 + (\frac{z}{\epsilon})^2} \cfrac{1}{\epsilon} dx = \pi,
+\end{equation}
+
+which results in 
+
+\begin{equation}
+\int_{-\infty}^\infty \cfrac{\epsilon}{\epsilon^2 + x^2} dx = \pi,
+\end{equation}
+which proves thesis.
+
 \end{proof}
 
 \begin{fact}
@@ -1017,7 +1067,7 @@ Note that under the condition of convergence, which will be not studied further 
 \label{generic-linear-solution}
 U(t_0, t) = \sum_{n=0}^\infty R_n(t_0, t)
 \end{equation}
-satisfies equation (\ref{integral-version-schrodinger}).
+satisfies equation (\ref{integral-version-schrodinger}). This is called the Dyson series.
 
 Let's introduce ordering operator:
 \begin{definition}
@@ -1659,26 +1709,14 @@ where $E_\mu$ is energy equivalent to reduced mass of electron.
 
 \section{Perturbation Theory}
 \subsection{Fermis's golden rule}
-We will begin this section with the following lemma:
-\begin{lemma}
-\begin{equation}
-\cfrac{e^{itE} - 1}{E}\cdot \cfrac{e^{-itE} - 1}{E} = \cfrac{\sin^2(\frac{tE}{2})}{(\frac{E}{2})^2}.
-\end{equation}
-\end{lemma}
-\begin{proof}
-\begin{multline*}\\
-\cfrac{1 - e^{itE}}{E}\cdot \cfrac{1 - e^{-itE}}{E} = \cfrac{2 - e^{itE} - e^{-itE}}{E^2}
-= \cfrac{2(1 - \cos(tE))}{E^2} = 4 \cfrac{\sin^2(\frac{tE}{2})}{E^2}.
-\end{multline*}
-\end{proof}
-
+\label{fermi-golden-rule}
 Assume we have a Hamiltonian $H$ with eigenstates base $\ket{\phi_\alpha}$ with corresponding eigenvalues $E_\alpha$. 
 
 \begin{equation}
 H \ket{\phi_\alpha} = E_{\alpha} \ket{\phi_\alpha}.
 \end{equation}
 
-Moreover, we assume normalisation $\bra{\phi_\alpha}\ket{\phi_\beta} = \delta(\alpha - \beta)$.
+Moreover, we assume normalisation $\bra{\phi_\alpha}\ket{\phi_\beta} = \delta(\alpha - \beta)$. It will be useful to use $\omega_{\beta\alpha} \stackrel{def}{=} E_\beta - E_\alpha$.
 
 
 Let's assume that $\ket{\phi_\alpha(t)}$ satisfies evolution equation
@@ -1688,7 +1726,7 @@ i\cfrac{\partial}{\partial t} \ket{\phi_\alpha(t)} = H\ket{\phi_\alpha(t)},
 \end{equation}
 and that $\ket{\phi_\alpha(t_0)} = \ket{\phi_\alpha}$. Thus, we have
 \begin{equation}
-\ket{\phi_\alpha(t)} = e^{-i(t - t_0)E_\alpha} \ket{\phi_\alpha}.
+\ket{\phi_\alpha(t)} = e^{-itE_\alpha} \ket{\phi_\alpha}.
 \end{equation}
 
 Note that $\ket{\phi_\alpha(t)}$ is a new basis of quantum states space.
@@ -1710,6 +1748,9 @@ Assume we have another Hamiltonian:
 \begin{equation}
 H' = H + \epsilon W(t).
 \end{equation} 
+
+The following abbreviation will be useful:
+$$W(t)_{\beta \alpha} = \bra{\phi_\beta} W(t) \ket{\phi_\alpha}.$$
 
 Take an arbitrary $\ket{\psi(t)}$ which satisfies evolution equation
 \begin{equation}
@@ -1747,7 +1788,7 @@ Let's define operator
 
  
 \begin{equation}
-\hat{W}(t)\stackrel{def}{=} e^{i(t-t_0)H} W(t) e^{-i(t - t_0)H}.
+\hat{W}(t)\stackrel{def}{=} e^{itH} W(t) e^{-itH}.
 \end{equation}
 
 Hence (\ref{central-perturbation-equation}) becomes
@@ -1777,22 +1818,24 @@ then since (\ref{generic-linear-solution2})
 \ket{u(t)} = U(t_0, t) \ket{\psi(t_0)}.
 \end{equation}
 
-We are assuming situation that the quatum system was in a state $\ket{\phi_\alpha}$ at time $t_0$. Then it was eveloved by Hamiltonian $H + \epsilon W(t)$ an at a time $t$ part $\epsilon W(t)$ was ``switched off". We are then interested in probability $P_{\alpha \to \beta}$ that system ``measured" by $H$ will collapse to the state $\ket{\phi_\beta}$.
+We are assuming situation that the quatum system was in a state $\ket{\phi_\alpha}$ at time $t_0$. Then it was eveloved by Hamiltonian $H + \epsilon W(t)$ an at a time $t$ part $\epsilon W(t)$ was ``switched off". We are then interested in probability (or density of probability) $P_{\alpha \to \beta}$ that system ``measured" by $H$ will collapse to the state $\ket{\phi_\beta}$.
 
 Assume then $\ket{\psi(0)} = \ket{\phi_\alpha}$.
 
-Note that
+Then
 \begin{equation}
 P_{\alpha \to \beta} = |\bra{\phi_\beta}\ket{\psi(t)}|^2 = |\bra{\phi_\beta}\ket{u(t)}|^2.
 \end{equation}
 
 Note that
 \begin{equation}
-\bra{\phi_\beta}\ket{u(t)} = \bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha}.
+\bra{\phi_\beta}\ket{u(t)} = \bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha},
 \end{equation}
 
-The following substitiution will be useful in the deriviation of a general solution:
-$$W(t)_{\beta \alpha} = \bra{\phi_\beta} W(t) \ket{\phi_\alpha}.$$
+Hence,
+\begin{equation}
+P_{\alpha \to \beta} = |\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha}|^2.
+\end{equation}
 
 \begin{lemma}
 \label{perturbation-aproximations}
@@ -1808,22 +1851,22 @@ where
 \begin{proof}
 By \ref{integral-version-schrodinger} we have
 \begin{equation}
-U(t_0, t) = 1 - i\epsilon \int_{t_0}^t ds \hat{W}(s) U(s).
+U(t_0, t) = 1 - i\epsilon \int_{t_0}^t ds \hat{W}(s) U(t_0, s).
 \end{equation}
 Thus
 
 \begin{equation}
-\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) - i\epsilon\int_{t_0}^t ds \bra{\beta}\hat{W}(s) U(s)\ket{\phi_\alpha},
+\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) - i\epsilon\int_{t_0}^t ds \bra{\beta}\hat{W}(s) U(t_0, s)\ket{\phi_\alpha},
 \end{equation}
 
 and thus
 
 \begin{equation}
-\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) - i\epsilon\int_{t_0}^t ds \bra{\beta}\hat{W}(s)\int d\gamma \ket{\phi_\gamma}\bra{\phi_\gamma} U(s)\ket{\phi_\alpha},
+\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) - i\epsilon\int_{t_0}^t ds \bra{\beta}\hat{W}(s)\int d\gamma \ket{\phi_\gamma}\bra{\phi_\gamma} U(t_0, s)\ket{\phi_\alpha},
 \end{equation}
 
 \begin{equation}
-\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) - \int_{t_0}^t ds \int d\gamma e^{is(E_\beta - E_\gamma)} W_{\beta\gamma}(s) \bra{\phi_\gamma}U(s)\ket{\phi_\alpha}.
+\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) - \int_{t_0}^t ds \int d\gamma e^{is(E_\beta - E_\gamma)} W_{\beta\gamma}(s) \bra{\phi_\gamma}U(t_0, s)\ket{\phi_\alpha}.
 \end{equation}
 Let $K_{\beta, \alpha}(t) = \delta(\alpha - \beta) + \sum_{n=1}^\infty (-i\epsilon)^n \rho^{\beta,\alpha}_n(t)$. It is enough to show that $K_{\beta, \alpha}(t)$ satisfy equation :
 \begin{equation}
@@ -1847,59 +1890,79 @@ Thus
 
 \end{proof}
 
-We will make now futher assumptions to simplify calculations. We will assume that perturbation is very slowly ``turned on'' in the past $t_0 \to -\infty$ and that there is ceratin fixed perturbation frequency $\omega$, so that $W(t) = e^{\eepsilon t}W e^{-i\omega t}$ (note that $\eepsilon$ is different small number than $\epsilon$), where $W$ is certain constant in time perturbation operator. Note also that such $W(t)$ is not self-adjoint. Purpouse of this will be explained later. If you feel uncomfortable with this, just set $\omega = 0$ for the time being.   
+We will assume that $W(t) = e^{\eepsilon t} W$, where $W$ is constant in time. We will also take $t_0\to -\infty$. 
 
-To make notation simpler use $\omega_{\beta\alpha} = E_\beta - E_\alpha$ and
-$W_{\beta\alpha} = \bra{\phi_\beta}W\ket{\phi_\alpha}$.
-
-Note that with above assumptions, we have
-
+Let's try get some useful expression of $U(t_0, t)$.
+Let
 \begin{equation}
-\rho^{\gamma_n, \gamma_0}_n(t) = \int_{-\infty}^t ds_n \int_{-\infty}^{s_n} ds_{n - 1}\dots \int_{-\infty}^{s_2} ds_1 \int d\gamma_{n-1} \dots \int d\gamma_1
-\prod_{k=1}^n \exp(is_k(\omega_{\gamma_k\gamma_{k - 1}} - \omega -i\eepsilon)) W_{\gamma_k \gamma_{k - 1}}.
+S_n(t_0, t) =  (-i)^n \int_{t_0}^t ds_n \hat{W}(s_n) \int_{t_0}^{s_n} ds_{n - 1} \hat{W}(s_{n-1})\dots \int_{t_0}^{s_2} \hat{W}(s_1)ds_1.
 \end{equation}
 
-For fixed $\alpha = \gamma_0, \gamma_1, \dots, \gamma_{n-1}, \gamma_n = \beta$,
-let's define
+Then, we have
 \begin{equation}
-\sigma_{n,m}(t)[f] = \int_{-\infty}^t ds_n \int_{-\infty}^{s_n} ds_{n - 1}\dots \prod_{k=m + 1}^{n} \exp(is_k(\omega_{\gamma_k\gamma_{k - 1}} - \omega -i\eepsilon)) \int_{-\infty}^{s_{m + 1}} fds_m
+U(t_0, t) = 1 + \epsilon^n \sum_{n=1}^\infty S_n (t_0, t).
 \end{equation}
 
-Note that
-\begin{equation}
-\rho^{\gamma_n, \gamma_0}_n(t) = \int d\gamma_{n-1} \dots \int d\gamma_1 \prod_{k=1}^n W_{\gamma_k \gamma_{k - 1}}\sigma_{n,1}(t)[\exp(is(\omega_{\gamma_{1}\gamma_0} - \omega -i\eepsilon)))].
-\end{equation}
-
-Note the following basic properties of $\sigma_{n,m}(t)[f]$:
-
-\begin{equation}
-\begin{cases}
-\sigma_{n,n}(t)[f] = \int_{-\infty}^t f(s) ds,\\
-\sigma_{n,m}(t)[f] = \sigma_{n,m + 1}(t)[\exp(is(\omega_{\gamma_{m+1}\gamma_{m}} - \omega -i\eepsilon))\int^s_{\infty} f(s') ds'],
-\end{cases}
-\end{equation}
-
-and thus
-
-\begin{multline}
-\sigma_{n,m}(t)[\exp(is(\omega_{\gamma_{m}\alpha} - m\omega -mi\eepsilon)))]\\
-= \cfrac{-i}{\omega_{\gamma_{m}\alpha} - m\omega -im\eepsilon}\sigma_{n,m + 1}(t)[\exp(is(\omega_{\gamma_{m+1}\alpha} - (m+1)\omega -(m+1)i\eepsilon))].\\
+Let's calculate $S_n$:
+\begin{multline}\\
+S_n(-\infty, t) = (-i)^n \int_{-\infty}^t ds_n \int_{-\infty}^{s_n} ds_{n - 1}\dots \int_{-\infty}^{s_2} ds_1\\
+e^{is_nH}We^{i(s_{n-1} - s_n)H}W \dots e^{i(s_1 - s_2)H}We^{-is_1H}e^{\eepsilon(s_n + \cdot + s_1)}.
 \end{multline}
 
-Hence
+Let's do substitution of dummy wariables:
+\begin{align*}
+&t_n = s_n,\\
+&t_{n-1} = s_{n-1} - s_n,\\
+&\dots\\
+&t_1 = s_1 - s_2.
+\end{align*} 
 
-\begin{multline*}
-\rho^{\beta, \alpha}_n(t) = \\(-i)^n \cfrac{e^{n\eepsilon t}e^{it(\omega_{\beta\alpha} - n\omega)}}{\omega_{\beta\alpha} - n\omega - ni\eepsilon}\int d\gamma_{n-1} \dots \int d\gamma_1 \prod_{k=1}^n W_{\gamma_k \gamma_{k - 1}} \prod_{k=1}^{n-1} \cfrac{1}{\omega_{\gamma_{k}\alpha} - k\omega -ik\eepsilon}. 
-\end{multline*}
+and inversly
 
-Let's give explicit formulas for $\omega = 0$:
+\begin{align*}
+&s_n =t_n,\\
+&s_{n-1} = t_n + t_{n-1}\\
+&\dots\\
+&s_1 = t_n + t_{n-1} + \cdots + t_1.
+\end{align*}
 
+Jacobian determinant of this transformation is 1, then we can write
+\begin{align*}\\
+&S_n(-\infty, t) = (-i)^n \int_{-\infty}^t dt_n \int_{-\infty}^{0} dt_{n - 1}\dots \int_{-\infty}^{0} dt_1\\
+&e^{it_nH}We^{it_{n-1}H}W \dots e^{it_1H}We^{-i(t_n + \cdots + t_1)H}e^{\eepsilon(s_n + \cdot + s_1)}.
+\end{align*}
+
+Note that
+\begin{align*}
+&\bra{\phi_\beta}S_n (-\infty, t) \ket{\phi_\alpha} = (-i)^n \\
+& \bra{\phi_\beta} \int^t_{-\infty} dt_n e^{n\eepsilon t_{n}} e^{it_n(E_{\beta} - E_{\alpha})} W\\
+& \int^0_{-\infty}dt_{n-1} e^{(n - 1)\eepsilon t_{n - 1}}e^{i(H - E_\alpha)} W\\
+& \dots \\
+&\int^0_{-\infty}dt_{1} e^{\eepsilon t_1}e^{i(H - E_\alpha)} W \ket{\phi_\alpha}.
+\end{align*} 
+
+Note that,
 \begin{equation}
-\rho^{\beta, \alpha}_1(t) = -i \cfrac{e^{\eepsilon t}e^{it\omega_{\beta\alpha}}}{\omega_{\beta\alpha} - i\eepsilon}W_{\beta\alpha},
+ \int^0_{-\infty} ds e^{k\eepsilon s} e^{is(H - E_{\alpha})} = \cfrac{i}{E_\alpha - H + ik\eepsilon}.
+\end{equation} 
+
+Hence,
+\begin{equation}
+\bra{\phi_\beta}S_n (-\infty, t) \ket{\phi_\alpha} = \\
+\cfrac{e^{-it(\omega_{\alpha\beta} +in\eepsilon)}}{\omega_{\alpha\beta}+in\eepsilon }
+\bra{\phi_\beta} W \prod_{k = n - 1}^1 (\cfrac{1}{E_\alpha - H + ik\eepsilon}W) \ket{\phi_\alpha}.\\
 \end{equation}
 
+Note that the above equation is exact. We will now make a replacement $k\eepsilon \to \eepsilon$. For now, we will motivate it that because we can treat $\epsilon$ as a value which disapears in practice with certain power $\epsilon^n$, thus in practice we need to consider only finite number of operators $S_n$. With this assumption in mind, since we will finally consider limit $\eepsilon \to 0$, $k\eepsilon$ is as good as $\eepsilon$. This step leaves us with certain distaste, we will need to make a deeper discussion of it in the future.
+
+Keeping above in mind, let's define transition operator
 \begin{equation}
-\rho^{\beta, \alpha}_2(t) = -i \cfrac{e^{2\eepsilon t}e^{it\omega_{\beta\alpha}}}{\omega_{\beta\alpha} - i2\eepsilon}\int d \gamma \cfrac{ W_{\beta\gamma}W_{\gamma\alpha}}{\omega_{\gamma\alpha} - i\eepsilon}.
+T  \stackrel{def}{=} \epsilon^n \sum_{n = 1}^\infty W \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^{n - 1}.
+\end{equation}
+
+Thus
+\begin{equation}
+\bra{\phi_\beta}U (-\infty, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) + \cfrac{e^{-it(\omega_{\alpha\beta} +in\eepsilon)}}{\omega_{\alpha\beta}+in\eepsilon } \bra{\phi_\beta}T \ket{\phi_\alpha}.
 \end{equation}
 
 \subsection{Stationary Perturbation}

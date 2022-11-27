@@ -2216,4 +2216,63 @@ Thus generator of $\hat{U}(\epsilon)$ denoted as $\hat{A}$ is given by
 (\hat{A}\phi)(x) = - \partial_\mu \phi(x) A^\mu_\nu x^\nu.
 \end{equation}
 
+\section{Saturday, 26 November 2022}
+
+Some considerations relevant to subsection \ref{fermi-golden-rule}
+
+We will make now futher assumptions to simplify calculations. We will assume that perturbation is very slowly ``turned on'' in the past $t_0 \to -\infty$ and that there is ceratin fixed perturbation frequency $\omega$, so that $W(t) = e^{\eepsilon t}W e^{-i\omega t}$ (note that $\eepsilon$ is different small number than $\epsilon$), where $W$ is certain constant in time perturbation operator. Note also that such $W(t)$ is not self-adjoint. Purpouse of this will be explained later. If you feel uncomfortable with this, just set $\omega = 0$ for the time being.   
+
+To make notation simpler use $\omega_{\beta\alpha} = E_\beta - E_\alpha$ and
+$W_{\beta\alpha} = \bra{\phi_\beta}W\ket{\phi_\alpha}$.
+
+Note that with above assumptions, we have
+
+\begin{equation}
+\rho^{\gamma_n, \gamma_0}_n(t) = \int_{-\infty}^t ds_n \int_{-\infty}^{s_n} ds_{n - 1}\dots \int_{-\infty}^{s_2} ds_1 \int d\gamma_{n-1} \dots \int d\gamma_1
+\prod_{k=1}^n \exp(is_k(\omega_{\gamma_k\gamma_{k - 1}} - \omega -i\eepsilon)) W_{\gamma_k \gamma_{k - 1}}.
+\end{equation}
+
+For fixed $\alpha = \gamma_0, \gamma_1, \dots, \gamma_{n-1}, \gamma_n = \beta$,
+let's define
+\begin{equation}
+\sigma_{n,m}(t)[f] = \int_{-\infty}^t ds_n \int_{-\infty}^{s_n} ds_{n - 1}\dots \prod_{k=m + 1}^{n} \exp(is_k(\omega_{\gamma_k\gamma_{k - 1}} - \omega -i\eepsilon)) \int_{-\infty}^{s_{m + 1}} fds_m
+\end{equation}
+
+Note that
+\begin{equation}
+\rho^{\gamma_n, \gamma_0}_n(t) = \int d\gamma_{n-1} \dots \int d\gamma_1 \prod_{k=1}^n W_{\gamma_k \gamma_{k - 1}}\sigma_{n,1}(t)[\exp(is(\omega_{\gamma_{1}\gamma_0} - \omega -i\eepsilon)))].
+\end{equation}
+
+Note the following basic properties of $\sigma_{n,m}(t)[f]$:
+
+\begin{equation}
+\begin{cases}
+\sigma_{n,n}(t)[f] = \int_{-\infty}^t f(s) ds,\\
+\sigma_{n,m}(t)[f] = \sigma_{n,m + 1}(t)[\exp(is(\omega_{\gamma_{m+1}\gamma_{m}} - \omega -i\eepsilon))\int^s_{\infty} f(s') ds'],
+\end{cases}
+\end{equation}
+
+and thus
+
+\begin{multline}
+\sigma_{n,m}(t)[\exp(is(\omega_{\gamma_{m}\alpha} - m\omega -mi\eepsilon)))]\\
+= \cfrac{-i}{\omega_{\gamma_{m}\alpha} - m\omega -im\eepsilon}\sigma_{n,m + 1}(t)[\exp(is(\omega_{\gamma_{m+1}\alpha} - (m+1)\omega -(m+1)i\eepsilon))].\\
+\end{multline}
+
+Hence
+
+\begin{multline*}
+\rho^{\beta, \alpha}_n(t) = \\(-i)^n \cfrac{e^{n\eepsilon t}e^{it(\omega_{\beta\alpha} - n\omega)}}{\omega_{\beta\alpha} - n\omega - ni\eepsilon}\int d\gamma_{n-1} \dots \int d\gamma_1 \prod_{k=1}^n W_{\gamma_k \gamma_{k - 1}} \prod_{k=1}^{n-1} \cfrac{1}{\omega_{\gamma_{k}\alpha} - k\omega -ik\eepsilon}. 
+\end{multline*}
+
+Let's give explicit formulas for $\omega = 0$:
+
+\begin{equation}
+\rho^{\beta, \alpha}_1(t) = -i \cfrac{e^{\eepsilon t}e^{it\omega_{\beta\alpha}}}{\omega_{\beta\alpha} - i\eepsilon}W_{\beta\alpha},
+\end{equation}
+
+\begin{equation}
+\rho^{\beta, \alpha}_2(t) = -i \cfrac{e^{2\eepsilon t}e^{it\omega_{\beta\alpha}}}{\omega_{\beta\alpha} - i2\eepsilon}\int d \gamma \cfrac{ W_{\beta\gamma}W_{\gamma\alpha}}{\omega_{\gamma\alpha} - i\eepsilon}.
+\end{equation}
+
 \end{document}
