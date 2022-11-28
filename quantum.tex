@@ -1955,15 +1955,26 @@ Hence,
 
 Note that the above equation is exact. We will now make a replacement $k\eepsilon \to \eepsilon$. For now, we will motivate it that because we can treat $\epsilon$ as a value which disapears in practice with certain power $\epsilon^n$, thus in practice we need to consider only finite number of operators $S_n$. With this assumption in mind, since we will finally consider limit $\eepsilon \to 0$, $k\eepsilon$ is as good as $\eepsilon$. This step leaves us with certain distaste, we will need to make a deeper discussion of it in the future.
 
-Keeping above in mind, let's define transition operator
+Keeping above in mind, let's define the operator
 \begin{equation}
 \label{transition-operator}
-T  \stackrel{def}{=} \epsilon^n \sum_{n = 1}^\infty W \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^{n - 1}.
+T_{\eepsilon}  \stackrel{def}{=}  \sum_{n = 1}^\infty \epsilon^n W \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^{n - 1}.
+\end{equation}
+
+Let's make now a precise distinction let
+\begin{equation}
+U(t_0, t) = \mathcal{T} \exp(-i\epsilon \int_{t_0}^t ds e^{isH}W e^{-isH})
+\end{equation}
+
+and
+
+\begin{equation}
+U_\eepsilon(t_0, t) = \mathcal{T} \exp(-i\epsilon \int_{t_0}^t ds \hat{W}(s)).
 \end{equation}
 
 Thus
 \begin{equation}
-\bra{\phi_\beta}U (-\infty, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) + \cfrac{e^{-it(\omega_{\alpha\beta} +i\eepsilon)}}{\omega_{\alpha\beta}+i\eepsilon } \bra{\phi_\beta}T \ket{\phi_\alpha}.
+\bra{\phi_\beta}U_\eepsilon (-\infty, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) + \cfrac{e^{-it(\omega_{\alpha\beta} +i\eepsilon)}}{\omega_{\alpha\beta}+i\eepsilon } \bra{\phi_\beta}T_{\eepsilon} \ket{\phi_\alpha}.
 \end{equation}
 
 Note that
@@ -1973,17 +1984,17 @@ S_n (-\infty, 0) \ket{\phi_\alpha} =  \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W
 
 and hence
 \begin{equation}
-U(-\infty, 0) \ket{\phi_\alpha} = \ket{\phi_\alpha} + \epsilon^n \sum_{n=1}^\infty \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^n \ket{\phi_\alpha}.
+U_\eepsilon(-\infty, 0) \ket{\phi_\alpha} = \ket{\phi_\alpha} + \epsilon^n \sum_{n=1}^\infty \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^n \ket{\phi_\alpha}.
 \end{equation}
 
 From the above
 \begin{equation}
-U(-\infty, 0) \ket{\phi_\alpha} = \ket{\phi_\alpha} + \big(\cfrac{1}{E_\alpha - H + i\eepsilon}\epsilon W\big)U(-\infty, 0) \ket{\phi_\alpha}.
+U_\eepsilon(-\infty, 0) \ket{\phi_\alpha} = \ket{\phi_\alpha} + \big(\cfrac{1}{E_\alpha - H + i\eepsilon}\epsilon W\big)U(-\infty, 0) \ket{\phi_\alpha}.
 \end{equation}
 
 Let's define
 \begin{equation}
-\ket{\psi_\alpha} \stackrel{def}{=} U(-\infty, 0) \ket{\phi_\alpha}.
+\ket{\psi_\alpha} \stackrel{def}{=} U_\eepsilon(-\infty, 0) \ket{\phi_\alpha}.
 \end{equation}
 
 Then we have
@@ -1995,8 +2006,46 @@ This is called Lippman-Schwinger equation.
 
 By \ref{transition-operator}, we have
 \begin{equation}
-T\ket{\phi_\alpha} = \epsilon W \ket{\psi_\alpha}. 
+T_{\eepsilon}\ket{\phi_\alpha} = \epsilon W \ket{\psi_\alpha}. 
 \end{equation}
+
+For the rest of argumentation we will assume that we will operate on states $\ket{\phi}$ for which there exists self-adjoint $T$ such that 
+$T_{\eepsilon}\ket{\phi} - T\ket{\phi} = O(\eepsilon)\ket{\phi}$, 
+where $O(\eepsilon)$ is some polynomial error operator.
+
+We will try to estimate $\cfrac{d}{dt} P_{\alpha\to\beta}$. We have
+\begin{equation}
+P_{\alpha\to\beta} = \bra{\phi_\beta}U (-\infty, t) \ket{\phi_\alpha}\bra{\phi_\beta}U (-\infty, t) \ket{\phi_\alpha}^*.
+\end{equation}
+
+Let's prepare
+\begin{equation}
+\bra{\phi_\beta}U_\eepsilon (-\infty, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) + \cfrac{e^{\eepsilon t}e^{-it\omega_{\alpha\beta}}}{\omega_{\alpha\beta}+i\eepsilon } \bra{\phi_\beta}T_\epsilon \ket{\phi_\alpha}.
+\end{equation}
+
+\begin{equation}
+\cfrac{d}{dt}
+\bra{\phi_\beta}U_\eepsilon (-\infty, t) \ket{\phi_\alpha} = -ie^{\eepsilon t}e^{-it\omega_{\alpha\beta}}\bra{\phi_\beta}T_\eepsilon \ket{\phi_\alpha}.
+\end{equation}
+
+Then
+\begin{align*}
+&\cfrac{d}{dt} \big( \bra{\phi_\beta}U_\eepsilon(-\infty, t) \ket{\phi_\alpha}\bra{\phi_\beta}U_\eepsilon(-\infty, t) \ket{\phi_\alpha}^*\big) = \\
+& \bigg(\delta(\beta - \alpha) + \cfrac{e^{\eepsilon t}e^{-it\omega_{\alpha\beta}}}{\omega_{\alpha\beta}+i\eepsilon } \bra{\phi_\beta}T_\eepsilon \ket{\phi_\alpha}\bigg)ie^{\eepsilon t}e^{it\omega_{\alpha\beta}}\bra{\phi_\alpha}T^{\dagger}_\eepsilon \ket{\phi_\beta} + \\
+& \bigg(\delta(\beta - \alpha) + \cfrac{e^{\eepsilon t}e^{it\omega_{\alpha\beta}}}{\omega_{\alpha\beta}-i\eepsilon } \bra{\phi_\alpha}T^{\dagger}_\eepsilon \ket{\phi_\beta}\bigg)(-i)e^{\eepsilon t} e^{-it\omega_{\alpha\beta}}\bra{\phi_\beta}T_\eepsilon \ket{\phi_\alpha} = \\
+& - \delta(\alpha - \beta) e^{\eepsilon t}\sin(t\omega_{\alpha\beta}) + ie^{\eepsilon t}\big(\cfrac{1}{\omega_{\alpha\beta}+i\eepsilon} - \cfrac{1}{\omega_{\alpha\beta}-i\eepsilon}\big)\bra{\phi_\alpha}T^{\dagger}_\eepsilon \ket{\phi_\beta} \bra{\phi_\beta}T_\eepsilon \ket{\phi_\alpha} = \\
+& \delta(\alpha - \beta) e^{\eepsilon t}\sin(t\omega_{\beta\alpha})
++ i e^{\eepsilon t} \cfrac{-i2\eepsilon}{\omega_{\beta\alpha}^2 + \eepsilon^2} \bra{\phi_\alpha}T^{\dagger}_\eepsilon \ket{\phi_\beta} \bra{\phi_\beta}T_\eepsilon \ket{\phi_\alpha} \to_{\eepsilon\to 0}\\
+&\delta(\alpha - \beta) \sin(t\omega_{\beta\alpha}) + 2\pi\delta(\omega_{\beta\alpha})
+|\bra{\phi_\beta}T\ket{\phi_\alpha}|^2.
+\end{align*}
+
+Thus
+\begin{equation}
+\cfrac{d}{dt} P_{\alpha\to\beta} = \delta(\alpha - \beta) \sin(t\omega_{\beta\alpha}) + 2\pi\delta(\omega_{\beta\alpha})
+|\bra{\phi_\beta}T\ket{\phi_\alpha}|^2.
+\end{equation}
+
 
 \subsection{Stationary Perturbation}
 Let's assume our hamiltonian has a form
