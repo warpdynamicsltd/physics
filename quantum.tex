@@ -1957,12 +1957,45 @@ Note that the above equation is exact. We will now make a replacement $k\eepsilo
 
 Keeping above in mind, let's define transition operator
 \begin{equation}
+\label{transition-operator}
 T  \stackrel{def}{=} \epsilon^n \sum_{n = 1}^\infty W \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^{n - 1}.
 \end{equation}
 
 Thus
 \begin{equation}
-\bra{\phi_\beta}U (-\infty, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) + \cfrac{e^{-it(\omega_{\alpha\beta} +in\eepsilon)}}{\omega_{\alpha\beta}+in\eepsilon } \bra{\phi_\beta}T \ket{\phi_\alpha}.
+\bra{\phi_\beta}U (-\infty, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) + \cfrac{e^{-it(\omega_{\alpha\beta} +i\eepsilon)}}{\omega_{\alpha\beta}+i\eepsilon } \bra{\phi_\beta}T \ket{\phi_\alpha}.
+\end{equation}
+
+Note that
+\begin{equation}
+S_n (-\infty, 0) \ket{\phi_\alpha} =  \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^n \ket{\phi_\alpha},
+\end{equation}
+
+and hence
+\begin{equation}
+U(-\infty, 0) \ket{\phi_\alpha} = \ket{\phi_\alpha} + \epsilon^n \sum_{n=1}^\infty \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^n \ket{\phi_\alpha}.
+\end{equation}
+
+From the above
+\begin{equation}
+U(-\infty, 0) \ket{\phi_\alpha} = \ket{\phi_\alpha} + \big(\cfrac{1}{E_\alpha - H + i\eepsilon}\epsilon W\big)U(-\infty, 0) \ket{\phi_\alpha}.
+\end{equation}
+
+Let's define
+\begin{equation}
+\ket{\psi_\alpha} \stackrel{def}{=} U(-\infty, 0) \ket{\phi_\alpha}.
+\end{equation}
+
+Then we have
+\begin{equation}
+\ket{\psi_\alpha} = \ket{\phi_\alpha} + \big(\cfrac{1}{E_\alpha - H + i\eepsilon}\epsilon W\big)\ket{\psi_\alpha}.
+\end{equation}
+
+This is called Lippman-Schwinger equation.
+
+By \ref{transition-operator}, we have
+\begin{equation}
+T\ket{\phi_\alpha} = \epsilon W \ket{\psi_\alpha}. 
 \end{equation}
 
 \subsection{Stationary Perturbation}
