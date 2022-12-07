@@ -1175,7 +1175,7 @@ hence
 \end{equation}
 Thus we have 
 \begin{equation}
-\bra{x}-\cfrac{\partial S}{\partial t} \ket{u} = \bra{x}H_c(\cfrac{\partial S}{\partial x}, x)\ket{u},
+-\cfrac{\partial S}{\partial t}  = H_c(\cfrac{\partial S}{\partial x}, x),
 \end{equation}
 which gives exactly Hamilton-Jacobi equation (\ref{hamilton-jacobi-equation}).
 
@@ -2013,7 +2013,7 @@ For the rest of argumentation we will assume that we will operate on states $\ke
 $T_{\eepsilon}\ket{\phi} - T\ket{\phi} = O(\eepsilon)\ket{\phi}$, 
 where $O(\eepsilon)$ is some polynomial error operator.
 
-We will try to estimate $\cfrac{d}{dt} P_{\alpha\to\beta}$. We have
+We will try to calculate $\cfrac{d}{dt} P_{\alpha\to\beta}$. We have
 \begin{equation}
 P_{\alpha\to\beta} = \bra{\phi_\beta}U (-\infty, t) \ket{\phi_\alpha}\bra{\phi_\beta}U (-\infty, t) \ket{\phi_\alpha}^*.
 \end{equation}
