@@ -115,6 +115,15 @@ From this immediately follows Lorentz invariance, but we will give a direct proo
 \caption{Proof of Lorentz invariance of Klein-Gordon equation}
 \end{figure}
 \subsection{Useful Operators Algebra}
+\begin{definition}[Bozon creation and anihilation assumptions]
+We will call the bellow statements \textit{bozon creation and anihilation assumptions}
+\begin{align}
+& [a_p, a^\dagger_q] = \delta(p - q),\\
+& [a_p, a_q] = 0 \text{ and } [a^\dagger_p, a^\dagger_q] = 0,\\
+& a_p\ket{0} = 0.
+\end{align}
+\end{definition}
+
 \begin{lemma}
 If $[a_p, a^\dagger_q] = \delta(p - q)$, then
 \begin{align*}
@@ -124,5 +133,35 @@ If $[a_p, a^\dagger_q] = \delta(p - q)$, then
 \end{align*}
 \end{lemma}
 
+\begin{proposition} We assume bozonic creation and anihilation assumptions.
+Let $F = \int dp f(p)a^\dagger_p a_p$ and $G = \int dp g(p)a^\dagger_p a_p$, then
+\begin{equation}
+[F, G] = 0.
+\end{equation} 
+\end{proposition}
+\begin{proof}
+\begin{align*}
+&FG = \int dp dq f(p)g(q) a^\dagger_p a_p a^\dagger_q a_q = \\
+& \int dp dq f(p)g(q) a^\dagger_p  a^\dagger_q a_p a_q + \int dp f(p)g(p) a^\dagger_p a_p =  \\
+& \int dp dq f(p)g(q) a^\dagger_q a^\dagger_p  a_q  a_p  + \int dp f(p)g(p) a^\dagger_p a_p \\ =
+& \int dp dq f(p)g(q) a^\dagger_q a_q a^\dagger_p   a_p - \cancel{\int dq f(q)g(q) a^\dagger_q    a_q}  + \cancel{\int dp f(p)g(p) a^\dagger_p a_p} 
+= GF. \\ 
+\end{align*}
+\end{proof}
+
+\begin{proposition}
+We assume bozonic creation and anihilation assumptions. Let $P = \int dp pa^\dagger_p a_p$ and
+\begin{equation}
+\hat{V} = \int dp_1 dp_2 dq V_q a^\dagger_{p_1 + q} a^\dagger_{p_2 - q} a_{p_2}a_{p1}, 
+\end{equation}
+then $[\hat{V}, P] = 0.$
+\end{proposition}
+\begin{proof}
+Let's do calculations:
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{figs/two_body_potential}
+\end{figure}
+
+\end{proof}
 
 \end{document}

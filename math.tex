@@ -878,7 +878,7 @@ You may find a proof in \cite{rudin1987} (Fourier Transforms. The Inversion Theo
 \begin{theorem}
 If $f\in L^1(\reals)$, then
 \begin{equation}
-    \F^{-1}(f) = -\F(f(-u)).
+    \F^{-1}(f) = \F(f(-u)).
 \end{equation}
 \end{theorem}
 \begin{proof}
@@ -888,7 +888,7 @@ By definition \ref{inv_fourier} we have
 \end{equation}
 Make the substitution $z = -x$, so $dz = -dx$. Thus
 \begin{equation}
-    \F^{-1}(f)(t) = -\cfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(-z)e^{-izt}dz.
+    \F^{-1}(f)(t) = \cfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(-z)e^{-izt}dz.
 \end{equation}
 \end{proof}
 
@@ -928,7 +928,7 @@ If $iuf(u)\in L^1(\reals)$, then
 
 \begin{equation}
 \begin{split}
- \cfrac{d}{dt}\F^{-1}(f) = -\cfrac{d}{dt}\F(f(-u)) = -\F(-iuf(-u)) = \F(iuf(-u)) \\
+ \cfrac{d}{dt}\F^{-1}(f) = \cfrac{d}{dt}\F(f(-u)) = \F(-iuf(-u)) = \F(iuf(-u)) \\
  = - \F^{-1}(i(-u)f(u)) = \F^{-1}(iuf(u)).
  \end{split}
 \end{equation}
