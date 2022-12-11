@@ -114,15 +114,47 @@ From this immediately follows Lorentz invariance, but we will give a direct proo
 \includegraphics[scale=0.5]{figs/KleinInvariance}
 \caption{Proof of Lorentz invariance of Klein-Gordon equation}
 \end{figure}
-\subsection{Useful Operators Algebra}
-\begin{definition}[Bozon creation and anihilation assumptions]
-We will call the bellow statements \textit{bozon creation and anihilation assumptions}
+\subsection{Creation and anihilation algebra for bozons and fermions}
+In this subsection $p$ indexes are arbitrary and they are not necesarlily related to momentum. 
+
+We are still in a ``usual" Dirac formulation of quantum mechanics. We simply make certain assumptions about family of operators $a_p$ and one distinguished state    $\ket{0} \not= 0$, which is called a vaccume state.
+
+\begin{definition}[Bozonic creation and anihilation assumptions]
+We will call the bellow statements \textit{bozonic creation and anihilation assumptions}
 \begin{align}
 & [a_p, a^\dagger_q] = \delta(p - q),\\
 & [a_p, a_q] = 0 \text{ and } [a^\dagger_p, a^\dagger_q] = 0,\\
 & a_p\ket{0} = 0.
 \end{align}
 \end{definition}
+
+\begin{proposition}
+Under bozonic creation and anihilation assumptions, we have
+\begin{equation}
+\label{anihilation-operator-characteristic}
+a_p (a_{q_1}^\dagger \dots a_{q_n}^\dagger) = \sum_{k=1}^n\delta(p - q_k) a_{q_1}^\dagger a_{q_{k - 1}}^\dagger \dots a_{q_{k + 1}}^\dagger a_{q_n}^\dagger + (a_{q_1}^\dagger \dots a_{q_n}^\dagger)a_p.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Note that (\ref{anihilation-operator-characteristic}) holds for $n = 1$. We will prove it by induction. Let's now assume (\ref{anihilation-operator-characteristic}) holds for $n - 1$.
+\begin{align*}
+& a_p (a_{q_1}^\dagger \dots a_{q_n}^\dagger)=
+a_{q_1}^\dagger a_p (a_{q_2}^\dagger \dots a_{q_n}^\dagger) + \delta(p - q_1) (a_{q_2}^\dagger \dots a_{q_n}^\dagger)= \\
+& a_{q_1}^\dagger\sum_{k=2}^n\delta(p - q_k) a_{q_2}^\dagger a_{q_{k - 1}}^\dagger \dots a_{q_{k + 1}}^\dagger a_{q_n}^\dagger + \delta(p - q_1) (a_{q_2}^\dagger \dots a_{q_n}^\dagger) + a_{q_1}^\dagger (a_{q_2}^\dagger \dots a_{q_n}^\dagger)a_p.
+\end{align*} 
+\end{proof}
+
+\begin{corollary}
+\begin{equation}
+a_p (a_{q_1}^\dagger \dots a_{q_n}^\dagger) \ket{0} = \sum_{k=1}^n\delta(p - q_k) a_{q_1}^\dagger a_{q_{k - 1}}^\dagger \dots a_{q_{k + 1}}^\dagger a_{q_n}^\dagger \ket{0}.
+\end{equation}
+\end{corollary}
+
+\begin{corollary}
+\begin{equation}
+a_p (a_{q}^\dagger)^n \ket{0} = n \delta(p - q) (a_{q}^\dagger)^{n-1} \ket{0}.
+\end{equation}
+\end{corollary}
 
 \begin{lemma}
 If $[a_p, a^\dagger_q] = \delta(p - q)$, then
@@ -134,14 +166,14 @@ If $[a_p, a^\dagger_q] = \delta(p - q)$, then
 \end{lemma}
 
 \begin{proposition} We assume bozonic creation and anihilation assumptions.
-Let $F = \int dp f(p)a^\dagger_p a_p$ and $G = \int dp g(p)a^\dagger_p a_p$, then
+Let $F = \int dp\, f(p)a^\dagger_p a_p$ and $G = \int dp\, g(p)a^\dagger_p a_p$, then
 \begin{equation}
 [F, G] = 0.
 \end{equation} 
 \end{proposition}
 \begin{proof}
 \begin{align*}
-&FG = \int dp dq f(p)g(q) a^\dagger_p a_p a^\dagger_q a_q = \\
+&FG = \int dp dq \,f(p)g(q) a^\dagger_p a_p a^\dagger_q a_q = \\
 & \int dp dq f(p)g(q) a^\dagger_p  a^\dagger_q a_p a_q + \int dp f(p)g(p) a^\dagger_p a_p =  \\
 & \int dp dq f(p)g(q) a^\dagger_q a^\dagger_p  a_q  a_p  + \int dp f(p)g(p) a^\dagger_p a_p \\ =
 & \int dp dq f(p)g(q) a^\dagger_q a_q a^\dagger_p   a_p - \cancel{\int dq f(q)g(q) a^\dagger_q    a_q}  + \cancel{\int dp f(p)g(p) a^\dagger_p a_p} 
@@ -150,9 +182,9 @@ Let $F = \int dp f(p)a^\dagger_p a_p$ and $G = \int dp g(p)a^\dagger_p a_p$, the
 \end{proof}
 
 \begin{proposition}
-We assume bozonic creation and anihilation assumptions. Let $P = \int pdp a^\dagger_p a_p$ and
+We assume bozonic creation and anihilation assumptions. Let $P = \int pdp\, a^\dagger_p a_p$ and
 \begin{equation}
-\hat{V} = \int dp_1 dp_2 dq V_q a^\dagger_{p_1 + q} a^\dagger_{p_2 - q} a_{p_2}a_{p1}, 
+\hat{V} = \int dp_1 dp_2 dq\, V_q a^\dagger_{p_1 + q} a^\dagger_{p_2 - q} a_{p_2}a_{p_1}, 
 \end{equation}
 then $[\hat{V}, P] = 0.$
 \end{proposition}
@@ -163,5 +195,212 @@ Let's do calculations:
 \end{figure}
 
 \end{proof}
+
+Let's now work out a more generic equations which will work with bozons as well as with fermions. For that it will be usefull to introduce a generic commutator expression
+\begin{equation}
+[A, B]_{\zeta} \stackrel{def}{=} AB -\zeta BA.
+\end{equation}
+
+Note that for commutator, we have $[A, B] = [A, B]_1$ and for anticommutator, we have $\{A, B\} = [A, B]_{-1}$.
+
+Note a usefull transposition:
+\begin{equation}
+AB = [A, B]_{\zeta} + \zeta BA.
+\end{equation}
+
+\begin{assumption}
+\label{anihilation-creation-assumptions}
+Let $\zeta\in\{-1, 1\}$. Assume that the bellow conditions holds for a family of operators $a_p$.
+\begin{align}
+& [a_p, a^\dagger_q]_\zeta = \delta(p - q),\\
+& [a_p, a_q]_\zeta = 0 \text{ and } [a^\dagger_p, a^\dagger_q]_\zeta = 0,\\
+& a_p\ket{0} = 0.
+\end{align}
+\end{assumption}
+
+For $\zeta = 1$ the above are \textit{bozonic anihilation and creation assumptions}, for $\zeta = -1$ the above are \textit{fermionic anihilation and creation assumptions}.
+
+Note that under Assumption \ref{anihilation-creation-assumptions}, we have always
+
+\begin{equation}
+a_p a_{q}^\dagger = \delta(p - q) + \zeta a_{q}^\dagger a_p,
+\end{equation}
+
+\begin{equation}
+a_{q}^\dagger a_p = \zeta \delta(p - q) - \zeta a_p a_{q}^\dagger,
+\end{equation}
+
+\begin{equation}
+a_p a_q = \zeta a_q a_p,
+\end{equation}
+
+\begin{equation}
+a^\dagger_p a^\dagger_q = \zeta a^\dagger_q a^\dagger_p.
+\end{equation}  
+
+Note that it follows that for fermions we have $a^\dagger_p a^\dagger_p = 0$. For all subsequent calculations it is also worth to remeber that $\zeta^{2k} = 1$ for any integer $k$.
+
+\begin{proposition}
+Under Assumption \ref{anihilation-creation-assumptions}, we have
+\begin{equation}
+\label{anihilation-operator-characteristic}
+a_p (a_{q_1}^\dagger \dots a_{q_n}^\dagger) = \sum_{k=1}^n \zeta^{k - 1} \delta(p - q_k) a_{q_1}^\dagger \dots a_{q_{k - 1}}^\dagger a_{q_{k + 1}}^\dagger  \dots  a_{q_n}^\dagger + \zeta^n( a_{q_1}^\dagger \dots a_{q_n}^\dagger)a_p.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Note that (\ref{anihilation-operator-characteristic}) holds for $n = 1$. We will prove it by induction. Let's now assume (\ref{anihilation-operator-characteristic}) holds for $n - 1$.
+\begin{align*}
+& a_p (a_{q_1}^\dagger \dots a_{q_n}^\dagger)=
+\zeta a_{q_1}^\dagger a_p (a_{q_2}^\dagger \dots a_{q_n}^\dagger) + \delta(p - q_1) (a_{q_2}^\dagger \dots a_{q_n}^\dagger)= \\
+& \zeta a_{q_1}^\dagger\sum_{k=2}^n\zeta^k \delta(p - q_k) a_{q_2}^\dagger \dots a_{q_{k - 1}}^\dagger a_{q_{k + 1}}^\dagger  \dots a_{q_n}^\dagger + \zeta^0 \delta(p - q_1) (a_{q_2}^\dagger \dots a_{q_n}^\dagger) \\
+& + \zeta a_{q_1}^\dagger \zeta^{n - 1}(a_{q_2}^\dagger \dots a_{q_n}^\dagger)a_p = \\
+& \sum_{k=1}^n \zeta^{k - 1} \delta(p - q_k) a_{q_1}^\dagger a_{q_{k - 1}}^\dagger \dots a_{q_{k + 1}}^\dagger a_{q_n}^\dagger + \zeta^n( a_{q_1}^\dagger \dots a_{q_n}^\dagger)a_p.
+\end{align*} 
+\end{proof}
+
+\begin{corollary}
+Under Assumption \ref{anihilation-creation-assumptions}, we have
+\begin{equation}
+a_p (a_{q_1}^\dagger \dots a_{q_n}^\dagger) \ket{0} = \sum_{k=1}^n\zeta^{k-1} \delta(p - q_k) a_{q_1}^\dagger \dots a_{q_{k - 1}}^\dagger a_{q_{k + 1}}^\dagger  \dots a_{q_n}^\dagger \ket{0}.
+\end{equation}
+\end{corollary}
+
+\begin{proposition}
+Under Assumption \ref{anihilation-creation-assumptions} for $F = \int dp\, f(p)a^\dagger_p a_p$, we have
+\begin{equation}
+F a^\dagger_{p_1} \dots a^\dagger_{p_n}\ket{0} = \bigg( \sum_{k = 1}^n f(p_k)\bigg) a^\dagger_{p_1}  \dots a^\dagger_{p_n}\ket{0}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+\begin{align*}
+& F a^\dagger_{p_1} \dots a^\dagger_{p_n}\ket{0} = \int dp\, f(p)a^\dagger_p a_p a^\dagger_{p_1}  \dots a^\dagger_{p_n}\ket{0} = \\
+& \sum_{k=1}^n\zeta^{k-1} f(a_{p_k}) a^\dagger_{p_k}
+a^\dagger_{p_1} \tdots \cancel{a^\dagger_{p_k}} \tdots a^\dagger_{p_n}\ket{0} = \\
+& \sum_{k=1}^n\zeta^{k-1} \zeta^{k-1} f(a_{p_k}) a^\dagger_{p_1}  \dots a^\dagger_{p_n}\ket{0} = \\
+& \bigg( \sum_{k = 1}^n f(p_k)\bigg) a^\dagger_{p_1}  \dots a^\dagger_{p_n}\ket{0}.
+\end{align*}
+\end{proof}
+
+\begin{proposition} Assume Assumption \ref{anihilation-creation-assumptions}.
+Let $F = \int dp\, f(p)a^\dagger_p a_p$ and $G = \int dp\, g(p)a^\dagger_p a_p$, then
+\begin{equation}
+[F, G] = 0.
+\end{equation} 
+\end{proposition}
+\begin{proof}
+\begin{align*}
+&FG = \int dp dq \,f(p)g(q) a^\dagger_p a_p a^\dagger_q a_q = \\
+& \zeta \int dp dq \, f(p)g(q) a^\dagger_p  a^\dagger_q a_p a_q + \int dp\, f(p)g(p) a^\dagger_p a_p =  \\
+& \zeta \int dp dq\, f(p)g(q) a^\dagger_q a^\dagger_p  a_q  a_p  + \int dp\, f(p)g(p) a^\dagger_p a_p \\ =
+& \zeta \big( \zeta \int dp dq\, f(p)g(q) a^\dagger_q a_q a^\dagger_p   a_p - \zeta \int dq\, f(q)g(q) a^\dagger_q    a_q \big)  + \int dp\, f(p)g(p) a^\dagger_p a_p = \\
+& \int dp dq\, f(p)g(q) a^\dagger_q a_q a^\dagger_p   a_p - \cancel{\int dq \, f(q)g(q) a^\dagger_q    a_q}  + \cancel{\int dp\, f(p)g(p) a^\dagger_p a_p} 
+= GF. \\ 
+\end{align*}
+\end{proof}
+
+We will know chnage $p, q$ notation to $\alpha, \beta$ (it is just notation change).
+
+\begin{proposition}
+Under Assumption \ref{anihilation-creation-assumptions}, for an operator defined as
+\begin{equation}
+V = \int d\alpha d\beta\, v(\alpha, \beta) a_{\alpha}^\dagger a_{\beta}^\dagger a_{\beta} a_{\alpha},
+\end{equation}
+we have
+\begin{equation}
+V a^\dagger_{\alpha_1} \dots a^\dagger_{\alpha_n}\ket{0} = \bigg(\sum_{k\not=k'}v(\alpha_k, \alpha_{k'})\bigg) a^\dagger_{\alpha_1} \dots a^\dagger_{\alpha_n}\ket{0}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+\begin{align*}
+& V a^\dagger_{\alpha_1} \dots a^\dagger_{\alpha_n}\ket{0} = \int d\alpha d\beta\, v(\alpha, \beta) a_{\alpha}^\dagger a_{\beta}^\dagger a_{\beta} a_{\alpha} a^\dagger_{\alpha_1} \dots a^\dagger_{\alpha_n}\ket{0} = \\
+& \sum_{k = 1}^n \zeta^{k - 1} \int d\beta\, v(\alpha_k, \beta)a_{\alpha_k}^\dagger a_{\beta}^\dagger a_{\beta} (a^\dagger_{\alpha_1} \tdots \cancel{a^\dagger_{\alpha_k}} \tdots a^\dagger_{\alpha_n})\ket{0} = \\
+& \sum_{k = 1}^n \zeta^{k - 1}\bigg( \sum_{k'=1}^{k - 1} \zeta^{k' - 1}  + \sum_{k'=k+1}^{n} \zeta^{k'}\bigg) v(\alpha_k, \alpha_{k'})a_{\alpha_k}^\dagger a_{\alpha_{k'}}^\dagger (a^\dagger_{\alpha_1} \tdots \cancel{a^\dagger_{\alpha_k}} \cancel{a^\dagger_{\alpha_{k'}}}\tdots a^\dagger_{\alpha_n})\ket{0} = \\
+& \sum_{k = 1}^n \zeta^{k-1} \zeta^{k - 1}\bigg( \sum_{k'=1}^{k - 1} \zeta^{k'- 1}\zeta^{k' - 1}  + \sum_{k'=k+1}^{n} \zeta^{k'} \zeta^{k'}\bigg) v(\alpha_k, \alpha_{k'})
+a^\dagger_{\alpha_1} \tdots a^\dagger_{\alpha_n}\ket{0} = \\
+& \bigg(\sum_{k\not=k'}v(\alpha_k, \alpha_{k'})\bigg) a^\dagger_{\alpha_1} \dots a^\dagger_{\alpha_n}\ket{0}.
+\end{align*}
+\end{proof}
+
+\subsection{Assembly of identical particles}
+
+Assume we have a space of quantum states $\mathcal{X}$ which desribe one particle of a kind.
+
+We will set $\zeta = 1$ (for bozons) or $\zeta = -1$ (for fermions). Let's define the following state:
+\begin{equation}
+\ket{\psi_1 \dots \psi_n} \stackrel{def}{=} \cfrac{1}{\sqrt{n!}}\sum_{\sigma\in S_n} \zeta^\sigma 
+\ket{\psi_{\sigma(1)}} \dots \ket{\psi_{\sigma(n)}}. 
+\end{equation}
+
+The above should be understood with the convention that $1^\sigma = 1$ and $(-1)^\sigma$ is as defined in Definition \ref{permutation-sign}.
+
+Note that this state belongs to the tensor product $\bigotimes_{k = 1}^n \mathcal{X}$. Let's introduce a new state $\ket{0}$ which will represent a vaccume state (i.e. 0 particles).
+
+Let's define 
+\begin{equation}
+\begin{cases}
+& \mathcal{F}_0(\mathcal{X}) \stackrel{def}{=} span\{{\ket{0}}\}, \\
+& \mathcal{F}_n(\mathcal{X}) \stackrel{def}{=} span\{\ket{\psi_1 \dots \psi_n} : \psi_k\in \mathcal{X} \text{ for } k = 1, \dots, n\}.
+\end{cases}
+\end{equation}
+
+Note that $\mathcal{F}_n (\mathcal{X})$ is a space of all possible quantum states for $n$ particles.
+
+Finally we are ready to define a Fock space:
+\begin{equation}
+\mathcal{F}(\mathcal{X}) \stackrel{def}{=} \bigcup_{n=0}^\infty \mathcal{F}_n(\mathcal{X}).
+\end{equation}
+
+To finish definition we need to define amplitudes between states of Fock space.
+\begin{equation}
+\bra{\phi'}\ket{\phi} \stackrel{def}{=} 0
+\end{equation}
+for any $\ket{\phi'} \in\mathcal{F}_{k'} (\mathcal{X}), \ket{\phi} \in\mathcal{F}_{k} (\mathcal{X})$ where $k\not=k'$ and
+\begin{equation}
+\bra{\chi_1\dots\chi_n} \ket{\psi_1\dots \psi_n} \stackrel{def}{=} 
+\cfrac{1}{n!} \sum_{\sigma\in S_n} \sum_{\sigma'\in S_n} \zeta^\sigma \zeta^{\sigma'}
+\prod_{k=1}^n \bra{\chi_{\sigma'(k)}}\ket{\phi_{\sigma(k)}}.
+\end{equation}
+
+Note that
+\begin{equation}
+\bra{\chi_1\dots\chi_n} \ket{\psi_1 \dots \psi_n} =
+ \sum_{\sigma\in S_n}  \zeta^\sigma
+\prod_{k=1}^n \bra{\chi_{k}}\ket{\phi_{\sigma(k)}}.
+\end{equation}
+
+\begin{fact}
+\begin{equation}
+\ket{\psi_{\sigma(1)} \dots \psi_{\sigma(n)}} = \zeta^\sigma \ket{\psi_1 \dots \psi_n}.
+\end{equation}
+\end{fact}
+\begin{proof}
+\begin{align*}
+&\ket{\psi_{\sigma(1)} \dots \psi_{\sigma(n)}} = \cfrac{1}{\sqrt{n!}}\sum_{\sigma'\in S_n} \zeta^{\sigma'} 
+\ket{\psi_{\sigma'\sigma(1)}} \dots \ket{\psi_{\sigma'\sigma(n)}} = \\
+& \zeta^\sigma \cfrac{1}{\sqrt{n!}}\sum_{\sigma'\in S_n}\zeta^\sigma \zeta^{\sigma'} 
+\ket{\psi_{\sigma'\sigma(1)}} \dots \ket{\psi_{\sigma'\sigma(n)}} = 
+\ket{\psi_{\sigma(1)} \dots \psi_{\sigma(n)}} = \zeta^\sigma \ket{\psi_1 \dots \psi_n}.
+\end{align*}
+\end{proof}
+
+The above fact is the justification for the whole construction of the Fock space. It says that the order of particles does not matter for the state representation. Which is philosophically expected. For two identical particles, the universe is exactly the same whether the 1st particle is in the state $\ket{\phi}$ and 2nd in state $\ket{\phi'}$ or the 1st is in the state $\ket{\phi}$ and the 2nd in the state $\ket{\phi}$. For bozons we have literraly $\ket{\psi_{\sigma(1)} \dots \psi_{\sigma(n)}} = \ket{\psi_1 \dots \psi_n}$ and for fermions they may differ by scalar multiplication of $-1$, which doesn't change the quantum state.
+
+\paragraph{}
+Note that for fermions (i.e. $\zeta = -1$) we have
+\begin{equation}
+\label{pauli-exclusion}
+\ket{\psi_{\sigma(1)} \dots \psi_k \dots \psi_{k'} \dots \psi_{\sigma(n)}} = 0,
+\end{equation}
+when $\ket{\psi_k} = \ket{\psi_{k'}}$.
+
+This is because for each permutation $\sigma$, you will find a permutation 
+$\sigma' = \sigma [k\leftrightarrow k']$ such that
+
+\begin{equation}
+\ket{\psi_{\sigma(1)}} \dots \ket{\psi_{\sigma(n)}} = \ket{\psi_{\sigma'(1)}} \dots  \ket{\psi_{\sigma'(n)}}
+\end{equation}
+and $(-1)^\sigma = -(-1)^{\sigma'}$.
+
+The above is the reason, why for fermions we require $\zeta = -1$. The equation (\ref{pauli-exclusion}) is Pauli exclusion principle, which says that there can't be two fermions in exactly the same quantum state.
 
 \end{document}

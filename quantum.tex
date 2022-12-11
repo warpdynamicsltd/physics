@@ -302,6 +302,11 @@ Now we need to show that $A\psi \not= 0$. Indeed, if $A\psi=0$, then $N\psi = 0$
 \end{proof}
 \section{Dirac Formulation of Quantum Mechanics}
 
+\begin{note}
+\label{dirac-note}
+Note that with Dirac formulation of Quantum Mechanics we operate on spaces wider than Hilbert spaces and sometimes $\bra{\phi_\alpha}\ket{\phi_\beta}$ does not has sense as complex number, but we must see it as distribution coresponding to either $\alpha$ or $\beta$. E.g. if we consider position representation $\bra{x}\ket{y} = \delta(x - y)$.
+\end{note}
+
 Bra-ket notation is described in first chapters of \cite{dirac1981}.
 
 \begin{equation}
@@ -446,9 +451,14 @@ Let's recall
 [A, B] = AB - BA.
 \end{equation}
 
+Blow theorem is not strict in mathematical sense.
+
 \begin{definition}
 Two observables $A, B$ commute iff $[A, B] = 0$.
 \end{definition}
+
+The theorem below is not a theorem in a stric mathematical sense. In the light of Note \ref{dirac-note}, we need to require from it some additional compatibility of observables, which means at least that each needs to be well defined on the other's base.
+
 \begin{theorem}
 If $A, B$ are commuting observables then there exists an orthogonal base of common eigenstates.
 \end{theorem}
