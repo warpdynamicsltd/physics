@@ -281,8 +281,8 @@ a^\dagger_{p_1} \tdots \cancel{a^\dagger_{p_k}} \tdots a^\dagger_{p_n}\ket{0} = 
 \end{align*}
 \end{proof}
 
-\begin{proposition} Assume Assumption \ref{anihilation-creation-assumptions}.
-Let $F = \int dp\, f(p)a^\dagger_p a_p$ and $G = \int dp\, g(p)a^\dagger_p a_p$, then
+\begin{proposition} Under Assumption \ref{anihilation-creation-assumptions}, for
+$F = \int dp\, f(p)a^\dagger_p a_p$ and $G = \int dp\, g(p)a^\dagger_p a_p$, we have
 \begin{equation}
 [F, G] = 0.
 \end{equation} 
@@ -323,7 +323,7 @@ a^\dagger_{\alpha_1} \tdots a^\dagger_{\alpha_n}\ket{0} = \\
 
 \subsection{Assembly of identical particles}
 
-Assume we have a space of quantum states $\mathcal{X}$ which desribe one particle of a kind.
+Assume we have a space of quantum states $\mathcal{X}$ which desribe single particle of a kind.
 
 We will set $\zeta = 1$ (for bozons) or $\zeta = -1$ (for fermions). Let's define the following state:
 \begin{equation}
@@ -351,15 +351,20 @@ Finally we are ready to define a Fock space:
 \end{equation}
 
 To finish definition we need to define amplitudes between states of Fock space.
+\begin{definition}
 \begin{equation}
-\bra{\phi'}\ket{\phi} \stackrel{def}{=} 0
-\end{equation}
-for any $\ket{\phi'} \in\mathcal{F}_{k'} (\mathcal{X}), \ket{\phi} \in\mathcal{F}_{k} (\mathcal{X})$ where $k\not=k'$ and
-\begin{equation}
-\bra{\chi_1\dots\chi_n} \ket{\psi_1\dots \psi_n} \stackrel{def}{=} 
+\begin{cases}
+&\bra{\phi'}\ket{\phi} \stackrel{def}{=} 0
+\text{ for any }\ket{\phi'} \in\mathcal{F}_{k'} (\mathcal{X}), \ket{\phi} \in\mathcal{F}_{k} (\mathcal{X}) \text{ where } k\not=k', \\
+
+&\bra{0}\ket{0} = 1, \\
+
+&\bra{\chi_1\dots\chi_n} \ket{\psi_1\dots \psi_n} \stackrel{def}{=} 
 \cfrac{1}{n!} \sum_{\sigma\in S_n} \sum_{\sigma'\in S_n} \zeta^\sigma \zeta^{\sigma'}
 \prod_{k=1}^n \bra{\chi_{\sigma'(k)}}\ket{\phi_{\sigma(k)}}.
+\end{cases}
 \end{equation}
+\end{definition}
 
 Note that
 \begin{equation}
@@ -370,6 +375,7 @@ Note that
 
 \begin{fact}
 \begin{equation}
+\label{fock-justification}
 \ket{\psi_{\sigma(1)} \dots \psi_{\sigma(n)}} = \zeta^\sigma \ket{\psi_1 \dots \psi_n}.
 \end{equation}
 \end{fact}
@@ -383,7 +389,7 @@ Note that
 \end{align*}
 \end{proof}
 
-The above fact is the justification for the whole construction of the Fock space. It says that the order of particles does not matter for the state representation. Which is philosophically expected. For two identical particles, the universe is exactly the same whether the 1st particle is in the state $\ket{\phi}$ and 2nd in state $\ket{\phi'}$ or the 1st is in the state $\ket{\phi'}$ and the 2nd in the state $\ket{\phi}$. For bozons we have literraly $\ket{\psi_{\sigma(1)} \dots \psi_{\sigma(n)}} = \ket{\psi_1 \dots \psi_n}$ and for fermions they may differ by scalar multiplication of $-1$, which can't change any measurment taken on this quantum state (i.e. they are experimentally indistinguishable). 
+The above fact is the justification for the whole construction of the Fock space. It says that the order of particles does not matter for the state representation. This is philosophically expected. For two identical particles, the universe is exactly the same whether the 1st particle is in the state $\ket{\phi}$ and 2nd in state $\ket{\phi'}$ or the 1st is in the state $\ket{\phi'}$ and the 2nd in the state $\ket{\phi}$. For bozons we have literraly $\ket{\psi_{\sigma(1)} \dots \psi_{\sigma(n)}} = \ket{\psi_1 \dots \psi_n}$ and for fermions they may differ by scalar multiplication of $-1$, which can't change any measurment taken on this quantum state (i.e. they are experimentally indistinguishable). 
 
 \paragraph{}
 Note that for fermions (i.e. $\zeta = -1$) we have
@@ -403,4 +409,55 @@ and $(-1)^\sigma = -(-1)^{\sigma'}$.
 
 The above is the reason, why for fermions we require $\zeta = -1$. The equation (\ref{pauli-exclusion}) is Pauli exclusion principle, which says that there can't be two fermions in exactly the same quantum state.
 
+\paragraph{}
+For any one particle state $\ket{\alpha}$ we can define creation operator:
+\begin{definition}
+\begin{equation}
+a^\dagger_\alpha \ket{\psi_1\dots\psi_n} \stackrel{def}{=} \ket{\alpha \psi_1\dots\psi_n}
+\end{equation}
+for any $n=0, \dots, +\infty$ and any $\psi_1, \dots, \psi_n\in \mathcal{X}$.
+\end{definition}
+
+\begin{proposition}
+\begin{equation}
+a_\alpha \ket{\psi_1\dots\psi_n} = \sum_{k=1}^n \zeta^{k - 1} \bra{\alpha}\ket{\psi_k}\ket{\psi_1\dots\cancel{\psi_k}\dots\psi_n}.
+\end{equation}
+\end{proposition}
+\begin{proposition}
+Let $\ket{\alpha}$ and $\ket{\beta}$ be single particle states and let $a^\dagger_{\alpha}$ and $a^\dagger_{\beta}$ be corresponding creation operators, then
+\begin{equation}
+a_\alpha a^\dagger_\beta = \bra{\alpha}\ket{\beta} + \zeta a^\dagger_\beta a_\alpha.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Note that
+\begin{equation}
+a^\dagger_\beta a_\alpha \ket{\psi_1\dots\psi_n} = \sum_{k=1}^n \zeta^{k - 1} \bra{\alpha}\ket{\psi_k}\ket{\beta \psi_1\dots\cancel{\psi_k}\dots\psi_n}.
+\end{equation}
+
+Let's calculate
+
+\begin{align*}
+& a_\alpha a^\dagger_\beta \ket{\psi_1\dots\psi_n} = a_\alpha \ket{\beta \psi_1\dots\psi_n} = \\
+& \bra{\alpha}\ket{\beta} 
++ \sum_{k=1}^n \zeta^k \ket{\psi_1\dots\psi_n} \bra{\alpha}\ket{\psi_k}\ket{\beta \psi_1\dots\cancel{\psi_k}\dots\psi_n}.
+\end{align*}
+\end{proof}
+
+\begin{proposition}
+Let $\ket{\alpha}$ and $\ket{\beta}$ be single particle states and let $a^\dagger_{\alpha}$ and $a^\dagger_{\beta}$ be corresponding creation operators, then
+\begin{equation}
+a^\dagger_\alpha a^\dagger_\beta = \zeta  a^\dagger_\beta a^\dagger_\alpha
+\end{equation}
+and
+\begin{equation}
+a_\alpha a_\beta = \zeta  a_\beta a_\alpha.
+\end{equation}
+\end{proposition}
+\begin{proof}
+This is a simple conclusion from Fact \ref{fock-justification}.
+\end{proof}
+\begin{corollary}
+For any family of states $\ket{\alpha}$ such that $\bra{\alpha}\ket{\alpha'} = \delta(\alpha - \alpha')$, corresponding creator and anihilator operator families satisfy Assumption \ref{anihilation-creation-assumptions}. 
+\end{corollary}
 \end{document}
