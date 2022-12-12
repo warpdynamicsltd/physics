@@ -222,4 +222,31 @@ Now, we can go back to vector notation to get:
 m\bs{\ddot{x}} = q(\bs{\dot{x}} \times \bs{B}),
 \end{equation}
 which is a well known equation of force exerted by magnetic filed $\bs{B}$ on particle with charge $q$ and velocity $\bs{\dot{x}}$.
+
+Let's now find Hamiltonian. Generally, under $\bs{p} = \frac{\partial L}{\partial \bs{\dot{x}}}$, we have
+\begin{equation}
+H = \bs{p} \cdot \bs{\dot{x}}(\bs{x}, \bs{p}, t) - L(\bs{x}, \bs{p}, t). 
+\end{equation}
+
+We have
+\begin{equation}
+\bs{p} = m\bs{\dot{x}} + q\bs{A},
+\end{equation}
+thus
+\begin{equation}
+\bs{\dot{x}} = \cfrac{1}{m} (\bs{p} - q\bs{A}).
+\end{equation} 
+On the other hand,
+\begin{equation}
+L = \cfrac{m\bs{\dot{x}}^2}{2} + q(\bs{A}\cdot\bs{\dot{x}}) 
+= \cfrac{(\bs{p} - q\bs{A})^2}{2m} + \cfrac{q\bs{A}\cdot(\bs{p} - q\bs{A})}{m}.
+\end{equation}
+Hence,
+\begin{equation}
+H = \cfrac{\bs{p}\cdot (\bs{p} - q\bs{A})}{m} - \cfrac{(\bs{p} - q\bs{A})^2}{2m} - \cfrac{q\bs{A}\cdot(\bs{p} - q\bs{A})}{m},
+\end{equation}
+which simplifies to
+\begin{equation}
+H = \cfrac{1}{2m}(\bs{p} - q\bs{A})^2.
+\end{equation}
 \end{document}
