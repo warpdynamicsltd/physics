@@ -1119,6 +1119,16 @@ det A = \sum\limits_{\sigma\in S_n} (-1)^\sigma \prod_{i=1}^n [A]^{\sigma^{-1}(i
 [A^T]^i_{\sigma^{-1}(i)} = det A^T.
 \end{equation}
 \end{proof}
+
+\begin{definition}
+Let $A$ be a matrix of size $n\times n$. Let matrix $A^{\cancel{i}}_{\cancel{j}}$ be a matrix A with $i-th$ row and $j-th$ collumn removed.
+\end{definition}
+
+We have
+\begin{equation}
+\det A = \sum_{j=1}^n (-1)^{i + j} [A]^i_j det A^{\cancel{i}}_{\cancel{j}} = \sum_{i=1}^n (-1)^{i + j} [A]^i_j det A^{\cancel{i}}_{\cancel{j}}.
+\end{equation}
+
 \begin{theorem}
 \label{det-0}
 Let $A$ be a matrix of size $n\times n$ and let $B$ be a matrix of $m\times m$ and $C$ be a matrix of size $n\times m$, then

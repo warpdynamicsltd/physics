@@ -370,8 +370,27 @@ Note that
 \begin{equation}
 \bra{\chi_1\dots\chi_n} \ket{\psi_1 \dots \psi_n} =
  \sum_{\sigma\in S_n}  \zeta^\sigma
-\prod_{k=1}^n \bra{\chi_{k}}\ket{\phi_{\sigma(k)}}.
+\prod_{k=1}^n \bra{\chi_{k}}\ket{\phi_{\sigma(k)}},
 \end{equation}
+
+\begin{proposition}
+\label{laplace-expansion}
+\begin{align*}
+&\bra{\chi_1\dots\chi_n} \ket{\psi_1 \dots \psi_n} = \sum_{k=1}^n \zeta^{k + k'}
+\bra{\chi_k}\ket{\psi_{k'}}
+\bra{\chi_1\dots\cancel{\chi_k}\dots\chi_n}\ket{\psi_1 \dots \cancel{\psi_{k'}} \dots \psi_n} = \\ 
+& \sum_{k'=1}^n \zeta^{k + k'}
+\bra{\chi_k}\ket{\psi_{k'}}
+\bra{\chi_1\dots\cancel{\chi_k}\dots\chi_n}\ket{\psi_1 \dots \cancel{\psi_{k'}} \dots \psi_n}.
+\end{align*}
+\begin{proof}
+For $\zeta = 1$ the thesis is obvious. Note that for $\zeta = -1$
+\begin{equation}
+\bra{\chi_1\dots\chi_n} \ket{\psi_1 \dots \psi_n} = \det[ \bra{\chi_k}\ket{\psi_{k'}} ]
+\end{equation}
+and the thesis is simply a Laplace expansion of determinant.
+\end{proof}
+\end{proposition}
 
 \begin{fact}
 \begin{equation}
@@ -418,11 +437,36 @@ a^\dagger_\alpha \ket{\psi_1\dots\psi_n} \stackrel{def}{=} \ket{\alpha \psi_1\do
 for any $n=0, \dots, +\infty$ and any $\psi_1, \dots, \psi_n\in \mathcal{X}$.
 \end{definition}
 
+Anihilation operator $a_\alpha$ is simply an adjoint operator to creation operator $a^\dagger_\alpha$. Note that this is arbitrary which one will be used with dagger. By convetion we write dagger with creation operator.
+
 \begin{proposition}
 \begin{equation}
-a_\alpha \ket{\psi_1\dots\psi_n} = \sum_{k=1}^n \zeta^{k - 1} \bra{\alpha}\ket{\psi_k}\ket{\psi_1\dots\cancel{\psi_k}\dots\psi_n}.
+a_\alpha \ket{0} = 0.
+\end{equation}
+
+\begin{proof}
+\begin{equation}
+\bra{0} a_\alpha \ket{\psi_1\dots\psi_n} = \bra{0} \ket{\alpha \psi_1\dots\psi_n} = 0.
+\end{equation}
+\end{proof}
+\end{proposition}  
+
+\begin{proposition}
+\begin{equation}
+a_\alpha \ket{\chi_1\dots\chi_n} = \sum_{k=1}^n \zeta^{k - 1} \bra{\alpha}\ket{\chi_k}\ket{\chi_1\dots\cancel{\chi_k}\dots\chi_n}.
 \end{equation}
 \end{proposition}
+\begin{proof}
+Note that
+\begin{equation}
+\bra{\chi_1\dots\chi_{n}} a^\dagger_\alpha \ket{\psi_1\dots\psi_{n-1}} 
+= \bra{\chi_1\dots\chi_{n}} \ket{\alpha \psi_1\dots\psi_{n-1}}
+\end{equation}
+By Proposition \ref{laplace-expansion}, we have
+\begin{equation}
+\bra{\chi_1\dots\chi_{n}} \ket{\alpha \psi_1\dots\psi_{n-1}} = \sum_{k=1}^n \zeta^{k + 1} \bra{\chi_k}\ket{\alpha} \bra{\chi_1\dots\cancel{\chi_k}\dots\chi_{n}}\ket{ \psi_1\dots\psi_{n-1}}.
+\end{equation}
+\end{proof}
 \begin{proposition}
 Let $\ket{\alpha}$ and $\ket{\beta}$ be single particle states and let $a^\dagger_{\alpha}$ and $a^\dagger_{\beta}$ be corresponding creation operators, then
 \begin{equation}
