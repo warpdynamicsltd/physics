@@ -556,4 +556,21 @@ Which justifies that $a^\dagger_{\bs{p}}$ creates a particle in momentum state $
 \bs{P} = \int d\bs{p}\, \bs{p}a^\dagger_{\bs{p}}a_{\bs{p}}
 \end{equation} 
 is $3$-dimentional (all single dimention operators commute, so we can write this that way) momentum count operator. Let's try to see it in position representation.
+
+\begin{align*}
+& \bra{\phi} \bs{P} \psi^\dagger(\bs{x_1}) \dots \psi^\dagger(\bs{x_n}) \ket{0} = \\
+& \bra{\phi}  (2\pi)^{-3n/2}\int d\bs{p}_1 \dots d\bs{p}_n e^{-i\bs{x}_1\cdot \bs{p}_1} \dots e^{-i\bs{x}_n\cdot \bs{p}_n} \bs{p} a^\dagger_{\bs{p}}a_{\bs{p}} a^\dagger_{\bs{p}_1} \dots a^\dagger_{\bs{p}_n} \ket{0} = \\
+& \bra{\phi}  (2\pi)^{-3n/2} \sum_{k=1}^n \zeta^{k - 1} \int d\bs{p}_1 \dots d\bs{p}_n e^{-i\bs{x}_1\cdot \bs{p}_1} \dots e^{-i\bs{x}_n\cdot \bs{p}_n} \bs{p}_k a^\dagger_{\bs{p}_k} a^\dagger_{\bs{p}_1} \tdots \cancel{a^\dagger_{\bs{p}_k}} \tdots a^\dagger_{\bs{p}_n} \ket{0} = \\
+&  (2\pi)^{-3n/2} \sum_{k=1}^n  \int d\bs{p}_1 \dots d\bs{p}_n e^{-i\bs{x}_1\cdot \bs{p}_1} \dots e^{-i\bs{x}_n\cdot \bs{p}_n} \bs{p}_k \bra{\phi} a^\dagger_{\bs{p}_1} \dots a^\dagger_{\bs{p}_n} \ket{0} = \\
+& (2\pi)^{-3n/2} \sum_{k=1}^n  i\cfrac{\partial}{\partial \bs{x}_k}  \int d\bs{p}_1 \dots d\bs{p}_n e^{-i\bs{x}_1\cdot \bs{p}_1} \dots e^{-i\bs{x}_n\cdot \bs{p}_n}  \bra{\phi} a^\dagger_{\bs{p}_1} \dots a^\dagger_{\bs{p}_n} \ket{0} = \\
+&\sum_{k=1}^n  i\cfrac{\partial}{\partial \bs{x}_k} \bra{\phi} \psi^\dagger(\bs{x_1}) \dots \psi^\dagger(\bs{x_n}) \ket{0}.
+\end{align*}
+
+Thus we have
+\begin{equation}
+\boxed{
+ \bra{\phi} \bs{P} \psi^\dagger(\bs{x_1}) \dots \psi^\dagger(\bs{x_n}) \ket{0} = 
+ \sum_{k=1}^n  i\cfrac{\partial}{\partial \bs{x}_k} \bra{\phi} \psi^\dagger(\bs{x_1}) \dots \psi^\dagger(\bs{x_n}) \ket{0}.
+}
+\end{equation}
 \end{document}
