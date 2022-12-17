@@ -302,6 +302,7 @@ $F = \int dp\, f(p)a^\dagger_p a_p$ and $G = \int dp\, g(p)a^\dagger_p a_p$, we 
 We will know chnage $p, q$ notation to $\alpha, \beta$ (it is just notation change).
 
 \begin{proposition}
+\label{2-particle-potentcial}
 Under Assumption \ref{anihilation-creation-assumptions}, for an operator defined as
 \begin{equation}
 V = \int d\alpha d\beta\, v(\alpha, \beta) a_{\alpha}^\dagger a_{\beta}^\dagger a_{\beta} a_{\alpha},
@@ -517,8 +518,8 @@ Let's define the operator
 
 Let's calculate
 \begin{align*}
-&\psi(\bs{y})\psi^\dagger(\bs{x}) = (2\pi)^3 \int d\bs{q}d\bs{p} e^{-i(\bs{x}\cdot \bs{p} - \bs{y}\cdot \bs{q})} a_{\bs{q}} a^\dagger_{\bs{p}} = \\
-& (2\pi)^3 \int d\bs{p} e^{-i(\bs{x} - \bs{y})\cdot \bs{p}} + \zeta (2\pi)^3 \int d\bs{q}d\bs{p} e^{-i(\bs{x}\cdot \bs{p} - \bs{y}\cdot \bs{q})} a^\dagger_{\bs{p}} a_{\bs{q}}  = \\
+&\psi(\bs{y})\psi^\dagger(\bs{x}) = (2\pi)^{-3} \int d\bs{q}d\bs{p} e^{-i(\bs{x}\cdot \bs{p} - \bs{y}\cdot \bs{q})} a_{\bs{q}} a^\dagger_{\bs{p}} = \\
+& (2\pi)^{-3} \int d\bs{p} e^{-i(\bs{x} - \bs{y})\cdot \bs{p}} + \zeta (2\pi)^{-3} \int d\bs{q}d\bs{p} e^{-i(\bs{x}\cdot \bs{p} - \bs{y}\cdot \bs{q})} a^\dagger_{\bs{p}} a_{\bs{q}}  = \\
 & \delta(\bs{x} - \bs{y}) + \zeta \psi^\dagger(\bs{x}) \psi(\bs{y}).
 \end{align*}
 
@@ -550,7 +551,7 @@ Thus
 \bra{0} a_{\bs{p}} \psi^\dagger(\bs{x})\ket{0} = (2\pi)^{-3/2} e^{-i\bs{x}\cdot \bs{p}}.
 \end{equation}
 
-Which justifies that $a^\dagger_{\bs{p}}$ creates a particle in momentum state $\ket{\bs{p}}$ and $\psi^\dagger(\bs{x})$ creates a particle in position state $\ket{\bs{x}}$. Keeping that interpretation in mind and Proposition \ref{count-operators}, it is apparent that
+Which justifies that $a^\dagger_{\bs{p}}$ creates a particle in momentum state $\ket{\bs{p}}$ and $\psi^\dagger(\bs{x})$ creates a particle in position state $\ket{\bs{x}}$ (we will sometimes write $\ket{\bs{x_1}\dots\bs{x_n}} = \psi^\dagger(\bs{x_1}) \dots \psi^\dagger(\bs{x_n}) \ket{0}$). Keeping that interpretation in mind and Proposition \ref{count-operators}, it is apparent that
 
 \begin{equation}
 \bs{P} = \int d\bs{p}\, \bs{p}a^\dagger_{\bs{p}}a_{\bs{p}}
@@ -571,6 +572,133 @@ Thus we have
 \boxed{
  \bra{\phi} \bs{P} \psi^\dagger(\bs{x_1}) \dots \psi^\dagger(\bs{x_n}) \ket{0} = 
  \sum_{k=1}^n  i\cfrac{\partial}{\partial \bs{x}_k} \bra{\phi} \psi^\dagger(\bs{x_1}) \dots \psi^\dagger(\bs{x_n}) \ket{0}.
+}
+\end{equation}
+
+Let's define operator
+\begin{equation}
+V = \cfrac{1}{2} \int d\bs{x} d\bs{y} V(\bs{x} - \bs{y}) \psi^\dagger(\bs{x}) \psi^\dagger(\bs{y}) \psi(\bs{y}) \psi(\bs{x}).
+\end{equation}
+
+By Proposition \ref{2-particle-potentcial} we have
+\begin{equation}
+V \psi^\dagger(\bs{x_1}) \dots \psi^\dagger(\bs{x_n}) \ket{0} = \frac{1}{2}
+\sum_{k\not=k'}V(\bs{x}_k - \bs{x}_{k'}) \psi^\dagger(\bs{x_1}) \dots \psi^\dagger(\bs{x_n}) \ket{0}.
+\end{equation}
+The physical interpretation of $V$ is a particle-particle interaction potential. It is easy to notice that it sums potential for each pair of particles.
+
+As it turns out $V$ and $P$ commute, which might came as a surprise as their one particle analogs don't commute.
+
+Indeed, let's calculate 
+\begin{align*}
+& \bra{\phi}PV\ket{\bs{x_1}\dots\bs{x_n}} = \sum_{k\not=k''} V(\bs{x}_k - \bs{x}_{k'}) \bra{\phi}P\ket{\bs{x_1}\dots\bs{x_n}} = \\
+& i\sum_{k\not=k'} V(\bs{x}_k - \bs{x}_{k'}) \sum_{k''=1}^n \cfrac{\partial}{\partial \bs{x}_{k''}}\bra{\phi}\ket{\bs{x_1}\dots\bs{x_n}}.
+\end{align*}
+On the other hand
+\begin{align*}
+& \bra{\phi}VP\ket{\bs{x_1}\dots\bs{x_n}} = \sum_{k''=1}^n \cfrac{\partial}{\partial \bs{x}_{k'}}\bra{\phi}V\ket{\bs{x_1}\dots\bs{x_n}} = \\
+& i\sum_{k''=1}^n \cfrac{\partial}{\partial \bs{x}_{k''}} \bigg(  \sum_{k\not=k''} V(\bs{x}_k - \bs{x}_{k'}) \bra{\phi}\ket{\bs{x_1}\dots\bs{x_n}} \bigg) = \\
+& \bigg( i\sum_{k''=1}^n  \sum_{k\not=k'} \cfrac{\partial}{\partial \bs{x}_{k''}}  V(\bs{x}_k - \bs{x}_{k'}) \bigg) \bra{\phi}\ket{\bs{x_1}\dots\bs{x_n}}  + \\ 
+& i\sum_{k\not=k'} V(\bs{x}_k - \bs{x}_{k'}) \sum_{k''=1}^n \cfrac{\partial}{\partial \bs{x}_{k''}}\bra{\phi}\ket{\bs{x_1}\dots\bs{x_n}} = \\
+& \bigg( i \sum_{k\not=k'} \sum_{k''=1}^n  \cfrac{\partial}{\partial \bs{x}_{k''}}  V(\bs{x}_k - \bs{x}_{k'}) \bigg) \bra{\phi}\ket{\bs{x_1}\dots\bs{x_n}} + 
+\bra{\phi}PV\ket{\bs{x_1}\dots\bs{x_n}}.
+\end{align*}
+
+Note that 
+\begin{align*}
+& i \sum_{k\not=k'} \sum_{k''=1}^n  \cfrac{\partial}{\partial \bs{x}_{k''}}  V(\bs{x}_k - \bs{x}_{k'}) = i \sum_{k\not=k'} \big(\cfrac{\partial}{\partial \bs{x}_{k}}  V(\bs{x}_k - \bs{x}_{k'}) + \cfrac{\partial}{\partial \bs{x}_{k'}}  V(\bs{x}_k - \bs{x}_{k'})\big) = \\
+& i \sum_{k\not=k'} \big(\nabla V(\bs{x}_k - \bs{x}_{k'}) - \nabla V (\bs{x}_k - \bs{x}_{k'}) \big) = 0.
+\end{align*}
+
+Let's work out representation of $V$ in terms of momentum creation and anihilation operators (following \cite{lancaster-blundell2018}).
+
+\begin{align*}
+V = \cfrac{(2\pi)^{-6}}{2} \int d\bs{x} d\bs{y} d\bs{p}_1 d\bs{p}_2 d\bs{p}_3 d\bs{p}_4
+V(\bs{x} - \bs{y}) e^{i(-\bs{x}\bs{p}_1 -\bs{y}\bs{p}_2 + \bs{y}\bs{p}_3 +\bs{x}\bs{p}_4)}
+a^\dagger_{\bs{p}_1} a^\dagger_{\bs{p}_2} a_{\bs{p}_3} a_{\bs{p}_4}.
+\end{align*}
+Let's do dummy variables substitution $\bs{z} = \bs{x} - \bs{y}$.
+\begin{align*}
+& V =  \cfrac{(2\pi)^{-6}}{2} \int d\bs{z} d\bs{y} d\bs{p}_1 d\bs{p}_2 d\bs{p}_3 d\bs{p}_4
+V(\bs{z}) e^{i\bs{z}(\bs{p}_4 - \bs{p}_1)} e^{i\bs{y} (-\bs{p}_1 - \bs{p}_2 + \bs{p}_3 + \bs{p}_4)}
+a^\dagger_{\bs{p}_1} a^\dagger_{\bs{p}_2} a_{\bs{p}_3} a_{\bs{p}_4} = \\
+& \cfrac{(2\pi)^{-3}}{2} (2\pi)^{-3}
+ \int  e^{i\bs{y} (-\bs{p}_1 - \bs{p}_2 + \bs{p}_3 + \bs{p}_4)} d\bs{y}  d\bs{z}  d\bs{p}_1 d\bs{p}_2 d\bs{p}_3 d\bs{p}_4
+V(\bs{z}) e^{i\bs{z}(\bs{p}_4 - \bs{p}_1)} 
+a^\dagger_{\bs{p}_1} a^\dagger_{\bs{p}_2} a_{\bs{p}_3} a_{\bs{p}_4} = \\
+& \cfrac{(2\pi)^{-3}}{2} \int \delta(-\bs{p}_1 - \bs{p}_2 + \bs{p}_3 + \bs{p}_4) d\bs{z}  d\bs{p}_1 d\bs{p}_2 d\bs{p}_3 d\bs{p}_4
+V(\bs{z}) e^{i\bs{z}(\bs{p}_4 - \bs{p}_1)} 
+a^\dagger_{\bs{p}_1} a^\dagger_{\bs{p}_2} a_{\bs{p}_3} a_{\bs{p}_4} = \\
+& \cfrac{(2\pi)^{-3}}{2} \int V(\bs{z}) e^{-i(\bs{p}_3 - \bs{p}_2)} d\bs{z}  d\bs{p}_1 d\bs{p}_2 d\bs{p}_3
+a^\dagger_{\bs{p}_1} a^\dagger_{\bs{p}_2} a_{\bs{p}_3} a_{\bs{p}_1 + \bs{p}_2 - \bs{p}_3}.
+\end{align*}
+Let's do another substitution:
+\begin{equation}
+\begin{cases}
+& \bs{q} = \bs{p}_3 - \bs{p}_2, \\
+& \bs{p}'_1 = \bs{p}_1 - \bs{q}, \\
+&  \bs{p}'_2 = \bs{p}_2 + \bs{q}.
+\end{cases}
+\end{equation}
+Take also Fourier transform of $V$
+\begin{equation}
+\hat{V}(\bs{q}) = (2\pi)^{-3/2} \int d\bs{z} V(\bs{z}) e^{-i\bs{q}\bs{z}}. 
+\end{equation}
+
+\begin{equation}
+V = \cfrac{(2\pi)^{-3/2}}{2} \int d\bs{p}'_1 d\bs{p}'_2 d\bs{q}\, \hat{V}(\bs{q})
+a^\dagger_{\bs{p}'_1 + \bs{q}}
+a^\dagger_{\bs{p}'_2 - \bs{q}}
+a_{\bs{p}'_2}
+a_{\bs{p}'_1}.
+\end{equation}
+And removing primes just for aesthetic reasons
+\begin{equation}
+\boxed{
+V = \cfrac{(2\pi)^{-3/2}}{2} \int d\bs{p}_1 d\bs{p}_2 d\bs{q}\, \hat{V}(\bs{q})
+a^\dagger_{\bs{p}_1 + \bs{q}}
+a^\dagger_{\bs{p}_2 - \bs{q}}
+a_{\bs{p}_2}
+a_{\bs{p}_1}.
+}
+\end{equation}
+
+Assume that $V$ is given by Yukawa potential
+\begin{equation}
+V(\bs{x}) = \cfrac{e^{-\eepsilon|\bs{x}|}q^2}{4\pi |\bs{x}|}.
+\end{equation}
+Let's assume $z$-ax is parallel to $\bs{p}$. We will use for calculations spherical coordinates:
+\begin{align*}
+\begin{cases}
+x = r\sin\theta \cos\phi,\\
+y = r\sin\theta \sin\phi,\\
+z = r\cos\theta.
+\end{cases}
+\end{align*}
+
+Let's calculate
+\begin{align*}
+& \int d\bs{x} V(\bs{x}) e^{-i\bs{p}\bs{x}} = \int d\bs{x} \cfrac{e^{-i\bs{p}\bs{x}} e^{-\eepsilon|\bs{x}|}q^2}{4\pi |\bs{x}|} = \\
+& \int_0^{+\infty} dr \int_0^{2\pi} d\phi \int_0^{\pi} d\theta
+\cfrac{e^{-i|\bs{p}|r \cos\theta} e^{-\eepsilon r}q^2}{4\pi r} r^2 \sin\theta = \\
+& \cfrac{q^2}{2} \int_0^{+\infty} dr \int^{1}_{-1} du 
+e^{-i|\bs{p}|ru} e^{-\eepsilon r}r = \cfrac{iq^2}{2|\bs{p}|}\int_0^{+\infty} dr (e^{-i|\bs{p}|r} - e^{i|\bs{p}|r})e^{-\eepsilon r} = \\
+& \cfrac{q^2}{|\bs{p}|} \int_0^{+\infty} dr \sin(|\bs{p}|r) e^{-\eepsilon r}.
+\end{align*}
+
+Note that
+\begin{equation}
+\int \sin ax\, e^{bx}\, dx = \frac{e^{bx}}{a^2+b^2}\left( b\sin ax - a\cos ax \right).
+\end{equation}
+Thus
+\begin{equation}
+\cfrac{q^2}{|\bs{p}|} \int_0^{+\infty} dr \sin(|\bs{p}|r) e^{-\eepsilon r} = \cfrac{q^2}{|\bs{p}|} \cfrac{|\bs{p}|}{\bs{p}^2 + \eepsilon^2} = \cfrac{q^2}{\bs{p}^2 + \eepsilon^2}.
+\end{equation}
+
+Therefore
+\begin{equation}
+\boxed{
+\hat{V}(\bs{p}) = (2\pi)^{-3/2} \cfrac{q^2}{\bs{p}^2 + \eepsilon^2}
 }
 \end{equation}
 \end{document}

@@ -38,6 +38,54 @@ Let $\Omega$ be an open an connected subset of $\reals^3$. Let $(\partial \Omega
 \begin{proof}
 \cite[see][7.3 Stokes’s and Gauss’s Theorems]{colley2012}
 \end{proof}
+
+\begin{theorem} 
+Let $\Omega$ be an open subset of $\R^n$ and let $\bs{x}$ be a cartesian coordinates system in $R^n$. Let $\bs{y}$ be a new system of coordinates depending contibnously differentiable on $\bs{x}$ such that $\det \cfrac{\partial \bs{y}}{\partial \bs{x}} \not = 0$ on $\Omega$.
+Then for any integrable function $f$ on $\Omega$, we have
+\begin{equation}
+\int_{\Omega} f d\bs{x} = \int_{\bs{y}(\Omega)} f \bigg|\frac{\partial \bs{x}}{\partial \bs{y}}\bigg| d\bs{y},
+\end{equation}
+where  $\bigg|\cfrac{\partial \bs{x}}{\partial \bs{y}}\bigg| = \bigg|\det \cfrac{\partial \bs{x}}{\partial \bs{y}}\bigg|$ and $f$ under first integral depends on $\bs{x}$ while $f$ under second integral represents the same values but dependent on $\bs{y}$.
+\end{theorem}
+\begin{proof}
+Detailed proof of this theorem can be found in \cite{spivak1995}.
+\end{proof}
+Note that we use the same letter $f$ to denote some abstract value, which once can be dependent on $\bs{x}$ once on $\bs{y}$. Don't confuse it with strict mathematical notation of functions. The above notation is more useful for physics.
+$\bigg|\cfrac{\partial \bs{x}}{\partial \bs{y}}\bigg|$ is 
+
+Let's analise an important example of spherical coordinates:
+
+\begin{equation}
+\begin{cases}
+x = r\sin\theta \cos\phi,\\
+y = r\sin\theta \sin\phi,\\
+z = r\cos\theta.
+\end{cases}
+\end{equation}
+
+Let's calcualte Jacobian
+\begin{align*}
+& \begin{vmatrix}
+\cfrac{\partial x}{\partial r} & \cfrac{\partial x}{\partial \theta} & \cfrac{\partial x}{\partial \phi} \\
+\cfrac{\partial y}{\partial r} & \cfrac{\partial y}{\partial \theta} & \cfrac{\partial y}{\partial \phi} \\
+\cfrac{\partial z}{\partial r} & \cfrac{\partial z}{\partial \theta} & \cfrac{\partial z}{\partial \phi} \\
+\end{vmatrix} =
+\begin{vmatrix}
+\sin \theta \cos \phi & r \cos \theta \cos \phi & - r \sin \theta \sin \phi \\
+\sin \theta \sin \phi & r \cos \theta \sin \phi & r \sin \theta \cos \phi \\
+\cos \theta & - r \sin \theta & 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+\end{vmatrix} = \\
+& r^2 \cos^2 \theta \cos^2 \phi \sin \theta +  r^2 \sin^3 \theta \sin^2 \phi
++ r^2 \cos^2\theta \sin^2 \phi \sin\theta
++ r^2 \sin^3 \theta \cos^2 \phi = \\
+& r^2(\sin\theta \sin^2\phi(\sin^2\theta + \cos^2\theta) + \sin\theta\cos^2\phi(\cos^2\theta + \sin^2\theta)) = r^2 \sin\theta.
+\end{align*}
+ 
+Thus
+\begin{equation}
+\int^{+\infty}_{-\infty} \int^{+\infty}_{-\infty} \int^{+\infty}_{-\infty} f(x, y, z) dxdydz = \int_0^{+\infty} dr \int_0^{2\pi} d\phi \int_0^{\pi} d\theta\, f(r, \phi, \theta) r^2 \sin\theta.
+\end{equation}
+
 \subsection{Introduction to Differential Forms on Manifolds Embedded in Real Coordinate Space}
 \label{simplified-manifolds}
 In this subsection we will consider only parametrised smooth manifolds with one map. This is an obvious simplification, but we will treat this only as a traning before doing serious differentiable manifolds theory. This is a propedeutical way taken after \cite{colley2012} with only slight modifications.
