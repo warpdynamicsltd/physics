@@ -1720,37 +1720,37 @@ where $E_\mu$ is energy equivalent to reduced mass of electron.
 \section{Perturbation Theory}
 \subsection{Fermis's golden rule}
 \label{fermi-golden-rule}
-Assume we have a Hamiltonian $H$ with eigenstates base $\ket{\phi_\alpha}$ with corresponding eigenvalues $E_\alpha$. 
+Assume we have a Hamiltonian $H$ with eigenstates base $\ket{\alpha}$ with corresponding eigenvalues $E_\alpha$, where $\alpha$ is a certain parametrisation of the base states. 
 
 \begin{equation}
-H \ket{\phi_\alpha} = E_{\alpha} \ket{\phi_\alpha}.
+H \ket{\alpha} = E_{\alpha} \ket{\alpha}.
 \end{equation}
 
-Moreover, we assume normalisation $\bra{\phi_\alpha}\ket{\phi_\beta} = \delta(\alpha - \beta)$. It will be useful to use $\omega_{\beta\alpha} \stackrel{def}{=} E_\beta - E_\alpha$.
+Moreover, we assume normalisation $\bra{\alpha}\ket{\beta} = \delta(\alpha - \beta)$. It will be useful to use $\omega_{\beta\alpha} \stackrel{def}{=} E_\beta - E_\alpha$.
 
 
-Let's assume that $\ket{\phi_\alpha(t)}$ satisfies evolution equation
+Let's assume that $\ket{\alpha t}$ satisfies evolution equation
 
 \begin{equation}
-i\cfrac{\partial}{\partial t} \ket{\phi_\alpha(t)} = H\ket{\phi_\alpha(t)},
+i\cfrac{\partial}{\partial t} \ket{\alpha t} = H\ket{\alpha t},
 \end{equation}
-and that $\ket{\phi_\alpha(t_0)} = \ket{\phi_\alpha}$. Thus, we have
+and that $\ket{\alpha t_0} = \ket{\alpha}$. Thus, we have
 \begin{equation}
-\ket{\phi_\alpha(t)} = e^{-itE_\alpha} \ket{\phi_\alpha}.
+\ket{\alpha t} = e^{-itE_\alpha} \ket{\alpha}.
 \end{equation}
 
-Note that $\ket{\phi_\alpha(t)}$ is a new basis of quantum states space.
+Note that $\ket{\alpha t}$ is a new basis of quantum states space.
 \begin{proposition}
 \label{timed-unity-decomposition}
 \begin{equation}
-\int \ket{\phi_\alpha(t)}\bra{\phi_\alpha(t)} d\alpha = 1.
+\int \ket{\alpha t}\bra{\alpha t} d\alpha = 1.
 \end{equation}
 \end{proposition}
 \begin{proof}
 \begin{multline*}\\
-\int \ket{\phi_\alpha(t)}\bra{\phi_\alpha(t)}\ket{\phi_{\alpha_0}(t)} d\alpha = 
-\int \ket{\phi_\alpha(t)} e^{it(E_\alpha - E_{\alpha_0})}\bra{\phi_\alpha}\ket{\phi_{\alpha_0}} d\alpha\\
-= \int \ket{\phi_\alpha(t)} e^{it(E_\alpha - E_{\alpha_0})} \delta(\alpha - \alpha_0) d\alpha = \ket{\phi_{\alpha_0}(t)}.\\
+\int \ket{\alpha t}\bra{\alpha t}\ket{\alpha_0 t} d\alpha = 
+\int \ket{\alpha t} e^{it(E_\alpha - E_{\alpha_0})}\bra{\alpha}\ket{\alpha_0} d\alpha\\
+= \int \ket{\alpha t} e^{it(E_\alpha - E_{\alpha_0})} \delta(\alpha - \alpha_0) d\alpha = \ket{\alpha_0 t}.\\
 \end{multline*}
 \end{proof}
 
@@ -1760,7 +1760,7 @@ H' = H + \epsilon W(t).
 \end{equation} 
 
 The following abbreviation will be useful:
-$$W(t)_{\beta \alpha} = \bra{\phi_\beta} W(t) \ket{\phi_\alpha}.$$
+$$W(t)_{\beta \alpha} = \bra{\beta} W(t) \ket{\alpha}.$$
 
 Take an arbitrary $\ket{\psi(t)}$ which satisfies evolution equation
 \begin{equation}
@@ -1770,27 +1770,27 @@ i\cfrac{\partial}{\partial t}\ket{\psi(t)} = (H + \epsilon W(t)) \ket{\psi(t)}.
 Since (\ref{timed-unity-decomposition}), we can expand $\ket{\psi(t)}$ as 
 \begin{equation}
 \label{evolution-expansion}
-\ket{\psi(t)} = \int \bra{\phi_\alpha(t)}\ket{\psi(t)}\ket{\phi_\alpha(t)}d\alpha.
+\ket{\psi(t)} = \int \bra{\alpha t}\ket{\psi(t)}\ket{\alpha t}d\alpha.
 \end{equation}
 
 Let's calculate
 \begin{multline*}\\
-i\cfrac{\partial}{\partial t} \bra{\phi_\alpha(t)}\ket{\psi(t)} = \{i \bra{\phi_\alpha(t)}\} \ket{\psi(t)} + \bra{\phi_\alpha(t)}\{i \cfrac{\partial}{\partial t} \ket{\psi(t)}\} = 
+i\cfrac{\partial}{\partial t} \bra{\alpha t}\ket{\psi(t)} = \{i \bra{\alpha t}\} \ket{\psi(t)} + \bra{\alpha t}\{i \cfrac{\partial}{\partial t} \ket{\psi(t)}\} = 
 \\
-= - \bra{\phi_\alpha(t)} H \ket{\psi(t)} + \bra{\phi_\alpha(t)} H + \epsilon W(t)\ket{\psi(t)}= \bra{\phi_\alpha(t)} \epsilon W(t) \ket{\psi(t)}.\\
+= - \bra{\alpha t} H \ket{\psi(t)} + \bra{\alpha t} H + \epsilon W(t)\ket{\psi(t)}= \bra{\alpha t} \epsilon W(t) \ket{\psi(t)}.\\
 \end{multline*}
 
 And since (\ref{evolution-expansion}), we can write an equation:
 \begin{equation}
 \label{central-perturbation-equation}
-i\cfrac{\partial}{\partial t} \bra{\phi_\beta(t)}\ket{\psi(t)} = \int \bra{\phi_\alpha(t)}\ket{\psi(t)}\bra{\phi_\beta(t)}\epsilon W(t) \ket{\phi_\alpha(t)}d\alpha.
+i\cfrac{\partial}{\partial t} \bra{\beta t}\ket{\psi(t)} = \int \bra{\alpha t}\ket{\psi(t)}\bra{\beta t}\epsilon W(t) \ket{\alpha t}d\alpha.
 \end{equation}
 
-Let $c_\beta(t) \stackrel{def}{=}  \bra{\phi_\beta(t)}\ket{\psi(t)}$. Then (\ref{central-perturbation-equation}) will take a form:
+Let $c_\beta(t) \stackrel{def}{=}  \bra{\beta t}\ket{\psi(t)}$. Then (\ref{central-perturbation-equation}) will take a form:
 
 \begin{equation}
 \boxed{
-i\cfrac{\partial}{\partial t} c_\beta(t) = \int c_\alpha(t)\bra{\phi_\beta(t)} \epsilon W(t) \ket{\phi_\alpha(t)}d\alpha
+i\cfrac{\partial}{\partial t} c_\beta(t) = \int c_\alpha t\bra{\beta t} \epsilon W(t) \ket{\alpha t}d\alpha
 }
 \end{equation}
 
@@ -1803,12 +1803,12 @@ Let's define operator
 
 Hence (\ref{central-perturbation-equation}) becomes
 \begin{equation}
-i\cfrac{\partial}{\partial t} c_\beta(t) = \int c_\alpha(t)\bra{\phi_\beta}\epsilon \hat{W}(t) \ket{\phi_\alpha}d\alpha.
+i\cfrac{\partial}{\partial t} c_\beta(t) = \int c_\alpha(t)\bra{\beta}\epsilon \hat{W}(t) \ket{\alpha}d\alpha.
 \end{equation}
 
 Let's define
 \begin{equation}
-\ket{u(t)} \stackrel{def}{=}  \int c_\alpha(t) \ket{\phi_\alpha} d\alpha.
+\ket{u(t)} \stackrel{def}{=}  \int c_\alpha (t) \ket{\alpha} d\alpha.
 \end{equation}
 
 Note that $\ket{u(t)}$ satisfies evolution equation
@@ -1828,35 +1828,35 @@ then since (\ref{generic-linear-solution2})
 \ket{u(t)} = U(t_0, t) \ket{\psi(t_0)}.
 \end{equation}
 
-We are assuming situation that the quatum system was in a state $\ket{\phi_\alpha}$ at time $t_0$. Then it was eveloved by Hamiltonian $H + \epsilon W(t)$ an at a time $t$ part $\epsilon W(t)$ was ``switched off". We are then interested in probability (or density of probability) $P_{\alpha \to \beta}$ that system ``measured" by $H$ will collapse to the state $\ket{\phi_\beta}$.
+We are assuming a situation in which the quatum system was in a state $\ket{\alpha}$ at time $t_0$. Then it was eveloved by Hamiltonian $H + \epsilon W(t)$ and at a time $t$ part $\epsilon W(t)$ was ``switched off". We are then interested in probability (or density of probability) $P_{\alpha \to \beta}$ that system ``measured" by $H$ will collapse to the state $\ket{\beta}$.
 
-Assume then $\ket{\psi(0)} = \ket{\phi_\alpha}$.
+Assume then $\ket{\psi(0)} = \ket{\alpha}$.
 
 Then
 \begin{equation}
-P_{\alpha \to \beta} = |\bra{\phi_\beta}\ket{\psi(t)}|^2 = |\bra{\phi_\beta}\ket{u(t)}|^2.
+P_{\alpha \to \beta} = |\bra{\beta}\ket{\psi(t)}|^2 = |\bra{\beta}\ket{u(t)}|^2.
 \end{equation}
 
 Note that
 \begin{equation}
-\bra{\phi_\beta}\ket{u(t)} = \bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha},
+\bra{\beta}\ket{u(t)} = \bra{\beta} U(t_0, t) \ket{\alpha},
 \end{equation}
 
 Hence,
 \begin{equation}
-P_{\alpha \to \beta} = |\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha}|^2.
+P_{\alpha \to \beta} = |\bra{\beta} U(t_0, t) \ket{\alpha}|^2.
 \end{equation}
 
 \begin{lemma}
 \label{perturbation-aproximations}
 \begin{equation}
-\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) + \sum_{n=1}^\infty (-i\epsilon)^n \rho^{\beta,\alpha}_n(t),
+\bra{\beta} U(t_0, t) \ket{\alpha} = \delta(\beta - \alpha) + \sum_{n=1}^\infty (-i\epsilon)^n \rho^{\beta,\alpha}_n(t),
 \end{equation}
 where
-\begin{equation}
-\rho^{\gamma_n, \gamma_0}_n(t) = \int_{t_0}^t ds_n \int_{t_0}^{s_n} ds_{n - 1}\dots \int_{t_0}^{s_2} ds_1 \int d\gamma_{n-1} \dots \int d\gamma_1
-\prod_{k=1}^n \exp(is_k(E_{\gamma_k} - E_{\gamma_{k - 1}})) W(s_k)_{\gamma_k \gamma_{k - 1}}.
-\end{equation}
+\begin{align*}
+& \rho^{\gamma_n, \gamma_0}_n(t) = \int_{t_0}^t ds_n \int_{t_0}^{s_n} ds_{n - 1}\dots \int_{t_0}^{s_2} ds_1 \int d\gamma_{n-1} \dots \int d\gamma_1 \\
+& \prod_{k=1}^n \exp(is_k(E_{\gamma_k} - E_{\gamma_{k - 1}})) W(s_k)_{\gamma_k \gamma_{k - 1}}.
+\end{align*}
 \end{lemma}
 \begin{proof}
 By \ref{integral-version-schrodinger} we have
@@ -1866,17 +1866,17 @@ U(t_0, t) = 1 - i\epsilon \int_{t_0}^t ds \hat{W}(s) U(t_0, s).
 Thus
 
 \begin{equation}
-\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) - i\epsilon\int_{t_0}^t ds \bra{\beta}\hat{W}(s) U(t_0, s)\ket{\phi_\alpha},
+\bra{\beta} U(t_0, t) \ket{\alpha} = \delta(\beta - \alpha) - i\epsilon\int_{t_0}^t ds \bra{\beta}\hat{W}(s) U(t_0, s)\ket{\alpha},
 \end{equation}
 
 and thus
 
 \begin{equation}
-\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) - i\epsilon\int_{t_0}^t ds \bra{\beta}\hat{W}(s)\int d\gamma \ket{\phi_\gamma}\bra{\phi_\gamma} U(t_0, s)\ket{\phi_\alpha},
+\bra{\beta} U(t_0, t) \ket{\alpha} = \delta(\beta - \alpha) - i\epsilon\int_{t_0}^t ds \bra{\beta}\hat{W}(s)\int d\gamma \ket{\gamma}\bra{\gamma} U(t_0, s)\ket{\alpha},
 \end{equation}
 
 \begin{equation}
-\bra{\phi_\beta} U(t_0, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) - \int_{t_0}^t ds \int d\gamma e^{is(E_\beta - E_\gamma)} W_{\beta\gamma}(s) \bra{\phi_\gamma}U(t_0, s)\ket{\phi_\alpha}.
+\bra{\beta} U(t_0, t) \ket{\alpha} = \delta(\beta - \alpha) - \int_{t_0}^t ds \int d\gamma e^{is(E_\beta - E_\gamma)} W_{\beta\gamma}(s) \bra{\gamma}U(t_0, s)\ket{\alpha}.
 \end{equation}
 Let $K_{\beta, \alpha}(t) = \delta(\alpha - \beta) + \sum_{n=1}^\infty (-i\epsilon)^n \rho^{\beta,\alpha}_n(t)$. It is enough to show that $K_{\beta, \alpha}(t)$ satisfy equation :
 \begin{equation}
@@ -1944,11 +1944,11 @@ Jacobian determinant of this transformation is 1, then we can write
 
 Note that
 \begin{align*}
-&\bra{\phi_\beta}S_n (-\infty, t) \ket{\phi_\alpha} = (-i)^n \\
-& \bra{\phi_\beta} \int^t_{-\infty} dt_n e^{n\eepsilon t_{n}} e^{it_n(E_{\beta} - E_{\alpha})} W\\
+&\bra{\beta}S_n (-\infty, t) \ket{\alpha} = (-i)^n \\
+& \bra{\beta} \int^t_{-\infty} dt_n e^{n\eepsilon t_{n}} e^{it_n(E_{\beta} - E_{\alpha})} W\\
 & \int^0_{-\infty}dt_{n-1} e^{(n - 1)\eepsilon t_{n - 1}}e^{i(H - E_\alpha)} W\\
 & \dots \\
-&\int^0_{-\infty}dt_{1} e^{\eepsilon t_1}e^{i(H - E_\alpha)} W \ket{\phi_\alpha}.
+&\int^0_{-\infty}dt_{1} e^{\eepsilon t_1}e^{i(H - E_\alpha)} W \ket{\alpha}.
 \end{align*} 
 
 Note that,
@@ -1958,9 +1958,9 @@ Note that,
 
 Hence,
 \begin{equation}
-\bra{\phi_\beta}S_n (-\infty, t) \ket{\phi_\alpha} = \\
+\bra{\beta}S_n (-\infty, t) \ket{\alpha} = \\
 \cfrac{e^{-it(\omega_{\alpha\beta} +in\eepsilon)}}{\omega_{\alpha\beta}+in\eepsilon }
-\bra{\phi_\beta} W \prod_{k = n - 1}^1 (\cfrac{1}{E_\alpha - H + ik\eepsilon}W) \ket{\phi_\alpha}.\\
+\bra{\beta} W \prod_{k = n - 1}^1 (\cfrac{1}{E_\alpha - H + ik\eepsilon}W) \ket{\alpha}.\\
 \end{equation}
 
 Note that the above equation is exact. We will now make a replacement $k\eepsilon \to \eepsilon$. For now, we will motivate it that because we can treat $\epsilon$ as a value which disapears in practice with certain power $\epsilon^n$, thus in practice we need to consider only finite number of operators $S_n$. With this assumption in mind, since we will finally consider limit $\eepsilon \to 0$, $k\eepsilon$ is as good as $\eepsilon$. This step leaves us with certain distaste, we will need to make a deeper discussion of it in the future.
@@ -1984,39 +1984,39 @@ U_\eepsilon(t_0, t) = \mathcal{T} \exp(-i\epsilon \int_{t_0}^t ds \hat{W}(s)).
 
 Thus
 \begin{equation}
-\bra{\phi_\beta}U_\eepsilon (-\infty, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) + \cfrac{e^{-it(\omega_{\alpha\beta} +i\eepsilon)}}{\omega_{\alpha\beta}+i\eepsilon } \bra{\phi_\beta}T_{\eepsilon} \ket{\phi_\alpha}.
+\bra{\beta}U_\eepsilon (-\infty, t) \ket{\alpha} = \delta(\beta - \alpha) + \cfrac{e^{-it(\omega_{\alpha\beta} +i\eepsilon)}}{\omega_{\alpha\beta}+i\eepsilon } \bra{\beta}T_{\eepsilon} \ket{\alpha}.
 \end{equation}
 
 Note that
 \begin{equation}
-S_n (-\infty, 0) \ket{\phi_\alpha} =  \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^n \ket{\phi_\alpha},
+S_n (-\infty, 0) \ket{\alpha} =  \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^n \ket{\alpha},
 \end{equation}
 
 and hence
 \begin{equation}
-U_\eepsilon(-\infty, 0) \ket{\phi_\alpha} = \ket{\phi_\alpha} + \epsilon^n \sum_{n=1}^\infty \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^n \ket{\phi_\alpha}.
+U_\eepsilon(-\infty, 0) \ket{\alpha} = \ket{\alpha} + \epsilon^n \sum_{n=1}^\infty \big(\cfrac{1}{E_\alpha - H + i\eepsilon}W\big)^n \ket{\alpha}.
 \end{equation}
 
 From the above
 \begin{equation}
-U_\eepsilon(-\infty, 0) \ket{\phi_\alpha} = \ket{\phi_\alpha} + \big(\cfrac{1}{E_\alpha - H + i\eepsilon}\epsilon W\big)U(-\infty, 0) \ket{\phi_\alpha}.
+U_\eepsilon(-\infty, 0) \ket{\alpha} = \ket{\alpha} + \big(\cfrac{1}{E_\alpha - H + i\eepsilon}\epsilon W\big)U(-\infty, 0) \ket{\alpha}.
 \end{equation}
 
 Let's define
 \begin{equation}
-\ket{\psi_\alpha} \stackrel{def}{=} U_\eepsilon(-\infty, 0) \ket{\phi_\alpha}.
+\ket{\psi_\alpha} \stackrel{def}{=} U_\eepsilon(-\infty, 0) \ket{\alpha}.
 \end{equation}
 
 Then we have
 \begin{equation}
-\ket{\psi_\alpha} = \ket{\phi_\alpha} + \big(\cfrac{1}{E_\alpha - H + i\eepsilon}\epsilon W\big)\ket{\psi_\alpha}.
+\ket{\psi_\alpha} = \ket{\alpha} + \big(\cfrac{1}{E_\alpha - H + i\eepsilon}\epsilon W\big)\ket{\psi_\alpha}.
 \end{equation}
 
 This is called Lippman-Schwinger equation.
 
 By \ref{transition-operator}, we have
 \begin{equation}
-T_{\eepsilon}\ket{\phi_\alpha} = \epsilon W \ket{\psi_\alpha}. 
+T_{\eepsilon}\ket{\alpha} = \epsilon W \ket{\psi_\alpha}. 
 \end{equation}
 
 For the rest of argumentation we will assume that we will operate on states $\ket{\phi}$ for which there exists self-adjoint $T$ such that 
@@ -2025,37 +2025,71 @@ where $O(\eepsilon)$ is some polynomial error operator.
 
 We will try to calculate $\cfrac{d}{dt} P_{\alpha\to\beta}$. We have
 \begin{equation}
-P_{\alpha\to\beta} = \bra{\phi_\beta}U (-\infty, t) \ket{\phi_\alpha}\bra{\phi_\beta}U (-\infty, t) \ket{\phi_\alpha}^*.
+P_{\alpha\to\beta} = \bra{\beta}U (-\infty, t) \ket{\alpha}\bra{\beta}U (-\infty, t) \ket{\alpha}^*.
 \end{equation}
 
 Let's prepare
 \begin{equation}
-\bra{\phi_\beta}U_\eepsilon (-\infty, t) \ket{\phi_\alpha} = \delta(\beta - \alpha) + \cfrac{e^{\eepsilon t}e^{-it\omega_{\alpha\beta}}}{\omega_{\alpha\beta}+i\eepsilon } \bra{\phi_\beta}T_\epsilon \ket{\phi_\alpha}.
+\bra{\beta}U_\eepsilon (-\infty, t) \ket{\alpha} = \delta(\beta - \alpha) + \cfrac{e^{\eepsilon t}e^{-it\omega_{\alpha\beta}}}{\omega_{\alpha\beta}+i\eepsilon } \bra{\beta}T_\epsilon \ket{\alpha}.
 \end{equation}
 
 \begin{equation}
 \cfrac{d}{dt}
-\bra{\phi_\beta}U_\eepsilon (-\infty, t) \ket{\phi_\alpha} = -ie^{\eepsilon t}e^{-it\omega_{\alpha\beta}}\bra{\phi_\beta}T_\eepsilon \ket{\phi_\alpha}.
+\bra{\beta}U_\eepsilon (-\infty, t) \ket{\alpha} = -ie^{\eepsilon t}e^{-it\omega_{\alpha\beta}}\bra{\beta}T_\eepsilon \ket{\alpha}.
 \end{equation}
 
 Then
 \begin{align*}
-&\cfrac{d}{dt} \big( \bra{\phi_\beta}U_\eepsilon(-\infty, t) \ket{\phi_\alpha}\bra{\phi_\beta}U_\eepsilon(-\infty, t) \ket{\phi_\alpha}^*\big) = \\
-& \bigg(\delta(\beta - \alpha) + \cfrac{e^{\eepsilon t}e^{-it\omega_{\alpha\beta}}}{\omega_{\alpha\beta}+i\eepsilon } \bra{\phi_\beta}T_\eepsilon \ket{\phi_\alpha}\bigg)ie^{\eepsilon t}e^{it\omega_{\alpha\beta}}\bra{\phi_\alpha}T^{\dagger}_\eepsilon \ket{\phi_\beta} + \\
-& \bigg(\delta(\beta - \alpha) + \cfrac{e^{\eepsilon t}e^{it\omega_{\alpha\beta}}}{\omega_{\alpha\beta}-i\eepsilon } \bra{\phi_\alpha}T^{\dagger}_\eepsilon \ket{\phi_\beta}\bigg)(-i)e^{\eepsilon t} e^{-it\omega_{\alpha\beta}}\bra{\phi_\beta}T_\eepsilon \ket{\phi_\alpha} = \\
-& - \delta(\alpha - \beta) e^{\eepsilon t}\sin(t\omega_{\alpha\beta}) + ie^{\eepsilon t}\big(\cfrac{1}{\omega_{\alpha\beta}+i\eepsilon} - \cfrac{1}{\omega_{\alpha\beta}-i\eepsilon}\big)\bra{\phi_\alpha}T^{\dagger}_\eepsilon \ket{\phi_\beta} \bra{\phi_\beta}T_\eepsilon \ket{\phi_\alpha} = \\
+&\cfrac{d}{dt} \big( \bra{\beta}U_\eepsilon(-\infty, t) \ket{\alpha}\bra{\beta}U_\eepsilon(-\infty, t) \ket{\alpha}^*\big) = \\
+& \bigg(\delta(\beta - \alpha) + \cfrac{e^{\eepsilon t}e^{-it\omega_{\alpha\beta}}}{\omega_{\alpha\beta}+i\eepsilon } \bra{\beta}T_\eepsilon \ket{\alpha}\bigg)ie^{\eepsilon t}e^{it\omega_{\alpha\beta}}\bra{\alpha}T^{\dagger}_\eepsilon \ket{\beta} + \\
+& \bigg(\delta(\beta - \alpha) + \cfrac{e^{\eepsilon t}e^{it\omega_{\alpha\beta}}}{\omega_{\alpha\beta}-i\eepsilon } \bra{\alpha}T^{\dagger}_\eepsilon \ket{\beta}\bigg)(-i)e^{\eepsilon t} e^{-it\omega_{\alpha\beta}}\bra{\beta}T_\eepsilon \ket{\alpha} = \\
+& - \delta(\alpha - \beta) e^{\eepsilon t}\sin(t\omega_{\alpha\beta}) + ie^{\eepsilon t}\big(\cfrac{1}{\omega_{\alpha\beta}+i\eepsilon} - \cfrac{1}{\omega_{\alpha\beta}-i\eepsilon}\big)\bra{\alpha}T^{\dagger}_\eepsilon \ket{\beta} \bra{\beta}T_\eepsilon \ket{\alpha} = \\
 & \delta(\alpha - \beta) e^{\eepsilon t}\sin(t\omega_{\beta\alpha})
-+ i e^{\eepsilon t} \cfrac{-i2\eepsilon}{\omega_{\beta\alpha}^2 + \eepsilon^2} \bra{\phi_\alpha}T^{\dagger}_\eepsilon \ket{\phi_\beta} \bra{\phi_\beta}T_\eepsilon \ket{\phi_\alpha} \to_{\eepsilon\to 0}\\
++ i e^{\eepsilon t} \cfrac{-i2\eepsilon}{\omega_{\beta\alpha}^2 + \eepsilon^2} \bra{\alpha}T^{\dagger}_\eepsilon \ket{\beta} \bra{\beta}T_\eepsilon \ket{\alpha} \to_{\eepsilon\to 0}\\
 &\delta(\alpha - \beta) \sin(t\omega_{\beta\alpha}) + 2\pi\delta(\omega_{\beta\alpha})
-|\bra{\phi_\beta}T\ket{\phi_\alpha}|^2.
+|\bra{\beta}T\ket{\alpha}|^2.
 \end{align*}
 
 Thus
 \begin{equation}
 \cfrac{d}{dt} P_{\alpha\to\beta} = \delta(\alpha - \beta) \sin(t\omega_{\beta\alpha}) + 2\pi\delta(\omega_{\beta\alpha})
-|\bra{\phi_\beta}T\ket{\phi_\alpha}|^2.
+|\bra{\beta}T\ket{\alpha}|^2.
 \end{equation}
 
+To simplify equations lets assume $T_{\beta\alpha} \stackrel{def}{=} \bra{\beta}T\ket{\alpha}$.
+
+Let $\Omega$ will be some set of base states ``accesible'' from state $\ket{\alpha}$.
+
+\begin{equation}
+\cfrac{d}{dt} P_{\alpha\to{\Omega}} 
+= 2\pi \int_{\Omega} d\beta \, \delta(E_\beta - E_\alpha)
+T_{\beta\alpha}^2.
+\end{equation}
+
+Because we know that $\ket{\beta}$ are eigenstates of $H$, we can find other parametrisation $\beta \mapsto E, \gamma$, where $E = E_\beta$. In such parametrisation, we have
+
+\begin{align*}
+& \cfrac{d}{dt} P_{\alpha\to{\Omega}} 
+= 2\pi \int_\Omega dE d\gamma \, \delta(E - E_\alpha) T_{\beta(E, \gamma)\alpha}^2 \bigg|\frac{\partial \beta}{\partial E \partial \gamma}\bigg| = \\
+& 2 \pi \int_{\Omega(E_{\alpha})} d\gamma\,  T_{\beta(E_\alpha, \gamma)\alpha}^2 \bigg| \frac{\partial \beta}{\partial E \partial \gamma}\bigg|_{E = E_\alpha}.
+\end{align*}
+
+The derived equation is called Fermi Golden Rule.
+\begin{equation}
+\boxed{
+\cfrac{d}{dt} P_{\alpha\to{\Omega}} 
+= \frac{2 \pi}{\hbar} \int_{\Omega(E_{\alpha})} d\gamma\,  T_{\beta(E_\alpha, \gamma)\alpha}^2 \bigg| \frac{\partial \beta}{\partial E \partial \gamma}\bigg|_{E = E_\alpha}
+}
+\end{equation}  
+
+In case $\ket{\beta}$ are not degenerated on $\Omega$ (i.e. $E_\beta \not= E_\beta'$ for $\beta \not=\beta'$), we have $E \mapsto \beta$, where $E = E_\beta$.
+
+\begin{equation}
+\boxed{
+\cfrac{d}{dt} P_{\alpha\to\beta(E_\alpha)} 
+= \cfrac{2 \pi}{\hbar} T_{\beta(E_\alpha)\alpha}^2 \bigg| \frac{\partial \beta}{\partial E}\bigg|_{E = E_\alpha}
+}
+\end{equation}  
 
 \subsection{Stationary Perturbation}
 Let's assume our hamiltonian has a form
