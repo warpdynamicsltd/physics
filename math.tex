@@ -2370,6 +2370,93 @@ Thus
 %\begin{definition}
 %Let $\{u_\alpha\}_{\alpha\in\R^n} \subset S'_n$.
 %\end{definition}
+\section{Holomorphic Functions}
+
+In this section we will follow aproach from \cite{rudin1987}. Any proofs for theorems in this section, if not metioned explicitely, can be found in \cite{rudin1987}[10].
+
+\begin{definition}
+\begin{equation}
+D(a, r) = \{ z\in \C: |z - a| < r\},
+\end{equation}
+\begin{equation}
+\bar{D}(a, r) = \{ z\in \C: |z - a| \leq r\}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}
+For each sequence $c_n\in\C$, for $R\in[0, +\infty]$ given by
+\begin{equation}
+R = \cfrac{1}{\limsup_{n\to\infty} |c_n|^{1/n}}
+\end{equation}
+the power series
+\begin{equation}
+\sum_{n=0}^\infty c_n(z - a)^n
+\end{equation}
+converges absolutely and uniformly in $\bar{D}(a, r)$ for any $r < R$ and diverges for any $z\not\in \bar{D}(a, R)$.
+\end{theorem}
+\begin{proof}
+For proof, see e.g. \cite{maurin1976}[V.5].
+\end{proof}
+
+\begin{definition}
+Let $\Omega\subset\C$ and $f:\Omega\to\C$. We say that $f$ is representable as power series in $\Omega$ if and only if for each $D(a, r)\subset \Omega$ there exists a sequence $c_n\in\C$ such that 
+\begin{equation}
+f(z) = \sum_{n=0}^\infty c_n(z - a)^n
+\end{equation}
+for each $z\in D(a, r)$.
+\end{definition}
+
+\begin{definition}[\textbf{Holomorphic function}] 
+Let $\Omega\subset\C$ and $f:\Omega\to\C$. We say that $f$ is holomorphic in $\Omega$ if and only if the limit 
+\begin{equation}
+\lim_{\Omega\ni z\to z_0} \cfrac{f(z) - f(z_0)}{z - z_0}
+\end{equation}
+exists for each $z\in \Omega$. A set of all holomorphic functions in $\Omega$ will be denoted as $H(\Omega)$.
+\end{definition}
+
+\begin{theorem}
+If $f$ is representable as power series in $\Omega$, then $f\in H(\Omega)$ and a derivative $f'$ is also representable as power series in $\Omega$. If 
+\begin{equation}
+f(z) = \sum_{n=0}^\infty c_n(z - a)^n
+\end{equation}
+for $z\in D(a, r)$, then
+\begin{equation}
+f'(z) = \sum_{n=1}^\infty nc_n(z - a)^{n-1}
+\end{equation}
+for $z\in D(a, r)$.
+\end{theorem}
+
+We will slightly abuse notation treating $\Gamma$ once as parametrised path (i.e a continous and piecewise $C^1$ function $\Gamma:[0,1]\to \C$), other times as a set of points which belong to that path (i.e. $\Gamma([0,1])$). In majority of situations this does not lead to any serious disambiguity.
+
+A parametrised path $\Gamma(\theta) = a + re^{i\theta}$ is called a positivively oriented circle. Note that in an usual convention of drawing axies, this means counterclockwise oriented. 
+
+\begin{theorem}
+Let $\Gamma$ be a closed path in $\C$ and $\Omega = \C\setminus \Gamma$ and
+\begin{equation}
+\Ind_\Gamma(z) = \cfrac{1}{2\pi i} \int_\Gamma \cfrac{d\gamma}{\gamma - z} \text{ for } z\in\Omega. 
+\end{equation}
+Then $\Ind_\Gamma$ is an integer-valued function, constant on each connected component of $\Omega$ and $\Ind_\Gamma = 0$ in unbounded connected component of $\Omega$. 
+\end{theorem}
+
+\begin{theorem}
+If $\Gamma(\theta) = a + re^{i\theta}$ (i.e. $\Gamma$ is a positivively oriented circle), then
+\begin{equation}
+\Ind_\Gamma(z) = 
+\begin{cases}
+1 \text{ for } |z - a| < r,\\
+0 \text{ for } |z - a| > r.
+\end{cases}
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+\label{cauchy-convex}
+Let $\Omega \subset \C$ be a convex open set and let $\Gamma$ be a closed path in $\Omega$. If $f\in H(\Omega)$ and $z\in \Omega\setminus \Gamma$, then
+\begin{equation}
+f(z) \cdot \Ind_\Gamma(z) = \cfrac{1}{2\pi i} \int_\Gamma \cfrac{f(\gamma)}{\gamma - z}d\gamma.
+\end{equation}
+\end{theorem}
+
 \section{Tensor Product of Hilbert Spaces (first aproach)}
 We will briefly summarize a construction of tensor product of Hilbert spaces from \cite{kadison-ringrose1983_I}. In this section, we are not very precise if Hilbert spaces are separable or not. This should be fixed in subsequent revisions and editions, but for now assume that all Hilbert spaces in this section are sparable. 
 \begin{theorem}
