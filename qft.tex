@@ -116,6 +116,7 @@ From this immediately follows Lorentz invariance, but we will give a direct proo
 \end{figure}
 
 \begin{lemma}
+\label{cancel-half-circle}
 Let $\Gamma_R$ be a path
 \begin{equation}
 \theta \mapsto Re^{i\theta} \text{ for } \theta\in[0, \pi].
@@ -166,6 +167,7 @@ Hence we have
 \end{proof}
 
 \begin{corollary}
+\label{cancel-half-circle-cor}
 The above lemma holds symmetrically for a path $\Gamma_R$
 \begin{equation}
 \theta \mapsto Re^{i\theta} \text{ for } \theta\in[\pi, 2\pi].
@@ -189,6 +191,39 @@ We will often use $\theta$ function (which has nothing to do with $\theta$ in th
 \end{equation}
 for $a\not=0$.
 \end{proposition}
+\begin{proof}
+Take $a > 0$. Consider a path $\Gamma$ from $R$ to $-R$ closed by a half-circle $\Gamma_{-R}: \theta \mapsto Re^{i\theta}$ for $\theta\in[\pi, 2\pi]$. ($-R$ in $\Gamma_{-R}$ simply indicates that we take lower part of the cirle). Since $-i\epsilon$ belongs to the interior of $\Gamma$, by Theorem \ref{cauchy-convex}, we have
+\begin{align*}
+& e^{-a\epsilon} = \cfrac{1}{2\pi i} \int_\Gamma \cfrac{e^{-iax}}{x + i\epsilon} dx =
+- \cfrac{1}{2\pi i} \int_{-R}^R \cfrac{e^{-iax}}{x + i\epsilon} dx + 
+\cfrac{1}{2\pi i} \int_{\Gamma_{-R}} \cfrac{e^{-iax}}{x + i\epsilon} dx = \\
+& \cfrac{i}{2\pi} \int_{-R}^R \cfrac{e^{-iax}}{x + i\epsilon} dx + 
+\cfrac{1}{2\pi i} \int_{\Gamma_{-R}} \cfrac{e^{-iax}}{x + i\epsilon} dx.
+\end{align*}
+By Corollary \ref{cancel-half-circle-cor}, we have
+\begin{equation}
+\lim_{R\to \infty} \cfrac{i}{2\pi} \int_{-R}^R \cfrac{e^{-iax}}{x + i\epsilon} dx = e^{-a\epsilon}.
+\end{equation}
+Thus
+\begin{equation}
+\lim\limits_{\epsilon\to 0^+} \cfrac{i}{2\pi} \int_{-\infty}^\infty  \cfrac{e^{-iax}}{x + i\epsilon} dx = 1.
+\end{equation}
+
+Now, take $a < 0$. Consider a new path $\Gamma$ from $-R$ to $R$ closed by a half-circle $\Gamma_{R}: \theta \mapsto Re^{i\theta}$ for $\theta\in[0, \pi]$. Since $-i\epsilon$ does not belong to the interior of $\Gamma$, by Theorem \ref{cauchy-convex}, we have
+\begin{equation}
+\cfrac{1}{2\pi i} \int_\Gamma \cfrac{e^{-iax}}{x + i\epsilon} dx = 0.
+\end{equation}
+
+Now, by Corollary \ref{cancel-half-circle-cor}, we have 
+\begin{equation}
+\lim_{R\to \infty} \cfrac{1}{2\pi i} \int_{\Gamma_{R}} \cfrac{e^{-iax}}{x + i\epsilon} dx = 0,
+\end{equation}
+hence
+\begin{equation}
+0 = \lim_{R\to \infty}\cfrac{1}{2\pi i} \int_{-R}^R \cfrac{e^{-iax}}{x + i\epsilon} dx = 
+\cfrac{1}{2\pi i} \int_{-\infty}^\infty  \cfrac{e^{-iax}}{x + i\epsilon} dx.
+\end{equation}
+\end{proof}
 \subsection{Creation and anihilation algebra for bozons and fermions}
 In this subsection $p$ indexes are arbitrary and they are not necesarlily related to momentum. 
 
