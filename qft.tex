@@ -115,68 +115,8 @@ From this immediately follows Lorentz invariance, but we will give a direct proo
 \caption{Proof of Lorentz invariance of Klein-Gordon equation}
 \end{figure}
 
-\begin{lemma}
-\label{cancel-half-circle}
-Let $\Gamma_R$ be a path
-\begin{equation}
-\theta \mapsto Re^{i\theta} \text{ for } \theta\in[0, \pi].
-\end{equation}
-Let $f:\C \to \C$ be a masurable function on all $\Gamma_R$ for large enough $R$ and there exists $M > 0$ such that
-\begin{equation}
-\lim_{R\to\infty} \sup_{\Gamma_R} |f| < M.
-\end{equation}
-Then for any complex number $z\in \C$ and $a > 0$, we have
-\begin{equation}
-\lim_{R\to \infty} \int_{\Gamma_R} \cfrac{f(\gamma)}{\gamma + z}e^{ia\gamma}d\gamma = 0.
-\end{equation} 
-\end{lemma}
-\begin{proof}
-Note that $d\gamma = iRe^{i\theta} d\theta$, thus
-\begin{equation}
-\int_{\Gamma_R} \cfrac{f(\gamma)}{\gamma + z}e^{ia\gamma}d\gamma =
-\int_0^\pi f(Re^{i\theta}) \cfrac{iRe^{i\theta}}{Re^{i\theta} + z} \exp(iaRe^{i\theta})d\theta.
-\end{equation}
-Note that for big enough $R$, we have
-\begin{equation}
-\big| f(Re^{i\theta})\big| < 2M
-\end{equation}
-and 
-\begin{equation}
-\bigg|  \cfrac{iRe^{i\theta}}{Re^{i\theta} + z} \bigg| < \bigg|  \cfrac{iRe^{i\theta}}{\frac{1}{2}Re^{i\theta}} \bigg| < 2.
-\end{equation}
-Thus
-\begin{align*}
-& \bigg| \int_{\Gamma_R} \cfrac{f(\gamma)}{\gamma + z}e^{ia\gamma}d\gamma \bigg| \leq
-4M \int_0^\pi \big| \exp(iaR\cos\theta)\big| \exp(-aRsin\theta) d \theta = \\
-& 4M \int_0^\pi \exp(-aRsin\theta) d \theta = 8M \int_0^{\pi/2} \exp(-aRsin\theta) d \theta.
-\end{align*}
 
-Note that for each $R > 0$ we have $\theta_R$ such that $\sin \theta_R = R^{-1/2}$.
-Then, we have
-\begin{equation}
-\int_{\theta_R}^{\pi/2} \exp(-aRsin\theta) d \theta \leq \int_{\theta_R}^{\pi/2} \exp(-aR^{1/2}) d \theta = (\pi/2 - \theta_R) \exp(-aR^{1/2}),
-\end{equation}
-and
-\begin{equation}
-\int_0^{\theta_R} \exp(-aRsin\theta) d \theta \leq \theta_R.
-\end{equation}
-Hence we have
-\begin{equation}
-\int_0^{\pi/2} \exp(-aRsin\theta) d \theta \leq \theta_R + (\pi/2 - \theta_R) \exp(-aR^{1/2}) \xrightarrow[R \to \infty]{} 0.
-\end{equation} 
-\end{proof}
-
-\begin{corollary}
-\label{cancel-half-circle-cor}
-The above lemma holds symmetrically for a path $\Gamma_R$
-\begin{equation}
-\theta \mapsto Re^{i\theta} \text{ for } \theta\in[\pi, 2\pi].
-\end{equation}
-and for $a < 0$.
-\end{corollary}
-
-
-We will often use $\theta$ function (which has nothing to do with $\theta$ in the above proof) as Heaviside step function, defined as follows:
+We will often use $\theta$ function as Heaviside step function, defined as follows:
 
 \begin{equation}
 \theta(a) = 
@@ -185,6 +125,8 @@ We will often use $\theta$ function (which has nothing to do with $\theta$ in th
 0 \text{ for } a < 0.
 \end{cases}
 \end{equation}
+
+From the physical standpoint $\theta$ is undefined in $0$.
 \begin{proposition}
 \begin{equation}
 \theta(a) = \lim\limits_{\epsilon\to 0^+} \cfrac{i}{2\pi} \int_{-\infty}^\infty  \cfrac{e^{-iax}}{x + i\epsilon} dx
@@ -200,7 +142,7 @@ Take $a > 0$. Consider a path $\Gamma$ from $R$ to $-R$ closed by a half-circle 
 & \cfrac{i}{2\pi} \int_{-R}^R \cfrac{e^{-iax}}{x + i\epsilon} dx + 
 \cfrac{1}{2\pi i} \int_{\Gamma_{-R}} \cfrac{e^{-iax}}{x + i\epsilon} dx.
 \end{align*}
-By Corollary \ref{cancel-half-circle-cor}, we have
+By Corollary \ref{jordan-lemma-cor} (Jordan's Lemma), we have
 \begin{equation}
 \lim_{R\to \infty} \cfrac{i}{2\pi} \int_{-R}^R \cfrac{e^{-iax}}{x + i\epsilon} dx = e^{-a\epsilon}.
 \end{equation}
@@ -214,7 +156,7 @@ Now, take $a < 0$. Consider a new path $\Gamma$ from $-R$ to $R$ closed by a hal
 \cfrac{1}{2\pi i} \int_\Gamma \cfrac{e^{-iax}}{x + i\epsilon} dx = 0.
 \end{equation}
 
-Now, by Corollary \ref{cancel-half-circle-cor}, we have 
+Now, by Corollary \ref{jordan-lemma-cor} (Jordan's Lemma), we have 
 \begin{equation}
 \lim_{R\to \infty} \cfrac{1}{2\pi i} \int_{\Gamma_{R}} \cfrac{e^{-iax}}{x + i\epsilon} dx = 0,
 \end{equation}

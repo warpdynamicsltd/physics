@@ -2227,10 +2227,10 @@ $W_{\beta\alpha} = \bra{\phi_\beta}W\ket{\phi_\alpha}$.
 
 Note that with above assumptions, we have
 
-\begin{equation}
-\rho^{\gamma_n, \gamma_0}_n(t) = \int_{-\infty}^t ds_n \int_{-\infty}^{s_n} ds_{n - 1}\dots \int_{-\infty}^{s_2} ds_1 \int d\gamma_{n-1} \dots \int d\gamma_1
-\prod_{k=1}^n \exp(is_k(\omega_{\gamma_k\gamma_{k - 1}} - \omega -i\eepsilon)) W_{\gamma_k \gamma_{k - 1}}.
-\end{equation}
+\begin{align*}
+& \rho^{\gamma_n, \gamma_0}_n(t) = \int_{-\infty}^t ds_n \int_{-\infty}^{s_n} ds_{n - 1}\dots \int_{-\infty}^{s_2} ds_1 \int d\gamma_{n-1} \dots \int d\gamma_1 \\
+& \prod_{k=1}^n \exp(is_k(\omega_{\gamma_k\gamma_{k - 1}} - \omega -i\eepsilon)) W_{\gamma_k \gamma_{k - 1}}.
+\end{align*}
 
 For fixed $\alpha = \gamma_0, \gamma_1, \dots, \gamma_{n-1}, \gamma_n = \beta$,
 let's define
@@ -2239,9 +2239,10 @@ let's define
 \end{equation}
 
 Note that
-\begin{equation}
-\rho^{\gamma_n, \gamma_0}_n(t) = \int d\gamma_{n-1} \dots \int d\gamma_1 \prod_{k=1}^n W_{\gamma_k \gamma_{k - 1}}\sigma_{n,1}(t)[\exp(is(\omega_{\gamma_{1}\gamma_0} - \omega -i\eepsilon)))].
-\end{equation}
+\begin{align*}
+& \rho^{\gamma_n, \gamma_0}_n(t) = \int d\gamma_{n-1} \dots \int d\gamma_1 \\
+& \prod_{k=1}^n W_{\gamma_k \gamma_{k - 1}}\sigma_{n,1}(t)[\exp(is(\omega_{\gamma_{1}\gamma_0} - \omega -i\eepsilon)))].
+\end{align*}
 
 Note the following basic properties of $\sigma_{n,m}(t)[f]$:
 
@@ -2274,5 +2275,69 @@ Let's give explicit formulas for $\omega = 0$:
 \begin{equation}
 \rho^{\beta, \alpha}_2(t) = -i \cfrac{e^{2\eepsilon t}e^{it\omega_{\beta\alpha}}}{\omega_{\beta\alpha} - i2\eepsilon}\int d \gamma \cfrac{ W_{\beta\gamma}W_{\gamma\alpha}}{\omega_{\gamma\alpha} - i\eepsilon}.
 \end{equation}
+
+\section{Friday, 30 December 2022}
+
+A special case of Jordan's Lemma (not really important once you prove Jordan's Lemma).
+
+\begin{lemma}
+\label{cancel-half-circle}
+Let $\Gamma_R$ be a path
+\begin{equation}
+\theta \mapsto Re^{i\theta} \text{ for } \theta\in[0, \pi].
+\end{equation}
+Let $f:\C \to \C$ be a masurable function on all $\Gamma_R$ for large enough $R$ and there exists $M > 0$ such that
+\begin{equation}
+\lim_{R\to\infty} \sup_{\Gamma_R} |f| < M.
+\end{equation}
+Then for any complex number $z\in \C$ and $a > 0$, we have
+\begin{equation}
+\lim_{R\to \infty} \int_{\Gamma_R} \cfrac{f(\gamma)}{\gamma + z}e^{ia\gamma}d\gamma = 0.
+\end{equation} 
+\end{lemma}
+\begin{proof}
+Note that $d\gamma = iRe^{i\theta} d\theta$, thus
+\begin{equation}
+\int_{\Gamma_R} \cfrac{f(\gamma)}{\gamma + z}e^{ia\gamma}d\gamma =
+\int_0^\pi f(Re^{i\theta}) \cfrac{iRe^{i\theta}}{Re^{i\theta} + z} \exp(iaRe^{i\theta})d\theta.
+\end{equation}
+Note that for big enough $R$, we have
+\begin{equation}
+\big| f(Re^{i\theta})\big| < 2M
+\end{equation}
+and 
+\begin{equation}
+\bigg|  \cfrac{iRe^{i\theta}}{Re^{i\theta} + z} \bigg| < \bigg|  \cfrac{iRe^{i\theta}}{\frac{1}{2}Re^{i\theta}} \bigg| < 2.
+\end{equation}
+Thus
+\begin{align*}
+& \bigg| \int_{\Gamma_R} \cfrac{f(\gamma)}{\gamma + z}e^{ia\gamma}d\gamma \bigg| \leq
+4M \int_0^\pi \big| \exp(iaR\cos\theta)\big| \exp(-aRsin\theta) d \theta = \\
+& 4M \int_0^\pi \exp(-aRsin\theta) d \theta = 8M \int_0^{\pi/2} \exp(-aRsin\theta) d \theta.
+\end{align*}
+
+Note that for each $R > 0$ we have $\theta_R$ such that $\sin \theta_R = R^{-1/2}$.
+Then, we have
+\begin{equation}
+\int_{\theta_R}^{\pi/2} \exp(-aRsin\theta) d \theta \leq \int_{\theta_R}^{\pi/2} \exp(-aR^{1/2}) d \theta = (\pi/2 - \theta_R) \exp(-aR^{1/2}),
+\end{equation}
+and
+\begin{equation}
+\int_0^{\theta_R} \exp(-aRsin\theta) d \theta \leq \theta_R.
+\end{equation}
+Hence we have
+\begin{equation}
+\int_0^{\pi/2} \exp(-aRsin\theta) d \theta \leq \theta_R + (\pi/2 - \theta_R) \exp(-aR^{1/2}) \xrightarrow[R \to \infty]{} 0.
+\end{equation} 
+\end{proof}
+
+\begin{corollary}
+\label{cancel-half-circle-cor}
+The above lemma holds symmetrically for a path $\Gamma_R$
+\begin{equation}
+\theta \mapsto Re^{i\theta} \text{ for } \theta\in[\pi, 2\pi].
+\end{equation}
+and for $a < 0$.
+\end{corollary}
 
 \end{document}

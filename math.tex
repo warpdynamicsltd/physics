@@ -2372,8 +2372,6 @@ Thus
 %\end{definition}
 \section{Holomorphic Functions}
 
-In this section we will follow aproach from \cite{rudin1987}. Any proofs for theorems in this section, if not metioned explicitely, can be found in \cite{rudin1987}[10].
-
 \begin{definition}
 \begin{equation}
 D(a, r) = \{ z\in \C: |z - a| < r\},
@@ -2426,7 +2424,13 @@ f'(z) = \sum_{n=1}^\infty nc_n(z - a)^{n-1}
 for $z\in D(a, r)$.
 \end{theorem}
 
+\begin{proof}
+For proof, see e.g. \cite{rudin1987}[10].
+\end{proof}
+
 We will slightly abuse notation treating $\Gamma$ once as parametrised path (i.e a continous and piecewise $C^1$ function $\Gamma:[0,1]\to \C$), other times as a set of points which belong to that path (i.e. $\Gamma([0,1])$). In majority of situations this does not lead to any serious disambiguity.
+
+$\Gamma:[a, b] \to \C$ is a closed simple path if its picewise $C^1$, $\Gamma(a) = \Gamma(b)$ and $\Gamma$ is one-to-one on $(a,b)$. 
 
 A parametrised path $\Gamma(\theta) = a + re^{i\theta}$ is called a positivively oriented circle. Note that in an usual convention of drawing axies, this means counterclockwise oriented. 
 
@@ -2437,6 +2441,11 @@ Let $\Gamma$ be a closed path in $\C$ and $\Omega = \C\setminus \Gamma$ and
 \end{equation}
 Then $\Ind_\Gamma$ is an integer-valued function, constant on each connected component of $\Omega$ and $\Ind_\Gamma = 0$ in unbounded connected component of $\Omega$. 
 \end{theorem}
+\begin{proof}
+For proof, see e.g. \cite{rudin1987}[10].
+\end{proof}
+
+We will that simple closed path $\Gamma$ is positively oriented if $\Ind_\Gamma(z) = 1$ for each $z$ in interior of $\Gamma$. 
 
 \begin{theorem}
 If $\Gamma(\theta) = a + re^{i\theta}$ (i.e. $\Gamma$ is a positivively oriented circle), then
@@ -2449,6 +2458,10 @@ If $\Gamma(\theta) = a + re^{i\theta}$ (i.e. $\Gamma$ is a positivively oriented
 \end{equation}
 \end{theorem}
 
+\begin{proof}
+For proof, see e.g. \cite{rudin1987}[10].
+\end{proof}
+
 \begin{theorem}
 \label{cauchy-convex}
 Let $\Omega \subset \C$ be a convex open set and let $\Gamma$ be a closed path in $\Omega$. If $f\in H(\Omega)$ and $z\in \Omega\setminus \Gamma$, then
@@ -2456,6 +2469,137 @@ Let $\Omega \subset \C$ be a convex open set and let $\Gamma$ be a closed path i
 f(z) \cdot \Ind_\Gamma(z) = \cfrac{1}{2\pi i} \int_\Gamma \cfrac{f(\gamma)}{\gamma - z}d\gamma.
 \end{equation}
 \end{theorem}
+\begin{proof}
+For proof, see e.g. \cite{rudin1987}[10].
+\end{proof}
+
+\begin{theorem}[\textbf{Cauchy-Goursat}]
+If a function $f$ is holomorphic on simple closed path $\Gamma$ and its interior, then
+\begin{equation}
+\int_\Gamma f(z) dz = 0.
+\end{equation} 
+\end{theorem}
+\begin{proof}
+For proof see e.g. \cite{brown2003}[44]
+\end{proof}
+
+\begin{definition}
+Let $\Omega\subset\C$ be open and suppose $f\in H(\Omega\setminus\{z_0\})$.
+\begin{equation}
+\Res(f,z_0) \stackrel{def}{=} \cfrac{1}{2\pi i} \int_\Gamma f(z) dz,
+\end{equation}
+where $\Gamma \subset \Omega\setminus\{z_0\}$ is a simple closed path and $z_0$ is in its interior.
+\end{definition}
+Uniqueness of the above definition can be showen by Cauchy-Goursat theorem. This definition is consistent with definition in \cite{brown2003}[62].
+
+\begin{theorem}
+Let $\Omega\subset \C$ be an open set. Assume that $\phi\in H(\Omega)$, let $z_0\in\Omega$ and
+\begin{equation}
+f(z) = \cfrac{\phi(z)}{(z - z_0)^m} \text{ for } z\in \Omega\setminus\{z_0\},
+\end{equation}
+then
+\begin{equation}
+\Res(f,z_0) = \cfrac{\phi^{(m - 1)}(z_0)}{(m-1)!},
+\end{equation}
+where by $\phi^{(k)}$ we denote $k$-th derivative of $\phi$ and $\phi^{(0)} = \phi$ with $0!=1$.
+\end{theorem}
+\begin{proof}
+For proof see e.g. \cite{brown2003}[66]
+\end{proof}
+\begin{theorem}[\textbf{Cauchy's Residue Theorem}]
+\label{cauchy-residue}
+Let $\Gamma \in \C$ be a simple closed path positively oriented. If $f$ is holomorphic on $\Gamma$ and in its interior expect points $z_1, \dots, z_n$ in interior of $\Gamma$, then
+\begin{equation}
+\int_\Gamma f(z) dz = 2\pi i \sum_{k=1}^n \Res(f, z_k).
+\end{equation}
+\end{theorem}
+\begin{proof}
+For proof see e.g. \cite{brown2003}[63]
+\end{proof}
+\begin{theorem}[\textbf{Jordan's Lemma}]
+\label{jordan-lemma}
+Let $\Gamma_R$ be a path
+\begin{equation}
+\theta \mapsto Re^{i\theta} \text{ for } \theta\in[0, \pi].
+\end{equation}
+Let $f:\C \to \C$ be a masurable function on all $\Gamma_R$ for large enough $R$.
+If for any $R > 0$ there exists a constant $M_R$ such that $|f(z)| \leq M_R$ for all $z\in\Gamma_R$, where
+\begin{equation}
+\lim_{R\to \infty} M_R = 0
+\end{equation}
+then for any $a > 0$, we have
+\begin{equation}
+\lim_{R\to \infty} \int_{\Gamma_R} f(z) e^{iaz}dz = 0.
+\end{equation}
+\end{theorem}
+\begin{proof}
+For proof see e.g. \cite{brown2003}
+\end{proof}
+
+\begin{corollary}
+\label{jordan-lemma-cor}
+Jordan's Lemma holds symmetrically for a path $\Gamma_R$
+\begin{equation}
+\theta \mapsto Re^{i\theta} \text{ for } \theta\in[\pi, 2\pi].
+\end{equation}
+and for $a < 0$.
+\end{corollary}
+
+\begin{corollary}
+Let $\Gamma_R$ be a path
+\begin{equation}
+\theta \mapsto Re^{i\theta} \text{ for } \theta\in[0, \pi].
+\end{equation}
+Let $\rho$ be a complex polynominal with $\deg(\rho) \geq 1$.
+Let $f:\C \to \C$ be a masurable function on all $\Gamma_R$ for large enough $R$. 
+If there exists a constant $M$ such that for any $R > R_0$, $|f(z)| \leq M$ for all $z\in\Gamma_R$, then for any $a > 0$, we have
+\begin{equation}
+\int_{\Gamma_R} \cfrac{f(z)}{\rho(z)} e^{iaz}dz = 0.
+\end{equation}
+\end{corollary}
+
+For convenience we will define a function $\theta_a$ as follows:
+
+\begin{equation}
+\theta_a(x) = 
+\begin{cases}
+1 \text{ for } ax > 0,\\
+0 \text{ for } ax \leq 0.
+\end{cases}
+\end{equation}
+
+
+\begin{lemma}
+Let $f$ be holomorfic function on $\C\setminus \{z_1, \dots, z_n\}$ where $\Im z_k \not= 0$ for 
+$k=1, \dots, n$. Suppose that for any $R > 0$ we have a constant $M_R\in[0, \infty]$ such that $|f(z)| \leq M_R$ for each $|z| = R$ and that $\lim_{R\to\infty} M_R = 0$.
+If $a\not= 0$ is a real value, then
+\begin{equation}
+\int_{-\infty}^\infty f(x) e^{iax}dx = 2\pi i \sum_{k=1}^n \theta_a(\Im z_k) 
+\Res(f(z)e^{iaz}, z=z_k).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let's assume that $a > 0$. Take any $R > \max_{k=1}^n |z_k|$. Consider a simple closed path $\Gamma$ from $-R$ to $R$ closed by a half-circle $\Gamma_{R}: \theta \mapsto Re^{i\theta}$ for $\theta\in[0, \pi]$. Since none $z_k$ lies on a line from $-R$ to $R$ and all of them are in $D(0, R)$, by Theorem \ref{cauchy-residue} (Cauchy Residue Theorem) we have:
+\begin{equation}
+\int_\Gamma f(z) e^{iaz}dz = 2\pi i \sum_{k=1}^n \theta_a(\Im z_k) 
+\Res(f(z)e^{iaz}, z=z_k).
+\end{equation}
+But 
+\begin{equation}
+\int_\Gamma f(z) e^{iaz}dz = \int_{-R}^R f(x) e^{iax}dx + \int_{\Gamma_R} f(z) e^{iaz}dz,
+\end{equation}
+where by Lemma \ref{jordan-lemma} (Jordan's Lemma), we have 
+\begin{equation}
+\lim_{R\to \infty} \int_{\Gamma_R} f(z) e^{iaz}dz = 0.
+\end{equation}
+Thus 
+\begin{equation}
+\int_\Gamma f(z) e^{iaz}dz = \lim_{R\to \infty}\int_{-R}^R f(x) e^{iax}dx = 
+\int_{-\infty}^\infty f(x) e^{iax}dx
+\end{equation}
+and hence thesis.
+For $a < 0$, the proof is analogous, with the difference that we would use a half-circle a half-circle $\Gamma_{-R}: \theta \mapsto Re^{i\theta}$ for $\theta\in[\pi, 2\pi]$ and apply Corollary \ref{jordan-lemma-cor}.
+\end{proof}
 
 \section{Tensor Product of Hilbert Spaces (first aproach)}
 We will briefly summarize a construction of tensor product of Hilbert spaces from \cite{kadison-ringrose1983_I}. In this section, we are not very precise if Hilbert spaces are separable or not. This should be fixed in subsequent revisions and editions, but for now assume that all Hilbert spaces in this section are sparable. 
