@@ -127,45 +127,92 @@ We will often use $\theta$ function as Heaviside step function, defined as follo
 \end{equation}
 
 From the physical standpoint $\theta$ is undefined in $0$.
+
 \begin{proposition}
 \begin{equation}
 \theta(a) = \lim\limits_{\epsilon\to 0^+} \cfrac{i}{2\pi} \int_{-\infty}^\infty  \cfrac{e^{-iax}}{x + i\epsilon} dx
 \end{equation}
 for $a\not=0$.
 \end{proposition}
+\begin{proof} This follows imediatelly from Lemma \ref{fourier-residues}.
+\end{proof}
+
+We will deal later with Faynman propagators, there is a bit of useful math to work out around it.
+Let's take
+\begin{equation}
+D(z) =  \int \cfrac{d \bs{p}}{(2\pi)^3}
+\cfrac{e^{-p \cdot z}}{2E_{\bs{p}}}, 
+\end{equation}
+
+where $p = (E_{\bs{p}}, \bs{p})$. Recall $E_{\bs{p}} = \sqrt{\bs{p}^2 + m^2}$.
+Let's define 
+\begin{equation}
+D_F(z) = \theta(z^0)D(z) + \theta(-z^0)D(-z).
+\end{equation}
+
+We will show useful (and completly strict mathematically) fact:
+\begin{fact}
+\begin{equation}
+D_F(z) = \lim_{\epsilon\to 0^+}\int \cfrac{d^4 p}{(2\pi)^4} \cfrac{i}{p^2 - m^2 + i\epsilon}\, e^{-ip\cdot z}, 
+\end{equation}
+where $p$ is just an integration variable over whole spacetime.
+\end{fact}
 \begin{proof}
-Take $a > 0$. Consider a path $\Gamma$ from $R$ to $-R$ closed by a half-circle $\Gamma_{-R}: \theta \mapsto Re^{i\theta}$ for $\theta\in[\pi, 2\pi]$. ($-R$ in $\Gamma_{-R}$ simply indicates that we take lower part of the cirle). Since $-i\epsilon$ belongs to the interior of $\Gamma$, by Theorem \ref{cauchy-convex}, we have
-\begin{align*}
-& e^{-a\epsilon} = \cfrac{1}{2\pi i} \int_\Gamma \cfrac{e^{-iax}}{x + i\epsilon} dx =
-- \cfrac{1}{2\pi i} \int_{-R}^R \cfrac{e^{-iax}}{x + i\epsilon} dx + 
-\cfrac{1}{2\pi i} \int_{\Gamma_{-R}} \cfrac{e^{-iax}}{x + i\epsilon} dx = \\
-& \cfrac{i}{2\pi} \int_{-R}^R \cfrac{e^{-iax}}{x + i\epsilon} dx + 
-\cfrac{1}{2\pi i} \int_{\Gamma_{-R}} \cfrac{e^{-iax}}{x + i\epsilon} dx.
-\end{align*}
-By Corollary \ref{jordan-lemma-cor} (Jordan's Lemma), we have
+Let's calculate
+\begin{align}
+\label{faynman-propagator-big-integral}
+\int \cfrac{d^4 p}{(2\pi)^4} \cfrac{i}{p^2 - m^2 + i\epsilon}\, e^{-ip\cdot z}
+= \int \cfrac{e^{i\bs{p}\cdot\bs{z}}d^3 \bs{p}}{(2\pi)^3}
+\bigg(-\int_{-\infty}^\infty \cfrac{dp^0}{2\pi i} \cfrac{e^{-ip^0z^0}}{(p^0)^2 - E^2_{\bs{p}} + i\epsilon}\bigg)
+\end{align}
+Let's concentrate now on the integral in the bracket.
+For a fixed $\bs{p}$, lets consider the following representation $E^2_{\bs{p}} - i\epsilon = R_\epsilon e^{-i \omega_\epsilon}$, where $R_\epsilon$ and $\omega_\epsilon$ are real. Note that as we will take $\epsilon \to 0^+$, we will have $R_\epsilon\to E^2_{\bs{p}}$ and $\omega_\epsilon \to 0^+$. Consider squere roots of $E^2_{\bs{p}} - i\epsilon$
+\begin{align}
+& E^{-}_{\bs{p}, \epsilon} = R^{1/2}_\epsilon e^{-i (\omega_\epsilon/2)} \xrightarrow[\epsilon \to 0^+]{} E_{\bs{p}},\\
+& E^{+}_{\bs{p}, \epsilon} = R^{1/2}_\epsilon e^{-i (\pi + \omega_\epsilon/2)}
+\xrightarrow[\epsilon \to 0^+]{} - E_{\bs{p}}.
+\end{align}
+It is worth to mention that here the signs for roots symbols correspond with the sign of the imaginary part, not with the real part (i.e. there are oposit to sign of real part). Indeed, since angle $-\omega_\epsilon/2$ is under real axis and $-(\pi + \omega_\epsilon/2)$ is above, we have
+\begin{align}
+& \Im E^{+}_{\bs{p}, \epsilon} > 0, \\
+& \Im E^{-}_{\bs{p},  \epsilon} < 0.
+\end{align}
+Since the following holds
 \begin{equation}
-\lim_{R\to \infty} \cfrac{i}{2\pi} \int_{-R}^R \cfrac{e^{-iax}}{x + i\epsilon} dx = e^{-a\epsilon}.
+\label{faynman-propagator-small-integral}
+\int_{-\infty}^\infty \cfrac{dp^0}{2\pi i} \cfrac{e^{-ip^0z^0}}{(p^0)^2 - E^2_{\bs{p}} + i\epsilon}
+= \int_{-\infty}^\infty \cfrac{dp^0}{2\pi i} \cfrac{e^{-ip^0z^0}}{(p^0 - E^{+}_{\bs{p}, \epsilon})(p^0 - E^{-}_{\bs{p}})},
 \end{equation}
-Thus
+we can apply Lemma \ref{fourier-residues}.\\
+For $z^0 > 0$, the integral (\ref{faynman-propagator-small-integral}) is equal to the minus residuum at pole $E^{-}_{\bs{p},  \epsilon}$, namely:
 \begin{equation}
-\lim\limits_{\epsilon\to 0^+} \cfrac{i}{2\pi} \int_{-\infty}^\infty  \cfrac{e^{-iax}}{x + i\epsilon} dx = 1.
+-\cfrac{e^{-i E^{-}_{\bs{p},  \epsilon} z^0}}{E^{-}_{\bs{p},  \epsilon} - E^{+}_{\bs{p},  \epsilon}} \xrightarrow[\epsilon \to 0^+]{} - \cfrac{e^{-i E_{\bs{p}} z^0}}{2E_{\bs{p}}}.
+\end{equation}
+Thus in limit the integral \ref{faynman-propagator-big-integral} becomes
+\begin{equation}
+\int \cfrac{e^{i\bs{p}\cdot\bs{z}}d^3 \bs{p}}{(2\pi)^3}
+\bigg( \cfrac{e^{-i E_{\bs{p}}z^0 }}{2E_{\bs{p}}} \bigg) = D(z).
 \end{equation}
 
-Now, take $a < 0$. Consider a new path $\Gamma$ from $-R$ to $R$ closed by a half-circle $\Gamma_{R}: \theta \mapsto Re^{i\theta}$ for $\theta\in[0, \pi]$. Since $-i\epsilon$ does not belong to the interior of $\Gamma$, by Theorem \ref{cauchy-convex}, we have
-\begin{equation}
-\cfrac{1}{2\pi i} \int_\Gamma \cfrac{e^{-iax}}{x + i\epsilon} dx = 0.
-\end{equation}
 
-Now, by Corollary \ref{jordan-lemma-cor} (Jordan's Lemma), we have 
+For $z^0 < 0$, the integral (\ref{faynman-propagator-small-integral}) is equal to the residuum at pole $E^{+}_{\bs{p},  \epsilon}$, namely:
 \begin{equation}
-\lim_{R\to \infty} \cfrac{1}{2\pi i} \int_{\Gamma_{R}} \cfrac{e^{-iax}}{x + i\epsilon} dx = 0,
+\cfrac{e^{-i E^{+}_{\bs{p},  \epsilon} z^0}}{E^{+}_{\bs{p},  \epsilon} - E^{-}_{\bs{p},  \epsilon}} \xrightarrow[\epsilon \to 0^+]{} -\cfrac{e^{i E_{\bs{p}} z^0}}{2E_{\bs{p}}}.
 \end{equation}
-hence
+Thus in limit the integral \ref{faynman-propagator-big-integral} becomes
 \begin{equation}
-0 = \lim_{R\to \infty}\cfrac{1}{2\pi i} \int_{-R}^R \cfrac{e^{-iax}}{x + i\epsilon} dx = 
-\cfrac{1}{2\pi i} \int_{-\infty}^\infty  \cfrac{e^{-iax}}{x + i\epsilon} dx.
+\int \cfrac{e^{i\bs{p}\cdot\bs{z}}d^3 \bs{p}}{(2\pi)^3}
+\bigg( \cfrac{e^{i E_{\bs{p}}z^0 }}{2E_{\bs{p}}} \bigg) = 
+\int \cfrac{e^{-i\bs{p}\cdot\bs{z}}d^3 \bs{p}}{(2\pi)^3}
+\bigg( \cfrac{e^{i E_{\bs{p}}z^0 }}{2E_{\bs{p}}} \bigg) = D(-z).
+\end{equation}
+When we collect cases together, we are getting
+\begin{equation}
+D_F(z) = \theta(z^0)D(z) + \theta(-z^0)D(-z). 
 \end{equation}
 \end{proof}
+
+
 \subsection{Creation and anihilation algebra for bozons and fermions}
 In this subsection $p$ indexes are arbitrary and they are not necesarlily related to momentum. 
 

@@ -2558,30 +2558,40 @@ If there exists a constant $M$ such that for any $R > R_0$, $|f(z)| \leq M$ for 
 \end{equation}
 \end{corollary}
 
-For convenience we will define a function $\theta_a$ as follows:
+For convenience we will define a function $\sigma_a$ as follows:
 
 \begin{equation}
-\theta_a(x) = 
+\sigma_a(x) = 
 \begin{cases}
-1 \text{ for } ax > 0,\\
+\sgn(a) \text{ for } ax > 0,\\
 0 \text{ for } ax \leq 0.
 \end{cases}
 \end{equation}
 
+Note that $\sigma_a$ is $+1$ for all $x$ of the same sign as $a$ for $a > 0$ and $0$ otherwise; and is $-1$ for all $x$ of the same sign as $a$ for $a < 0$.
+
+Then the expresion
+\begin{equation}
+\sum_{k=1}^n \sigma_a(\Im z_k) 
+\Res(f(z)e^{iaz}, z=z_k)
+\end{equation}
+
+is a sum of residues for all $z_k$ above the real axis for $a > 0$ and is a minus sum of residues for all $z_k$ below the real axis for $a < 0$. 
 
 \begin{lemma}
+\label{fourier-residues}
 Let $f$ be holomorfic function on $\C\setminus \{z_1, \dots, z_n\}$ where $\Im z_k \not= 0$ for 
 $k=1, \dots, n$. Suppose that for any $R > 0$ we have a constant $M_R\in[0, \infty]$ such that $|f(z)| \leq M_R$ for each $|z| = R$ and that $\lim_{R\to\infty} M_R = 0$.
 If $a\not= 0$ is a real value, then
 \begin{equation}
-\int_{-\infty}^\infty f(x) e^{iax}dx = 2\pi i \sum_{k=1}^n \theta_a(\Im z_k) 
+\int_{-\infty}^\infty f(x) e^{iax}dx = 2\pi i \sum_{k=1}^n \sigma_a(\Im z_k) 
 \Res(f(z)e^{iaz}, z=z_k).
 \end{equation}
 \end{lemma}
 \begin{proof}
-Let's assume that $a > 0$. Take any $R > \max_{k=1}^n |z_k|$. Consider a simple closed path $\Gamma$ from $-R$ to $R$ closed by a half-circle $\Gamma_{R}: \theta \mapsto Re^{i\theta}$ for $\theta\in[0, \pi]$. Since none $z_k$ lies on a line from $-R$ to $R$ and all of them are in $D(0, R)$, by Theorem \ref{cauchy-residue} (Cauchy Residue Theorem) we have:
+Let's assume that $a > 0$. Take any $R > \max_{k=1}^n |z_k|$. Consider a simple closed path $\Gamma$ from $-R$ to $R$ closed from above by a half-circle $\Gamma_{R}: \theta \mapsto Re^{i\theta}$ for $\theta\in[0, \pi]$. Since none $z_k$ lies on a line from $-R$ to $R$ and all of them are in $D(0, R)$, by Theorem \ref{cauchy-residue} (Cauchy Residue Theorem) we have:
 \begin{equation}
-\int_\Gamma f(z) e^{iaz}dz = 2\pi i \sum_{k=1}^n \theta_a(\Im z_k) 
+\int_\Gamma f(z) e^{iaz}dz = 2\pi i \sum_{k=1}^n \sigma_a(\Im z_k) 
 \Res(f(z)e^{iaz}, z=z_k).
 \end{equation}
 But 
@@ -2598,7 +2608,7 @@ Thus
 \int_{-\infty}^\infty f(x) e^{iax}dx
 \end{equation}
 and hence thesis.
-For $a < 0$, the proof is analogous, with the difference that we would use a half-circle $\Gamma_{-R}: \theta \mapsto Re^{i\theta}$ for $\theta\in[\pi, 2\pi]$ and apply Corollary \ref{jordan-lemma-cor}.
+For $a < 0$, the proof is analogous, with the difference that we will to use a half-circle $\Gamma_{-R}: \theta \mapsto Re^{-i\theta}$ for $\theta\in[0, \pi]$ to close $[-R, R]$ from below and apply Corollary \ref{jordan-lemma-cor}. Mind that in this case $\Gamma$ will have negatively oriented, hence residues below real axis are taken into summation with oposit signs.
 \end{proof}
 
 \section{Tensor Product of Hilbert Spaces (first aproach)}
