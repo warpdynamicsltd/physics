@@ -137,6 +137,25 @@ for $a\not=0$.
 \begin{proof} This follows imediatelly from Lemma \ref{fourier-residues}.
 \end{proof}
 
+It will be also useful to use
+\begin{equation}
+\label{step-derivative}
+\cfrac{d}{da}\theta(a) = \delta(a).
+\end{equation}
+
+One of the justifications is the following representation
+\begin{equation}
+\theta(a) = \int_{-\infty}^a \delta(x) dx.
+\end{equation}
+
+If the above seems to be a bit to artificial, let's note that we can also try to argument this from aproximations:
+
+\begin{equation}
+\cfrac{d}{da}\bigg(\cfrac{i}{2\pi} \int_{-\infty}^\infty  \cfrac{e^{-iax}}{x + i\epsilon} dx\bigg) = \cfrac{i}{2\pi} \int_{-\infty}^\infty  \cfrac{-i x e^{-iax}}{x + i\epsilon} dx
+\xrightarrow[\epsilon \to 0^+]{} \delta(a).
+\end{equation}
+Ultimetly by this and similiar arguments we can convince ourselves that the equation (\ref{step-derivative}) has enough physical sense. 
+
 We will deal later with Faynman propagators, there is a bit of useful math to work out around it.
 Let's take
 \begin{equation}
@@ -166,13 +185,13 @@ Let's calculate
 \bigg(-\int_{-\infty}^\infty \cfrac{dp^0}{2\pi i} \cfrac{e^{-ip^0z^0}}{(p^0)^2 - E^2_{\bs{p}} + i\epsilon}\bigg)
 \end{align}
 Let's concentrate now on the integral in the bracket.
-For a fixed $\bs{p}$, lets consider the following representation $E^2_{\bs{p}} - i\epsilon = R_\epsilon e^{-i \omega_\epsilon}$, where $R_\epsilon$ and $\omega_\epsilon$ are real. Note that as we will take $\epsilon \to 0^+$, we will have $R_\epsilon\to E^2_{\bs{p}}$ and $\omega_\epsilon \to 0^+$. Consider squere roots of $E^2_{\bs{p}} - i\epsilon$
+For a fixed $\bs{p}$, lets consider the following representation $E^2_{\bs{p}} - i\epsilon = R_\epsilon e^{-i \omega_\epsilon}$, where $R_\epsilon$ and $\omega_\epsilon$ are real. Note that as we will take $\epsilon \to 0^+$, we will have $R_\epsilon\to E^2_{\bs{p}}$ and $\omega_\epsilon \to 0^+$. Consider square roots of $E^2_{\bs{p}} - i\epsilon$
 \begin{align}
 & E^{-}_{\bs{p}, \epsilon} = R^{1/2}_\epsilon e^{-i (\omega_\epsilon/2)} \xrightarrow[\epsilon \to 0^+]{} E_{\bs{p}},\\
 & E^{+}_{\bs{p}, \epsilon} = R^{1/2}_\epsilon e^{-i (\pi + \omega_\epsilon/2)}
 \xrightarrow[\epsilon \to 0^+]{} - E_{\bs{p}}.
 \end{align}
-It is worth to mention that here the signs for root symbols correspond to the sign of the imaginary part, not with the real part (i.e. they are actually oposit to the sign of the real part). Indeed, since angle $-\omega_\epsilon/2$ is under real axis and $-(\pi + \omega_\epsilon/2)$ is above, we have
+It is worth to mention that here the signs for root symbols correspond to the sign of the imaginary part, not to the real part (i.e. they are actually oposit to the sign of the real part). Indeed, since angle $-\omega_\epsilon/2$ is under real axis and $-(\pi + \omega_\epsilon/2)$ is above, we have
 \begin{align}
 & \Im E^{+}_{\bs{p}, \epsilon} > 0, \\
 & \Im E^{-}_{\bs{p},  \epsilon} < 0.
