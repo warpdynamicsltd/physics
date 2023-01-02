@@ -824,5 +824,96 @@ Let's go back to potential operator $V$ and let's see how it acts on momentum ba
 
 \begin{equation}
 V \ket{\bs{p}_1\dots \bs{p}_n} = \mathcal{C}_V \sum_{k\not=k'} \int d\bs{q} \hat{V}(\bs{q}) \ket{\bs{p}_1 \tdots (\bs{p}_k + \bs{q}) \tdots (\bs{p}_{k'} - \bs{q}) \tdots \bs{p}_n}.
-\end{equation} 
+\end{equation}
+
+\subsection{Quantum fields ontology on example of a real scalar field}
+
+In this subsection we will discuss the basic ontology of quantum fields, i.e. we will discuss the nature of objects which constitute quantum states in QFT.\\
+
+We will start with the remark that QFT is a standard quantum mechanics theory. We will still investigate some qunatum states $\ket{\rho}$ and their superpositions and try to calculate (or approximate) their Schrödinger evolutions $\cfrac{d}{dt} \ket{\rho(t)} = i\hbar H(t)\ket{\rho(t)}$ (or in Heisenberg picture). What is particular about QFT is the way how we will define the space of states.\\
+
+The quantum state in QFT is a superposition of tensor fields on $\R^3$.\\
+
+We will start our ontological analysis with the simplest field: a real scalar field.
+Let $\mathcal{X}$ denote a space of all qunatum states, which in our case, will be a space of all possible superpositions of real scalar fields on $\R^3$.
+
+Assume that we have two families of linear operators $\hat{\pi}(\bs{x}), \hat{\phi}(\bs{x}): \mathcal{X}\to \mathcal{X}$ indexed by $\bs{x}\in\R^3$. Note that $\hat{\pi}$ and $\hat{\phi}$ are in this sense fields of operators on $\R^3$. Additionally, assume that these families satisfy commutation relation
+\begin{equation}
+[\hat{\phi}(\bs{x}), \hat{\pi}(\bs{y})] = i\delta(\bs{x} - \bs{y}). 
+\end{equation}
+
+It can be proven, under the above assumption, that for a Hamiltonian
+\begin{equation}
+\hat{H} = \int d\bs{x} H(\hat{\phi}(\bs{x}), \hat{\pi}(\bs{x})),  
+\end{equation}
+
+where $H$ denotes just how $\hat{\phi}(\bs{x})$ and $\hat{\pi}(\bs{x})$ are composed together, we have
+
+\begin{equation}
+\bra{\phi_{out}} e^{-it\hat{H}} \ket{\phi_{in}} = \int_{\Omega_{\phi_{in}, \phi_{out}}} \mathcal{D}\phi  \int \mathcal{D}\pi
+\exp\bigg[i \int d^4 x\, (\pi\dot{\phi} - H(\phi, \pi)) \bigg],
+\end{equation}
+
+where $\mathcal{D}$ denotes integration over all real scalar fields in space-time and
+\begin{equation}
+\Omega_{\phi_{in}, \phi_{out}} = 
+\{\phi : \phi(0,\bs{x}) = \phi_{in}(\bs{x}) \text{ and } \phi(t,\bs{x}) = \phi_{out}(\bs{x}) \text{ for all } \bs{x}\in \R^3 \}.
+\end{equation}
+
+Let's assume now that for our real scalar field, Hamiltonian is given by equation
+\begin{equation}
+\hat{H} = \int d\bs{x} \big( \frac{1}{2}\hat{\pi}^2 (\bs{x}) + \frac{1}{2}(\nabla \hat{\phi}(\bs{x}))^2 + V(\hat{\phi}(\bs{x}))\big),
+\end{equation}
+
+thus
+\begin{align}
+& \bra{\phi_{out}} e^{-it\hat{H}} \ket{\phi_{in}} = \\
+\label{ontology-pi-integral}
+& \int_{\Omega_{\phi_{in}, \phi_{out}}} \mathcal{D}\phi  \int \mathcal{D}\pi
+\exp\bigg[i \int d^4 x\, (\pi\dot{\phi} - \frac{1}{2}\pi^2 - \frac{1}{2}(\nabla\phi)^2 - V(\phi)) \bigg].
+\end{align}
+
+We will show that we can remove $\mathcal{D}\pi$ from the above integral, just by changing a normalisation for $\mathcal{D}\phi$.
+
+Let's fix $\phi$ and analise the second integral in (\ref{ontology-pi-integral}):
+
+\begin{align*}
+& \int \mathcal{D}\pi
+\exp\bigg[i \int d^4 x\, (\pi\dot{\phi} - \frac{1}{2}\pi^2 - \frac{1}{2}(\nabla\phi)^2 - V(\phi)) \bigg] = \\
+& \int \mathcal{D}\pi
+\exp\bigg[i \int d^4 x\, (-\frac{1}{2}(\dot{\phi})^2 + \pi\dot{\phi} - \frac{1}{2}\pi^2  + \frac{1}{2} (\dot{\phi})^2 - \frac{1}{2}(\nabla\phi)^2 - V(\phi)) \bigg] = \\
+& \int \mathcal{D}\pi
+\exp\bigg[i \int d^4 x\, (-\frac{1}{2}(\pi - \dot{\phi})^2 + \frac{1}{2}(\partial_\mu \phi)^2 - V(\phi)) \bigg] = \\
+& \exp\bigg(i\int d^4 x \mathcal{L}\bigg)\int \mathcal{D}\pi
+\exp\bigg[-i \int d^4 x\, \frac{1}{2}(\pi - \dot{\phi})^2 \bigg], 
+\end{align*}
+
+where
+\begin{equation}
+\mathcal{L} = \frac{1}{2}(\partial_\mu \phi)^2 - V(\phi).
+\end{equation}
+
+We will show now that 
+\begin{equation}
+\int \mathcal{D}\pi
+\exp\bigg[-i \int d^4 x\, \frac{1}{2}(\pi - \dot{\phi})^2 \bigg]
+\end{equation}
+does not depend on $\phi$, hence can be treated as normalisation constant for $\mathcal{D}\phi$.
+
+Let's proceed with aproximation by discretisation of spacetime. Assume $x_k$ will be our discretisation. Then
+\begin{align*}
+& \int \mathcal{D}\pi
+\exp\bigg[-i \int d^4 x\, \frac{1}{2}(\pi - \dot{\phi})^2 \bigg] = \\
+& \int \prod_k d\pi(x_k)
+\exp\bigg[-i \sum_k \frac{1}{2}\Delta x(\pi(x_k) - \dot{\phi}(x_k))^2 \bigg] = \\
+& \prod_k \int \exp\bigg[-i \frac{1}{2}\Delta x(\pi(x_k) - \dot{\phi}(x_k))^2 \bigg] d\pi(x_k) = \\
+& \prod_k \bigg( - \cfrac{2\pi i }{\Delta x}\bigg)^{1/2} = \const. 
+\end{align*}
+
+Thus, we can write
+\begin{equation}
+\bra{\phi_{out}} e^{-it\hat{H}} \ket{\phi_{in}} = \int_{\Omega_{\phi_{in}, \phi_{out}}} \mathcal{D}\phi
+\exp\bigg[i \int d^4 x\, \mathcal{L} \bigg].
+\end{equation}
+
 \end{document}
