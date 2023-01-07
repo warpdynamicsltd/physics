@@ -451,6 +451,82 @@ For the benefit of the reader, let's write explicitly generator from (\ref{rot-g
 \begin{equation}
 n\cdot\bigg(x^2\cfrac{\partial}{\partial x^3} - x^3\cfrac{\partial}{\partial x^2},\; x^3\cfrac{\partial}{\partial x^1} - x^1\cfrac{\partial}{\partial x^3},\; x^1\cfrac{\partial}{\partial x^2} - x^2\cfrac{\partial}{\partial x^1}\bigg).
 \end{equation}
+
+\section{Advanced Properties of Dirac Delta}
+Some properties of Dirac Delta are mentioned in \ref{dirac-delta-basic}. In this section, we will develop more advanced properties.
+
+\subsection{Integrals with derivaties of Dirac Delta}
+We will consider $n$-th derivative from Dirac Delta $\delta(x)$. We will formally denote
+\begin{equation}
+\delta^{(n)}(x) = \cfrac{d^n \delta}{dx^n}(x).
+\end{equation} 
+
+\begin{lemma}
+\begin{equation}
+\int_{-\infty}^{\infty} \delta^{(n)}(x) f(x)dx = - \int_{-\infty}^{\infty} \delta^{(n - 1)}(x) \cfrac{d}{dx}f(x)dx. 
+\end{equation}
+\end{lemma}
+\begin{proof}
+\begin{equation}
+0 = \int_{-\infty}^{\infty} \cfrac{d}{dx}\bigg( \delta^{(n - 1)}(x) f(x)\bigg) dx.
+\end{equation}
+\end{proof}
+
+\begin{corollary}
+\begin{equation}
+\int_{-\infty}^{\infty} \delta^{(n)}(x) f(x)dx = (-1)^n \cfrac{d^n f}{dx^n}(0).
+\end{equation}
+\end{corollary}
+
+\begin{corollary}
+\begin{equation}
+\int_{-\infty}^{\infty} \delta^{(n)}(x) x^m dx = 
+\begin{cases}
+0 &\text{ for } n\not=m,\\
+(-1)^n n! &\text{ for } m = n.
+\end{cases}
+\end{equation}
+\end{corollary}
+
+\begin{definition}
+\begin{equation}
+A^{:n} B^{:m} \stackrel{def}{=} \sum_{\sigma\in S^{n + m}} \prod_{k = 1}^{n + m} C_{\sigma(k)}.
+\end{equation}
+where $S^{n + m}$ is a set of all permutations on $\{1, \dots, n + m\}$ and
+$C_k = A$ for $k = 1, \dots, n$ and $C_k = B$ for $k = n + 1, \cdots, n + m$.
+\end{definition}
+
+\begin{lemma}
+\begin{equation}
+(xA + yB)^n = \sum_{k=1}^n x^k y^{n - k} \cfrac{A^{:k}B^{:n-k}}{k!(n - k)!}.
+\end{equation}
+\end{lemma}
+
+\begin{lemma} For $k \leq n$
+\begin{equation}
+\int_{-\infty}^{\infty} \delta^{(k)}(x) (xA + yB)^n dx = (-1)^k \cfrac{y^{n - k}}{(n - k)!} A^{:k}B^{:n-k}.
+\end{equation}
+\end{lemma}
+
+\begin{lemma}
+\begin{equation}
+\int_{-\infty}^{\infty} \delta^{(k)}(x) e^{i(xA + yB)}dx =
+(-1)^k \sum_{n = k}^\infty i^n \frac{y^{n - k}}{n!(n-k)!} A^{:k}B^{:n-k}.
+\end{equation}
+\end{lemma}
+
+\begin{lemma}
+\begin{equation}
+\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} dx dy\, \delta^{(k)}(x) \delta^{(m)}(y) e^{i(xA + yB)} = (-i)^{k + m}\cfrac{A^{:k}B^{:m}}{(k + m)!}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+It is enough to calculate
+\begin{equation}
+\int_{-\infty}^\infty dy \delta^{(m)}(y) (-1)^k \sum_{n = k}^\infty i^n \frac{y^{n - k}}{n!(n-k)!} A^{:k}B^{:n-k} = (-i)^{k + m}\cfrac{A^{:k}B^{:m}}{(k + m)!}.
+\end{equation}
+\end{proof}
+
 \section{Tensor Analysis}
 \subsection{Vectors and dual vectors}
 
