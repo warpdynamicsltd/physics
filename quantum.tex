@@ -749,14 +749,26 @@ as expected.
 
 Similarity by $\ket{p}$ we denote a quantum state, which describes a quantum state of particle which has a momentum ``around" $p\in \R^3$ (as you can notice usage of letter $p$ is important for this convention, because only by usage of the letter we distinguish this from position representation).
 
-Now, it seems to be a law of the nature that
+Now, it seems to be a law of the nature that canonical momentum operator is defined as follows
+\begin{equation}
+\bra{x}P_k\ket{\phi} = -i\hbar \cfrac{\partial}{\partial x^k} \bra{x}P_k\ket{\phi},
+\end{equation}
+
+where $x=[x^1, x^2, x^3]$. Consider $\bra{x}P\ket{p}$ resolving it once from bra once from ket side. This leads to the following partial derivatives equations:
+\begin{equation}
+p^k \bra{x}\ket{p} = -i\hbar \cfrac{\partial}{\partial x^k} \bra{x} \ket{p},
+\end{equation}
+where $p = [p^1, p^2, p^3]$.
+
+This leads to the following solution
+
 \begin{equation}
 \boxed{
-\bra{x}\ket{p} = (2\pi\hbar)^{-\frac{3}{2}} \exp(-i\cfrac{p\cdot x}{\hbar})
+\bra{x}\ket{p} = (2\pi\hbar)^{-\frac{3}{2}} \exp(i\cfrac{p\cdot x}{\hbar})
 }
 \end{equation}
 
-Where $(2\pi\hbar)^{-\frac{3}{2}}$ is a normalisation factor needed to have 
+$(2\pi\hbar)^{-\frac{3}{2}}$ is a normalisation constant required by
 
 \begin{equation}
 \bra{p_1}\ket{p_2} = \delta(p_2 - p_1).
@@ -764,7 +776,7 @@ Where $(2\pi\hbar)^{-\frac{3}{2}}$ is a normalisation factor needed to have
 
 Indeed, first note that (as proved for for (\ref{dirac-delta-as-one-distribution})):
 \begin{equation}
-\F(1)(x) = (2\pi)^\frac{n}{2}\delta(x). 
+\F^{-1}(1)(x) = (2\pi)^\frac{n}{2}\delta(x). 
 \end{equation}
 
 in the context of distributions.
@@ -772,9 +784,9 @@ in the context of distributions.
 Now let's do calculations integrating in the sense of distributions:
 \begin{multline*}\\
 \bra{p_1}\ket{p_2} = \int\bra{p_1} \ket{x}\bra{x} \ket{p_2} dx = \\
-\\ (2\pi\hbar)^{-3} \int \exp(-i \cfrac{(p_2 - p_1)x}{\hbar})dx \underset{\hbar z\to x}{=}
-(2\pi\hbar)^{-3} \int \exp(-i(p_2 - p_1)z) |\det \frac{\partial x}{\partial z}|dz
-\\ = (2\pi)^{-\frac{3}{2}} \hbar^{-3} \hbar^3 \int (2\pi)^{-\frac{3}{2}} \exp(-i(p_2 - p_1)z)dz = (2\pi)^{-\frac{3}{2}} \F(1)(p_2 - p_1)
+\\ (2\pi\hbar)^{-3} \int \exp(i \cfrac{(p_2 - p_1)x}{\hbar})dx \underset{\hbar z\to x}{=}
+(2\pi\hbar)^{-3} \int \exp(i(p_2 - p_1)z) |\det \frac{\partial x}{\partial z}|dz
+\\ = (2\pi)^{-\frac{3}{2}} \hbar^{-3} \hbar^3 \int (2\pi)^{-\frac{3}{2}} \exp(i(p_2 - p_1)z)dz = (2\pi)^{-\frac{3}{2}} \F^{-1}(1)(p_2 - p_1)
 \\ = (2\pi)^{-\frac{3}{2}} (2\pi)^{\frac{3}{2}} \delta(p_2 - p_1) = \delta(p_2 - p_1).
 \\
 \end{multline*}

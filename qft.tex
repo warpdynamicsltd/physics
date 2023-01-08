@@ -865,7 +865,7 @@ Let's also introduce a set of canonical momentum operators indexed by $\bs{x} \i
 \bra{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}} \hat{\pi}(\bs{x}) \ket{\Psi}  \stackrel{def}{=} -i\mathcal{C}_{\pi,1}\cfrac{\partial}{\partial \phi_{\bs{x}}} \bra{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}}  \ket{\Psi}. 
 \end{equation}
 
-Although we work in units where $\hbar = 1$, we require some normalisation constant $\mathcal{C}_{\pi,1}$ depending on $L$ and $N$, wchose nature will become clear later in this subsection.
+Although we work in units where $\hbar = 1$, we require some normalisation constant $\mathcal{C}_{\pi,1}$ depending on $L$ and $N$, whose nature will become clear later in this subsection.
 
 To comment on derivative symbol used in the equation \ref{qft-discite-momentum}, let's switch to index notation of $\bra{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}}  \ket{\Psi}$ -- which is $\bra{\phi_{\bs{u}}: \bs{u}\in \mathcal{U}}  \ket{\Psi}$. We can see $\phi_{\bs{u}}: \bs{u}\in \mathcal{U}$ as a very long vector and in that context $\bra{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}}  \ket{\Psi}$ is a value which depends on a very long vector of parameters. Consequently, $\cfrac{\partial}{\partial \phi_{\bs{x}}}$ is just a usual partial deravitive with respect to parameter indexed by $\bs{x}$. Nothing too different than $\cfrac{\partial}{\partial x_5}$, which is a derivative of some function with respect to parameter indexed by $5$.
 
@@ -891,40 +891,48 @@ Consider $\bra{\phi}\hat{\pi}(\bs{x})\ket{\pi}$. Resolving it once from bra side
 
 From above it follows that
 \begin{equation}
+\label{discrete-position-momentum-amplitude}
 \bra{\phi}\ket{\pi} = \mathcal{C}_{\pi,2}
-\exp\bigg[ -i \mathcal{C}_{\pi, 1} \sum_{\bs{x}\in\mathcal{U}} \phi(\bs{x})\pi(\bs{x})\bigg].
+\exp\bigg[ i \mathcal{C}^{-1}_{\pi, 1} \sum_{\bs{x}\in\mathcal{U}} \phi(\bs{x})\pi(\bs{x})\bigg].
 \end{equation}
 
-Our goal now will be to find constants $\mathcal{C}_{\pi, 1}$ and $\mathcal{C}_{\pi, 2}$ for which $\bra{\pi_1}\ket{\pi_2} = \delta(\pi_1 - \pi_2)$. We want to have both bases normalised in the same way.
+Considering the above equation, there is one natural candidate for the contstant $\mathcal{C}_{\pi, 1}$, namely $\mathcal{C}_{\pi, 1} = (\Delta x)^{-3}$. 
+Then in limit $L\to \infty, N\to \infty$ the equation (\ref{discrete-position-momentum-amplitude}) becomes
+
+\begin{equation}
+\bra{\phi}\ket{\pi} = \mathcal{C}_{\pi,2}
+\exp\bigg[ i \int  \phi(\bs{x})\pi(\bs{x})d\bs{x}\bigg].
+\end{equation}
+
+Our goal now will be to find constant $\mathcal{C}_{\pi, 2}$ to set $\bra{\pi_1}\ket{\pi_2} = \delta(\pi_1 - \pi_2)$. We want to have both bases normalised in the same way.
 
 \begin{align*}
 & \bra{\pi_1}\ket{\pi_2} = \int \prod_{\bs{x}\in \mathcal{U}} d\phi(\bs{x}) \bra{\pi_1}\ket{\phi}\bra{\phi}\ket{\pi_2} = \\
 & \mathcal{C}^2_{\pi,2}\int \prod_{\bs{x}\in \mathcal{U}} d\phi(\bs{x}) 
-\exp\bigg[ -i \mathcal{C}_{\pi, 1}\sum_{\bs{x}\in\mathcal{U}} \phi(\bs{x})\big(\pi_2(\bs{x})
+\exp\bigg[i \mathcal{C}^{-1}_{\pi, 1}\sum_{\bs{x}\in\mathcal{U}} \phi(\bs{x})\big(\pi_2(\bs{x})
 - \pi_1(\bs{x})\big)\bigg] = \\
 & \mathcal{C}^2_{\pi,2} \prod_{\bs{x}\in \mathcal{U}} \int d\phi(\bs{x}) 
-\exp\bigg[ -i \mathcal{C}_{\pi, 1} \phi(\bs{x})\big(\pi_2(\bs{x})
+\exp\bigg[ i \mathcal{C}^{-1}_{\pi, 1} \phi(\bs{x})\big(\pi_2(\bs{x})
 - \pi_1(\bs{x})\big)\bigg] = \\
 & \mathcal{C}^2_{\pi,2} \prod_{\bs{x}\in \mathcal{U}} 2\pi
-\delta\bigg(\mathcal{C}_{\pi, 1}\big(\pi_2(\bs{x}) 
+\delta\bigg(\mathcal{C}^{-1}_{\pi, 1}\big(\pi_2(\bs{x}) 
 - \pi_1(\bs{x})\big)\bigg) = 
-\mathcal{C}^2_{\pi,2} \prod_{\bs{x}\in \mathcal{U}} \cfrac{2\pi}{\mathcal{C}_{\pi, 1}}
+\mathcal{C}^2_{\pi,2} \prod_{\bs{x}\in \mathcal{U}} 2\pi\mathcal{C}_{\pi, 1}
 \delta\big(\pi_2(\bs{x}) - \pi_1(\bs{x})\big) = \\
-& \mathcal{C}^2_{\pi,2}\bigg(\cfrac{2\pi}{\mathcal{C}_{\pi, 1}} \bigg)^N \delta(\phi_2 - \phi_1).
+& \mathcal{C}^2_{\pi,2}\bigg(\cfrac{2\pi}{\Delta^3 x} \bigg)^{N^3} \delta(\phi_2 - \phi_1).
 \end{align*}
 
 We need to get
 \begin{equation}
-\lim_{L\to \infty}\lim_{N\to \infty} \mathcal{C}^2_{\pi,2} \bigg(\cfrac{2\pi}{\mathcal{C}_{\pi, 1}} \bigg)^N = 1.
+\lim_{L\to \infty}\lim_{N\to \infty} \mathcal{C}^2_{\pi,2}\bigg(\cfrac{2\pi}{\Delta^3 x} \bigg)^{N^3}  = 1.
 \end{equation}
 
 Recall that constants $\mathcal{C}^1_{\pi,1}$ and $\mathcal{C}^1_{\pi,2}$ were chosen after $N$ and $L$ where fixed, therefore they depend on them. 
-Remeberining that $\Delta x = \cfrac{2L}{N}$, set
-\begin{align*}
-&\mathcal{C}^1_{\pi,1} = (\Delta x)^{-3},\\
-& \mathcal{C}^1_{\pi,2} = (2\pi (\Delta x)^3)^{- \frac{N}{2}}.
-\end{align*}
-The above, particular choice, will become clear shortly. Let's define a function
+Remeberining that $\Delta x = \cfrac{2L}{N}$, we need to set
+\begin{equation}
+\mathcal{C}^1_{\pi,2} = (2\pi (\Delta x)^{-3})^{- \frac{N^3}{2}}.
+\end{equation}
+Now, let's define a function
 \begin{equation}
 \delta_{L,N}(\bs{x}) = 
 \begin{cases}
