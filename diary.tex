@@ -2384,4 +2384,29 @@ hence
 \end{equation}
 \end{proof}
 
+\section{Sunday, 8 January 2023}
+
+Assume we take a ket state parametrised in position coordicates $\ket{x_1, \dots, x_n}$. We have position and momentum operators defined as follows
+\begin{align}
+\label{diary-momentum-equation}
+& \bra{x_1, \dots, x_n}P_k \ket{\phi} = -i\cfrac{\partial}{\partial x_k} \bra{x_1, \dots, x_n}\ket{\phi},\\
+& \bra{x_1, \dots, x_n}Q_k \ket{\phi} = x_k \bra{x_1, \dots, x_n}\ket{\phi}.
+\end{align}
+
+It is easy to show commutation relation $[Q_{k'}, P_{k}] = i\delta_{k'k}$.
+
+There is an interesting argument by Dirac (see \cite{dirac1981}[22]), that any observable $\Pi$ which has the same commutation relation with $Q_k$, namely for a chosen $k$
+\begin{equation}
+\label{diary-heisenber-uncertity-momentum}
+[Q_{k'}, \Pi] = i\delta_{k'k},
+\end{equation}
+satisfies equation
+\begin{equation}
+\Pi = P_k + f(Q_1, \dots, Q_n)
+\end{equation}
+for some function $f$.
+This comes from a very simple observation that $[Q_{k'}, \Pi - P_k] = 0$ for all $k'$, thus
+by Theorem 2 from (see \cite{dirac1981}[19]), which states that observable which commutes with the complete set of commutable observables is a function on them, $\Pi - P_k$ must be a function of $Q_1, \dots, Q_n$. This is exactly what will hapen with canonical momentum and kinematic momentum in case of charged particle in magnetic field.
+
+It is very importnat to remeber that (\ref{diary-heisenber-uncertity-momentum}) is not enough to get (\ref{diary-momentum-equation}) for $\Pi$.
 \end{document}

@@ -826,6 +826,149 @@ Let's go back to potential operator $V$ and let's see how it acts on momentum ba
 V \ket{\bs{p}_1\dots \bs{p}_n} = \mathcal{C}_V \sum_{k\not=k'} \int d\bs{q} \hat{V}(\bs{q}) \ket{\bs{p}_1 \tdots (\bs{p}_k + \bs{q}) \tdots (\bs{p}_{k'} - \bs{q}) \tdots \bs{p}_n}.
 \end{equation}
 
+\section{Quantum fields ontology}
+
+\subsection{From dicrete quantum state representations to fields}
+
+Consider a very large box in space $\mathcal{U} = [-L, L]^3$. 
+We will use a letter $\mathcal{U}$ as universe, since we will consider $L$ such large that it can contain all known universe (for now we consider our theory in a flat space-time). Consider discretisation of $\mathcal{U}$ in such a way that we will take only coordinates
+
+\begin{equation}
+\label{qft-discite-u}
+\bs{x} = [\cfrac{n_1L}{N}, \cfrac{n_2L}{N}, \cfrac{n_3L}{N}], 
+\end{equation}
+where $N$ is a very large integer and $n_k$ are integers from $[-N, N]$. We will need a step value $\Delta  x = \cfrac{2L}{N}$. Even if $L$ is very large, we can think that $N$ is so large that $\Delta x$ is so small that neglectable for any distances that we will practically need to consider. We can denote this mathematically as
+\begin{equation}
+\lim_{L\to \infty}\lim_{N\to\infty} \Delta x = 0.
+\end{equation}
+
+From now on we will consider $\mathcal{U}$ as a set discretised by (\ref{qft-discite-u}).
+
+Assume that we have a base of our quantum states space parametrised by values $\phi_{\bs{x}}$ indexed by our discrete coordinates $\bs{x}$. On the other hand, values $\bs{x}$ are so dense in limits, that we can also treat $\phi$ as a function on $\mathcal{U}$ and we will write it in notation $\phi(\bs{x})$. With this understandning, we will denote our base states as $\ket{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}}$. As for normalisation we will assume that 
+
+\begin{equation}
+\bra{\phi_1(\bs{u})_{\bs{u}\in \mathcal{U}}} \ket{\phi_2(\bs{u})_{\bs{u}\in \mathcal{U}}} 
+= \prod_{\bs{x}\in \mathcal{U}} \delta(\phi_1(\bs{x}) - \phi_2(\bs{x})).
+\end{equation}
+
+For convenince we will write $\delta(\phi_1 - \phi_2) \stackrel{def}{=} \prod_{\bs{x}\in \mathcal{U}} \delta(\phi_1(\bs{x}) - \phi_2(\bs{x}))$.
+
+Let's introduce a family of commutable observables for the assumed parametrisation, indexed by $\bs{x}\in \mathcal{U}$:
+
+\begin{equation}
+\hat{\phi}(\bs{x}) \ket{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}} \stackrel{def}{=} \phi(\bs{x}) \ket{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}}.
+\end{equation}
+
+Let's also introduce a set of canonical momentum operators indexed by $\bs{x} \in \mathcal{U}$:
+\begin{equation}
+\label{qft-discite-momentum}
+\bra{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}} \hat{\pi}(\bs{x}) \ket{\Psi}  \stackrel{def}{=} -i\mathcal{C}_{\pi,1}\cfrac{\partial}{\partial \phi_{\bs{x}}} \bra{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}}  \ket{\Psi}. 
+\end{equation}
+
+Although we work in units where $\hbar = 1$, we require some normalisation constant $\mathcal{C}_{\pi,1}$ depending on $L$ and $N$, wchose nature will become clear later in this subsection.
+
+To comment on derivative symbol used in the equation \ref{qft-discite-momentum}, let's switch to index notation of $\bra{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}}  \ket{\Psi}$ -- which is $\bra{\phi_{\bs{u}}: \bs{u}\in \mathcal{U}}  \ket{\Psi}$. We can see $\phi_{\bs{u}}: \bs{u}\in \mathcal{U}$ as a very long vector and in that context $\bra{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}}  \ket{\Psi}$ is a value which depends on a very long vector of parameters. Consequently, $\cfrac{\partial}{\partial \phi_{\bs{x}}}$ is just a usual partial deravitive with respect to parameter indexed by $\bs{x}$. Nothing too different than $\cfrac{\partial}{\partial x_5}$, which is a derivative of some function with respect to parameter indexed by $5$.
+
+Having a family of commutable momentum operators $\hat{\pi}(\bs{x})$, we can also establish a momentum parametrisation of quantum states with base $\ket{\pi(\bs{u})_{\bs{u}\in \mathcal{U}}}$, satisfying equation
+
+\begin{equation}
+\hat{\pi}(\bs{x}) \ket{\pi(\bs{u})_{\bs{u}\in \mathcal{U}}} = \pi(\bs{x}) \ket{\pi(\bs{u})_{\bs{u}\in \mathcal{U}}}.
+\end{equation}
+
+Now, let's concentrate our effors on finding an amplitude
+\begin{equation}
+\bra{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}} \ket{\pi(\bs{u})_{\bs{u}\in \mathcal{U}}}.
+\end{equation}
+
+Let's abrieviate base states like $\ket{\phi(\bs{u})_{\bs{u}\in \mathcal{U}}}$ to $\ket{\phi}$. Since we can always look at function as a set of its values parametrised by arguments, this actually changes nothing.
+
+Consider $\bra{\phi}\hat{\pi}(\bs{x})\ket{\pi}$. Resolving it once from bra side and once from ket side leads to the following system of partial differential equations.
+
+\begin{equation}
+\pi(\bs{x}) \bra{\phi}\ket{\pi} = -i \mathcal{C}_{\pi,1}
+\cfrac{\partial}{\partial \phi_{\bs{x}}} \bra{\phi}\ket{\pi}.
+\end{equation}
+
+From above it follows that
+\begin{equation}
+\bra{\phi}\ket{\pi} = \mathcal{C}_{\pi,2}
+\exp\bigg[ -i \mathcal{C}_{\pi, 1} \sum_{\bs{x}\in\mathcal{U}} \phi(\bs{x})\pi(\bs{x})\bigg].
+\end{equation}
+
+Our goal now will be to find constants $\mathcal{C}_{\pi, 1}$ and $\mathcal{C}_{\pi, 2}$ for which $\bra{\pi_1}\ket{\pi_2} = \delta(\pi_1 - \pi_2)$. We want to have both bases normalised in the same way.
+
+\begin{align*}
+& \bra{\pi_1}\ket{\pi_2} = \int \prod_{\bs{x}\in \mathcal{U}} d\phi(\bs{x}) \bra{\pi_1}\ket{\phi}\bra{\phi}\ket{\pi_2} = \\
+& \mathcal{C}^2_{\pi,2}\int \prod_{\bs{x}\in \mathcal{U}} d\phi(\bs{x}) 
+\exp\bigg[ -i \mathcal{C}_{\pi, 1}\sum_{\bs{x}\in\mathcal{U}} \phi(\bs{x})\big(\pi_2(\bs{x})
+- \pi_1(\bs{x})\big)\bigg] = \\
+& \mathcal{C}^2_{\pi,2} \prod_{\bs{x}\in \mathcal{U}} \int d\phi(\bs{x}) 
+\exp\bigg[ -i \mathcal{C}_{\pi, 1} \phi(\bs{x})\big(\pi_2(\bs{x})
+- \pi_1(\bs{x})\big)\bigg] = \\
+& \mathcal{C}^2_{\pi,2} \prod_{\bs{x}\in \mathcal{U}} 2\pi
+\delta\bigg(\mathcal{C}_{\pi, 1}\big(\pi_2(\bs{x}) 
+- \pi_1(\bs{x})\big)\bigg) = 
+\mathcal{C}^2_{\pi,2} \prod_{\bs{x}\in \mathcal{U}} \cfrac{2\pi}{\mathcal{C}_{\pi, 1}}
+\delta\big(\pi_2(\bs{x}) - \pi_1(\bs{x})\big) = \\
+& \mathcal{C}^2_{\pi,2}\bigg(\cfrac{2\pi}{\mathcal{C}_{\pi, 1}} \bigg)^N \delta(\phi_2 - \phi_1).
+\end{align*}
+
+We need to get
+\begin{equation}
+\lim_{L\to \infty}\lim_{N\to \infty} \mathcal{C}^2_{\pi,2} \bigg(\cfrac{2\pi}{\mathcal{C}_{\pi, 1}} \bigg)^N = 1.
+\end{equation}
+
+Recall that constants $\mathcal{C}^1_{\pi,1}$ and $\mathcal{C}^1_{\pi,2}$ were chosen after $N$ and $L$ where fixed, therefore they depend on them. 
+Remeberining that $\Delta x = \cfrac{2L}{N}$, set
+\begin{align*}
+&\mathcal{C}^1_{\pi,1} = (\Delta x)^{-3},\\
+& \mathcal{C}^1_{\pi,2} = (2\pi (\Delta x)^3)^{- \frac{N}{2}}.
+\end{align*}
+The above, particular choice, will become clear shortly. Let's define a function
+\begin{equation}
+\delta_{L,N}(\bs{x}) = 
+\begin{cases}
+(\Delta x)^{-3} &\text{ for } \bs{x} = 0,\\
+0 &\text{ for } \bs{x} \not=0.
+\end{cases}
+\end{equation}
+Since $\int_\mathcal{U} \delta_{L,N} = 1$, we can think about $\delta_{L,N}$ as aproximation of Dirac Delta when $L\to\infty$ and $N\to\infty$.
+
+Note that directly from (\ref{qft-discite-momentum}), we have
+\begin{equation}
+[\hat{\phi}(\bs{x}), \hat{\pi}(\bs{x})] = i \mathcal{C}^1_{\pi,1} = i \delta_{L,N}(\bs{x} - \bs{x}).
+\end{equation}
+
+Indeed,
+\begin{align*}
+& \bra{\phi} \hat{\pi}(\bs{x}) \hat{\phi}(\bs{x})\ket{\Psi} = -i\mathcal{C}_{\pi, 1}
+\cfrac{\partial}{\partial \phi_{\bs{x}}}
+\bra{\phi} \hat{\phi}(\bs{x})\ket{\Psi} = \\
+& -i\mathcal{C}_{\pi, 1} \cfrac{\partial}{\partial \phi_{\bs{x}}}
+\big( \phi_{\bs{x}} \bra{\phi}\ket{\Psi}\big) = -i \mathcal{C}_{\pi, 1} \bra{\phi}\ket{\Psi} - \phi_{\bs{x}}i\mathcal{C}_{\pi, 1}
+\cfrac{\partial}{\partial \phi_{\bs{x}}}\bra{\phi}\ket{\Psi} = \\
+& -i \mathcal{C}_{\pi, 1} \bra{\phi}\ket{\Psi} + \phi_{\bs{x}} \bra{\phi} \hat{\pi}(\bs{x}) \ket{\Psi} =
+-i \mathcal{C}_{\pi, 1} \bra{\phi}\ket{\Psi} + \bra{\phi}\hat{\phi}(\bs{x})\hat{\pi}(\bs{x}) \ket{\Psi}
+\end{align*}
+
+And since 
+\begin{align*}
+\cfrac{\partial}{\partial \phi_{\bs{x}}}  \bra{\phi} \hat{\phi}(\bs{y}) \ket{\Psi} = 
+\cfrac{\partial}{\partial \phi_{\bs{x}}} \phi_{\bs{y}}  \bra{\phi} \ket{\Psi} =
+\phi_{\bs{y}} \cfrac{\partial}{\partial \phi_{\bs{x}}} \bra{\phi} \ket{\Psi}
+\end{align*}
+
+for $\bs{x}\not=\bs{y}$, it is clear that $[\hat{\pi}(\bs{x}), \hat{\phi}(\bs{y})] = 0$.
+Thus we can write
+\begin{equation}
+[\hat{\phi}(\bs{x}), \hat{\pi}(\bs{y})] = i \delta_{L,N}(\bs{x} - \bs{y}).
+\end{equation}
+
+When we go to limits with $L\to\infty$ and $N\to\infty$ this equation becomes
+\begin{equation}
+[\hat{\phi}(\bs{x}), \hat{\pi}(\bs{y})] = i \delta(\bs{x} - \bs{y}).
+\end{equation} 
+
 \subsection{Quantum fields ontology on example of a real scalar field}
 This subsection is inspired by \cite{peskin1995}[9.2].\\
 
@@ -843,7 +986,7 @@ Assume that we have two families of linear operators $\hat{\pi}(\bs{x}), \hat{\p
 [\hat{\phi}(\bs{x}), \hat{\pi}(\bs{y})] = i\delta(\bs{x} - \bs{y}). 
 \end{equation}
 
-It can be proven, under the above assumption, that for a Hamiltonian
+It can be proven, that under assumption $\ref{qft-discite-momentum}$ for a Hamiltonian
 \begin{equation}
 \hat{H} = \int d\bs{x} H(\hat{\phi}(\bs{x}), \hat{\pi}(\bs{x})),  
 \end{equation}

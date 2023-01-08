@@ -461,7 +461,7 @@ We will consider $n$-th derivative from Dirac Delta $\delta(x)$. We will formall
 \delta^{(n)}(x) = \cfrac{d^n \delta}{dx^n}(x).
 \end{equation} 
 
-\begin{lemma}
+\begin{lemma} Let $f$ be any differentiable complex values function. 
 \begin{equation}
 \int_{-\infty}^{\infty} \delta^{(n)}(x) f(x)dx = - \int_{-\infty}^{\infty} \delta^{(n - 1)}(x) \cfrac{d}{dx}f(x)dx. 
 \end{equation}
@@ -479,6 +479,7 @@ We will consider $n$-th derivative from Dirac Delta $\delta(x)$. We will formall
 \end{corollary}
 
 \begin{corollary}
+\label{delta-derivative-reduction}
 \begin{equation}
 \int_{-\infty}^{\infty} \delta^{(n)}(x) x^m dx = 
 \begin{cases}
@@ -488,6 +489,36 @@ We will consider $n$-th derivative from Dirac Delta $\delta(x)$. We will formall
 \end{equation}
 \end{corollary}
 
+\begin{corollary} Let $u$ be any complex number.
+\begin{equation}
+\int_{-\infty}^\infty \delta^{(n)}(x) e^{ux} dx = (-u)^n.
+\end{equation}
+\end{corollary}
+
+Let's formulate now colloraries in the languge of Fourier Transform as defined in Definition \ref{fourier}.
+
+For any real $a$ we have,
+
+\begin{equation}
+\F(\delta^{(n)})(a) = (2\pi)^{-1/2} \int_{-\infty}^\infty \delta^{(n)}(x) e^{-iax} dx = 
+(2\pi)^{-1/2} (ia)^n.
+\end{equation}
+
+and 
+\begin{equation}
+\F^{-1}(\delta^{(n)})(a) =  (2\pi)^{-1/2} (-ia)^n.
+\end{equation}
+
+Hence
+\begin{equation}
+\F(x^n)(a) = (2\pi)^{1/2}i^n \delta^{(n)}(a).
+\end{equation}
+
+And again in the integral form 
+\begin{equation}
+\int_{-\infty}^\infty x^n e^{-iax} dx = 2\pi i^n \delta^{(n)}(a).
+\end{equation}
+
 \begin{definition}
 \begin{equation}
 A^{:n} B^{:m} \stackrel{def}{=} \sum_{\sigma\in S^{n + m}} \prod_{k = 1}^{n + m} C_{\sigma(k)}.
@@ -496,36 +527,90 @@ where $S^{n + m}$ is a set of all permutations on $\{1, \dots, n + m\}$ and
 $C_k = A$ for $k = 1, \dots, n$ and $C_k = B$ for $k = n + 1, \cdots, n + m$.
 \end{definition}
 
+We will use the following convention $A^{:0}B^{:m} = B^m$ and $A^{:n}B^{:0} = A^n$.
+
+Note that $A^{:n} B^{:m}$ is just a formal notation, to denote that this operator depends on $A, n, B$ and $m$.   
+
+It is obvious to notice the following
 \begin{lemma}
 \begin{equation}
 (xA + yB)^n = \sum_{k=1}^n x^k y^{n - k} \cfrac{A^{:k}B^{:n-k}}{k!(n - k)!}.
 \end{equation}
 \end{lemma}
 
-\begin{lemma} For $k \leq n$
-\begin{equation}
-\int_{-\infty}^{\infty} \delta^{(k)}(x) (xA + yB)^n dx = (-1)^k \cfrac{y^{n - k}}{(n - k)!} A^{:k}B^{:n-k}.
-\end{equation}
-\end{lemma}
 
-\begin{lemma}
+\begin{lemma} Let $u$ be any complex number.
 \begin{equation}
-\int_{-\infty}^{\infty} \delta^{(k)}(x) e^{i(xA + yB)}dx =
-(-1)^k \sum_{n = k}^\infty i^n \frac{y^{n - k}}{n!(n-k)!} A^{:k}B^{:n-k}.
-\end{equation}
-\end{lemma}
-
-\begin{lemma}
-\begin{equation}
-\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} dx dy\, \delta^{(k)}(x) \delta^{(m)}(y) e^{i(xA + yB)} = (-i)^{k + m}\cfrac{A^{:k}B^{:m}}{(k + m)!}.
+\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} dx dy\, \delta^{(k)}(x) \delta^{(m)}(y) e^{u(xA + yB)} = (-u)^{k + m}\cfrac{A^{:k}B^{:m}}{(k + m)!}.
 \end{equation}
 \end{lemma}
 \begin{proof}
-It is enough to calculate
+Note that 
 \begin{equation}
-\int_{-\infty}^\infty dy \delta^{(m)}(y) (-1)^k \sum_{n = k}^\infty i^n \frac{y^{n - k}}{n!(n-k)!} A^{:k}B^{:n-k} = (-i)^{k + m}\cfrac{A^{:k}B^{:m}}{(k + m)!}.
+\int_{-\infty}^{\infty} \delta^{(k)}(x) (xA + yB)^n dx 
+= 
+\begin{cases}
+(-1)^k \cfrac{y^{n - k}}{(n - k)!} A^{:k}B^{:n-k} \text{ for } 1 \leq k \leq n,\\
+0 \text{ for } k > n. 
+\end{cases}
+\end{equation}
+
+Hence we have
+\begin{equation}
+\int_{-\infty}^{\infty} \delta^{(k)}(x) e^{u(xA + yB)}dx =
+(-1)^k \sum_{n = k}^\infty u^n \frac{y^{n - k}}{n!(n-k)!} A^{:k}B^{:n-k},
+\end{equation}
+
+and
+
+\begin{equation}
+\int_{-\infty}^\infty dy \delta^{(m)}(y) (-1)^k \sum_{n = k}^\infty u^n \frac{y^{n - k}}{n!(n-k)!} A^{:k}B^{:n-k} = (-u)^{k + m}\cfrac{A^{:k}B^{:m}}{(k + m)!}.
 \end{equation}
 \end{proof}
+
+We can easily generilize the above results to any family of operators $A_1, \dots A_L$.
+
+\begin{definition}
+\begin{equation}
+\prod_{r=1}^L A_r^{:n_r} \stackrel{def}{=} \sum_{\sigma\in S^{N}} \prod_{k = 1}^{N} C_{\sigma(k)},
+\end{equation}
+where
+$$N = \sum_{r=1}^L n_r,$$
+and
+$$C_k = A_{r_0} \text{ for } \sum_{r=1}^{r_0 - 1} n_r \leq k < \sum_{r=1}^{r_0} n_r.$$
+\end{definition}
+
+In simple English, $\prod_{r=1}^L A_r^{:n_r}$ is just a sum of all products of operators $A_1, \cdots, A_L$ where operator $A_r$ occurs $n_r$ times. We will assume convention that if $n_r = 0$, $A_r$ does not occure and also $\prod_{r=1}^L A_r^{:0} = I$.
+
+Again, it is quite obvious to notice the following
+\begin{lemma}
+\begin{equation}
+\bigg( \sum_{r=1}^L x_r A_r \bigg)^n = \sum_{n_1 + \cdots + n_L = n} \prod_{r=1}^L \cfrac{x_r^{n_r}}{n_r!} \prod_{r=1}^L A_r^{:n_r}.
+\end{equation}
+\end{lemma}
+
+\begin{lemma}
+Let $u$ be any complex number.
+\begin{equation}
+\int_{\R^L} \prod_{r=1}^L \delta^{(n_r)}(x_r) dx_r \exp\bigg[ u\bigg( \sum_{r=1}^L x_r A_r \bigg)\bigg] = \cfrac{(-u)^N}{N!} \prod_{r=1}^L A_r^{:n_r},
+\end{equation}
+where $N = \sum_{r=1}^L n_r$.
+\end{lemma}
+\begin{proof}
+\begin{align}
+& \int_{\R^L} \prod_{r=1}^L \delta^{(n_r)}(x_r) dx_r \exp\bigg[ u\bigg( \sum_{r=1}^L x_r A_r \bigg)\bigg] = \\
+\label{dirac-derivative-transitionA}
+& \int_{\R^L} \prod_{r=1}^L \delta^{(n_r)}(x_r) dx_r \sum_{n=0}^\infty \cfrac{u^n}{n!}
+\sum_{n'_1 + \cdots + n'_L = n} \prod_{r=1}^L \cfrac{x_{r}^{n'_{r}}}{n'_{r}!} \prod_{r=1}^L A_{r}^{:n'_{r}} = \\
+\label{dirac-derivative-transitionB}
+& \int_{\R^L} \prod_{r=1}^L \delta^{(n_r)}(x_r) dx_r \cfrac{u^N}{N!}
+\prod_{r=1}^L \cfrac{x_{r}^{n_{r}}}{n_{r}!} \prod_{r=1}^L A_{r}^{:n_{r}} = \\
+& \cfrac{u^N}{N!} \prod_{r=1}^L \bigg( \int_{-\infty}^\infty dx_r 
+\delta^{(n_r)}(x_r) \cfrac{x_r^{n_r}}{n_r!}\bigg)
+\prod_{r=1}^L A_{r}^{:n_{r}} = \cfrac{(-u)^N}{N!} \prod_{r=1}^L A_r^{:n_r}.
+\end{align}
+The transition from (\ref{dirac-derivative-transitionA}) to (\ref{dirac-derivative-transitionB}) is possible because by Lemma \ref{delta-derivative-reduction} all integrals where there is $n_r \not= n'_{r}$ for any index $r$ reduce to $0$.
+\end{proof} 
 
 \section{Tensor Analysis}
 \subsection{Vectors and dual vectors}
