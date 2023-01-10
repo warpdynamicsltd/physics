@@ -2409,4 +2409,52 @@ This comes from a very simple observation that $[Q_{k'}, \Pi - P_k] = 0$ for all
 by Theorem 2 from (see \cite{dirac1981}[19]), which states that observable which commutes with the complete set of commutable observables is a function on them, $\Pi - P_k$ must be a function of $Q_1, \dots, Q_n$. This is exactly what will hapen with canonical momentum and kinematic momentum in case of charged particle in magnetic field.
 
 It is very importnat to remeber that (\ref{diary-heisenber-uncertity-momentum}) is not enough to get (\ref{diary-momentum-equation}) for $\Pi$.
+
+\section{Manday, 9 January 2023}
+
+Consider Weyl transform formula:
+\begin{equation}
+\hat{H} = \int \frac{dk}{2\pi} \cfrac{dx}{2\pi} e^{ikQ + ixP} \int dpdq e^{-ipx -ikq} H(p, q),
+\end{equation}
+
+where $H$ is just a function of real variables, $P$ is momentum operator and $Q$ is position operator.
+
+To investigate how Weyl transform builds operator $\hat{H}$ investigate $H$ as multilinear polynomial and put in through Lemma \ref{lemma-for-weyl-transform}. 
+
+Let's represent the formula using our symmetric Fourier Transform as defined in Definition \ref{fourier}
+
+\begin{equation}
+\hat{H} = (2\pi)^{-1}\int dk dx e^{ikQ + ixP} \F(H)(x, k).
+\end{equation}
+
+It can be proven (see e.g. \cite{hall2013}[13]) that
+\begin{equation}
+e^{ikQ + ixP} = e^{ikx/2}e^{ikQ}e^{ixP}.
+\end{equation}
+
+Let's put this in.
+
+\begin{align*}
+& \hat{H} = (2\pi)^{-1}\int dk dx\, e^{ikx/2} \int dq \ket{q}\bra{q} e^{ikQ}e^{ixP} \int dp \ket{p}\bra{p}  \F(H)(x, k) = \\
+& \int dk dx dp dq\,  e^{ikx/2} e^{ikq} e^{ipq} e^{ixp} \F(H)(x, k) \ket{q}\bra{p}
+\end{align*}
+
+Consider now:
+\begin{align*}
+& \bra{q_2} \hat{H} \ket{q_1} = (2\pi)^{-1} \int dk dx dp\,  e^{ikx/2} e^{ikq_2} e^{ipq_2} e^{ixp} \F(H)(x, k) (2\pi)^{-1/2}e^{-ipq_1} = \\
+& (2\pi)^{-1/2} \int dk dx\,  e^{ikx/2} e^{ikq_2} \F(H)(x, k)
+\delta(q_2 + x - q_1) = \\ 
+& (2\pi)^{-1/2} \int dk \, e^{ik(q_1 - q_2)/2} e^{ikq_2} \F(H)(q_1 - q_2, k) = \\
+& (2\pi)^{-1}  \int dk dp dq e^{ik(q_1 - q_2)/2} e^{ikq_2} e^{-ip(q_1 - q_2) -ikq} H(p, q) = \\
+& \int dp dq\, \delta(\cfrac{q_1 - q_2}{2} + q_2 - q) e^{ip(q_1 - q_2)} H(p, q) = 
+\int dp\, e^{ip(q_2 - q_1)} H(p, \cfrac{q_1 + q_2}{2}).
+\end{align*}
+
+We derived formula
+\begin{equation}
+\boxed{
+\bra{q_2} \hat{H} \ket{q_1} = \int dp\, e^{ip(q_2 - q_1)} H(p, \cfrac{q_1 + q_2}{2})
+}
+\end{equation}  
+
 \end{document}
