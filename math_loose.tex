@@ -614,15 +614,16 @@ where $N = \sum_{r=1}^L n_r$.
 The transition from (\ref{dirac-derivative-transitionA}) to (\ref{dirac-derivative-transitionB}) is possible because by Lemma \ref{delta-derivative-reduction} all integrals where there is $n_r \not= n'_{r}$ for any index $r$ reduce to $0$.
 \end{proof} 
 
-The following Corollary shows how multidimentional Weyl transform acts on multilinear polynomials.
+The following Corollary shows how multidimentional Weyl transform acts on a generic monomial $\prod_{r=1}^L u_r^{n_r}$.
 
 \begin{corollary}
 \label{corollary-for-weyl-transform}
 \begin{align*}
 &(2\pi)^{-L}\int_{\R^L} \prod_{r=1}^L dx_r \exp\bigg[ i\bigg( \sum_{r=1}^L x_r A_r \bigg)\bigg]
 \int_{\R^L}
-\prod_{r=1}^L e^{-ix_ru_r}du_r\, \prod_{r=1}^L u_r^{n_r} = \prod_{r=1}^L A_{r}^{:n_{r}}.
+\prod_{r=1}^L e^{-ix_ru_r}du_r\, \prod_{r=1}^L u_r^{n_r} = \cfrac{\prod_{r=1}^L A_{r}^{:n_{r}}}{N!},
 \end{align*}
+where $N = \sum_{r=1}^L n_r$.
 \end{corollary}
 \begin{proof}
 Apply (\ref{polinomial-fourier}) to the second integral and then Lemma \ref{lemma-for-weyl-transform}.
