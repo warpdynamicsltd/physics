@@ -516,6 +516,7 @@ Hence
 
 And again in the integral form 
 \begin{equation}
+\label{polinomial-fourier}
 \int_{-\infty}^\infty x^n e^{-iax} dx = 2\pi i^n \delta^{(n)}(a).
 \end{equation}
 
@@ -580,7 +581,7 @@ and
 $$C_k = A_{r_0} \text{ for } \sum_{r=1}^{r_0 - 1} n_r \leq k < \sum_{r=1}^{r_0} n_r.$$
 \end{definition}
 
-In simple English, $\prod_{r=1}^L A_r^{:n_r}$ is just a sum of all products of operators $A_1, \cdots, A_L$ where operator $A_r$ occurs $n_r$ times. We will assume convention that if $n_r = 0$, $A_r$ does not occure and also $\prod_{r=1}^L A_r^{:0} = I$.
+In simple English, $\prod_{r=1}^L A_r^{:n_r}$ is just a sum of all products of operators $A_1, \cdots, A_L$ where operator $A_r$ occurs $n_r$ times (not necessarily one after the other). We will assume convention that if $n_r = 0$, $A_r$ does not occure and also $\prod_{r=1}^L A_r^{:0} = I$.
 
 Again, it is quite obvious to notice the following
 \begin{lemma}
@@ -612,6 +613,20 @@ where $N = \sum_{r=1}^L n_r$.
 \end{align}
 The transition from (\ref{dirac-derivative-transitionA}) to (\ref{dirac-derivative-transitionB}) is possible because by Lemma \ref{delta-derivative-reduction} all integrals where there is $n_r \not= n'_{r}$ for any index $r$ reduce to $0$.
 \end{proof} 
+
+The following Corollary shows how multidimentional Weyl transform acts on multilinear polynomials.
+
+\begin{corollary}
+\label{corollary-for-weyl-transform}
+\begin{align*}
+&(2\pi)^{-L}\int_{\R^L} \prod_{r=1}^L dx_r \exp\bigg[ i\bigg( \sum_{r=1}^L x_r A_r \bigg)\bigg]
+\int_{\R^L}
+\prod_{r=1}^L e^{-ix_ru_r}du_r\, \prod_{r=1}^L u_r^{n_r} = \prod_{r=1}^L A_{r}^{:n_{r}}.
+\end{align*}
+\end{corollary}
+\begin{proof}
+Apply (\ref{polinomial-fourier}) to the second integral and then Lemma \ref{lemma-for-weyl-transform}.
+\end{proof}
 
 \section{Tensor Analysis}
 \subsection{Vectors and dual vectors}
