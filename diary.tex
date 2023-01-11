@@ -2460,7 +2460,7 @@ We derived formula
 Using the above formula, we can derive path integral.
 
 \begin{align*}
-& \bra{y}e^{it\hat{H}}\ket{x} \xleftarrow[n \to \infty]{} \bra{y}(I - \cfrac{it}{n}\hat{H})^n\ket{x} = \\
+& \bra{y}e^{-it\hat{H}}\ket{x} \xleftarrow[n \to \infty]{} \bra{y}(I - \cfrac{it}{n}\hat{H})^n\ket{x} = \\
 & \bra{y}\int dq_0 
 \ket{q_0} \bra{q_0} \bigg( \prod_{k=1}^n  (I - i\Delta t\hat{H}) \int dq_k 
 \ket{q_k} \bra{q_k}\bigg)\ket{x} = \\
@@ -2471,7 +2471,7 @@ where $\Delta t = \cfrac{t}{n}$. We will assume (which should be proved more reg
 
 Continue then our calculation
 \begin{align*}
-& \bra{y}e^{it\hat{H}}\ket{x} \xleftarrow[n \to \infty]{} \\
+& \bra{y}e^{-it\hat{H}}\ket{x} \xleftarrow[n \to \infty]{} \\
 & \int \prod_{k=1}^n dq_k dp_k\, \prod_{k=1}^n
 \exp\bigg(ip_k(q_{k-1} - q_k)- i\Delta t H(p_k, \cfrac{q_{k-1} + q_k}{2})\bigg)
 \delta(y - q_0)\delta(q_n - x) = \\
@@ -2483,7 +2483,7 @@ Continue then our calculation
 Assuming that $q_0, q_1, \dots, q_n$ goes from $x$ to $y$ in reversed order, in the dense limit of discretisation:
 \begin{equation}
 \boxed{
-\bra{y}e^{it\hat{H}}\ket{x}  = 
+\bra{y}e^{-it\hat{H}}\ket{x}  = 
 \int_{\Omega} \mathcal{D} q \mathcal{D} p \exp \bigg(\int_0^t p \dot{q} - H(p, q) dt\bigg)
 }
 \end{equation} 
