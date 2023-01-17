@@ -2467,7 +2467,7 @@ Using the above formula, we can derive path integral.
 & \int \prod_{k=1}^n dq_k dp_k\, \prod_{k=1}^n \bigg( e^{ip_k(q_{k-1} - q_k)} \big( 1 - i\Delta tH(p_k, \cfrac{q_{k-1} + q_k}{2})\big)\bigg) 
 \bra{y}\ket{q_0}\bra{q_n}\ket{x},
 \end{align*}
-where $\Delta t = \cfrac{t}{n}$. We will assume (which should be proved more regorously) that since $\Delta t \to 0$ while $n\to 0$, we can replace  $1 - i\Delta tH(p_k, \cfrac{q_{k-1} + q_k}{2})$ with $\exp\big(-i\Delta t H(p_k, \cfrac{q_{k-1} + q_k}{2})\big)$.
+where $\Delta t = \cfrac{t}{n}$. We will assume (which should be proved more regorously) that since $\Delta t \to 0$ while $n\to \infty$, we can replace  $1 - i\Delta tH(p_k, \cfrac{q_{k-1} + q_k}{2})$ with $\exp\big(-i\Delta t H(p_k, \cfrac{q_{k-1} + q_k}{2})\big)$.
 
 Continue then our calculation
 \begin{align*}
@@ -2490,4 +2490,99 @@ Assuming that $q_0, q_1, \dots, q_n$ goes from $x$ to $y$ in reversed order, in 
 
 where $\mathcal{D} p \mathcal{D} q$ means path integration over phase space and $\Omega$ denotes a set of all paths where $q(0) = x, q(t) = y$ and $p$ is arbitrary.
 
+\section{Manday, 16 January 2023}
+
+Let $\alpha = \alpha^1, \dots, \alpha^k$ be a certain abstract parametrisation of a base $\ket{\alpha}$ of quantum states space. 
+We will assume standard normalisation $\bra{\alpha}\ket{\alpha'} = \delta(\alpha - \alpha')$ Next, suppose $u(\epsilon)$ is
+a one parameter group of symmetries (i.e $|\det u(\epsilon)| = 1$) on the space of these parameters. Let's define an operator
+\begin{equation}
+\hat{U}(\epsilon) \ket{\alpha}  \stackrel{def}{=} \ket{u(\epsilon) \alpha}.
+\end{equation}
+
+It follows from Subsection \ref{unitary-transformations} that $\hat{U}(\epsilon)$ is a group of unitary operators (i.e. $\hat{U}(\epsilon)\hat{U}^\dagger(\epsilon) = \hat{U}^\dagger(\epsilon)\hat{U}(\epsilon) = I$).
+
+Let $G$ be an infinitesimal generator of group $u(\epsilon)$, i.e.
+\begin{equation}
+u(\epsilon) = e^{-i\epsilon G}.
+\end{equation}
+
+Note that, imaginary unit in the equation above is purely conventional. We can always get this equation simply by mupliplying by $i$ some real generator.
+
+Assume $\ket{\phi}$ is an arbitrary quantum state. For infinitesimal $\Delta \epsilon$, we have $u(\Delta\epsilon) = I - i\Delta\epsilon G$, then
+\begin{equation}
+\label{infinitesimal-move-in-symmetrybra}
+\bra{\alpha} \hat{U}^{\dagger}(\Delta \epsilon)\ket{\phi} = \bra{\alpha - i\Delta\epsilon G\alpha}\ket{\phi}.
+\end{equation}
+Assume that $\hat{G}$ is a generator of $\hat{U}(\epsilon)$, i.e.
+\begin{equation}
+\hat{U}(\epsilon) = e^{-i\epsilon \hat{G}}.
+\end{equation}
+With infinitesimal $\Delta \epsilon$, we have $\hat{U}(\Delta \epsilon) = I - i\Delta\epsilon \hat{G}$. From this it is easy to show that $\hat{G} = \hat{G}^\dagger$. 
+Now, from (\ref{infinitesimal-move-in-symmetrybra}) we have
+\begin{align*}
+& \bra{\alpha} I + i\Delta\epsilon \hat{G} \ket{\phi} = \bra{\alpha -i \Delta\epsilon G\alpha}\ket{\phi},\\
+& i \Delta\epsilon \bra{\alpha} \hat{G}\ket{\phi} = \bra{\alpha -i \Delta\epsilon G\alpha}\ket{\phi} - \bra{\alpha}\ket{\phi}.
+\end{align*} 
+
+Let $\Delta \alpha = -i \Delta\epsilon G\alpha$. Then we have
+
+\begin{align*}
+& i \Delta\epsilon \bra{\alpha} \hat{G}\ket{\phi} = \bra{\alpha + \Delta\alpha}\ket{\phi} - \bra{\alpha}\ket{\phi},\\
+& i \Delta\epsilon \bra{\alpha} \hat{G}\ket{\phi} = \cfrac{\partial}{\partial \alpha} \bra{\alpha}\ket{\phi} \cdot \Delta\alpha,\\
+& i \Delta\epsilon \bra{\alpha} \hat{G}\ket{\phi} = -i \Delta \epsilon \cfrac{\partial}{\partial \alpha}  \bra{\alpha}\ket{\phi} \cdot G\alpha.
+\end{align*}
+
+Hence
+\begin{equation}
+\label{symmetry-generator-to-observable}
+\boxed{
+\bra{\alpha} \hat{G}\ket{\phi} = - \cfrac{\partial}{\partial \alpha}  \bra{\alpha}\ket{\phi} \cdot G\alpha
+}
+\end{equation}
+
+Equation (\ref{symmetry-generator-to-observable}) shows us how to create an observable 
+from symmetry generator defined in the space of parameters of base states. In this sense we can treat $\hat{\cdot}$ as map transforming generators to observables.
+
+Let's assume we have two symmetry generators $A$ and $B$, which are linear opertors in space of parameters.
+Let's do the following computation
+\begin{align*}
+& \bra{\alpha} \hat{A}\hat{B} \ket{\phi} = - \cfrac{\partial}{\partial \alpha^i}  
+ \bra{\alpha} \hat{B} \ket{\phi} (A\alpha)^i = \\
+&  \cfrac{\partial}{\partial \alpha^i} 
+\bigg( \cfrac{\partial}{\partial \alpha^j} \bra{\alpha}\ket{\phi} (B\alpha)^j\bigg) (A\alpha)^i = \\
+&  \bigg(\cfrac{\partial}{\partial \alpha^i} \cfrac{\partial}{\partial \alpha^j} \bra{\alpha}\ket{\phi} (B\alpha)^j + \cfrac{\partial}{\partial \alpha^j} \bra{\alpha}\ket{\phi} \cfrac{\partial}{\partial \alpha^i}(B\alpha)^j\bigg) (A\alpha)^i.
+\end{align*}
+
+Applying the above symmetrically we get
+\begin{align*}
+& \bra{\alpha} [\hat{A}, \hat{B}] \ket{\phi} = \cfrac{\partial}{\partial \alpha^j} \bra{\alpha}\ket{\phi} \cfrac{\partial}{\partial \alpha^i}(B\alpha)^j (A\alpha)^i 
+- \cfrac{\partial}{\partial \alpha^j} \bra{\alpha}\ket{\phi} \cfrac{\partial}{\partial \alpha^i}(A\alpha)^j (B\alpha)^i = \\
+& \cfrac{\partial}{\partial \alpha^j} \bra{\alpha}\ket{\phi}
+\bigg(
+ \cfrac{\partial}{\partial \alpha^i}(B\alpha)^j (A\alpha)^i 
+- \cfrac{\partial}{\partial \alpha^i}(A\alpha)^j (B\alpha)^i
+\bigg) = \\
+& \cfrac{\partial}{\partial \alpha^j} \bra{\alpha}\ket{\phi}
+\bigg(
+ \cfrac{\partial}{\partial \alpha^i}(B^j_m\alpha^m) (A^i_n\alpha^n) 
+- \cfrac{\partial}{\partial \alpha^i}(A^j_m \alpha^m) (B^i_n\alpha^n)
+\bigg) = \\
+& \cfrac{\partial}{\partial \alpha^j} \bra{\alpha}\ket{\phi}
+\bigg(
+ B^j_i A^i_n\alpha^n 
+- A^j_iB^i_n\alpha^n
+\bigg) = - \cfrac{\partial}{\partial \alpha} \bra{\alpha}\ket{\phi} \cdot [A, B]\alpha.
+\end{align*}
+
+We showed
+\begin{equation}
+\boxed{
+\bra{\alpha} [\hat{A}, \hat{B}] \ket{\phi} = - \cfrac{\partial}{\partial \alpha} \bra{\alpha}\ket{\phi} \cdot [A, B]\alpha
+}
+\end{equation}
+
+Hence, we have $\widehat{[A, B]} = [\hat{A}, \hat{B}]$. 
+Which means that limear generators of symmetry group and induced observables form isomorphic Lee algebras.
+
 \end{document}
+
