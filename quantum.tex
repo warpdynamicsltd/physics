@@ -734,6 +734,7 @@ Indeed, it is enough to notice
 
 
 \subsection{Momentum and Position}
+\label{momentum-position}
 
 Let us consider states of one non-relativistic particle for which we assume that can be fully described as superpositions of locations in $R^3$. By $\ket{x}$ we will denote a quantum state which describe a particle being ``around" point $x\in \R^3$. We understand ``around" in Dirac delta sense
 \begin{equation}
@@ -774,7 +775,9 @@ $(2\pi\hbar)^{-\frac{3}{2}}$ is a normalisation constant required by
 \bra{p_1}\ket{p_2} = \delta(p_2 - p_1).
 \end{equation} 
 
-Indeed, first note that (as proved for for (\ref{dirac-delta-as-one-distribution})):
+Indeed, assume that 
+$\bra{x}\ket{p} = (2\pi\hbar)^{-\frac{3}{2}}C(p) \exp(i\cfrac{p\cdot x}{\hbar})$.
+Recall that (as proved for for (\ref{dirac-delta-as-one-distribution})):
 \begin{equation}
 \F^{-1}(1)(x) = (2\pi)^\frac{n}{2}\delta(x). 
 \end{equation}
@@ -782,15 +785,20 @@ Indeed, first note that (as proved for for (\ref{dirac-delta-as-one-distribution
 in the context of distributions.
 
 Now let's do calculations integrating in the sense of distributions:
-\begin{multline*}\\
-\bra{p_1}\ket{p_2} = \int\bra{p_1} \ket{x}\bra{x} \ket{p_2} dx = \\
-\\ (2\pi\hbar)^{-3} \int \exp(i \cfrac{(p_2 - p_1)x}{\hbar})dx \underset{\hbar z\to x}{=}
-(2\pi\hbar)^{-3} \int \exp(i(p_2 - p_1)z) |\det \frac{\partial x}{\partial z}|dz
-\\ = (2\pi)^{-\frac{3}{2}} \hbar^{-3} \hbar^3 \int (2\pi)^{-\frac{3}{2}} \exp(i(p_2 - p_1)z)dz = (2\pi)^{-\frac{3}{2}} \F^{-1}(1)(p_2 - p_1)
-\\ = (2\pi)^{-\frac{3}{2}} (2\pi)^{\frac{3}{2}} \delta(p_2 - p_1) = \delta(p_2 - p_1).
-\\
-\end{multline*}
-
+\begin{align*}
+& \bra{p_1}\ket{p_2} = \int\bra{p_1} \ket{x}\bra{x} \ket{p_2} dx = \\
+& (2\pi\hbar)^{-3} C(p_2)C^*(p_1)\int \exp(i \cfrac{(p_2 - p_1)x}{\hbar})dx \underset{\hbar z\to x}{=} \\
+& (2\pi\hbar)^{-3} C(p_2)C^*(p_1) \int \exp(i(p_2 - p_1)z) |\det \frac{\partial x}{\partial z}|dz
+= \\ 
+&(2\pi)^{-\frac{3}{2}} \hbar^{-3} \hbar^3 C(p_2)C^*(p_1) \int (2\pi)^{-\frac{3}{2}} \exp(i(p_2 - p_1)z)dz = \\ 
+&(2\pi)^{-\frac{3}{2}} C(p_2)C^*(p_1) \F^{-1}(1)(p_2 - p_1) = (2\pi)^{-\frac{3}{2}} (2\pi)^{\frac{3}{2}} C(p_2)C^*(p_1) \delta(p_2 - p_1) = \\
+& C(p_2)C^*(p_1) \delta(p_2 - p_1).
+\end{align*}
+As we require $\bra{p_1}\ket{p_2} = \delta(p_2 - p_1)$, we want
+\begin{equation}
+\int C(p_1)C^*(p)\delta(p_1 - p) = 1,
+\end{equation}
+thus $|C(p_1)| = 1$. Then $C(p)$ is simply a space shift, so we could always choose base $\ket{p}$ in a way that $C(p) = 1$. We will assume that this is our standard base choice.
 
 
 \subsection{Wave packet}
