@@ -550,9 +550,9 @@ Let's define
 \begin{equation}
 (G_{ij})^k_l :=  
 \begin{cases}
--1 \text{ for } k = i, l = j,\\
-1 \text{ for } k = j, l = i,\\
-0 \text{ otherwise. }
+-&1 \text{ for } k = i, l = j,\\
+&1 \text{ for } k = j, l = i,\\
+&0 \text{ otherwise. }
 \end{cases}
 \end{equation}
 
@@ -573,7 +573,7 @@ R_{ij}(\theta) = \lim_{n \to \infty} \bigg(I + \cfrac{\theta G_{ij}}{n}\bigg)^n 
 \end{equation}
 
 
-It can be also show that
+It can be also shown that
 \begin{equation}
 R_{ij}(\theta) =
 \begin{bmatrix}
@@ -633,9 +633,9 @@ Let's define
 \begin{equation}
 (G_{ij})^k_l :=  
 \begin{cases}
--1 \text{ for } k = 0, l = j,\\
--1 \text{ for } k = j, l = 0,\\
-0 \text{ otherwise. }
+-&1 \text{ for } k = 0, l = j,\\
+-&1 \text{ for } k = j, l = 0,\\
+&0 \text{ otherwise. }
 \end{cases}
 \end{equation}
 
@@ -701,6 +701,37 @@ By convention we introduce a generator in an quantum-mechanical form (i.e. multi
 Note that we lowered indices and this changed the sign in front of $x_j$.
 
 \subsection{Lorentz Group Representation}
+
+We will use here convention needed for Quantum Mechanics in which we multiply real generator by imaginary unit. We will overload notation by allowing index $i$ to denote integer using at the same time $i$ as imaginary unity. This notation almost never lead to disambiguity. Also recall that $g^\alpha_\beta = \delta^\alpha_\beta$ (it is easy to see by direct calculations for Minkovski metric tensor in general case see Theorem \ref{raise-metric-indices}).
+
+Let
+\begin{equation}
+J_{\mu\nu} \stackrel{def}{=} i(g^\alpha_\mu g_{\nu\beta} - g^\beta_\mu g_{\nu\alpha}). 
+\end{equation}
+
+Note that for $i,j = 1,2,3$ we have
+\begin{equation}
+(J_{ij})^\alpha_\beta = 
+\begin{cases}
+-&i \text{ for } \alpha = i, \beta = j,\\
+&i \text{ for } \alpha = j, \beta = i,\\
+&0 \text{ otherwise. }
+\end{cases}
+\end{equation}
+
+Thus $J_{ij}$ is a generator of rotation (i.e. $R_{ij}(\theta) = \exp(-i\theta J_{ij})$). This rotation can be described as from an arrow of $i$-th axis to an arrow of axis $j$-th axis.
+
+Note also that for $j = 1,2,3$ we have
+\begin{equation}
+(J_{0j})^\alpha_\beta = 
+\begin{cases}
+- &i \text{ for } \alpha = 0, \beta = j,\\
+- &i \text{ for } \alpha = j, \beta = 0,\\
+&0 \text{ otherwise. }
+\end{cases}
+\end{equation}
+
+Thus $J_{0j}$ is a generator of boost in the direction of $j$-th axis arrow. (i.e. $B_j(\omega) = exp(-iJ_{0j})$).
 
 It is well known fact that each Lorentz transformation $\Lambda$ can be represented as
 \begin{equation}
