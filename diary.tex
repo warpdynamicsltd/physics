@@ -2584,5 +2584,154 @@ We showed
 Hence, we have $\widehat{[A, B]} = [\hat{A}, \hat{B}]$. 
 Which means that limear generators of symmetry group and induced observables form isomorphic Lie algebras.
 
+\section{Sunday, 22 January 2023}
+
+I would like to give a maximal genralisation of the fact showed above.
+Let $\Omega$ and $\Sigma$ be two linear spaces both with vector multiplication, where  scalar multiplication, addition are continuous in a product and vector multiplication is seperatelly continous. Assume that we can reasonably define derivative in at least Gateaux sense for $F: \Theta\to\Sigma$, where $\Theta$ is certain open set in $\Omega$ (if $\Theta$ is a proper subset of $\Omega$, we need to assume that toppology is locally convex).
+
+\begin{equation}
+\nabla F(\omega; \Delta\omega) \stackrel{def}{=} \lim_{\epsilon\to 0}\cfrac{F(\omega + \epsilon\Delta\omega) - F(\omega)}{\epsilon}.
+\end{equation}
+
+Let $C^1(\Theta,\Sigma)$ denote all mapings with continous derivaties at least in a sense which guarantees
+\begin{equation}
+F(\omega + \Delta \omega) - F(\omega) = \int_0^1 \nabla F (\omega + \tau\Delta\omega; \omega) d\tau
+\end{equation}
+
+and that mapping $\nabla F(\cdot; \Delta\omega)$ is continuous.
+
+\begin{lemma} If $F\in C^1(\Theta,\Sigma)$, then
+$\nabla F(\omega; \cdot)$ is linear for any $\omega\in\Theta$.
+\end{lemma}
+\begin{proof}
+We have $\nabla F(\omega; a\Delta\omega) = a \nabla F(\omega; \Delta\omega)$ directly from definition.
+
+Consider 
+\begin{align*}
+& \epsilon^{-1}(F(\omega + \epsilon\Delta\omega_1 + \epsilon\Delta\omega_2) - F(\omega)) = \\
+& \epsilon^{-1}(F(\omega + \epsilon\Delta\omega_1 + \epsilon\Delta\omega_2) - F(\omega + \epsilon\Delta\omega_1) + F(\omega + \epsilon\Delta\omega_1) - F(\omega)) = \\
+& \epsilon^{-1} \bigg(\int_0^1 \nabla F (\omega + \epsilon\Delta\omega_1 + \tau\epsilon \Delta\omega_2; \epsilon\Delta \omega_2) d\tau + \\
+& \int_0^1 \nabla F (\omega + \tau\epsilon\Delta\omega_1; \epsilon\Delta \omega_1) d\tau\bigg) \xrightarrow[\epsilon \to 0]{} \nabla F (\omega; \Delta \omega_1) + \nabla F (\omega; \Delta \omega_2).
+\end{align*}
+\end{proof}
+
+For $F\in C^1(\Theta,\Sigma)$, since we have linearity, we will write $\nabla F(\omega)\cdot \Delta\omega = \nabla F(\omega; \Delta\omega)$.
+
+Assume that we have $U\in C^1(\Theta,\Sigma)$ such that $U(\omega_1)U(\omega_2) = U(\omega_1\omega_2)$ for $\omega_1, \omega_2, \omega_1\omega_2\in\Theta$. With fixed $U$ we can define operator $\hat{\cdot}: \Omega\to\Sigma$ and $U(\mathfrak{e}) = \mathfrak{e}$, where $\mathfrak{e}$ is a group unity and $\mathfrak{e}\in\Theta$.
+
+\begin{definition} For $\omega\in \Omega$
+\begin{equation}
+\hat{\omega} \stackrel{def}{=} \lim_{\epsilon \to 0} \cfrac{U(\mathfrak{e} + \epsilon \omega) - \mathfrak{e}}{\epsilon}.
+\end{equation}
+\end{definition}
+
+\begin{corollary}
+\begin{equation}
+\hat{\omega} = \nabla U(\mathfrak{e})\cdot \omega.
+\end{equation}
+\end{corollary}
+
+
+\begin{theorem}
+\label{general-lie-transition}
+For $\omega_1, \omega_2\in \Omega$, we have 
+\begin{equation}
+\widehat{[\omega_1, \omega_2]} = [\hat{\omega}_1, \hat{\omega}_2].
+\end{equation}
+\end{theorem}
+\begin{proof}
+Consider
+\begin{align*}
+& \bigg(\cfrac{U(\mathfrak{e} + \epsilon_1 \omega_1) - \mathfrak{e}}{\epsilon_1}\bigg)
+\bigg(\cfrac{U(\mathfrak{e} + \epsilon_2 \omega_2) - \mathfrak{e}}{\epsilon_2}\bigg) = \\
+& (\epsilon_1\epsilon_2)^{-1}\big(
+U(\mathfrak{e} + \epsilon_1\omega_1 + \epsilon_2\omega_2 + \epsilon_1\epsilon_2 \omega_1\omega_2)
+- U(\mathfrak{e} + \epsilon_1 \omega_1) - U(\mathfrak{e} + \epsilon_2 \omega_2) + \mathfrak{e}
+\big).
+\end{align*}
+
+applying the above symmetrically, we get
+\begin{align*}
+& \bigg[\cfrac{U(\mathfrak{e} + \epsilon_1 \omega_1) - \mathfrak{e}}{\epsilon_1},
+\cfrac{U(\mathfrak{e} + \epsilon_2 \omega_2) - \mathfrak{e}}{\epsilon_2}\bigg] = \\
+& (\epsilon_1\epsilon_2)^{-1} \big(
+U(\mathfrak{e} + \epsilon_1\omega_1 + \epsilon_2\omega_2 + \epsilon_1\epsilon_2 \omega_1\omega_2)
+- U(\mathfrak{e} + \epsilon_1\omega_1 + \epsilon_2\omega_2 + \epsilon_1\epsilon_2 \omega_2\omega_1\big) = \\
+& (\epsilon_1\epsilon_2)^{-1} \big(
+U(\mathfrak{e} + \epsilon_1\omega_1 + \epsilon_2\omega_2 + \epsilon_1\epsilon_2 \omega_2\omega_1 + \epsilon_1\epsilon_2[\omega_1, \omega_2])
+- U(\mathfrak{e} + \epsilon_1\omega_1 + \epsilon_2\omega_2 + \epsilon_1\epsilon_2 \omega_2\omega_1)\big) = \\
+& (\epsilon_1\epsilon_2)^{-1} \int_0^1 \nabla U(\mathfrak{e} + \epsilon_1\omega_1 + \epsilon_2\omega_2 + \epsilon_1\epsilon_2 \omega_2\omega_1) \cdot \epsilon_1\epsilon_2[\omega_1, \omega_2] = \\ 
+& \int_0^1 \nabla U(\mathfrak{e} + \epsilon_1\omega_1 + \epsilon_2\omega_2 + \epsilon_1\epsilon_2 \omega_2\omega_1) \cdot [\omega_1, \omega_2] \xrightarrow[\epsilon_1, \epsilon_2 \to 0]{} 
+\nabla U(\mathfrak{e}) \cdot [\omega_1, \omega_2].
+\end{align*}
+\end{proof}
+
+Note that for the above theorem vector multiplication associativity is not required. We used only distributive property and $a (\omega_1\omega_2) = (a\omega_1)\omega_2 = \omega_1(a\omega_2)$ property.
+
+\subsection{Application to Quantum Mechanics}
+
+Assume that $\Omega$ is as above. Let $\mathcal{X}$ be a space of quantum states and $L(\mathcal{X})$ a space of linear operators on $\mathcal{X}$. Let $U\in C^1(\Theta, L(\mathcal{X}))$ be a family of unitary operators, which preserves multiplication, where $\Theta$ is an open neighbourhood of $\mathfrak{e}$.
+
+\begin{definition} Let $-i\omega\in \Omega$.
+\label{general-observable-definition}
+\begin{equation}
+O_\omega \stackrel{def}{=} i\lim_{\epsilon \to 0} \cfrac{U(\mathfrak{e} - i\epsilon \omega) - I}{\epsilon}.
+\end{equation}
+\end{definition}
+
+\begin{proposition}
+If $\omega\in \Omega$, then $O_\omega^\dagger = O_\omega$.
+\end{proposition}
+\begin{proof}
+We will follow the bellow reasoning assuming that $\epsilon^2$ vanishes (it is a teachnicality to rewrite it to mathematically correct proof).
+\begin{equation}
+U(\mathfrak{e} - i\epsilon \omega)U(\mathfrak{e} + i\epsilon \omega) = U(\mathfrak{e} + \epsilon^2 \omega^2) = I.
+\end{equation}
+Thus $U^\dagger(\mathfrak{e} - i\epsilon \omega) = U(\mathfrak{e} + i\epsilon \omega)$. Hence,
+\begin{align*}
+O^\dagger_\omega = -i \cfrac{U(\mathfrak{e} + i\epsilon \omega) - I}{\epsilon} = i \cfrac{U(\mathfrak{e} - i\epsilon \omega) - I}{\epsilon} = O_\omega. 
+\end{align*}
+\end{proof}
+\begin{proposition}
+\label{general-lie-transition-quantum}
+Let $-i\omega_1, -i\omega_2 \in \Omega$, then
+\begin{align}
+& O_{i\mathfrak{e}}  = I,\\
+& O_{a_1\omega_1 + a_2\omega_2} = a_1 O_{\omega_1} + a_2 O_{\omega_2},\\
+& [O_{\omega_1}, O_{\omega_2}] = O_{[\omega_1, \omega_2]}.
+\end{align}
+\end{proposition}
+\begin{proof}
+Follows from Theorem \ref{general-lie-transition}.
+\end{proof}
+
+Let's again, similary like on Monday, 16 January 2023, consider a special case where for a certain parametrisation $\alpha = \alpha^1, \dots, \alpha^k$ of a base $\ket{\alpha}$ of quantum states space with $\bra{\alpha}\ket{\alpha'} = \delta(\alpha - \alpha')$, we defined a family of unitary operators $\hat{U}$ parametrised by symmetries in parametrisation:
+\begin{equation}
+\hat{U}(u)\ket{\alpha} = \ket{u(\alpha)}.
+\end{equation}
+
+Take certain infinitesimal symmetry with generator $G$. Hence,
+\begin{equation}
+\hat{U}(I - i\epsilon G)\ket{\alpha} = \ket{\alpha - i\epsilon G\alpha}.
+\end{equation}
+On the other hand $I - i\epsilon O_G = \hat{U}(I - i\epsilon G)$. Thus
+\begin{equation}
+I - i\epsilon O_G\ket{\alpha} = \ket{\alpha - i\epsilon G\alpha}
+\end{equation}
+and
+\begin{equation}
+\bra{\alpha} I + i\epsilon O_G\ket{\phi} = \bra{\alpha - i\epsilon G\alpha}\ket{\phi}.
+\end{equation}
+Following similar reasoning which leads to \ref{symmetry-generator-to-observable} we will get analogously
+\begin{equation}
+\bra{\alpha} O_G \ket{\phi} = - \cfrac{\partial}{\partial \alpha}  \bra{\alpha}\ket{\phi} \cdot G\alpha.
+\end{equation}
+
+Now, the result of that day 
+\begin{equation}
+\bra{\alpha} [O_A, O_B] \ket{\phi} = - \cfrac{\partial}{\partial \alpha} \bra{\alpha}\ket{\phi} \cdot [A, B]\alpha
+\end{equation}
+
+is simply a corollary from Proposition \ref{general-lie-transition-quantum}.
 \end{document}
 

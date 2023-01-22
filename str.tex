@@ -511,7 +511,7 @@ Since they are Lorentz transformations, we have $(x^0)^2 - (z^1)^2 = (y^0)^2 - (
 \end{equation}
 \end{proof}  
 
-\section{Lorentz group}
+\section{Introduction to Lorentz group}
 
 Let us remind that $x_\mu = g_{\mu\nu}x^\nu$, hence in Special Relativity we have
 \begin{equation}
@@ -700,13 +700,13 @@ By convention we introduce a generator in an quantum-mechanical form (i.e. multi
 
 Note that we lowered indices and this changed the sign in front of $x_j$.
 
-\subsection{Lorentz Group Representation}
+\subsection{Commutation relations between generators}
 
-We will use here convention needed for Quantum Mechanics in which we multiply real generator by imaginary unit. We will overload notation by allowing index $i$ to denote integer using at the same time $i$ as imaginary unity. This notation almost never lead to disambiguity. Also recall that $g^\alpha_\beta = \delta^\alpha_\beta$ (it is easy to see by direct calculations for Minkovski metric tensor in general case see Theorem \ref{raise-metric-indices}).
+We will use here convention needed for Quantum Mechanics in which we multiply real generator by imaginary unit. We will overload notation by allowing index $i$ to denote integer using at the same time $i$ as imaginary unity. This notation almost never lead to ambiguity. Also recall that $g^\alpha_\beta = \delta^\alpha_\beta$ (it is easy to see by direct calculations for Minkovski metric tensor in general case see Theorem \ref{raise-metric-indices}).
 
 Let
 \begin{equation}
-J_{\mu\nu} \stackrel{def}{=} i(g^\alpha_\mu g_{\nu\beta} - g^\beta_\mu g_{\nu\alpha}). 
+J_{\mu\nu} \stackrel{def}{=} i(g^\alpha_\mu g_{\nu\beta} - g^\alpha_\nu g_{\mu\beta}). 
 \end{equation}
 
 Note that for $i,j = 1,2,3$ we have
@@ -732,6 +732,69 @@ Note also that for $j = 1,2,3$ we have
 \end{equation}
 
 Thus $J_{0j}$ is a generator of boost in the direction of $j$-th axis arrow. (i.e. $B_j(\omega) = exp(-iJ_{0j})$).
+
+To understand various conventions used in various books, it is advisable to play a while with indexes.
+
+Note that if we raise indecies for $J$, we will ge $J^{\mu\nu} = J_{\mu'\nu'}g^{\mu'\mu}g^{\nu'\nu}$, i.e.
+
+\begin{equation}
+J^{\mu\nu} = i(g^{\alpha\mu} g^\nu_\beta - g^{\alpha\nu} g^\mu_\beta).
+\end{equation}
+
+Note that
+\begin{align*}
+& J^{ij} = J_{ij} \text{ for } i,j=1,2,3,\\
+& J^{0j} = - J_{0j} \text{ for } j=1,2,3.
+\end{align*}
+
+Obviously $J_{\mu\mu} = J^{\mu\mu} = 0$.
+
+Our goal will be now to calculate commutator $[J^{\mu\nu}, J^{\rho\sigma}]$.
+
+\begin{align*}
+& (J^{\mu\nu}J^{\rho\sigma})^\alpha_\gamma = i^2 (g^{\alpha\mu} g^\nu_\beta - g^{\alpha\nu} g^\mu_\beta)
+(g^{\beta\rho} g^\sigma_\gamma - g^{\beta\sigma} g^\rho_\gamma) = \\
+& i^2(g^{\alpha\mu}g^{\nu\rho}g^\sigma_\gamma + g^{\alpha\mu}g^{\nu\sigma}g^\rho_\gamma
+- g^{\alpha\nu}g^{\mu\rho}g^\sigma_\gamma - g^{\alpha\nu}g^{\mu\sigma}g^\rho_\gamma).
+\end{align*}
+
+\begin{align*}
+& [J^{\mu\nu}, J^{\rho\sigma}]^\alpha_\gamma = i^2
+\big(\\
+& + g^{\nu\rho }	(g^{\alpha\mu}g^\sigma_\gamma - g^{\alpha\sigma}g^\mu_\gamma)\\ 
+& - g^{\nu\sigma} (g^{\alpha\mu}g^\rho_\gamma - g^{\alpha\rho}g^\mu_\gamma)\\
+& - g^{\mu\rho}(g^{\alpha\nu}g^\sigma_\gamma - g^{\alpha\sigma}g^\nu_\gamma)\\
+& + g^{\mu\sigma}(g^{\alpha\nu}g^\rho_\gamma - g^{\alpha\rho}g^\nu_\gamma)
+\big).
+\end{align*}
+
+\begin{equation}
+[J^{\mu\nu}, J^{\rho\sigma}] = 
+i\big( g^{\nu\rho } J^{\mu\sigma} 
+- g^{\nu\sigma} J^{\mu\rho}
+- g^{\mu\rho} J^{\nu\sigma}
++ g^{\mu\sigma} J^{\nu\rho}\big).
+\end{equation}
+
+It is convetional in some books to name generators as 
+
+\begin{equation}
+J^1 = J^{23}, J^2 = J^{31}, J^3 = J^{12},
+\end{equation}
+and
+\begin{equation}
+K^1 = J^{01}, K^2 = J^{02}, K^3 = J^{03}.
+\end{equation}
+
+Then we can write commutaion relations as
+\begin{align}
+& [J^1, J^2] = i J^3,\\
+& [J^2, J^3] = i J^1,\\
+& [J^3, J^1] = i J^2,\\
+& [K^1, K^2] = - i J^3,\\
+& [K^2, K^3] = - i J^1,\\
+& [K^3, K^1] = - i J^2.
+\end{align}
 
 It is well known fact that each Lorentz transformation $\Lambda$ can be represented as
 \begin{equation}
