@@ -101,7 +101,7 @@ y \mapsto [y(u_1), \dots, y(u_n)]\in \R^n.
 \end{equation}
 Note that this parametrisation doesn't establish identity between elements of $X$ and $X^\star$. For this we will need a metric tensor.
 
-If not stated other wise we will use the following convention. If $\{\hat{u}_\mu\}$ is also a basis of a vector space $X$, then we will denote transformation matrices using a capital letter - in this case $U$ like this
+If not stated otherwise we will use the following convention. If $\{\hat{u}_\mu\}$ is also a basis of a vector space $X$, then we will denote transformation matrices using a capital letter - in this case $U$ like this
 
 \begin{equation}
 \hat{u}_\mu = U^\nu_{\hat{\mu}} u_\nu
@@ -128,16 +128,16 @@ u^\mu = U^{\mu}_{\hat{\nu}} u^\nu
 \begin{proof}
 Note that $U^{\hat{\mu}}_{\nu} U^{\nu}_{\hat{\sigma}} = \delta^\mu_\sigma$. Assume that 
 \begin{equation}
-\hat{u}^\mu = X^{\mu}_\nu u^\nu.
+\hat{u}^\mu = A^{\mu}_\nu u^\nu.
 \end{equation}
 Then
 \begin{multline*}
 \\
-\delta^\mu_\sigma = X^\mu_\nu u^\nu(\hat{u}_\sigma) = X^\mu_\nu u^\nu(U^\rho_{\hat{\sigma}} u_\rho) = 
-X^\mu_\nu U^\rho_{\hat{\sigma}} \delta^\nu_\rho = X^\mu_\nu U^\nu_{\hat{\sigma}}.
+\delta^\mu_\sigma = A^\mu_\nu u^\nu(\hat{u}_\sigma) = A^\mu_\nu u^\nu(U^\rho_{\hat{\sigma}} u_\rho) = 
+A^\mu_\nu U^\rho_{\hat{\sigma}} \delta^\nu_\rho = A^\mu_\nu U^\nu_{\hat{\sigma}}.
 \\
 \end{multline*}
-Thus $X^\mu_\nu = U^{\hat{\mu}}_{\nu}$.
+Thus $A^\mu_\nu = U^{\hat{\mu}}_{\nu}$.
 We prove (\ref{functionals-transformation-law}) analogously.
 \end{proof}
 
@@ -599,7 +599,7 @@ Note that the coordinates $x_\mu$ transform with the same transformation matrix 
 
 In this subsection we will give a few important characteristics of spaces with signature $1, n$. They are so called Generalised Minkowski spaces. It is worth to prove a few facts in this generic case, because the difficulty involved is not greater that for Minkowski space with signature $(1, 3)$.
 
-For a vector space $X$ with a metric tensor $g$ with signature $(1, n)$, we will assume a few notational conventions. When we will consider orthonormal base $e_0, e_1, \dots, e_n$ if not stated otherwise, we will assume that 
+For a vector space $X$ with a metric tensor $g$ with signature $(1, n)$, we will assume a few notational conventions. When we will consider orthonormal basis $e_0, e_1, \dots, e_n$ if not stated otherwise, we will assume that 
 $g(e_0, e_0) = 1$ and $g(e_k, e_k) = -1$ for $k = 1, \dots, n$.
 
 Also with fixed orthonormal basis $e_0, e_1, \dots, e_n$ and vector $x = x^\mu e_\mu$, we will use
@@ -640,6 +640,56 @@ Hence,
 \cancel{g(x, x)} + 2g(x, y) + \cancel{g(y, y)}.
 \end{equation}
 And therefore thesis.
+\end{proof}
+
+\begin{theorem}
+Let $X$ be a vector space with $\dim X < +\infty$ and let $\Lambda$ be a metric preserivng operator, then $\Lambda^{-1}$ exists and is also metric preserving.
+\end{theorem}
+
+\begin{proof}
+It is enough to notice that $\Lambda$ transforms orthonormal base into other orthonormal base. You can always define a linear operator by definig how base vectors transform, so you can easily get inverse operator, definig it as transformation back from new base vectiors to the old base vectors. 
+\end{proof}
+
+Recall that if $A: X \to X$ is linear operator, it representation in a basis $e_0, e_1, \cdots, e_n$ is given by a system of numbers $A^\mu_\nu$ such that 
+\begin{equation}
+A^\mu_\nu = (Ae_\nu)^\mu.
+\end{equation}
+
+\begin{theorem}
+Let $X$ be a vector space with metric tensor $g$ where $\dim X < +\infty$. $\Lambda$ is metric preserving if and only if
+\begin{equation}
+\label{metric-preserving-equality}
+g_{\mu\nu} \Lambda^\mu_\alpha\Lambda^\nu_\beta = g_{\alpha\beta} 
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $e_0, e_1, \dots, e_n$ be orthonormal basis.
+Assume $\Lambda$ is metric preserving, then
+\begin{align}
+g_{\alpha\beta} = g(e_\alpha, e_\beta) = g(\Lambda e_\alpha, \Lambda e_\beta) = 
+g_{\mu\nu} (\Lambda e_\alpha)^\mu (\Lambda e_\beta)^\nu = g_{\mu\nu} \Lambda^\mu_\alpha\Lambda^\nu_\beta.
+\end{align}
+
+Now, assume that (\ref{metric-preserving-equality}) holds. We will show that $\Lambda$ is metric preserving. Take any $x\in X$ with $x = x^\mu e_\mu$.
+
+\begin{align}
+g(x, x) = g_{\alpha\beta} x^\alpha x^\beta = g_{\mu\nu} \Lambda^\mu_\alpha\Lambda^\nu_\beta x^\alpha x^\beta =  g_{\mu\nu} \Lambda^\mu_\alpha x^\alpha\Lambda^\nu_\beta x^\beta = g(\Lambda x, \Lambda x).
+\end{align}
+\end{proof}
+
+\begin{theorem}
+Let $X$ be a vector space with metric tensor $g$ where $\dim X < +\infty$. If $\Lambda$ is metric preserving, then
+\begin{equation}
+|\det \Lambda| = 1, 
+\end{equation}
+where $\Lambda$ is represented in orthonormal basis. 
+\end{theorem}
+\begin{proof}
+As shown in Theorem \ref{skewed-lorentz}, (\ref{metric-preserving-equality}) translates into matrix equation $\Lambda^T[g]\Lambda = [g]$. Hence
+\begin{equation}
+\det\Lambda^T \det[g] \det \Lambda = \det [g].
+\end{equation}
+Thus $\big(\det \Lambda \big)^2 = 1$.  
 \end{proof}
 
 \begin{lemma}
@@ -688,7 +738,7 @@ We need to show transitivity on $\mathcal{T}$. Assume that $x\sim y$ and $y\sim 
 
 Since $\sim$ doesn't depend on choice of base, also partitions of $\mathcal{T}$ induced by $\sim$ does not depend on choice of bases. Our next goal is to find this partition.
 
-For a fixed base define:
+For a fixed basis define:
 \begin{align}
 & \mathcal{T}^{+} \stackrel{def}{=} \{x\in X: x^0 > 0\},\\
 & \mathcal{T}^{-} \stackrel{def}{=} \{x\in X: x^0 < 0\}.
@@ -704,7 +754,7 @@ If $x, y\in \mathcal{T}^{+}$ then $x\sim y$.
 
 If $x, y\in \mathcal{T}^{-}$ then $x\sim y$.
 
-Also   $\mathcal{T}^{+}\cup \mathcal{T}^{-} = \mathcal{T}$. Thus $\mathcal{T}^{+}, \mathcal{T}^{-}$ is partition of $\mathcal{T}$ induced by $\sim$. Note that signs $+, -$ here are base dependednt and purely conventional. However, ther existance of this partition is base independed. Once we proved there are just to sets in the partition, we can always name one of them $\mathcal{T}^{+}$ and the other $\mathcal{T}^{-}$.
+Also   $\mathcal{T}^{+}\cup \mathcal{T}^{-} = \mathcal{T}$. Thus $\mathcal{T}^{+}, \mathcal{T}^{-}$ is partition of $\mathcal{T}$ induced by $\sim$. Note that signs $+, -$ here are basis dependent and purely conventional. However, ther existence of this partition is basis independed. Once we proved there are just two sets in the partition, we can always name one of them $\mathcal{T}^{+}$ and the other $\mathcal{T}^{-}$.
 
 Note that for any $\lambda_1, \lambda_2 > 0$ and for $x, y \in \mathcal{T}^{\pm}$, we have
 \begin{equation}
@@ -714,12 +764,35 @@ Note that for any $\lambda_1, \lambda_2 > 0$ and for $x, y \in \mathcal{T}^{\pm}
 Thus $\mathcal{T}^{+}$ and $\mathcal{T}^{-}$ are cones in vector space $X$.
 
 \begin{proposition}
-For any linear operator $\Lambda$ which is metric preserving we have either $\Lambda\mathcal{T}^{+} = \mathcal{T}^{+}$ or $\Lambda\mathcal{T}^{+} = \mathcal{T}^{-}$. 
+\label{two-sets-of-metric-preserving}
+For any linear operator $\Lambda$ which is metric preserving we have either $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{+}$ or $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{-}$. 
 \end{proposition}
 \begin{proof}
 Fix some $x \in \mathcal{T}^{+}$. Because $0 < g(x, x) = g(\Lambda x, \Lambda x)$, we have $\Lambda x\in \mathcal{T} = \mathcal{T}^{+}\cup \mathcal{T}^{-}$. Consider a case when $\Lambda x\in \mathcal{T}^{+}$. Take any $y\in  \mathcal{T}^{+}$, we have $g(x, y) > 0$ but by Lemma \ref{metric-preserving-sep} $g(\Lambda x, \Lambda y) > 0$, thus since $\Lambda x\in \mathcal{T}^{+}$, we have $\Lambda y\in  \mathcal{T}^{+}$. We showed that in case $\Lambda x\in \mathcal{T}^{+}$, we have $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{+}$. Analogously, we can show that $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{-}$ in case of $\Lambda x\in \mathcal{T}^{-}$.
 \end{proof}
 
+\begin{definition}
+Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$. A metric preserving $\Lambda$ is called orthochronous if and only if 
+$\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{+}$.
+\end{definition}
+
+Note that property of being orthochronous is base independent. It simply means that $\Lambda$ maps each of the sets from partition into itself.
+
+\begin{lemma}
+Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$ and let $e_0, e_1, \dots, e_n$ be a fixed orthonormal basis. $\Lambda$ is orthohronous iff $\Lambda_0^0 > 0$
+\end{lemma}
+\begin{proof}
+Assume that $\Lambda$ is orthochronous. Note that $e_0 = [1, 0, \dots, 0]$ in the fixed basis. We have $e_0\in \mathcal{T}^{+}$, so $\Lambda e_0 \in \mathcal{T}^{+}$. But $\Lambda^0_0 = (\Lambda  e_0)^0$, hence $\Lambda^0_0 > 0$.\\
+
+Now, assume $\Lambda$ is metric preserving and $\Lambda^0_0 > 0$. Since either $\Lambda \mathcal{T}^{+}\subset \mathcal{T}^{+}$ or $\Lambda \mathcal{T}^{+}\subset \mathcal{T}^{-}$, it is enough that $\Lambda e_0 \in \mathcal{T}^{+}$ for $\Lambda$ to be orthochronous. But $0 < \Lambda^0_0 = (\Lambda  e_0)^0$, hence $\Lambda e_0 \in \mathcal{T}^{+}$.
+\end{proof}
+
+Note that for $\Lambda$ metric preserving, by (\ref{metric-preserving-equality}), 
+we have $(\Lambda^0_0)^2 - (\bs{\Lambda}_0)^2 = 1$. 
+Thus, it is always true that $|\Lambda^0_0| \geq 1$. We can then formulate the following
+\begin{corollary}
+Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$ and let $e_0, e_1, \dots, e_n$ be a fixed orthonormal basis. $\Lambda$ is orthohronous iff $\Lambda_0^0 \geq 1$.
+\end{corollary}
 
 \section{Lie Groups and Lie Algebras}
 
@@ -750,7 +823,9 @@ Let $\text{SO}(n) \stackrel{def}{=} \text{SU}(n) \cap \text{GL}(n, \R)$.\\
 Let $\text{O}(n, k) \subset \text{GL}(n, \R)$ be a subgroup of all real matrices for which 
 $g_{\mu\nu} A^\mu_\alpha A^\nu_\beta = g_{\alpha\beta}$ where $g_{\mu\nu}$ is a metric tensor of signature $n, k$ (i.e. $g_{\mu\mu} = 1$ for $\mu = 0, \dots, n - 1$ and $g_{\mu\mu} = -1$ for $\mu = n, \dots, n + k$).\\
 
-Let $\text{SO}(n, k) \stackrel{def}{=} \text{O}(n, k) \cap \text{SL}(n, \R)$.
+Let $\text{SO}(n, k) \stackrel{def}{=} \text{O}(n, k) \cap \text{SL}(n, \R)$.\\
+
+Let $\text{SO}^+(1, n) \subset \text{SO}(1, n)$ be a subgroup of all orthochronous matrices (i.e. with $\Lambda_0^0 \geq 1$). It follows from Thorem \ref{two-sets-of-metric-preserving} that this is indeed subgroup. Note that $\text{SO}^+(1, 3)$ is a group of all restricted Lorentz transformations. This is probably the most important group in modern physics.
 
 
 
