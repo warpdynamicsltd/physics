@@ -261,6 +261,7 @@ Let $X$ be a real vector space with $\dim X = n$. There exists an orthonormal li
 \end{corollary}
 
 \begin{theorem}
+\label{signature-theorem}
 Let $X$ be a real vector space with $\dim X = n$ and let $g$ be a metric tensor. If $e_1, \dots e_n$ and $f_1, \dots f_n$ are orthonormal bases with respect to tensor $g$ then
 \begin{equation}
 |\{i: g(e_i, e_i) = 1 \}| = |\{i: g(f_i, f_i) = 1 \} |.
@@ -301,6 +302,20 @@ g(v_0,v_0) = \sum_{j=k_f + 1}^n (\sum_{i=1}^{k_e} \lambda_0^i A_i^j))^2 (-1) < 0
 \end{equation}
 which concludes proof by contradiction.
 \end{proof}
+
+\begin{definition}
+Let $X$ be a real vector space with $\dim X < +\infty$ with a metric tensor $g$. We will say that $g$ has a signature $(n, k)$ if for any orthonormal base $e_1, \dots, e_n$ we will have 
+\begin{equation}
+|\{i: g(e_i, e_i) = -1 \}| = n
+\end{equation}
+and
+\begin{equation}
+|\{i: g(e_i, e_i) = -1 \}| = k.
+\end{equation}
+\end{definition}
+
+By Theorem \ref{signature-theorem}, for any metric tensor, signature is uniquely defined. 
+
 \begin{lemma}
 Let $X$ be a real vector space and $e_1, \dots, e_n$ is an orthonormal basis. Then for any $x$ such that $g(x, e_i) = 0$ for all $i=1,\dots, n$, we have $x=0$.
 \end{lemma}
@@ -579,6 +594,166 @@ Thus
 \end{equation}
 
 Note that the coordinates $x_\mu$ transform with the same transformation matrix as vectors of basis - thus the name "covariant".
+
+\subsection{Real vector spaces with signature 1, n}
+
+In this subsection we will give a few important characteristics of spaces with signature $1, n$. They are so called Generalised Minkowski spaces. It is worth to prove a few facts in this generic case, because the difficulty involved is not greater that for Minkowski space with signature $(1, 3)$.
+
+For a vector space $X$ with a metric tensor $g$ with signature $(1, n)$, we will assume a few notational conventions. When we will consider orthonormal base $e_0, e_1, \dots, e_n$ if not stated otherwise, we will assume that 
+$g(e_0, e_0) = 1$ and $g(e_k, e_k) = -1$ for $k = 1, \dots, n$.
+
+Also with fixed orthonormal basis $e_0, e_1, \dots, e_n$ and vector $x = x^\mu e_\mu$, we will use
+\begin{equation}
+\bs{x}  \stackrel{def}{=} (x^1, \dots, x^n).
+\end{equation}
+
+We will use convention that if not stated otherwise greek leters iterate over all indecies and roman letters iterate over integers from $1$ to $n$. We will also use the following notation for Cartesioan dot product:
+
+\begin{equation}
+\bs{x}\cdot \bs{y} = \sum_{k=1}^n x^k y^k.
+\end{equation}
+
+\begin{definition}
+Let $X$ with $\dim X < +\infty$ be a vector space and let $\Lambda: X \to X$ be linear. We call $\Lambda$ metric preserving iff
+\begin{equation}
+g(\Lambda x, \Lambda x) = g(x, x)
+\end{equation}
+for all $x \in X$.
+\end{definition}
+
+\begin{lemma}
+\label{metric-preserving-sep}
+Let $X$ be a vector space with $\dim X < +\infty$ and let $\Lambda$ be a metric preserivng, then
+\begin{equation}
+g(\Lambda x, \Lambda y) = g(x, y)
+\end{equation} 
+for all $x, y\in X$.
+\end{lemma}
+\begin{proof}
+We have
+\begin{equation}
+g(\Lambda (x + y), \Lambda (x + y)) = g(x + y, x + y)
+\end{equation}
+Hence,
+\begin{equation}
+\cancel{g(\Lambda x, \Lambda x)} + 2g(\Lambda x, \Lambda y) + \cancel{g(\Lambda y, \Lambda y)} =
+\cancel{g(x, x)} + 2g(x, y) + \cancel{g(y, y)}.
+\end{equation}
+And therefore thesis.
+\end{proof}
+
+\begin{lemma}
+Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$. For any $x\in X$, if $g(x, x) > 0$, then for any choice of orthonormal base $x^0\not= 0$.
+\end{lemma}
+\begin{proof}
+Assume that we fixed certain base $e_0, e_1, \dots, e_n$. Note that $g(x, x) = (x^0)^2 - \bs{x}^2 > 0$. Thus $(x^0)^2 > \bs{x}^2$, which implies that $(x^0)^2 > 0$. Hence, $x^0 \not= 0$. 
+\end{proof}
+
+\begin{lemma}
+\label{same-sign-minkowski}
+Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$. For any $x, y\in X$, if $g(x, x) > 0$ and $y\not=0$, $g(y, y) \geq 0$ then for any choice of orthonormal base
+\begin{equation}
+g(x, y)x^0y^0 > 0.
+\end{equation} 
+\end{lemma}
+\begin{proof}
+Assume that we fixed certain base $e_0, e_1, \dots, e_n$.
+Let's calculate
+\begin{align}
+&g(x, y)x^0y^0 = (x^0y^0 - \bs{x}\cdot \bs{y})x^0y^0 = (x^0y^0)^2 - (\bs{x}\cdot \bs{y})x^0y^0 \geq \\
+& (x^0y^0)^2 - \cfrac{1}{2}(x^0y^0)^2 - \cfrac{1}{2}(\bs{x}\cdot\bs{y})^2 = \cfrac{1}{2}\big( (x^0y^0)^2 - (\bs{x}\cdot \bs{y})^2\big) \geq \\
+& \cfrac{1}{2}\big( (x^0y^0)^2 - \bs{x}^2\bs{y}^2\big).
+\end{align}
+Where last inequality is due to Cauchy–Schwarz inequality. But since $g(x, x) > 0$ and $g(y, y) \geq 0$, we have
+\begin{align}
+& (x^0)^2 > \bs{x}^2,\\
+& (y^0)^2 \geq \bs{y}^2.
+\end{align}
+And since $y\not = 0$, we must have $(y^0)^2 > 0$ (indeed, if $y^0 = 0$, then $\bs{y} = 0$ which implies $y = 0$). Thus, we get $(x^0y^0)^2 > \bs{x}^2\bs{y}^2$ and hence $g(x, y)x^0y^0 > 0$.
+\end{proof}
+
+Assume now that $X$ has a metric tensor $g$ with a signature $1, n$.
+
+\begin{equation}
+\mathcal{T} \stackrel{def}{=} \{x\in X: g(x, x) > 0\}.
+\end{equation}
+
+Let's define a relation
+\begin{equation}
+x \sim y \equiv g(x, y) > 0.
+\end{equation}
+
+We will show that $\sim$ is a relation of equivalence. Reflexivity and symmetry is obvious. 
+We need to show transitivity on $\mathcal{T}$. Assume that $x\sim y$ and $y\sim z$. Recall that by Lemma \ref{same-sign-minkowski}, for any $u, v\in\mathcal{T}$ $g(u, v)$ has the same sign as $u^0v^0$ (in any base). Since it is obvious that from $\cfrac{x^0}{y^0} > 0$ and $\cfrac{y^0}{z^0} > 0$, we have $\cfrac{x^0}{z^0} > 0$, we have $g(x, z) > 0$ and hence $x \sim z$. We showed that $\sim$ is equivalence relation.
+
+Since $\sim$ doesn't depend on choice of base, also partitions of $\mathcal{T}$ induced by $\sim$ does not depend on choice of bases. Our next goal is to find this partition.
+
+For a fixed base define:
+\begin{align}
+& \mathcal{T}^{+} \stackrel{def}{=} \{x\in X: x^0 > 0\},\\
+& \mathcal{T}^{-} \stackrel{def}{=} \{x\in X: x^0 < 0\}.
+\end{align}
+
+By Lemma \ref{same-sign-minkowski}, we immediately have the following
+
+If $x\in \mathcal{T}^{+}$ and $x\sim y\in \mathcal{T}$, then $y\in \mathcal{T}^{+}$.
+ 
+If $x\in \mathcal{T}^{-}$ and $x\sim y\in \mathcal{T}$, then $y\in \mathcal{T}^{-}$.
+
+If $x, y\in \mathcal{T}^{+}$ then $x\sim y$.
+
+If $x, y\in \mathcal{T}^{-}$ then $x\sim y$.
+
+Also   $\mathcal{T}^{+}\cup \mathcal{T}^{-} = \mathcal{T}$. Thus $\mathcal{T}^{+}, \mathcal{T}^{-}$ is partition of $\mathcal{T}$ induced by $\sim$. Note that signs $+, -$ here are base dependednt and purely conventional. However, ther existance of this partition is base independed. Once we proved there are just to sets in the partition, we can always name one of them $\mathcal{T}^{+}$ and the other $\mathcal{T}^{-}$.
+
+Note that for any $\lambda_1, \lambda_2 > 0$ and for $x, y \in \mathcal{T}^{\pm}$, we have
+\begin{equation}
+\lambda_1x + \lambda_2y \in \mathcal{T}^{\pm}.
+\end{equation}
+
+Thus $\mathcal{T}^{+}$ and $\mathcal{T}^{-}$ are cones in vector space $X$.
+
+\begin{proposition}
+For any linear operator $\Lambda$ which is metric preserving we have either $\Lambda\mathcal{T}^{+} = \mathcal{T}^{+}$ or $\Lambda\mathcal{T}^{+} = \mathcal{T}^{-}$. 
+\end{proposition}
+\begin{proof}
+Fix some $x \in \mathcal{T}^{+}$. Because $0 < g(x, x) = g(\Lambda x, \Lambda x)$, we have $\Lambda x\in \mathcal{T} = \mathcal{T}^{+}\cup \mathcal{T}^{-}$. Consider a case when $\Lambda x\in \mathcal{T}^{+}$. Take any $y\in  \mathcal{T}^{+}$, we have $g(x, y) > 0$ but by Lemma \ref{metric-preserving-sep} $g(\Lambda x, \Lambda y) > 0$, thus since $\Lambda x\in \mathcal{T}^{+}$, we have $\Lambda y\in  \mathcal{T}^{+}$. We showed that in case $\Lambda x\in \mathcal{T}^{+}$, we have $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{+}$. Analogously, we can show that $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{-}$ in case of $\Lambda x\in \mathcal{T}^{-}$.
+\end{proof}
+
+
+\section{Lie Groups and Lie Algebras}
+
+A lot of definitions and theorems in this section will be an extract of what is needed from \cite{hall2015}.
+
+We will use $\K$ as either $\R$ or $\C$.
+
+Let $M_n(\K)$ denote space of all matricies of size $n\times n$ with entries from $\K$.
+
+By $\text{GL}(n, \K)$ we will denote a group of all invertible matrices of size $n\times n$ with entries from $\K$
+
+
+\begin{definition}
+We will call $G$ a \textbf{matrix Lie group} if $G$ is a closed (in a product over matrix entries topology) subgroup of $\text{GL}(n, \K)$.
+\end{definition}
+
+Let $\text{SL}(n, \K) \subset \text{GL}(n, \K)$ be a subset of all matrices with determinant 1. It is easy to note that $\text{SL}(n, \K)$ is an example of matrix Lie group.\\
+
+Let $\text{U}(n)\subset \text{GL}(n, \C)$ be a subgroup of all unitary matrices (i.e. $AA^\dagger = I$).\\
+
+Let $\text{SU}(n) \stackrel{def}{=}  \text{U}(n) \cap \text{SL}(n, \C)$.\\
+
+Let $\text{O}(n) \stackrel{def}{=} \text{U}(n) \cap \text{GL}(n, \R)$.\\
+
+Let $\text{SO}(n) \stackrel{def}{=} \text{SU}(n) \cap \text{GL}(n, \R)$.\\
+
+
+Let $\text{O}(n, k) \subset \text{GL}(n, \R)$ be a subgroup of all real matrices for which 
+$g_{\mu\nu} A^\mu_\alpha A^\nu_\beta = g_{\alpha\beta}$ where $g_{\mu\nu}$ is a metric tensor of signature $n, k$ (i.e. $g_{\mu\mu} = 1$ for $\mu = 0, \dots, n - 1$ and $g_{\mu\mu} = -1$ for $\mu = n, \dots, n + k$).\\
+
+Let $\text{SO}(n, k) \stackrel{def}{=} \text{O}(n, k) \cap \text{SL}(n, \R)$.
+
+
+
 
 \section{Mathematical Analysis}
 \begin{definition}
