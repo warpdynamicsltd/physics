@@ -99,7 +99,7 @@ The above tells us that for any chosen basis of $X$, for functionals $y\in X^\st
 \begin{equation}
 y \mapsto [y(u_1), \dots, y(u_n)]\in \R^n. 
 \end{equation}
-Note that this parametrisation doesn't establish identity between elements of $X$ and $X^\star$. For this we will need a metric tensor.
+Note that this parametrisation doesn't establish identity between elements of $X$ and $X^\star$, which would be basis independent. For this we will need a metric tensor.
 
 If not stated otherwise we will use the following convention. If $\{\hat{u}_\mu\}$ is also a basis of a vector space $X$, then we will denote transformation matrices using a capital letter - in this case $U$ like this
 
@@ -508,7 +508,7 @@ Take any $x, y\in X$
 g^{\star\star}(x, y) = g^\star((L^\star)^{-1}x, (L^\star)^{-1}x) = g^\star(Lx, Ly) = g(x, y).
 \end{equation}
 
-All the above can be summarised shortly that metric tensor $g$ establishes an identity between elements of $X$ and $X^*$ by transformation $x\mapsto g(x, \cdot)$. By doing so we obtain a metric tensor $g^\star$ on $X^\star$ which assumes the same values as metric tensor $g$ on corresponding elements of $X$. Next when you repeat this operation for $g^\star$ with respect to $X^\star$ and $X^{\star\star} = X$, we go back to $X$ and to the same metric tensor $g$ (i.e. $g^{\star\star} = g$).
+All the above can be summarised shortly that metric tensor $g$ establishes an identity between elements of $X$ and $X^*$ by transformation $x\mapsto g(x, \cdot)$. By doing so we obtain a metric tensor $g^\star$ on $X^\star$ which assumes the same values as metric tensor $g$ on corresponding elements of $X$. Next, when we repeat this operation for $g^\star$ with respect to $X^\star$ and $X^{\star\star} = X$, we go back to $X$ and to the same metric tensor $g$ (i.e. $g^{\star\star} = g$).
 
 \subsection{Contravariant and covariant coordinates}
 
@@ -521,6 +521,7 @@ x = x^\mu u_\mu.
 
 We call $x^1, \dots, x^n$ contravariant coordinates of $x$. Recall that the metric tensor $g$ establishes a linear isomorphism between $X$ and $X^\star$. In this isomorphism a functional $x^\star(z) = g(x, z)$ corresponds to $x$. We might write $x^\star$ as
 \begin{equation}
+\label{functional-covariant-respresentation}
 x^\star = x_\mu u^\mu.
 \end{equation}
 
@@ -541,13 +542,13 @@ Thus
 x_\mu = g_{\nu\mu} x^\nu}
 \end{equation}
 
-The operation above is so called "index lowering". Because situation is symmetrical if we talk about linear isomorphism from $X^\star$ to $X$, we have:
+The operation above is so called ``index lowering". Because situation is symmetrical if we talk about linear isomorphism from $X^\star$ to $X$, we have:
 \begin{equation}
 \boxed{
-x^\mu = g^{\nu\mu} x_\mu}
+x^\mu = g^{\nu\mu} x_\nu}
 \end{equation}
 
-The operation above is so called "index raising". 
+The operation above is so called ``index raising". 
 
 
 Let's now investigate how $x^\mu$ and $x_\mu$ transform under change of coordinates. Assume that we have other basis of $X$ - $\hat{u}_1, \dots, \hat{u}_n$ and $\hat{u}^1, \dots, \hat{u}^1$ is a dual basis in $X^\star$.
@@ -595,26 +596,151 @@ Thus
 
 Note that the coordinates $x_\mu$ transform with the same transformation matrix as vectors of basis - thus the name "covariant".
 
-\subsection{Real vector spaces with signature 1, n}
-
-In this subsection we will give a few important characteristics of spaces with signature $1, n$. They are so called Generalised Minkowski spaces. It is worth to prove a few facts in this generic case, because the difficulty involved is not greater that for Minkowski space with signature $(1, 3)$.
-
-For a vector space $X$ with a metric tensor $g$ with signature $(1, n)$, we will assume a few notational conventions. When we will consider orthonormal basis $e_0, e_1, \dots, e_n$ if not stated otherwise, we will assume that 
-$g(e_0, e_0) = 1$ and $g(e_k, e_k) = -1$ for $k = 1, \dots, n$.
-
-Also with fixed orthonormal basis $e_0, e_1, \dots, e_n$ and vector $x = x^\mu e_\mu$, we will use
-\begin{equation}
-\bs{x}  \stackrel{def}{=} (x^1, \dots, x^n).
-\end{equation}
-
-We will use convention that if not stated otherwise greek leters iterate over all indecies and roman letters iterate over integers from $1$ to $n$. We will also use the following notation for Cartesioan dot product:
-
-\begin{equation}
-\bs{x}\cdot \bs{y} = \sum_{k=1}^n x^k y^k.
-\end{equation}
+\subsection{Tensors}
 
 \begin{definition}
-Let $X$ with $\dim X < +\infty$ be a vector space and let $\Lambda: X \to X$ be linear. We call $\Lambda$ metric preserving iff
+Let $X$ be a real vector space where $\dim X < +\infty$. And let $\Pi$ be a space which is a cartesian product of certain number (can be 0) of $X$'s and a certain number (can be 0) of $X^*$'s in an arbitrary order.\\
+
+\noindent
+Any multilinear functional $T:\Pi\to\R$ will be called a tensor. 
+\end{definition}
+
+Let $X$ be a real vector space where $\dim X < +\infty$.
+Let $T:\Pi_{k=1}^n X \times \Pi_{k=1}^m X^*\to\R$ be a tensor. For a given basis $u_1, \dots, u_n$ of $X$ the parametrisation of tensor $T$ in this basis is defined as
+\begin{equation}
+\label{tensor-parametrisation}
+{T_{\mu_1\dots\mu_n}}^{\nu_1\dots\nu_m} \stackrel{def}{=} 
+T(u_{\mu_1}, \dots, u_{\mu_n}; u^{\nu_1}, \dots, u^{\nu_m}),
+\end{equation} 
+
+where $u^1, \dots, u^n$ is a dual basis of $X^\star$. If $X$'s and $X^*$'s are placed in different order the upper and lower indices of tensor parameter are placed in places corresponding to their basis vectors analogously as in (\ref{tensor-parametrisation}). E.g. for a tensor $T:X\times X^\star\times X\to\R$. 
+$\tensor{T}{_{\mu_1}^{\nu_1}_{\mu_2}} = T(u_{\mu_1}, u^{\nu_1}, u_{\mu_2})$.
+
+\begin{corollary}
+Let $X$ be a real vector space where $\dim X < +\infty$ and let $T:\Pi_{k=1}^n X \times \Pi_{k=1}^m X^*\to\R$ be a tensor. If $x_1, \dots, x_n\in X$,
+$x^1, \dots, x^m\in X^*$ and
+$x_k = x^\mu_k u_\mu$ and $x^k = x^k_\mu u^\mu$, we have
+\begin{equation}
+\label{tensor-param-definition}
+T(x_1, \dots x_n, x^1, \dots, x^m) = {T_{\mu_1\dots\mu_n}}^{\nu_1\dots\nu_m} 
+x^{\mu_1} \dots x^{\mu_n} x_{\nu_1} \dots x_{\nu_m}.
+\end{equation}
+\end{corollary}
+
+
+Let $g$ be a metric tensor on $X$. Recall that $g$ establishes a natural isomorphism $\cdot^*$ between $X$ and $X^*$. Assume we have a tensor $T:X \times \Pi_{k=1}^n X \times \Pi_{k=1}^m X^*\to\R$. Let's define an example of isomorphic tensor $T': X^* \times \Pi_{k=1}^n X \times \Pi_{k=1}^m X^*\to\R$ in the following way: 
+
+\begin{equation}
+\label{tensor-isometry}
+T'(x^*, x_1, \dots x_n, x^1, \dots, x^m) = T(x, x_1, \dots x_n, x^1, \dots, x^m)
+\end{equation}
+
+Note that if we consider $X$ as the same $X^*$ under the isomorphism $\cdot^*$ induced by metric tensor $g$, then also $T'$ is the same tensor as $T$ under this isomorphism. Exacly as in case of $x$ and $x^*$ when treated as the same object under isomorphism, we will have different parametrisations $x^\mu$ and $x_\mu$, we have different parametrisations of $T$. Let's expres parametrisation of $T'$ in parametrisation of $T$. Note that
+
+\begin{align*}
+& \tensor{{T}}{_{\mu'}_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}} x^{\mu'} x^{\mu_1} \dots x^{\mu_n} x_{\nu_1} \dots x_{\nu_m} = \\
+& \tensor{{T}}{_{\mu'}_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}} g^{\mu \mu'} x_{\mu} x^{\mu_1} \dots x^{\mu_n} x_{\nu_1} \dots x_{\nu_m}.
+\end{align*}
+
+And since $x^\star = x_{\mu'} u^{\mu'}$ (by (\ref{functional-covariant-respresentation})), from (\ref{tensor-isometry}), we have
+\begin{equation}
+T'(x^*, x_1, \dots x_n, x^1, \dots, x^m) = \tensor{{T}}{_{\mu'}_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}} g^{\mu \mu'} x_{\mu} x^{\mu_1} \dots x^{\mu_n} x_{\nu_1} \dots x_{\nu_m}.
+\end{equation}
+
+and by (\ref{tensor-param-definition}), we have
+\begin{equation}
+\boxed{
+\tensor{T}{^\mu_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}}  = \tensor{T}{_{\mu'}_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}} g^{\mu \mu'}
+}
+\end{equation}, 
+where
+$\tensor{T}{^\mu_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}}$ is a paremtrisation of $T'$. If we consequently treat $T'$ and $T$ as the same object under the isomorphism $\cdot^*$. Thus 
+$\tensor{T}{^\mu_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}}$ is just a different parametrisation of $T$ with ``raised" index $\mu$.
+
+Analogously we can prove
+
+\begin{equation}
+\boxed{
+\tensor{T}{_\mu_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}}  = \tensor{T}{^{\mu'}_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}} g_{\mu \mu'}
+}
+\end{equation}
+
+Hence we extended concept of ``raising" and ``lowering" indices to tensors. It is clear that the method above might be applied regardless of where exactly upper or lower index is placed.
+
+Let's recall that for any linear operator $A: X \to X$, we have
+\begin{equation}
+A^\mu_\nu \stackrel{def}{=}(Ae_\nu)^\mu.
+\end{equation} 
+
+Note that in the above definition $\mu$ and $\nu$ are not yet tensor indices. We will shortly show how they relate.
+
+\begin{definition}
+Let $X$ be a real vector space where $\dim X < +\infty$ with metric tensor $g$. And let $A:X\to X$ be a linear operator. We will define a tensor $T_A: X\times X\to R$ such that
+\begin{equation}
+T_A(x, y) = g(x, Ay).
+\end{equation}
+\end{definition}  
+
+We will define a new set of tensor parameters for $A$
+\begin{equation}
+A_{\mu\nu} \stackrel{def}{=} (T_A)_{\mu\nu}.
+\end{equation}
+
+\begin{theorem}
+Let $X$ be a real vector space where $\dim X < +\infty$ with metric tensor $g$. And let $A:X\to X$ be a linear operator. Then
+\begin{equation}
+\tensor{A}{^\mu_\nu} = A^\mu_\nu.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Note that by definition
+\begin{equation}
+A_{\mu\nu} x^\mu y^\nu = g_{\mu\nu} A^\nu_\sigma x^\mu y^\sigma,
+\end{equation}
+thus after rearranging indices
+\begin{equation}
+A_{\mu\sigma} = g_{\mu \nu} A^\nu_\sigma.
+\end{equation}
+Now
+\begin{align}
+\tensor{A}{^\mu_\nu} = A_{\sigma\nu}g^{\sigma\mu} = g_{\sigma \rho} A^\rho_\nu g^{\sigma\mu} = A^\rho_\nu g^\mu_\rho = A^\mu_\nu.
+\end{align}
+\end{proof}
+
+\subsection{Metric preserving operators}
+
+\begin{definition}
+Let $X$ be a real vector space where $\dim X < +\infty$ with metric tensor $g$. And let $A:X\to X$ be a linear operator. We will define an operator $A^*: X \to X$ such that
+\begin{equation}
+g(Ax, y) = g(x, A^*y)
+\end{equation}
+for all $x, y\in X$.
+\end{definition}
+
+The existence of $A^*$ follows from Theorem \ref{space-dual-identity-theorem}.
+Note that $A^T$ is usually not equal to $A^*$. The equality holds only when $g$ is an Euqlidean inner product.
+
+\begin{theorem}
+Let $X$ be a real vector space where $\dim X < +\infty$ with metric tensor $g$. And let $A:X\to X$ be a linear operator. Then
+\begin{equation}
+\tensor{A}{_\nu^\mu} = (A^*)^\mu_\nu.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Note that 
+\begin{equation}
+A_{\mu\nu} x^\mu y^\nu = g_{\mu\mu'} \tensor{A}{^{\mu'}_{\nu}} x^\mu y^\nu = g(x, Ay) = g(A^*x, y),
+\end{equation}
+on the other hand
+
+\begin{equation}
+A_{\mu\nu} x^\mu y^\nu = g_{\nu'\nu} \tensor{A}{_\mu^{\nu'}} x^\mu y^\nu.
+\end{equation}
+
+\end{proof}
+
+\begin{definition}
+Let $X$ with $\dim X < +\infty$ be a real vector space and let $\Lambda: X \to X$ be linear operator. We call $\Lambda$ metric preserving iff
 \begin{equation}
 g(\Lambda x, \Lambda x) = g(x, x)
 \end{equation}
@@ -623,7 +749,7 @@ for all $x \in X$.
 
 \begin{lemma}
 \label{metric-preserving-sep}
-Let $X$ be a vector space with $\dim X < +\infty$ and let $\Lambda$ be a metric preserivng, then
+Let $X$ be a real vector space with $\dim X < +\infty$ and let $\Lambda$ be a metric preserivng operator, then
 \begin{equation}
 g(\Lambda x, \Lambda y) = g(x, y)
 \end{equation} 
@@ -643,38 +769,72 @@ And therefore thesis.
 \end{proof}
 
 \begin{theorem}
-Let $X$ be a vector space with $\dim X < +\infty$ and let $\Lambda$ be a metric preserivng operator, then $\Lambda^{-1}$ exists and is also metric preserving.
+Let $X$ be a real vector space with metric tensor $g$ where $\dim X < +\infty$. Let $u_1, \dots, u_n$ be a basis of $X$ used for parametrisation. $\Lambda$ is a metric preserving operator if and only if
+\begin{equation}
+\label{metric-preserving-equality}
+g_{\mu\nu} \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} = g_{\alpha\beta}. 
+\end{equation}
+\end{theorem}
+\begin{proof}
+Assume $\Lambda$ is metric preserving, then
+\begin{align}
+g_{\alpha\beta} = g(u_\alpha, u_\beta) = g(\Lambda u_\alpha, \Lambda u_\beta) = 
+g_{\mu\nu} (\Lambda u_\alpha)^\mu (\Lambda u_\beta)^\nu = g_{\mu\nu} \tensor{\Lambda}{^\mu_\alpha}\tensor{\Lambda}{^\nu_\beta}.
+\end{align}
+
+Now, assume that (\ref{metric-preserving-equality}) holds. We will show that $\Lambda$ is metric preserving. Take any $x\in X$ with $x = x^\mu e_\mu$.
+
+\begin{align}
+g(x, x) = g_{\alpha\beta} x^\alpha x^\beta 
+= g_{\mu\nu} \tensor{\Lambda}{^\mu_\alpha}\tensor{\Lambda}{^\nu_\beta} x^\alpha x^\beta =  g_{\mu\nu} \tensor{\Lambda}{^\mu_\alpha} x^\alpha\tensor{\Lambda}{^\nu_\beta} x^\beta = g(\Lambda x, \Lambda x).
+\end{align}
+\end{proof}
+
+\begin{theorem}
+\label{metric-preserving-inverse-existence}
+Let $X$ be a real vector space with metric tensor $g$ and $\dim X < +\infty$ and let $\Lambda$ be a metric preserivng operator, then $\Lambda^{-1}$ exists and is also metric preserving.
 \end{theorem}
 
 \begin{proof}
 It is enough to notice that $\Lambda$ transforms orthonormal base into other orthonormal base. You can always define a linear operator by definig how base vectors transform, so you can easily get inverse operator, definig it as transformation back from new base vectiors to the old base vectors. 
 \end{proof}
 
-Recall that if $A: X \to X$ is linear operator, it representation in a basis $e_0, e_1, \cdots, e_n$ is given by a system of numbers $A^\mu_\nu$ such that 
+\begin{theorem}
+Let $X$ be a real vector space with metric tensor $g$ and $\dim X < +\infty$ and let $\Lambda$ be a metric preserivng operator, then $\Lambda^{-1} = \Lambda^*$.
+\end{theorem}
+
+\begin{proof}
+We have
 \begin{equation}
-A^\mu_\nu = (Ae_\nu)^\mu.
+g(x, y) = g(\Lambda x, \Lambda y) = g(x, \Lambda^* \Lambda y)
 \end{equation}
+for any $x, y\in X$. Thus $\Lambda^* \Lambda = I$, hence thesis.
+\end{proof}
+
+\begin{corollary}
+Let $X$ be a real vector space with metric tensor $g$ and $\dim X < +\infty$ and let $\Lambda$ be a metric preserivng operator. Let $u_1, \dots, u_n$ be a basis of $X$ used for parametrisation. Then we have
+\begin{equation}
+\tensor{{(\Lambda^{-1})}}{^\mu_\nu} = \tensor{\Lambda}{_\nu^\mu}.
+\end{equation}
+\end{corollary}
+
+\begin{corollary}
+Let $X$ be a real vector space with metric tensor $g$ where $\dim X < +\infty$. Let $u_1, \dots, u_n$ be a basis of $X$ used for parametrisation. $\Lambda$ is a metric preserving operator if and only if
+\begin{equation}
+\label{metric-preserving-equality-2}
+g^{\alpha\beta} \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} = g^{\mu\nu}. 
+\end{equation}
+\end{corollary}
 
 \begin{theorem}
-Let $X$ be a vector space with metric tensor $g$ where $\dim X < +\infty$. $\Lambda$ is metric preserving if and only if
+\label{metric-preserving-inverse-representation}
+Let $X$ be a real vector space with metric tensor $g$ and $\dim X < +\infty$ and let $\Lambda$ be a metric preserivng operator. Let $e_1, \dots, e_n$ be an orthonormal basis of $X$ used for parametrisation. Then
 \begin{equation}
-\label{metric-preserving-equality}
-g_{\mu\nu} \Lambda^\mu_\alpha\Lambda^\nu_\beta = g_{\alpha\beta} 
+\Lambda^{-1} = [g]\Lambda^T[g] .
 \end{equation}
 \end{theorem}
 \begin{proof}
-Let $e_0, e_1, \dots, e_n$ be orthonormal basis.
-Assume $\Lambda$ is metric preserving, then
-\begin{align}
-g_{\alpha\beta} = g(e_\alpha, e_\beta) = g(\Lambda e_\alpha, \Lambda e_\beta) = 
-g_{\mu\nu} (\Lambda e_\alpha)^\mu (\Lambda e_\beta)^\nu = g_{\mu\nu} \Lambda^\mu_\alpha\Lambda^\nu_\beta.
-\end{align}
-
-Now, assume that (\ref{metric-preserving-equality}) holds. We will show that $\Lambda$ is metric preserving. Take any $x\in X$ with $x = x^\mu e_\mu$.
-
-\begin{align}
-g(x, x) = g_{\alpha\beta} x^\alpha x^\beta = g_{\mu\nu} \Lambda^\mu_\alpha\Lambda^\nu_\beta x^\alpha x^\beta =  g_{\mu\nu} \Lambda^\mu_\alpha x^\alpha\Lambda^\nu_\beta x^\beta = g(\Lambda x, \Lambda x).
-\end{align}
+As shown in Theorem \ref{skewed-lorentz}, (\ref{metric-preserving-equality}) translates into matrix equation $\Lambda^T[g]\Lambda = [g]$. Hence thesis.
 \end{proof}
 
 \begin{theorem}
@@ -692,7 +852,34 @@ As shown in Theorem \ref{skewed-lorentz}, (\ref{metric-preserving-equality}) tra
 Thus $\big(\det \Lambda \big)^2 = 1$.  
 \end{proof}
 
+
+\subsection{Real vector spaces with signature (1, n)}
+
+In this subsection we will give a few important characteristics of spaces with signature $1, n$. They are so called Generalised Minkowski spaces. It is worth to prove a few facts in this generic case, because the difficulty involved is not greater that for Minkowski space with signature $(1, 3)$.
+
+For a vector space $X$ with a metric tensor $g$ with signature $(1, n)$, we will assume a few notational conventions. When we will consider orthonormal basis $e_0, e_1, \dots, e_n$ if not stated otherwise, we will assume that 
+$g(e_0, e_0) = 1$ and $g(e_k, e_k) = -1$ for $k = 1, \dots, n$.
+
+Also with fixed orthonormal basis $e_0, e_1, \dots, e_n$ and vector $x = x^\mu e_\mu$, we will use
+\begin{equation}
+\bs{x}  \stackrel{def}{=} (x^1, \dots, x^n).
+\end{equation}
+
+We will use convention that if not stated otherwise greek leters iterate over all indecies and roman letters iterate over integers from $1$ to $n$. We will also use the following notation for Cartesioan dot product:
+
+\begin{equation}
+\bs{x}\cdot \bs{y} = \sum_{k=1}^n x^k y^k.
+\end{equation}
+
+
+
+Recall that if $A: X \to X$ is linear operator, it representation in a basis $e_0, e_1, \cdots, e_n$ is given by a system of numbers $A^\mu_\nu$ such that 
+\begin{equation}
+A^\mu_\nu = (Ae_\nu)^\mu.
+\end{equation}
+
 \begin{lemma}
+\label{no-zero-time-if-time-like}
 Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$. For any $x\in X$, if $g(x, x) > 0$, then for any choice of orthonormal base $x^0\not= 0$.
 \end{lemma}
 \begin{proof}
@@ -738,9 +925,11 @@ We need to show transitivity on $\mathcal{T}$. Assume that $x\sim y$ and $y\sim 
 
 Since $\sim$ doesn't depend on choice of base, also partitions of $\mathcal{T}$ induced by $\sim$ does not depend on choice of bases. Our next goal is to find this partition.
 
-For a fixed basis define:
+For an arbitrary fixed basis we can define:
 \begin{align}
+\label{positive-time}
 & \mathcal{T}^{+} \stackrel{def}{=} \{x\in X: x^0 > 0\},\\
+\label{negative-time}
 & \mathcal{T}^{-} \stackrel{def}{=} \{x\in X: x^0 < 0\}.
 \end{align}
 
@@ -754,7 +943,7 @@ If $x, y\in \mathcal{T}^{+}$ then $x\sim y$.
 
 If $x, y\in \mathcal{T}^{-}$ then $x\sim y$.
 
-Also   $\mathcal{T}^{+}\cup \mathcal{T}^{-} = \mathcal{T}$. Thus $\mathcal{T}^{+}, \mathcal{T}^{-}$ is partition of $\mathcal{T}$ induced by $\sim$. Note that signs $+, -$ here are basis dependent and purely conventional. However, ther existence of this partition is basis independed. Once we proved there are just two sets in the partition, we can always name one of them $\mathcal{T}^{+}$ and the other $\mathcal{T}^{-}$.
+Also, since Lemma \ref{no-zero-time-if-time-like}, we have $\mathcal{T}^{+}\cup \mathcal{T}^{-} = \mathcal{T}$. Thus $\mathcal{T}^{+}, \mathcal{T}^{-}$ is partition of $\mathcal{T}$ induced by $\sim$. Note that signs $+, -$ here are basis dependent and purely conventional. However, ther existence of this partition is basis independed. Once we proved there are just two sets in the partition, we can always name one of them $\mathcal{T}^{+}$ and the other $\mathcal{T}^{-}$.
 
 Note that for any $\lambda_1, \lambda_2 > 0$ and for $x, y \in \mathcal{T}^{\pm}$, we have
 \begin{equation}
@@ -768,31 +957,73 @@ Thus $\mathcal{T}^{+}$ and $\mathcal{T}^{-}$ are cones in vector space $X$.
 For any linear operator $\Lambda$ which is metric preserving we have either $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{+}$ or $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{-}$. 
 \end{proposition}
 \begin{proof}
-Fix some $x \in \mathcal{T}^{+}$. Because $0 < g(x, x) = g(\Lambda x, \Lambda x)$, we have $\Lambda x\in \mathcal{T} = \mathcal{T}^{+}\cup \mathcal{T}^{-}$. Consider a case when $\Lambda x\in \mathcal{T}^{+}$. Take any $y\in  \mathcal{T}^{+}$, we have $g(x, y) > 0$ but by Lemma \ref{metric-preserving-sep} $g(\Lambda x, \Lambda y) > 0$, thus since $\Lambda x\in \mathcal{T}^{+}$, we have $\Lambda y\in  \mathcal{T}^{+}$. We showed that in case $\Lambda x\in \mathcal{T}^{+}$, we have $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{+}$. Analogously, we can show that $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{-}$ in case of $\Lambda x\in \mathcal{T}^{-}$.
+Fix some $x \in \mathcal{T}^{+}$. Because $0 < g(x, x) = g(\Lambda x, \Lambda x)$, we have $\Lambda x\in \mathcal{T} = \mathcal{T}^{+}\cup \mathcal{T}^{-}$. Consider a case when $\Lambda x\in \mathcal{T}^{+}$. Take any $y\in  \mathcal{T}^{+}$, we have $g(x, y) > 0$ but by Lemma \ref{metric-preserving-sep} $g(\Lambda x, \Lambda y) > 0$, thus since $\Lambda x\in \mathcal{T}^{+}$, we have $\Lambda y\in  \mathcal{T}^{+}$. We showed that in case $\Lambda x\in \mathcal{T}^{+}$, we have $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{+}$. Analogously, we can show that $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{-}$ in case where $\Lambda x\in \mathcal{T}^{-}$.
 \end{proof}
+
+Note that in the proof above, we effectively showed that for any fixed point $x\in  \mathcal{T}^{\pm}$, you can conclude $\Lambda \mathcal{T}^{\pm} \subset \Lambda\mathcal{T}^{+}$ just from $\Lambda x\in  \mathcal{T}^{+}$ and $\Lambda \mathcal{T}^{\pm} \subset \Lambda\mathcal{T}^{-}$ just from $\Lambda x\in  \mathcal{T}^{-}$.
+
+The next proposition will be very simple, but it is good to express this explicitly.
+
+\begin{proposition}
+\label{two-sets-of-metric-preserving-2}
+For any linear operator $\Lambda$ which is metric preserving we have
+\begin{align}
+& \Lambda\mathcal{T}^{+} \subset \mathcal{T}^{+} \implies \Lambda\mathcal{T}^{-} \subset \mathcal{T}^{-} \\
+& \Lambda\mathcal{T}^{-} \subset \mathcal{T}^{-} \implies \Lambda\mathcal{T}^{+} \subset \mathcal{T}^{+} \\
+\end{align}
+\end{proposition}
+\begin{proof}
+Assume $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{+}$ 
+Note that if $x\in \mathcal{T}^{-}$, then $-x\in \mathcal{T}^{+}$ and thus $-\Lambda x = \Lambda(-x)\in \mathcal{T}^{+}$, hence $\Lambda x\in \Lambda\mathcal{T}^{-}$. Analogously, we can show the second implication.
+\end{proof}
+
+Now having Proposition \ref{two-sets-of-metric-preserving} and \ref{two-sets-of-metric-preserving-2} under our belt, we are ready to give the following definition.
 
 \begin{definition}
 Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$. A metric preserving $\Lambda$ is called orthochronous if and only if 
 $\Lambda\mathcal{T}^{+} \subset \mathcal{T}^{+}$.
 \end{definition}
 
-Note that property of being orthochronous is base independent. It simply means that $\Lambda$ maps each of the sets from partition into itself.
+Note that property of being orthochronous is base independent. It can be formulated in equivalent but slightly more complicated way from which the independence will be apparent.
+
+\begin{definition}
+Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$. 
+And let $\{\mathcal{T}_1, \mathcal{T}_2\}$ 
+be a partiction of $\mathcal{T}$ generated by equivalence relation $x \sim y \equiv g(x, y) > 0$ we will say that $\Lambda$ is orthochronous iff $\Lambda \mathcal{T}_1 \subset \mathcal{T}_1$.
+\end{definition}
+
+For simplicity we will continue to use $\mathcal{T}^{+}$ and $\mathcal{T}^{+}$ knowing that this satisfies definitions (\ref{positive-time}) and (\ref{negative-time}) for some basis.
 
 \begin{lemma}
-Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$ and let $e_0, e_1, \dots, e_n$ be a fixed orthonormal basis. $\Lambda$ is orthohronous iff $\Lambda_0^0 > 0$
+Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$ and let $e_0, e_1, \dots, e_n$ be a fixed orthonormal basis. $\Lambda$ is orthohronous iff $\tensor{\Lambda}{^0_0} > 0$
 \end{lemma}
 \begin{proof}
-Assume that $\Lambda$ is orthochronous. Note that $e_0 = [1, 0, \dots, 0]$ in the fixed basis. We have $e_0\in \mathcal{T}^{+}$, so $\Lambda e_0 \in \mathcal{T}^{+}$. But $\Lambda^0_0 = (\Lambda  e_0)^0$, hence $\Lambda^0_0 > 0$.\\
+Assume that $\Lambda$ is orthochronous. Note that $e_0 = [1, 0, \dots, 0]$ in the fixed basis. We have $e_0\in \mathcal{T}^{+}$, so $\Lambda e_0 \in \mathcal{T}^{+}$. But $\tensor{\Lambda}{^0_0} = (\Lambda  e_0)^0$, hence $\tensor{\Lambda}{^0_0} > 0$.\\
 
-Now, assume $\Lambda$ is metric preserving and $\Lambda^0_0 > 0$. Since either $\Lambda \mathcal{T}^{+}\subset \mathcal{T}^{+}$ or $\Lambda \mathcal{T}^{+}\subset \mathcal{T}^{-}$, it is enough that $\Lambda e_0 \in \mathcal{T}^{+}$ for $\Lambda$ to be orthochronous. But $0 < \Lambda^0_0 = (\Lambda  e_0)^0$, hence $\Lambda e_0 \in \mathcal{T}^{+}$.
+Now, assume $\Lambda$ is metric preserving and $\tensor{\Lambda}{^0_0} > 0$. Since either $\Lambda \mathcal{T}^{+}\subset \mathcal{T}^{+}$ or $\Lambda \mathcal{T}^{+}\subset \mathcal{T}^{-}$, it is enough that $\Lambda e_0 \in \mathcal{T}^{+}$ for $\Lambda$ to be orthochronous. But $0 < \tensor{\Lambda}{^0_0} = (\Lambda  e_0)^0$, hence $\Lambda e_0 \in \mathcal{T}^{+}$.
 \end{proof}
 
 Note that for $\Lambda$ metric preserving, by (\ref{metric-preserving-equality}), 
-we have $(\Lambda^0_0)^2 - (\bs{\Lambda}_0)^2 = 1$. 
-Thus, it is always true that $|\Lambda^0_0| \geq 1$. We can then formulate the following
+we have $(\tensor{\Lambda}{^0_0})^2 - (\bs{\Lambda}_0)^2 = 1$. 
+Thus, it is always true that $|\tensor{\Lambda}{^0_0}| \geq 1$. We can then formulate the following
 \begin{corollary}
-Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$ and let $e_0, e_1, \dots, e_n$ be a fixed orthonormal basis. $\Lambda$ is orthohronous iff $\Lambda_0^0 \geq 1$.
+Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$ and let $e_0, e_1, \dots, e_n$ be a fixed orthonormal basis. $\Lambda$ is orthohronous iff $\tensor{\Lambda}{^0_0} \geq 1$.
 \end{corollary}
+
+
+\begin{theorem}
+Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$. A metric preserving operator $\Lambda$ is orthochronous iff
+\begin{equation}
+\Lambda \mathcal{T}^{+} = \mathcal{T}^{+}. 
+\end{equation}
+\end{theorem}
+\begin{proof}
+It is enough to prove that if $\Lambda$ is orthochronous then $\mathcal{T}^{+}\subset \Lambda \mathcal{T}^{+}$.
+Note that $\Lambda^{-1}$ exists by Theorem \ref{metric-preserving-inverse-existence} and it is easy to show that it is also orthronous e.g. by Theorem \ref{metric-preserving-inverse-representation}. Then we have $\Lambda^{-1} \mathcal{T}^{+} \subset \mathcal{T}^{+}$, hence
+$\mathcal{T}^{+}\subset \Lambda \mathcal{T}^{+}$. 
+\end{proof}
+
+Of course it is trivial to show that $\Lambda \mathcal{T}^{+} = \mathcal{T}^{+}$ implies $\Lambda \mathcal{T}^{-} = \mathcal{T}^{-}$ and vice versa.
 
 \section{Lie Groups and Lie Algebras}
 
@@ -825,10 +1056,7 @@ $g_{\mu\nu} A^\mu_\alpha A^\nu_\beta = g_{\alpha\beta}$ where $g_{\mu\nu}$ is a 
 
 Let $\text{SO}(n, k) \stackrel{def}{=} \text{O}(n, k) \cap \text{SL}(n, \R)$.\\
 
-Let $\text{SO}^+(1, n) \subset \text{SO}(1, n)$ be a subgroup of all orthochronous matrices (i.e. with $\Lambda_0^0 \geq 1$). It follows from Thorem \ref{two-sets-of-metric-preserving} that this is indeed subgroup. Note that $\text{SO}^+(1, 3)$ is a group of all restricted Lorentz transformations. This is probably the most important group in modern physics.
-
-
-
+Let $\text{SO}^+(1, n) \subset \text{SO}(1, n)$ be a subgroup of all orthochronous matrices (i.e. with $\Lambda_0^0 \geq 1$). It follows from Thorem \ref{two-sets-of-metric-preserving} that this is indeed subgroup. The group $\text{SO}^+(1, 3)$ is a group of restricted Lorentz transformations. This is probably the most important group in modern physics.
 
 \section{Mathematical Analysis}
 \begin{definition}
