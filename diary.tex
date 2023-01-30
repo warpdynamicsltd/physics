@@ -2733,5 +2733,69 @@ Now, the result of that day
 \end{equation}
 
 is simply a corollary from Proposition \ref{general-lie-transition-quantum}.
+
+\section{Sunday, 29 January 2023}
+
+\subsection{Characteristisation of $\text{O(1,1)}$ for educational purpouses}
+
+Let $X$ be a real vector space with $\dim X = 2$ and let $g$ be a metric tensor with signature $(1,1)$. Let $\Lambda$ be a metric preserving operator.
+
+We would like to give a full characteristic of 
+\begin{equation}
+\Lambda = 
+\begin{bmatrix}
+    \tensor{\Lambda}{^0_0} &  \tensor{\Lambda}{^0_1} \\
+    \tensor{\Lambda}{^1_0} & \tensor{\Lambda}{^1_1} \\
+\end{bmatrix}
+\end{equation}
+
+From Subsection \ref{metric-preserving-operators} we know that
+
+\begin{equation}
+\label{metric-loretz-down}
+g_{\mu\nu} \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} = g_{\alpha\beta}. 
+\end{equation}
+
+and
+
+\begin{equation}
+\label{metric-loretz-up}
+g^{\alpha\beta} \tensor{\Lambda}{^\mu_\alpha} \tensor{\Lambda}{^\nu_\beta} = g^{\mu\nu}. 
+\end{equation}
+
+Since we have $(\tensor{\Lambda}{^0_0})^2 - (\tensor{\Lambda}{^1_0})^2 = 1$, note that 
+$|\tensor{\Lambda}{^0_0}| \geq 1$.
+
+Another equations that we can obtain from (\ref{metric-loretz-down}) and (\ref{metric-loretz-down}) are
+
+\begin{align}
+& \tensor{\Lambda}{^0_0}\tensor{\Lambda}{^0_1} - \tensor{\Lambda}{^1_1}\tensor{\Lambda}{^1_0}  = 0,\\
+& \tensor{\Lambda}{^0_0}\tensor{\Lambda}{^1_0} - \tensor{\Lambda}{^1_1}\tensor{\Lambda}{^0_1}  = 0.
+\end{align}
+
+Since $\tensor{\Lambda}{^0_0}\not=0$, we have 
+\begin{align}
+& \tensor{\Lambda}{^0_1} = \cfrac{\tensor{\Lambda}{^1_1}}{\tensor{\Lambda}{^0_0}}\tensor{\Lambda}{^1_0}, \\
+& \tensor{\Lambda}{^1_0} = \cfrac{\tensor{\Lambda}{^1_1}}{\tensor{\Lambda}{^0_0}}\tensor{\Lambda}{^0_1}.
+\end{align}
+
+We can show from the above two equations that $|\tensor{\Lambda}{^0_1}| = |\tensor{\Lambda}{^1_0}|$. Indeed, if $\tensor{\Lambda}{^1_1} = 0$, then $0 = \tensor{\Lambda}{^0_1} = \tensor{\Lambda}{^1_0}$. If $\tensor{\Lambda}{^1_1} \not= 0$, we have 
+\begin{equation}
+(\tensor{\Lambda}{^0_1})^2 \cfrac{\tensor{\Lambda}{^1_1}}{\tensor{\Lambda}{^0_0}}
+= (\tensor{\Lambda}{^1_0})^2 \cfrac{\tensor{\Lambda}{^1_1}}{\tensor{\Lambda}{^0_0}}
+\end{equation}
+and thus $(\tensor{\Lambda}{^0_1})^2 = (\tensor{\Lambda}{^1_0})^2$.
+
+Since
+\begin{align}
+& (\tensor{\Lambda}{^0_0})^2 = 1 +  (\tensor{\Lambda}{^1_0})^2, \\
+& (\tensor{\Lambda}{^1_1})^2 = 1 +  (\tensor{\Lambda}{^0_1})^2.
+\end{align}
+
+We have $|\tensor{\Lambda}{^0_0}| = |\tensor{\Lambda}{^1_1}|$.
+
+
 \end{document}
+
+
 

@@ -708,6 +708,7 @@ Now
 \end{proof}
 
 \subsection{Metric preserving operators}
+\label{metric-preserving-operators}
 
 \begin{definition}
 Let $X$ be a real vector space where $\dim X < +\infty$ with metric tensor $g$. And let $A:X\to X$ be a linear operator. We will define an operator $A^*: X \to X$ such that
@@ -1024,6 +1025,46 @@ $\mathcal{T}^{+}\subset \Lambda \mathcal{T}^{+}$.
 \end{proof}
 
 Of course it is trivial to show that $\Lambda \mathcal{T}^{+} = \mathcal{T}^{+}$ implies $\Lambda \mathcal{T}^{-} = \mathcal{T}^{-}$ and vice versa.
+
+\subsection{Characterisation of metric preserving operator for metric tensor of sigature $(1,n)$}
+
+Let $X$ be a vector space with $\dim X < +\infty$ and $g$ be a metric tensor with signature $(1, n)$. Let $e_0, e_1, \dots, e_n$ be it's orthonormal basis. Let $\Lambda$ be a metric preserving operator.
+
+Let 
+\begin{equation}
+\Lambda = 
+\begin{bmatrix}
+    \tensor{\Lambda}{^0_0} &  \bs{\Lambda}^0 \\
+    \bs{\Lambda}_0 & \bs{\Lambda} \\
+\end{bmatrix},
+\end{equation}
+
+where $\bs{\Lambda}^0$ is $n$-dimentional row vector, $\bs{\Lambda}_0$ is $n$-dimentional column vector and $\Lambda$ is $n\times n$ matrix.
+
+We will use equation
+\begin{equation}
+\Lambda^{-1} = [g]\Lambda^T[g].
+\end{equation}
+
+Note that
+\begin{equation}
+\Lambda^T = 
+\begin{bmatrix}
+    \tensor{\Lambda}{^0_0} &  (\bs{\Lambda}_0)^T \\
+    (\bs{\Lambda}^0)^T & \bs{\Lambda}^T \\
+\end{bmatrix},
+\end{equation}
+
+and
+
+\begin{equation}
+\Lambda^{-1} = 
+\begin{bmatrix}
+    \tensor{\Lambda}{^0_0} &  -(\bs{\Lambda}_0)^T \\
+    -(\bs{\Lambda}^0)^T & \bs{\Lambda}^T \\
+\end{bmatrix},
+\end{equation}
+
 
 \section{Lie Groups and Lie Algebras}
 
