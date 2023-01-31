@@ -1068,6 +1068,97 @@ and
 
 \section{Lie Groups and Lie Algebras}
 
+\subsection{Groups}
+
+\begin{definition}
+A structure $(G, \cdot, \mathfrak{e})$ with $\cdot : G\times G\to G$ and $\mathfrak{e}\in G$ is a group iff
+\begin{equation}
+(xy)z = x(yz) \text{ for all } x,z,y\in G,
+\end{equation}
+\begin{equation}
+\forall (x\in G) \, x\mathfrak{e} = \mathfrak{e} x = x, 
+\end{equation}
+
+\begin{equation}
+\label{group-inverse-axiom}
+\forall (x\in G)\exists(x', x'' \in G)\, xx' = x''x = \mathfrak{e}. 
+\end{equation}
+\end{definition}
+
+We can easily prove uniqness of unity element $\mathfrak{e}$.
+
+\begin{proposition}
+Let $(G, \cdot, \mathfrak{e})$ be a group. If there exists $\mathfrak{e}'$ such that $x\mathfrak{e}' = \mathfrak{e}'x = x$ for all $x\in G$, then we have $\mathfrak{e}' = \mathfrak{e}$.
+\end{proposition}
+
+\begin{proof}
+\begin{equation}
+\mathfrak{e} = \mathfrak{e}'\mathfrak{e} = \mathfrak{e}'.
+\end{equation}
+\end{proof}
+
+There is also a very simple prove that left-inverse must be the same as right-inverse
+\begin{lemma}
+\label{help-lemma-for-inverses}
+Let $(G, \cdot, \mathfrak{e})$ be a group. Let $x, x', x''\in G$. If $xx'=x''x=\mathfrak{e}$, then $x' = x''$.
+\end{lemma}
+\begin{proof}
+\begin{equation}
+x'' = x''\mathfrak{e} = x''(xx') = (x''x)x' = \mathfrak{e} x' = x'.
+\end{equation}
+\end{proof}
+\begin{proposition}
+Let $(G, \cdot, \mathfrak{e})$ be a group. For any $x\in G$, there exists an unique $x'$ such that $xx'= x'x = \mathfrak{e}$.
+\end{proposition}
+\begin{proof}
+Take any $x\in G$. By (\ref{group-inverse-axiom}), we have $x', x''\in G$ such that $xx'=x''x=\mathfrak{e}$. 
+Thus by Lemma \ref{help-lemma-for-inverses}, we have $x = x'$. Let's assume we have $y\in G$ such that $yx = xy = \mathfrak{e}$. Then $x'x = xy = \mathfrak{e}$, then again $y = x'$, hence uniqness is proven.
+\end{proof}
+
+With the above Proposition we can define $x^{-1}$ as element for which $xx^{-1} = x^{-1} x = \mathfrak{e}$.
+
+\begin{proposition}
+Let $(G, \cdot, \mathfrak{e})$ be a group. For any $x, x'\in G$ we have
+\begin{align}
+& x'x = \mathfrak{e} \implies x' = x^{-1},\\
+& xx' = \mathfrak{e} \implies x' = x^{-1}.
+\end{align}
+\end{proposition}
+\begin{proof}
+Take any $x\in G$. Assume that $x' x = \mathfrak{e}$, then by Lemma \ref{help-lemma-for-inverses}, $x' = x^{-1}$. Analogously, when $x x' = \mathfrak{e}$, we have $x' = x^{-1}$.
+\end{proof}
+
+\begin{corollary}
+\label{group-invers-of-invers}
+Let $(G, \cdot, \mathfrak{e})$ be a group. If $x\in G$ then $(x^{-1})^{-1} = x$.
+\end{corollary}
+Let $M_n(\K)$ denote space of all matricies of size $n\times n$ with entries from $\K$.
+
+By $\text{GL}(n, \K)$ be a set of all matrices $A \in M_n(\K)$, for which there exists a matrix $B\in M_n(\K)$ such that $AB = I$. We will show that $\text{GL}(n, \K)$ is a group.
+
+Indeed, it is easy to notice that for any $A_1, A_2\in \text{GL}(n, \K)$, we have $A_1A_2\in \text{GL}(n, \K)$ (Note that $A_1 A_2 B_2 B_1 = I$, where $A_1B_1 = I$ and $A_2B_2 = I$).
+
+Now, it is enough to show that any element of $\text{GL}(n, \K)$ has left inverse. We will argument for that in the following way. If we have $AB = I$, then $\det A \det B = 1$, hence $\det A\not = 0$. Thus $\det A^T = \det A \not = 0$. From basic properties of determinant it is easy to show that $A^T$ has linearly independent columns. We can show that for any vector $y$ we have a vector $x$ such that $A^T x = y$. Assume $e_1, \dots, e_n$ is an euclidian orthonormal basis used for parametrisation. Since columns of $A^T$ are linearly independent, so are $A^T e_1, \dots, A^T e_n$. Then we can represent $y = \gamma^\mu A^T e_\mu$ and by linearity $x = \gamma^\mu e_\mu$. Thus, we can construct matrix $C$ column by column such as $A^T C = I$, and so $C^T A = I$.
+
+We showed that $\text{GL}(n, \K)$ is a group. By Propositions in this subsection, we also justified existence of $A^{-1}$ for any $A\in \text{GL}(n, \K)$. It is also apparent that for any $B\in \text{GL}(n, \K)$, $AB = I$ implies $B = A^{-1}$ and $BA = I$ implies $B = A^{-1}$. This can be strengthen by following
+
+\begin{proposition}
+For any $A, B \in  M_n(\K)$, we have
+\begin{align}
+& AB = I \implies B = A^{-1},\\
+& BA = I \implies B = A^{-1}.
+\end{align} 
+\end{proposition}
+\begin{proof}
+If $AB = I$, then $A\in \text{GL}(n, \K)$ and $\det B \not = 0$, from which we can show that we have $C\in  M_n(\K)$ such that $BC = I$, then $B\in \text{GL}(n, \K)$, hence $B = A^{-1}$.
+
+If $BA = I$, we will show as above that $A, B\in \text{GL}(n, \K)$ and $B^{-1} = A$ and hence by Corollary \ref{group-invers-of-invers}, $A^{-1} = B$.
+\end{proof}
+
+
+
+\subsection{Introduction to Lie Groups and Lie Algebras}
+
 A lot of definitions and theorems in this section will be an extract of what is needed from \cite{hall2015}.
 
 We will use $\K$ as either $\R$ or $\C$.
