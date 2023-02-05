@@ -786,15 +786,71 @@ and
 K^1 = J^{01}, K^2 = J^{02}, K^3 = J^{03}.
 \end{equation}
 
-Then we can write commutaion relations as
+Then we can write commutaion relations for $J^i$ and $J^j$ as
 \begin{align}
 & [J^1, J^2] = i J^3,\\
 & [J^2, J^3] = i J^1,\\
-& [J^3, J^1] = i J^2,\\
+& [J^3, J^1] = i J^2,
+\end{align}
+and for $K^i$ and $K^j$
+\begin{align}
 & [K^1, K^2] = - i J^3,\\
 & [K^2, K^3] = - i J^1,\\
 & [K^3, K^1] = - i J^2.
 \end{align}
+
+Let 
+\begin{align*}
+& A^j \stackrel{def}{=} \cfrac{1}{2}\big(J^j + iK^j\big),\\
+& B^j \stackrel{def}{=} \cfrac{1}{2}\big(J^j - iK^j\big).
+\end{align*}
+
+For $m, n, k = (1, 2, 3), (2, 3, 1), (3, 1, 2)$,
+\begin{align*}
+& [A^m, A^n] = \cfrac{1}{4}\big([J^{nk} + iJ^{0m}, J^{km} + iJ^{0n}]\big) = \\
+& \cfrac{1}{4}\big([J^{nk}, J^{km}] + i[J^{nk}, J^{0n}] + i[J^{0m}, J^{km}] - [J^{0m}, J^{0n}]\big) = \\
+& \cfrac{1}{4}\big(iJ^{mn} - J^{0k} - J^{0k} + iJ^{mn}\big) = 
+\cfrac{1}{2}\big(iJ^{mn} - J^{0k}\big) = \cfrac{1}{2}\big(i J^{k} - J^{0k}\big) = iA^k.
+\end{align*}
+
+Analogously
+
+\begin{align*}
+& [B^m, B^n] = \cfrac{1}{4}\big([J^{nk} - iJ^{0m}, J^{km} - iJ^{0n}]\big) = \\
+& \cfrac{1}{4}\big([J^{nk}, J^{km}] - i[J^{nk}, J^{0n}] - i[J^{0m}, J^{km}] - [J^{0m}, J^{0n}]\big) = \\
+& \cfrac{1}{4}\big(iJ^{mn} + J^{0k} + J^{0k} + iJ^{mn}\big) = 
+\cfrac{1}{2}\big(iJ^{mn} + J^{0k}\big) = \cfrac{1}{2}\big(i J^{k} + J^{0k}\big) = iB^k.
+\end{align*}
+
+On the other hand
+
+\begin{align*}
+& [A^m, B^n] = \cfrac{1}{4}\big([J^{nk} + iJ^{0m}, J^{km} - iJ^{0n}]\big) = \\
+& \cfrac{1}{4}\big([J^{nk}, J^{km}] - i[J^{nk}, J^{0n}] + i[J^{0m}, J^{km}] + [J^{0m}, J^{0n}]\big) = \\
+& \cfrac{1}{4}\big(iJ^{mn} + J^{0k} - J^{0k} - iJ^{mn}\big) = 0.
+\end{align*}
+
+and
+
+\begin{align*}
+& [A^m, B^m] = \cfrac{1}{4}\big([J^{nk} + iJ^{0m}, J^{nk} - iJ^{0m}]\big) = 
+\cfrac{1}{4}\big(i[J^{0m}, J^{nk}] - i[J^{nk}, J^{0m}]\big) = 0.
+\end{align*}
+
+
+To summarise,
+for $m, n, k = (1, 2, 3), (2, 3, 1), (3, 1, 2)$
+\begin{align*}
+& [A^m, A^n] = iA^k \\
+& [B^m, B^n] = iB^k
+\end{align*} 
+
+and
+
+\begin{equation}
+[A^i, B^j] = 0
+\end{equation}
+for any pair of indices $i, j = 1, 2, 3$.\\
 
 It is well known fact that each Lorentz transformation $\Lambda$ can be represented as
 \begin{equation}
