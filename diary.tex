@@ -2804,9 +2804,57 @@ U: SO^{+}(1, 3)\to M_n(\C)
 
 Let $\mathfrak{so}(1,3)$ be a Lie algebra of $SO^{+}(1, 3)$ with base $iJ^1, iJ^2, iJ^3, iK^1, iK^2, iK^3\in \mathfrak{so}(1,3)$.
 
-We want to show that $SL(2, \C)$ is a universal cover of $SO^{+}(1, 3)$. To show that we need that is simply connected, a good shetch of proof here: \href{https://en.wikipedia.org/wiki/Special_linear_group#Topology}{Wikipedia | Special Linear Groups | Topology}. Also we need to go through reasoning in \href{https://en.wikipedia.org/wiki/Representation_theory_of_the_Lorentz_group#The_Lie_algebra}{Wikipedia | Representation theory of the Lorentz group | The Lie algebra}. This will give us isomorphism between $\mathfrak{so}(1,3)$ and $\mathfrak{sl}(\C,2)$. Having images of $\bs{A}$ and $\bs{B}$ in $\mathfrak{sl}(\C,2)$ with their commutation relations we can establish possible representations $U: SL(2, \C) \to M_n(\C)$ (mind Theorem 16.30 from \cite{hall2013}) and thus representations $U: SO^{+}(1, 3)\to M_n(\C)$. There is proof of $2-1$ relation between $SL(2, \C)$ and $SO^{+}(1, 3)$ in \textit{Lorentz Transformations, Rotations and Boosts} by Arthur Jaffe 2015 or in \cite{moshe1977}[3]. 
+We want to show that $SL(2, \C)$ is a universal cover of $SO^{+}(1, 3)$. To show that we need that is simply connected, a good shetch of proof here: \href{https://en.wikipedia.org/wiki/Special_linear_group#Topology}{Wikipedia | Special Linear Groups | Topology}. Also we need to go through reasoning in \href{https://en.wikipedia.org/wiki/Representation_theory_of_the_Lorentz_group#The_Lie_algebra}{Wikipedia | Representation theory of the Lorentz group | The Lie algebra}. This will give us isomorphism between $\mathfrak{so}(1,3)$ and $\mathfrak{sl}(\C,2)$. Having images of $\bs{A}$ and $\bs{B}$ in $\mathfrak{sl}(\C,2)$ with their commutation relations we can establish possible representations $U: SL(2, \C) \to M_n(\C)$ (mind Theorem 16.30 from \cite{hall2013}) and thus representations $U: SO^{+}(1, 3)\to M_n(\C)$. There is proof of $2-1$ relation between $SL(2, \C)$ and $SO^{+}(1, 3)$ in \textit{Lorentz Transformations, Rotations and Boosts} by Arthur Jaffe 2015 or in \cite{moshe1977}[3].\\ 
 
+It seems to be a evn simpler route which just scratches Lie groups theory.
 
+First let's note that Lie product formula holds for any finite number of matrices
+\begin{theorem}(\textbf{Lie Product Formula})
+For all $X_1, \dots, X_k\in M_n(\C)$, we have
+\begin{equation}
+\exp(\sum_{i=1}^k X_i) = \lim_{m\to \infty} \bigg(\prod_{i=1}^k \exp\big(\frac{X_i}{m}\big)\bigg)^m.
+\end{equation}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+& \prod_{i=1}^k \exp\big(\frac{X_i}{m} \big) = \prod_{i=1}^k \bigg(\sum_{p_i=0}^\infty \cfrac{1}{p_i!}\bigg(\cfrac{X_i}{m}\bigg)^{p_i}\bigg) = \sum_{p=0} m^{-p}\sum_{p_1 + \cdots + p_k=p}\prod_{i=1}^k \cfrac{1}{p_i!} (X_i)^{p_i} = \\
+& I + \cfrac{X_1}{m} + \cdots  + \cfrac{X_k}{m} + \sum_{p=2} m^{-p}\sum_{p_1 + \cdots + p_k=p}\prod_{i=1}^k \cfrac{1}{p_i!} (X_i)^{p_i} = I + \cfrac{X_1}{m} + \cdots  + \cfrac{X_k}{m} + O(m^{-2}).
+\end{align*}
+And futher exactly as in proof of Theorem 2.11 in \cite{hall2015}.
+\end{proof}
+
+\begin{lemma}
+Suppose $G_1$ and $G_2$ are matrix Lie groups with Lie algebras $\mathfrak{g}_1$ and 
+$\mathfrak{g}_2$ respectively and suppose $U:G_1\to G_2$ is contiunous homomorphism and $u: \mathfrak{g}_1\to \mathfrak{g}_2$ is a linear map such that
+\begin{equation}
+U\big(\exp(X)\big) = \exp\big(u(X)\big)
+\end{equation}
+for all $X\in \mathfrak{g}_1$, then
+\begin{equation}
+U\big(\exp\big(\sum_{i=1}^k \theta_i X_i\big)\big) = \exp\big(\sum_{i=1}^k \theta_i u(X_i)\big)
+\end{equation}
+for all $i=1, \dots, k$, $\theta_i\in \R$ and $X_i\in \mathfrak{g}_1$.
+\end{lemma}
+\begin{proof}
+\begin{align*}
+& U\big(\exp\big(\sum_{i=1}^k \theta_i X_i\big)\big) = 
+U(\lim_{m\to \infty} \bigg(\prod_{i=1}^k \exp\big(\frac{\theta_i X_i}{m}\big) \bigg)^m) = \\
+& \lim_{m\to \infty} U( \bigg(\prod_{i=1}^k \exp\big(\frac{\theta_i X_i}{m}\big) \bigg)^m) = \lim_{m\to \infty} \bigg(\prod_{i=1}^k U \exp\big(\frac{\theta_i X_i}{m}\big) \bigg)^m = \\
+& \lim_{m\to \infty} \bigg(\prod_{i=1}^k \exp\big(\frac{\theta_i}{m} u(X_i) \big) \bigg)^m
+= \exp\big(\sum_{i=1}^k \theta_i u(X_i)\big).
+\end{align*}
+\end{proof}
+
+The above can work with the following well known theorem
+\begin{theorem}
+For each $\Lambda\in SO^{+}(1, 3)$, we have $F\in \mathfrak{so}(1,3)$ such that
+\begin{equation}
+\Lambda = \exp(F).
+\end{equation}
+\end{theorem}
+\begin{proof}
+See e.g. Theorem 6.5 in \cite{hall2004}
+\end{proof}
  
 \end{document}
 
