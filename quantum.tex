@@ -335,6 +335,85 @@ A^\dagger \ket{\phi}:= \{\bra{\phi}A\}^\dagger,
 \bra{\phi} A^\dagger:= \{A\ket{\phi}\}^\dagger.
 \end{equation}
 
+\subsection{Relation between physical notation for Dirac bra-kets and mathematical notation for inner product in Hilber space}
+
+In this subsection, we will forget for a moment a Note \ref{dirac-note} and will define Dirac bra-kets stricly in terms of vector spaces.
+
+Let $V$ be an abstract vector space over field $\C$ and $V^*$ be a space of all linear functionals on $V$. We will assume convetion in which elements of a vector space $V$, will be denoted as kets $\ket{\psi}\in V$ and elements of a dual space $V^*$ will be dentones as bra $\bra{\phi}\in V^*$.
+
+The value
+\begin{equation}
+\bra{\phi}\ket{\psi} \in \C
+\end{equation}
+
+is a complex number being a result of a functional $\bra{\phi}$ acting on a vector $\ket{\psi}$. Note that by definition of linear functional we have
+\begin{equation}
+\langle\phi| \bigg( c_1|\psi_1\rangle + c_2|\psi_2\rangle \bigg) = c_1\langle\phi|\psi_1\rangle + c_2\langle\phi|\psi_2\rangle.
+\end{equation}
+
+Also by definiton of addition and scalar multiplication on dual space $V^\star$, we have
+\begin{equation}
+\bigg(c_1\bra{\phi_1} + c_2\bra{\phi_2} \bigg)\ket{\psi} = c_1\bra{\phi_1}\ket{\phi} + c_2\bra{\phi_2}\ket{\psi}.
+\end{equation}
+
+Consider now a linear operator $A:V\to V$. By $A\ket{\phi}$ we dentote a result of operator $A$ acting on a vector $\ket{\phi}$.
+
+By slight abuse of notation we will define $A: V^\star\to V^\star$ as acting on $V^*$ as follows
+
+\begin{equation}
+\bigg(\bra{\phi}A \bigg)\ket{\psi} \stackrel{def}{=} \bra{\phi}\bigg( A\ket{\psi}\bigg).
+\end{equation}\\
+
+On the other hand each Hilbert space $H$ is endowed with a inner product $\langle\cdot,\cdot \rangle:H\times H\to \C$ which is by mathematical convention linear with respect to the first argument and antilinear with respect to the second argument, i.e. 
+
+\begin{align}
+& \langle ax + by, z \rangle = a\langle x, z \rangle + b \langle y, z \rangle \\
+& \langle z, ax + by \rangle = a^*\langle z, x \rangle + b^* \langle z, y \rangle.
+\end{align}
+
+If we have $V\subset H$, we can identify $\ket{\phi}\in V$ with a certain element of $H$ understood as a subset of $V^*$ in a following way
+\begin{equation}
+\label{braket-inner-product}
+\boxed{
+\bra{\phi}\ket{\psi} \stackrel{def}{=} \langle \ket{\psi}, \ket{\phi} \rangle}
+\end{equation}
+
+Note that swaping the order of $\phi$ and $\psi$ is both intended and necessary, because the inner product in complex Hilbert space is linear only with respect to the first argument. Note that by (\ref{braket-inner-product}), we have established a map $\cdot^\dagger:V\to V^*$ (not necesarily onto in a genral case; it will be onto if $H=V$), such that
+\begin{equation}
+\ket{\phi}^\dagger = \bra{\phi}.
+\end{equation}
+
+We will show that
+\begin{equation}
+\bigg(c\ket{\phi}\bigg)^\dagger = c^*\bra{\phi}.
+\end{equation}
+
+Indeed, let $\ket{u} = c\ket{\phi}$, then by definition 
+
+\begin{equation}
+\bra{u}\ket{\psi} =  \langle \ket{\psi}, \ket{u} \rangle = \langle \ket{\psi}, c\ket{\psi} \rangle = c^*  \langle \ket{\psi}, \ket{\psi} \rangle = c^*\bra{\phi}\ket{\psi}.
+\end{equation}\\
+
+Note that when we defined $A:V^*\to V^*$ it also induces in a natural way another operator $A^\dagger$ which acts on $V$, defined as
+\begin{equation}
+A^\dagger \ket{\phi} \stackrel{def}{=} \bigg(\bra{\phi}A\bigg)^\dagger.
+\end{equation}
+
+We will show that
+\begin{equation}
+\langle \bigg(A\ket{\psi}\bigg), \ket{\phi} \rangle = \langle \ket{\psi}, A^\dagger\ket{\phi} \rangle
+\end{equation} 
+
+for any $\ket{\psi}, \ket{\phi} \in V$.
+
+Indeed,
+
+\begin{align*}
+& \langle \big(A\ket{\psi}\big), \ket{\phi} \rangle = \bra{\phi} A \ket{\psi} = \\ & \bigg(\bra{\phi} A\bigg) \ket{\psi} = \langle {\psi}, \bigg(\bra{\phi}A\bigg)^\dagger \rangle = \langle \ket{\psi}, A^\dagger\ket{\phi} \rangle.
+\end{align*}
+
+For quantum mechanics discussions we will be usually using Dirac bra-ket notation, keeping in mind that in context of Hilbert spaces (especially finite dimention vector spaces) we can convert it easily to inner product. 
+
 \subsection{Observables}
 
 \begin{definition}
