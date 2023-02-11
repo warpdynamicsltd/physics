@@ -701,6 +701,7 @@ By convention we introduce a generator in an quantum-mechanical form (i.e. multi
 Note that we lowered indices and this changed the sign in front of $x_j$.
 
 \subsection{Commutation relations between generators}
+\label{commutation-relations-between-generators}
 
 We will use here convention needed for Quantum Mechanics in which we multiply real generator by imaginary unit. We will overload notation by allowing index $i$ to denote integer using at the same time $i$ as imaginary unity. This notation almost never lead to ambiguity. Also recall that $g^\alpha_\beta = \delta^\alpha_\beta$ (it is easy to see by direct calculations for Minkovski metric tensor in general case see Theorem \ref{raise-metric-indices}).
 
@@ -851,6 +852,25 @@ and
 [A^i, B^j] = 0
 \end{equation}
 for any pair of indices $i, j = 1, 2, 3$.\\
+
+Sometimes it is useful to have slightly different characterisation of Lorentz algebra.
+
+\begin{proposition}
+Let $g$ be a metric tensor with a signature $1, n$ and let $J^{\mu\nu}$ be a family of operators for $\mu, \nu = 0, 1, \dots, n$. Then the conjunction of the following 3 conditions
+\begin{align}
+& J^{\mu\nu} = -J^{\nu\mu},\\
+& [J^{\mu\nu}, J^{\rho\sigma}] = 0 \text{ for } \mu, \nu, \rho, \sigma \text{ pairwise different},\\
+& [J^{\mu\sigma}, J^{\sigma\nu}] = ig^{\sigma\sigma}J^{\mu\nu} \text{ for } \mu, \nu,  \sigma \text{ pairwise different}.
+\end{align}
+is equivalent to 
+\begin{equation}
+[J^{\mu\nu}, J^{\rho\sigma}] = 
+i\big( g^{\nu\rho } J^{\mu\sigma} 
+- g^{\nu\sigma} J^{\mu\rho}
+- g^{\mu\rho} J^{\nu\sigma}
++ g^{\mu\sigma} J^{\nu\rho}\big).
+\end{equation}
+\end{proposition}
 
 It is well known fact that each Lorentz transformation $\Lambda$ can be represented as
 \begin{equation}
