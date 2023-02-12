@@ -747,8 +747,7 @@ Note that
 & J^{ij} = J_{ij} \text{ for } i,j=1,2,3,\\
 & J^{0j} = - J_{0j} \text{ for } j=1,2,3.
 \end{align*}
-
-Obviously $J_{\mu\mu} = J^{\mu\mu} = 0$.
+Obviously $J_{\mu\mu} = J^{\mu\mu} = 0$.\\
 
 Our goal will be now to calculate commutator $[J^{\mu\nu}, J^{\rho\sigma}]$.
 
@@ -799,6 +798,7 @@ and for $K^i$ and $K^j$
 & [K^2, K^3] = - i J^1,\\
 & [K^3, K^1] = - i J^2.
 \end{align}
+The above relations can be written in a more systematic way as Proposition \ref{useful-char-of-lorentz-algebra} (which is given later in this subsection).
 
 Let 
 \begin{align*}
@@ -813,31 +813,24 @@ For $m, n, k = (1, 2, 3), (2, 3, 1), (3, 1, 2)$,
 & \cfrac{1}{4}\big(iJ^{mn} - J^{0k} - J^{0k} + iJ^{mn}\big) = 
 \cfrac{1}{2}\big(iJ^{mn} - J^{0k}\big) = \cfrac{1}{2}\big(i J^{k} - J^{0k}\big) = iA^k.
 \end{align*}
-
 Analogously
-
 \begin{align*}
 & [B^m, B^n] = \cfrac{1}{4}\big([J^{nk} - iJ^{0m}, J^{km} - iJ^{0n}]\big) = \\
 & \cfrac{1}{4}\big([J^{nk}, J^{km}] - i[J^{nk}, J^{0n}] - i[J^{0m}, J^{km}] - [J^{0m}, J^{0n}]\big) = \\
 & \cfrac{1}{4}\big(iJ^{mn} + J^{0k} + J^{0k} + iJ^{mn}\big) = 
 \cfrac{1}{2}\big(iJ^{mn} + J^{0k}\big) = \cfrac{1}{2}\big(i J^{k} + J^{0k}\big) = iB^k.
 \end{align*}
-
 On the other hand
-
 \begin{align*}
 & [A^m, B^n] = \cfrac{1}{4}\big([J^{nk} + iJ^{0m}, J^{km} - iJ^{0n}]\big) = \\
 & \cfrac{1}{4}\big([J^{nk}, J^{km}] - i[J^{nk}, J^{0n}] + i[J^{0m}, J^{km}] + [J^{0m}, J^{0n}]\big) = \\
 & \cfrac{1}{4}\big(iJ^{mn} + J^{0k} - J^{0k} - iJ^{mn}\big) = 0.
 \end{align*}
-
 and
-
 \begin{align*}
 & [A^m, B^m] = \cfrac{1}{4}\big([J^{nk} + iJ^{0m}, J^{nk} - iJ^{0m}]\big) = 
 \cfrac{1}{4}\big(i[J^{0m}, J^{nk}] - i[J^{nk}, J^{0m}]\big) = 0.
 \end{align*}
-
 
 To summarise,
 for $m, n, k = (1, 2, 3), (2, 3, 1), (3, 1, 2)$
@@ -856,14 +849,17 @@ for any pair of indices $i, j = 1, 2, 3$.\\
 Sometimes it is useful to have slightly different characterisation of Lorentz algebra.
 
 \begin{proposition}
-Let $g$ be a metric tensor with a signature $1, n$ and let $J^{\mu\nu}$ be a family of operators for $\mu, \nu = 0, 1, \dots, n$. Then the conjunction of the following 3 conditions
+\label{useful-char-of-lorentz-algebra}
+Let $n\geq 3$ and $g$ be a metric tensor with a signature $1, n$ and let $J^{\mu\nu}$ be a family of operators for $\mu, \nu = 0, 1, \dots, n$. Then the conjunction of the following 3 conditions
 \begin{align}
-& J^{\mu\nu} = -J^{\nu\mu},\\
-& [J^{\mu\nu}, J^{\rho\sigma}] = 0 \text{ for } \mu, \nu, \rho, \sigma \text{ pairwise different},\\
-& [J^{\mu\sigma}, J^{\sigma\nu}] = ig^{\sigma\sigma}J^{\mu\nu} \text{ for } \mu, \nu,  \sigma \text{ pairwise different}.
+& J^{\mu\nu} = -J^{\nu\mu}, \nonumber \\
+\label{3-conditions-for-lorentz-algebra}
+& [J^{\mu\nu}, J^{\rho\sigma}] = 0 \text{ for } \mu, \nu, \rho, \sigma \text{ pairwise distinct},\\
+& [J^{\mu\sigma}, J^{\sigma\nu}] = ig^{\sigma\sigma}J^{\mu\nu} \text{ for } \mu, \nu,  \sigma \text{ pairwise distinct}. \nonumber
 \end{align}
 is equivalent to 
 \begin{equation}
+\label{1-condition-for-lorentz-algebra}
 [J^{\mu\nu}, J^{\rho\sigma}] = 
 i\big( g^{\nu\rho } J^{\mu\sigma} 
 - g^{\nu\sigma} J^{\mu\rho}
@@ -871,6 +867,56 @@ i\big( g^{\nu\rho } J^{\mu\sigma}
 + g^{\mu\sigma} J^{\nu\rho}\big).
 \end{equation}
 \end{proposition}
+
+\begin{proof}
+
+Note that for any family $J^{\mu\nu}$ we can define
+$J(\mu, \nu, \rho, \sigma) = i\big( g^{\nu\rho } J^{\mu\sigma} 
+- g^{\nu\sigma} J^{\mu\rho}
+- g^{\mu\rho} J^{\nu\sigma}
++ g^{\mu\sigma} J^{\nu\rho}\big)$ and the following always holds
+\begin{align}
+\label{double-antisymmertric}
+& J(\mu, \nu, \rho, \sigma) = - J(\nu, \mu, \rho, \sigma),\nonumber\\
+& J(\mu, \nu, \rho, \sigma) = - J(\mu, \nu, \sigma, \rho).
+\end{align}
+The above assumptions implies $J(\mu, \mu, \rho, \sigma) = 0$ and $J(\mu, \nu, \rho, \rho) = 0$. Now, it is realatively easy to notice that if we have $J_1$ and $J_2$ with the property that $J_1(\mu, \nu, \rho, \sigma)=
+J_2(\mu, \nu, \rho, \sigma)=0$ for pairwise distinct $\mu, \nu, \rho, \sigma$ and both $J_1$ and $J_2$ satisfy (\ref{double-antisymmertric}), then equality $J_1(\mu, \sigma, \sigma, \nu)=
+J_2(\mu, \sigma, \sigma, \nu)$ for pairwise distinct $\mu,\nu,\sigma$ is enough to show $J_1 = J_2$.\\
+
+
+Now we are ready to show (\ref{3-conditions-for-lorentz-algebra})$\implies$(\ref{1-condition-for-lorentz-algebra}). Let's define 
+$J_1(\mu, \nu, \rho, \sigma) = [J^{\mu\sigma}, J^{\sigma\nu}]$ and $J_2(\mu, \nu, \rho, \sigma) = i\big( g^{\nu\rho } J^{\mu\sigma} 
+- g^{\nu\sigma} J^{\mu\rho}
+- g^{\mu\rho} J^{\nu\sigma}
++ g^{\mu\sigma} J^{\nu\rho}\big).$
+Note that for $\mu, \nu, \rho, \sigma$ pairwise distinct the  $J_1(\mu, \nu, \rho, \sigma)=
+J_2(\mu, \nu, \rho, \sigma)=0$ holds because then all $g^{(\cdot\cdot)}$ coefficients are zero.
+Since $J^{\mu\nu} = -J^{\nu\mu}$, (\ref{double-antisymmertric}) holds for $J_1$ and it is also easy to notice that for any family $J^{\mu\nu}$ (\ref{double-antisymmertric}) holds for $J_2$. Then the third assumption of (\ref{3-conditions-for-lorentz-algebra}) implies $J_1 = J_2$.
+
+Let's show now (\ref{1-condition-for-lorentz-algebra})$\implies$(\ref{3-conditions-for-lorentz-algebra}).
+We have imediatelly the second condition of (\ref{3-conditions-for-lorentz-algebra}). It is also straightforward to notice from (\ref{1-condition-for-lorentz-algebra}) that
+\begin{equation}
+[J^{\mu\sigma}, J^{\sigma\nu}] = ig^{\sigma\sigma}J^{\mu\nu} \text{ for } \mu, \nu,  \sigma \text{ pairwise distinct},
+\end{equation}
+which proved third condition of (\ref{3-conditions-for-lorentz-algebra}). Additionally note that 
+\begin{equation}
+[J^{\sigma\mu}, J^{\nu\sigma}] = ig^{\sigma\sigma}J^{\mu\nu} \text{ for } \mu, \nu,  \sigma \text{ pairwise distinct}.
+\end{equation} 
+
+It is enough now to show that $J^{\mu\nu} = -J^{\mu\nu}$ for arbitrary indecies.
+Let's assume first $\mu \not= \nu$.
+
+\begin{align}
+ig^{\sigma\sigma}J^{\mu\nu} = [J^{\sigma\mu}, J^{\nu\sigma}] = -[J^{\nu\sigma}, J^{\sigma\mu}] = - ig^{\sigma\sigma} J^{\nu\mu},
+\end{align}
+thus $J^{\mu\nu} = -J^{\mu\nu}$ for $\mu\not=\nu$. And from this and (\ref{1-condition-for-lorentz-algebra}), we have
+\begin{equation}
+0 = [J^{\mu\nu}, J^{\nu\mu}] = g^{\mu\mu}J^{\nu\nu} + g^{\nu\nu}J^{\mu\mu}.
+\end{equation}
+And since $n\geq 3$, this systems of equations implies $J^{\mu\mu} = 0$ for all indecies. 
+\end{proof}
+
 
 It is well known fact that each Lorentz transformation $\Lambda$ can be represented as
 \begin{equation}

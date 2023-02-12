@@ -2856,6 +2856,122 @@ For each $\Lambda\in SO^{+}(1, 3)$, we have $F\in \mathfrak{so}(1,3)$ such that
 \begin{proof}
 See e.g. Theorem 6.5 in \cite{hall2004}
 \end{proof}
+
+\section{Sunday, 12 February 2023}
+
+\subsection{Lorentz ether theory}
+
+We will describe a universe, in which the kinematics behaves according to Galilean transformation with assumed absolute time and space. Let's assume that we have one particular observer -- Galileo, who has an access to the absolute time -- his clock measures absolute time $t$ and he also has access to an absolute frame of reference scaled with $x, y, z$. This frame of reference is called ether. There are two important laws of physics in the considered universe.
+
+\begin{law}
+Radio waves travels with a velocity $c = 1$ relative to ether, regardless of the direction in which are transmited.
+\end{law}
+
+\begin{law}
+\label{law-of-time-dilatation}
+For any clock physically identical to Galileo's clock and moving with velocity $\beta$,  the time $\Delta t_c$ measured by this clock is given by the equation
+\begin{equation}
+\Delta t_c = (1 - \beta)^{1/2}\Delta t,
+\end{equation} 
+where $\Delta t$ is an absolute time passed during the measurment.
+\end{law} 
+
+There is also another observer in this universe -- let's call him Einstein, whose equation of motion in Galileo's frame of reference is $(\beta t, 0, 0)$, where $t$ is an absolute time -- it is also a time measured by Galileo's clock. Einstein has no knowledge of either ether or Galileo and can only perceive the universe from his point of view. He is unaware of the true laws of physics in the universe. Instead, he has ceratin physical theory - A Theory of Relativity, which consists of two hypothetical laws.
+
+\begin{law}
+\label{einstein-clocks-law}
+Any two identical clocks being in rest relative to each other are ticking with the same rate.
+\end{law}
+ 
+\begin{law}
+\label{einstein-speed-of-light-law}
+Radio waves travels with a velocity $c = 1$ relative to any observer, regradless of the observer velocity and in what direction radio waves are transmited.
+\end{law}
+
+Note that as it happens, the Law \ref{einstein-clocks-law} is actually true in the described universe. But Law \ref{einstein-speed-of-light-law} is clearly false.
+
+Will Einstein have means to refute his theory or it will give him a coherent description of kinematics in the universe, which he will be not able to experimentally overthrow?
+
+Assume that Einstein carries with himself a frame of reference which axes are parallel to Galileo's but he hasn't yet decided on any scale on them. After all, a particular system of length measures is a matter of convetion. Einstein has his own clock, which is physically identical to Galileo's clock. We will usually denote his time as $\hat{t}$.
+Since, we know the true laws of physics in this universe, by Law \ref{law-of-time-dilatation}, without loss of generality, we can state that 
+
+\begin{equation}
+\label{ether-time-dilatation}
+\hat{t} = (1 - \beta)^{1/2} t,
+\end{equation} 
+
+where $t$ is an absolute time. Let's equip Einstein a bit better. Assume that he carries not only frame of reference but also a cubic lattice, which is in rest relative to his frame of reference. We can think about cube cells in Einstein's lattice as infinitesimally small. In practical terms we can think that they are as small as required - and we can really get crazy about how small they are. This is a theoretical construct and we are limited here only by our imagination. Nevertheless, in each cube cell there is a small device -- a Einstein's probe. Let's describe instruments in each Einstein's probe
+\begin{enumerate}
+\item a clock physically identical to the Einstein's clock.
+\item a detector which can register an object or a radio wave passing through the cell
+\item a radio transmitter which can send information about an event which occured in the cell with the time of the event read from the probe's clock.
+\item a radio receiver of Einstein's mesages to the probe to tell the transmitter to send signals.
+ \end{enumerate} 
+Einstein can't use that the original values of the clock readings (e.g. $13:43:23$ are meaningful). He can only rely on the differences between readings as he belives (and is actually right in it) that the rate in which each probe's clock is ticking is the same as the rate in which his clock is ticking.
+
+Now, Einstein decided to use velocity of radio waves to scale the axes of his frame of reference. He will naturally assume that he is in the center of his frame of reference, in a point $(0, 0, 0)$ and he will attempt to determine the coordinate of a certain probe which lies on his $x-$axies. For Galileo this probe's equation of motion is $(\beta t + \Delta x, 0, 0)$.
+
+Since Einstein assumes that the speed of radio waves is always $1$ to any observer and independent on direction, he will send a message to the probe by radio waves requesting an imediate signal back. When he will receive it after time $\Delta \hat{t}$ from sending, he will assign to the probe coordinates $(\hat{x} = \Delta \hat{t}/2, 0, 0)$. Let's establish relation between $\Delta x$ and $\hat{x}$.
+
+Let's assume for the moment that $\Delta x \geq 0$. Since the signal travels with a velocity $1 - \beta$ relative to the probe, the absolute time between Einstein sending a command to the probe and the probe receiving it is
+\begin{equation}
+\Delta t_1 = (1 - \beta)^{-1} \Delta x.
+\end{equation}
+Since the signal back travels with a velocity $1 + \beta$ relative to the probe, the time between probe sending signal back and Einstein receiving it is
+\begin{equation}
+\Delta t_2 = (1 + \beta)^{-1} \Delta x.
+\end{equation}
+
+Now by Law \ref{law-of-time-dilatation}
+\begin{align*}
+& \Delta \hat{t} = (1 - \beta^2)^{1/2}\bigg(\cfrac{1}{1 - \beta} + \cfrac{1}{1 + \beta} \bigg) \Delta x = \\
+& (1 - \beta^2)^{1/2} \bigg(\cfrac{1 + \beta}{1 - \beta^2} + \cfrac{1 - \beta}{1 - \beta^2} \bigg) \Delta x = 2(1-\beta^2)^{-1/2} \Delta x.
+\end{align*}
+Thus
+\begin{equation}
+\label{ether-lorentz-x}
+\hat{x} = (1-\beta^2)^{-1/2} \Delta x.
+\end{equation}
+
+Note that if $\Delta x < 0$ the calculations are analogous, we only need to swap $\Delta t_1$ with $\Delta t_2$ but this does not affect the result, so an equation (\ref{ether-lorentz-x}) still holds.
+
+From now on, let's use $\gamma = (1-\beta^2)^{-1/2}$. Suppose that Galileo would like to work out $\hat{x}$ a bit differently. He will want to answer the following question. If the probe time and space coordinates is $(t, x, 0, 0)$ in Galileo's frame of reference, what will be Einstein's $\hat{x}$ expressed in $x$ and $t$? Since $x = \beta t + \Delta x$, we have $\Delta x = x - \beta t$, therefore $\hat{x} = (x - \beta t) \gamma$. Then
+
+\begin{equation}
+\hat{x} = \gamma x - \beta\gamma t.
+\end{equation}
+
+Now, Eintstein will attempt to synchronise the clock in the probe $(\hat{x}, 0, 0)$ with his own clock, so that both clocks will be showing the same time from Einstein's perspective. As he already established a distance to the probe, he can read his own time $\hat{t}_a$ from his clock and send a command to the probe to set its internal clock to the time $\hat{t}_a + \hat{x}$, because he assumes that his command will reach a probe with time retardation equal to $\hat{x}$. 
+
+Let's see what will be the probe's clock synchronised time in the moment of synchronisation, if we assume that synchronisation occures at an absolute time $t$ and at absolute space coordinates $(x, 0, 0)$. By (\ref{ether-time-dilatation}) we have $\hat{t}_a = \gamma^{-1} t_a$, where $t_a$ is an Galileo's clock time when Einstein sends his command to the probe. If $t$ is the time when command, traveling with velocity c = 1 relative to ether and with velocity $1 - \beta$ relative to the probe, reaches the probe, we must have $t_a = t - \Delta x (1 - \beta)^{-1}$. Then we know what will be the probe's clock new time $\hat{t}$ in the moment of synchronisation. According to Einstein's instruction, it must be
+
+\begin{align*}
+& \hat{t} = \hat{t}_a + \hat{x} = \gamma^{-1}(t - \Delta x (1 - \beta)^{-1}) + \gamma \Delta x = \\
+& \gamma^{-1}(t - (x - \beta t) (1 - \beta)^{-1}) + \gamma (x - \beta t) = \\
+& \gamma^{-1}\bigg( \cfrac{t(1 - \beta) - (x - \beta t)}{1 - \beta} \bigg) + \gamma (x - \beta t) = \\
+& \gamma^{-1}\bigg( \cfrac{t - x}{1 - \beta} \bigg) + \gamma (x - \beta t) = 
+\gamma^{-1}\bigg( \cfrac{(1 + \beta)(t - x)}{1 - \beta^2} \bigg) + \gamma (x - \beta t) = 
+\\
+& \gamma(1 + \beta)(t - x) + \gamma (x - \beta t) = \gamma(t + \beta t - \beta x - x + x -\beta t) = \\
+& \gamma( t - \beta x) = \gamma t - \beta\gamma x.
+\end{align*}
+
+Hence,
+\begin{equation}
+\label{ether-lorentz-t}
+\hat{t} = \gamma t - \beta\gamma x.
+\end{equation}
+
+Note that Einstein can synchronise in the above way clocks in all probes on the $x$-axis. Thus, for him an event which happens in his ``space'' at time $\hat{t}$ according to his clock and at his coordinates $(\hat{x}, 0, 0)$, will be an event registered by probe with coordinates $(\hat{x}, 0, 0)$ at synchronised probe's clock time $\hat{t}$. If we summarise now the relations (\ref{ether-lorentz-x}) and (\ref{ether-lorentz-t}) between Einstein's time and space coordinates and Galileo's time and space coordinates, we get
+
+\begin{equation}
+\begin{cases}
+\hat{t} = \gamma t - \beta \gamma x, \\
+\hat{x} = x\gamma - \beta \gamma t. 
+\end{cases}
+\end{equation}
+
+which is exactly equivalent to Lorentz transformation.
  
 \end{document}
 

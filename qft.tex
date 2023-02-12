@@ -231,6 +231,36 @@ D_F(z) = \theta(z^0)D(z) + \theta(-z^0)D(-z).
 \end{equation}
 \end{proof}
 
+\subsection{Dirac equation}
+
+The motivation of Dirac equation is to find a linear equation, which will imply Klein-Gordon equation. We will assume that such an equation will have a form
+\begin{equation}
+i\gamma^\mu \partial_\mu - m = 0.
+\end{equation}
+We assume that left side acts on differentiable ``in a good enough sense'' $\phi:\R^4 \to \C^n$, where $n$ is not necessarily determined yet and $\gamma^\mu$ is a matrix (i.e. $\gamma^\mu\in M_n(\C))$.
+
+We will try to work out conditions for $\gamma^\mu$ which are necessary to imply Klein-Gordon equation.
+
+\begin{align*}
+& 0 = (i\gamma^\mu \partial_\mu - m)(-i\gamma^\mu \partial_\mu - m) = \gamma^\mu\gamma^\nu \partial_\mu \partial_\nu + m^2 = \\
+& \sum_{\mu} \gamma^\mu\gamma^\mu\partial_\mu\partial_\mu + \sum_{\mu < \nu} \{\gamma^\mu, \gamma^\nu\} \partial_\mu\partial_\nu + m^2 = \\
+& \sum_{\mu} \cfrac{1}{2}\{\gamma^\mu, \gamma^\mu\} \partial_\mu\partial_\mu + \sum_{\mu \not= \nu} \cfrac{1}{2}\{\gamma^\mu, \gamma^\nu\} \partial_\mu\partial_\nu + m^2 = \\
+& \cfrac{1}{2}\{\gamma^\mu, \gamma^\nu\} \partial_\mu \partial_\nu + m^2,
+\end{align*}
+where $\{\cdot,\cdot\}$ is an anticommutator. Now, if we will require
+$\cfrac{1}{2}\{\gamma^\mu, \gamma^\nu\} = g^{\mu\nu}$.
+we will get 
+\begin{equation}
+0 = g^{\mu\nu}\partial_\mu\partial_\nu + m^2 = \partial^\mu\partial_\mu + m^2.
+\end{equation}
+
+Thus, the condition for $\gamma^\mu$ is
+\begin{equation}
+\boxed{
+\{\gamma^\mu, \gamma^\nu\} = 2g^{\mu\nu}
+}
+\end{equation}
+ 
 
 \subsection{Creation and anihilation algebra for bozons and fermions}
 In this subsection $p$ indexes are arbitrary and they are not necesarlily related to momentum. 
