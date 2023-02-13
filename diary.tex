@@ -2876,7 +2876,7 @@ For any clock physically identical to Galileo's clock and traveling with velocit
 where $\Delta t$ is an absolute time passed during the measurment.
 \end{law} 
 
-There is also another observer in this universe -- let's call him Einstein, whose equation of motion in Galileo's frame of reference is $(\beta t, 0, 0)$, where $t$ is an absolute time -- recall that this is also a time measured by Galileo's clock. Einstein has no knowledge of either ether or Galileo and can only perceive the universe from his own point of view. He is unaware of the true laws of physics in the universe. Instead, he has ceratin physical theory - A Theory of Relativity, which consists of two hypothetical laws.
+There is also another observer in this universe -- let's call him Einstein, whose equation of motion in Galileo's frame of reference is $(\beta t, 0, 0)$ with velocity $\beta < 1$, where $t$ is an absolute time -- recall that this is also a time measured by Galileo's clock. Einstein has no knowledge of either ether or Galileo and can only perceive the universe from his own point of view. He is unaware of the true laws of physics in the universe. Instead, he has ceratin physical theory - A Theory of Relativity, which consists of two hypothetical laws.
 
 \begin{law}
 \label{einstein-clocks-law}
@@ -2907,7 +2907,7 @@ where $t$ is an absolute time. Let's equip Einstein a bit better. Assume that he
 \item a radio transmitter which can send information about an event which occured in the cell with the time of the event read from the probe's clock.
 \item a radio receiver of Einstein's mesages to the probe to tell the transmitter to send signals.
  \end{enumerate} 
-Einstein can't use that the original values of the probe's clock readings (e.g. $13:43:23$ are meaningful). He can only rely on the differences between readings, as he belives (and he is actually right) that the rate in which each probe's clock is ticking is the same as the rate in which his clock is ticking.
+Einstein can't use that the original values of the probe's clock readings (e.g. $13:43:23$ are meaningless). He can only rely on the differences between readings, as he belives (and he is actually right) that the rate in which each probe's clock is ticking is the same as the rate in which his clock is ticking.
 
 Now, Einstein decided to use velocity of radio waves to scale the axes of his frame of reference. He will naturally assume that he is in the center of his frame of reference, in a point $(0, 0, 0)$ and he will attempt to determine the coordinate of a certain probe which lies on his $x-$axies. For Galileo this probe's equation of motion is $(\beta t + \Delta x, 0, 0)$.
 
@@ -2941,18 +2941,18 @@ From now on, let's use $\gamma = (1-\beta^2)^{-1/2}$. Suppose that Galileo would
 \hat{x} = \gamma x - \beta\gamma t.
 \end{equation}
 
-Now, Eintstein will attempt to synchronise the clock in the probe $(\hat{x}, 0, 0)$ with his own clock, so that both clocks will be showing the same time from Einstein's perspective. As he already established a distance to the probe, he can read his own time $\hat{t}_a$ from his clock and send a mesage to the probe to set its internal clock to the time $\hat{t}_a + \hat{x}$, because he assumes that his command will reach a probe with time retardation equal to $\hat{x}$. 
+Now, Eintstein will attempt to synchronise the clock in the probe $(\hat{x}, 0, 0)$ with his own clock, so that both clocks will be showing the same time from Einstein's perspective. As he already established a distance to the probe, he can read his own time $\hat{t}_a$ from his clock and send a mesage to the probe to set its internal clock to the time $\hat{t}_a \pm \hat{x}$, because he assumes that his command will reach a probe with time retardation equal to $\pm\hat{x}$. Where $+\hat{x}$ is used in place of $\pm\hat{x}$ when $\hat{x} \geq 0$ and $-\hat{x}$ is used when $\hat{x} < 0$. It will become soon apparent, why this convention will be convenient. 
 
-Let's see what will be the probe's clock synchronised time in the moment of synchronisation, if we assume that synchronisation occures at an absolute time $t$ and at absolute space coordinates $(x, 0, 0)$. By (\ref{ether-time-dilatation}) we have $\hat{t}_a = \gamma^{-1} t_a$, where $t_a$ is an Galileo's clock time when Einstein sends his message to the probe. If $t$ is the time when message, traveling with velocity c = 1 relative to ether and with velocity $1 - \beta$ relative to the probe, reaches the probe, we must have $t_a = t - \Delta x (1 - \beta)^{-1}$. Then we know what will be the probe's clock new time $\hat{t}$ in the moment of synchronisation. According to Einstein's instruction in the message, it must be
+Let's see what will be the probe's clock synchronised time in the moment of synchronisation, if we assume that synchronisation occures at an absolute time $t$ and at absolute space coordinates $(x, 0, 0)$. By (\ref{ether-time-dilatation}) we have $\hat{t}_a = \gamma^{-1} t_a$, where $t_a$ is an Galileo's clock time when Einstein sends his message to the probe. If $t$ is the time when message, traveling with velocity c = 1 relative to ether and with velocity $1 \mp \beta$ relative to the probe, reaches the probe, we must have $t_a = t \mp \Delta x (1 \mp \beta)^{-1}$. Then we know what will be the probe's clock new time $\hat{t}$ in the moment of synchronisation. According to Einstein's instruction in the message, it must be
 
 \begin{align*}
-& \hat{t} = \hat{t}_a + \hat{x} = \gamma^{-1}(t - \Delta x (1 - \beta)^{-1}) + \gamma \Delta x = \\
-& \gamma^{-1}(t - (x - \beta t) (1 - \beta)^{-1}) + \gamma (x - \beta t) = \\
-& \gamma^{-1}\bigg( \cfrac{t(1 - \beta) - (x - \beta t)}{1 - \beta} \bigg) + \gamma (x - \beta t) = \\
-& \gamma^{-1}\bigg( \cfrac{t - x}{1 - \beta} \bigg) + \gamma (x - \beta t) = 
-\gamma^{-1}\bigg( \cfrac{(1 + \beta)(t - x)}{1 - \beta^2} \bigg) + \gamma (x - \beta t) = 
+& \hat{t} = \hat{t}_a \pm \hat{x} = \gamma^{-1}(t \mp \Delta x (1 \mp \beta)^{-1}) \pm \gamma \Delta x = \\
+& \gamma^{-1}(t \mp (x - \beta t) (1 \mp \beta)^{-1}) \pm \gamma (x - \beta t) = \\
+& \gamma^{-1}\bigg( \cfrac{t(1 \mp \beta) \mp (x - \beta t)}{1 \mp \beta} \bigg) \pm \gamma (x - \beta t) = \\
+& \gamma^{-1}\bigg( \cfrac{t \mp x}{1 \mp \beta} \bigg) \pm \gamma (x - \beta t) = 
+\gamma^{-1}\bigg( \cfrac{(1 \pm \beta)(t \mp x)}{1 - \beta^2} \bigg) \pm \gamma (x - \beta t) = 
 \\
-& \gamma(1 + \beta)(t - x) + \gamma (x - \beta t) = \gamma(t + \beta t - \beta x - x + x -\beta t) = \\
+& \gamma(1 \pm \beta)(t \mp x) \pm \gamma (x - \beta t) = \gamma(t \pm \beta t - \beta x \mp x \pm x \mp \beta t) = \\
 & \gamma( t - \beta x) = \gamma t - \beta\gamma x.
 \end{align*}
 Hence,
