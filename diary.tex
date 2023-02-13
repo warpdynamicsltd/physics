@@ -2955,12 +2955,19 @@ Let's see what will be the probe's clock synchronised time in the moment of sync
 & \gamma(1 + \beta)(t - x) + \gamma (x - \beta t) = \gamma(t + \beta t - \beta x - x + x -\beta t) = \\
 & \gamma( t - \beta x) = \gamma t - \beta\gamma x.
 \end{align*}
-
 Hence,
 \begin{equation}
 \label{ether-lorentz-t}
 \hat{t} = \gamma t - \beta\gamma x.
 \end{equation}
+To sense check our calculations, let's verify if probe's clock synchronisation preserves equation (\ref{ether-lorentz-t}) in any time after synchronisation. Let's consider the probe after $\Delta t$ of an absolute time passed. The Galileo's time and space coordinates of the probe will be now $(t', x', 0, 0)$ where $t' = t + \Delta t$ and $x' = x + \beta \Delta t$. By (\ref{ether-time-dilatation}), the probe's clock time at this moment will be
+\begin{align*}
+& \hat{t}' = \hat{t} + \gamma^{-1}\Delta t = \gamma t - \beta\gamma x + \gamma^{-1}\Delta t =  \\
+& \gamma t - \beta\gamma x - \gamma\beta^2\Delta t + \gamma^{-1}\Delta t + \gamma\beta^2\Delta t = \\
+& \gamma t - \beta\gamma x' + (\gamma^{-1} + \gamma\beta^2)\Delta t = \gamma t - \beta\gamma x' + \gamma(\gamma^{-2} + \beta^2)\Delta t  = \\
+& \gamma t - \beta\gamma x' + \gamma\Delta t = \gamma t' - \beta\gamma x'.
+\end{align*}
+Hence equation (\ref{ether-lorentz-t}) is preserved.
 
 Note that Einstein can synchronise in the above way clocks in all probes on the $x$-axis. Thus, for him an event which happens in his ``space'' at time $\hat{t}$ according to his clock and at his coordinates $(\hat{x}, 0, 0)$, will be an event registered by probe with coordinates $(\hat{x}, 0, 0)$ at synchronised probe's clock time $\hat{t}$. If we summarise now the relations (\ref{ether-lorentz-x}) and (\ref{ether-lorentz-t}) between Einstein's time and space coordinates and Galileo's time and space coordinates, we get
 
