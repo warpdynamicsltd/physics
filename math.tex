@@ -1071,6 +1071,7 @@ and
 \subsection{Groups}
 
 \begin{definition}
+\label{group-definition}
 A structure $(G, \cdot, \mathfrak{e})$ with $\cdot : G\times G\to G$ and $\mathfrak{e}\in G$ is a group iff
 \begin{equation}
 (xy)z = x(yz) \text{ for all } x,z,y\in G,
@@ -3500,4 +3501,95 @@ A\psi_1 \otimes \psi_2 + \psi_1 \otimes B\psi_2.
 \end{multline}
 By linearity we showed $A\otimes I + I \otimes B \subset C$. By Lemma \ref{self-adjoint-ext}, we have $\text{Clo}(A\otimes I + I \otimes B) = C$. Point 2 can be showed analogously.
 \end{proof}
+\section{Geometric Algebra}
+
+We defined group in Definition \ref{group-definition}. When we will say that $(G, \mathfrak{e})$ is a group (instead of , we will mean that its multiplication operation is denoted as $ab$ for $a, b\in G$.
+
+\begin{definition}
+\label{ring-induced-by-group}
+Let $(G, \mathfrak{e})$ be a group and $\Field$ be a field. $\mathcal{F}_0(G, \Field)$ 
+is a set of all functions 
+$f:G \to \K$ where $f^{-1}(\Field\setminus\{0\})$ is finite.
+Morover we define
+\begin{equation}
+(f + g)(x) \stackrel{def}{=} f(x) + g(x)
+\end{equation}
+for all $f, g\in \mathcal{F}_0(G, \Field)$, and
+
+\begin{equation}
+(fg)(x) = \sum_{u\in G} f(u)g(u^{-1}x)
+\end{equation}
+for all $f, g\in \mathcal{F}_0(G, \Field)$.
+\end{definition}
+
+\begin{theorem}
+Let $(G, \mathfrak{e})$ be a group and $\Field$ be a field. Then $\mathcal{F}_0(G, \Field)$ with addition and multiplication defined in Definition \ref{ring-induced-by-group} is a ring.
+\end{theorem}
+
+\begin{proof}
+It is easy to show from definition that $\mathcal{F}_0(G, \Field)$ forms abelian group with addition.
+
+We will show associavity of multiplication
+\begin{align*}
+& \big(f(gh)\big)(z) = \sum_{x\in G} f(x) (gh)(x^{-1}z) = \sum_{x\in G} f(x) \sum_{u\in G} g(u) h(u^{-1}x^{-1}z) = \\
+& \sum_{x\in G} \sum_{u\in G} f(x)  g(u) h(u^{-1}x^{-1}z) \stackrel{y \leftarrow xu}{=}
+\sum_{x\in G} \sum_{y\in G} f(x) g(x^{-1}y)h(y^{-1}x x^{-1} z) = \\
+& \sum_{x\in G} \sum_{y\in G} f(x) g(x^{-1}y)h(y^{-1}z) = \sum_{y\in G} (fg)(y) h(y^{-1}z) = \big((fg)h\big)(z).
+\end{align*}
+Note that
+\begin{equation}
+1(x)=\begin{cases}
+1 &\text{ for } x=\mathfrak{e},\\
+0 &\text{ for } x\not=\mathfrak{e}.
+\end{cases}
+\end{equation}
+is a multiplication identity. Also it follows directly from definition that multiplication is left and right distributive with respect to addition.
+\end{proof}
+\begin{theorem}
+If $\mathcal{R}$ is a ring with multiplication and addition and $\Field \subset \mathcal{R}$ is a field with the same multiplication and addition, then $\mathcal{R}$ is also a vector space over $\Field$.
+\end{theorem}
+Note that all $a1$, where $1$ is a unit multiplication in $\mathcal{F}_0(G, \Field)$, constitute a field isomorphic to $\Field$ and embedded in $\mathcal{F}_0(G, \Field)$ and thus $\mathcal{F}_0(G, \Field)$ is a vector space over this field.\\
+
+Let $\mathcal{I}$ will be a set of distinct elements. Let $\mathcal{I}^*$ be a set of all finite strings over $\mathcal{I}$, where $\mathfrak{e}\in \mathcal{I}^*$ is an empty string. Let $\cdot^\frown\cdot : \mathcal{I}^* \times \mathcal{I}^* \to \mathcal{I}^*$ be a concatenation operator. Assume that we have a permutation $\rho: \mathcal{I} \to \mathcal{I}$ such that $\rho^2 = \text{id}$.  
+
+Let's define a multiplication of elements in $\mathcal{I}$
+\begin{equation}
+ab \stackrel{def}{=} 
+\begin{cases}
+\mathfrak{e} &\text{ for } \rho(a) = b,\\
+a^\frown b &\text{ for } \rho(a)\not=b.
+\end{cases}
+\end{equation} 
+
+We will define recursively:
+\begin{align*}
+& \mathcal{M}_0({\mathcal{I}}) \stackrel{def}{=}  \{\mathfrak{e}\},\\ 
+& \mathcal{M}_1({\mathcal{I}}) \stackrel{def}{=}  \mathcal{I},\\
+& \mathcal{M}_{n + 1}({\mathcal{I}}) \stackrel{def}{=}
+\{ s^\frown(ab) : s^\frown a\in \mathcal{M}_n \text{ and } s\in \mathcal{I}^*
+\text{ and } a, b\in \mathcal{I}\} 
+\end{align*}
+
+Now
+\begin{equation}
+\mathcal{M}(\mathcal{I}) = \bigcup_{n=0}^\infty \mathcal{M}_n(\mathcal{I}).
+\end{equation}
+
+We will now extend multiplication to all $s_1, s_2\in \mathcal{M}(\mathcal{I})$
+
+\begin{equation}
+s_1s_2 \stackrel{def}{=} z_1^\frown(ab)^\frown z_2,
+\end{equation}
+where $s_1 = z_1^\frown a$ and $s_2 = b ^\frown z_2$ for $a,b\in \mathcal{I}$ and $z_1, z_2\in \mathcal{M}(\mathcal{I})$.
+
+We will call $\mathcal{M}(\mathcal{I})$ a set of Clifford multi-indecies iff $\rho(a) = a$ for all $a\in \mathcal{I}$.
+
+%$\mathcal{I} = A \cup \rho(A)$ and $A\cap \rho(A) = \emptyset$.
+
+\begin{theorem}
+$(\mathcal{M}(\mathcal{I}), \mathfrak{e})$ is a group. 
+\end{theorem}
+
+We will call $(\mathcal{M}(\mathcal{I}), \mathfrak{e})$ Clifford multi-index group over indecies $\mathcal{I}$.
+
 \end{document}
