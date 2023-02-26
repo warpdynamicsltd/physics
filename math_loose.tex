@@ -1148,6 +1148,43 @@ Thus
 \end{equation}
 \end{proof}
 
+\subsection{Trace}
+\label{trace-properties}
+For any square matrix $A$ we can define its trace as 
+
+\begin{equation}
+\tr(A) \stackrel{def}{=} \sum_\mu A^\mu_\mu.
+\end{equation}
+or in Enistein summation convention
+\begin{equation}
+\tr(A) = A^\mu_\mu.
+\end{equation}
+We get immediately that trace is linear.
+\begin{equation}
+\tr(aA + bB) = a\tr(A) + b\tr(B).
+\end{equation}
+
+Also for any square matrices $A$ and $B$, we have
+\begin{equation}
+\tr(AB) = \tr(AB).
+\end{equation}
+
+which generalised to the following
+\begin{proposition}
+If $A_0, A_1, \dots, A_k$ are square matrices, then
+\begin{equation}
+\tr(A_0 A_1 \dots A_k) = \tr(A_1 \dots A_k A_0).
+\end{equation}
+\end{proposition}
+\begin{proof}
+\begin{align*}
+& \tr(A_0 A_1 \dots A_k) = [A_0]^\mu_{\mu_0} [A_1]^{\mu_0}_{\mu_1} [A_2]^{\mu_1}_{\mu_2}
+\dots [A_k]^{\mu_{k-1}}_\mu = \\
+& [A_1]^{\mu_0}_{\mu_1} [A_2]^{\mu_1}_{\mu_2}
+\dots [A_k]^{\mu_{k-1}}_\mu [A_0]^\mu_{\mu_0} = \tr(A_1 \dots A_k A_0).
+\end{align*}
+\end{proof}
+
 \subsection{Determinant}
 
 Let's denote by $S_n$ a set of all permutations of $[1, n]\cap\N$. Note that $|S_n| = n!$.
@@ -1601,6 +1638,11 @@ $|(P_{V^\perp}(\hat{e}_{k+1}), \dots, P_{V^\perp}(\hat{e}_n))| = |\det E_{22}|$.
 
 But according to the laws of tensor transformation we have $\hat{g}_{\mu\nu} = g_{\rho\sigma} E^{\rho}_{\hat{\mu}} E^{\sigma}_{\hat{\nu}}$ (in this particular case you can use also Theorem \ref{metric-transformation}) and by Theorem \ref{skewed-lorentz}, we have $E_{\hat{\cdot}}^T [g] E_{\hat{\cdot}} = [\hat{g}]$. Thus by Theorem \ref{skwed-lorentz-computations}, we have $|\det E_{11}| = |\det E_{22}|$. Hence, thesis holds.
 \end{proof}
+
+For any system of numbers $T_{a_1 \dots a_n}$ where $a_k = 1, \dots, n$, we can define anti-symmetries version
+\begin{equation}
+T_{[a_1 \dots a_n]} \stackrel{def}{=} \cfrac{1}{n!}\sum_{\sigma\in S_n} T_{\sigma(a_1) \dots \sigma(a_n)}.
+\end{equation} 
 
 \section{Review of Statistical Learning Methods}
 \subsection{Linear Regression}
