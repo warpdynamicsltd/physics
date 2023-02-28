@@ -577,6 +577,7 @@ Note the following
 
 Thus
 \begin{equation}
+\label{u-contravariant}
 \boxed{
 \hat{x}^\nu = U^{\hat{\nu}}_\mu x^\mu 
 }
@@ -623,7 +624,7 @@ $x_k = x^\mu_k u_\mu$ and $x^k = x^k_\mu u^\mu$, we have
 \begin{equation}
 \label{tensor-param-definition}
 T(x_1, \dots x_n, x^1, \dots, x^m) = {T_{\mu_1\dots\mu_n}}^{\nu_1\dots\nu_m} 
-x^{\mu_1} \dots x^{\mu_n} x_{\nu_1} \dots x_{\nu_m}.
+x_1^{\mu_1} \dots x_n^{\mu_n} x^1_{\nu_1} \dots x^m_{\nu_m}.
 \end{equation}
 \end{corollary}
 
@@ -638,8 +639,8 @@ T'(x^*, x_1, \dots x_n, x^1, \dots, x^m) = T(x, x_1, \dots x_n, x^1, \dots, x^m)
 Note that if we consider $X$ as the same $X^*$ under the isomorphism $\cdot^*$ induced by metric tensor $g$, then also $T'$ is the same tensor as $T$ under this isomorphism. Exacly as in case of $x$ and $x^*$ when treated as the same object under isomorphism, we will have different parametrisations $x^\mu$ and $x_\mu$, we have different parametrisations of $T$. Let's expres parametrisation of $T'$ in parametrisation of $T$. Note that
 
 \begin{align*}
-& \tensor{{T}}{_{\mu'}_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}} x^{\mu'} x^{\mu_1} \dots x^{\mu_n} x_{\nu_1} \dots x_{\nu_m} = \\
-& \tensor{{T}}{_{\mu'}_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}} g^{\mu \mu'} x_{\mu} x^{\mu_1} \dots x^{\mu_n} x_{\nu_1} \dots x_{\nu_m}.
+& \tensor{{T}}{_{\mu'}_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}} x^{\mu'} x_1^{\mu_1} \dots x_n^{\mu_n} x^1_{\nu_1} \dots x^m_{\nu_m} = \\
+& \tensor{{T}}{_{\mu'}_{\mu_1\dots\mu_n}^{\nu_1\dots\nu_m}} g^{\mu \mu'} x_{\mu} x_1^{\mu_1} \dots x_n^{\mu_n} x^1_{\nu_1} \dots x^m_{\nu_m}.
 \end{align*}
 
 And since $x^\star = x_{\mu'} u^{\mu'}$ (by (\ref{functional-covariant-respresentation})), from (\ref{tensor-isometry}), we have
@@ -1065,6 +1066,67 @@ and
 \end{bmatrix},
 \end{equation}
 
+\section{Differentiable Manifolds}
+
+\subsection{Introduction}
+
+Assume we have a finite dimentional vector space $\R^n$ with a natural basis 
+\begin{equation}
+e_k = (0, \dots, 1, \dots, 0) \text{ where } 1 \text{ is on } k\text{-th position.} 
+\end{equation}
+With a natural bilinear scalar product $\langle e_i, e_j \rangle = \delta_{ij}$.
+Each $x\in \R^n$ has a natural natural coordinates $x = (x^1, \dots, x^n)$ or in other words $x = x^\mu e_\mu$.
+
+We can have transformation to different basis 
+\begin{equation}
+\hat{e}_\mu = U^\nu_{\hat{\mu}} e_\nu.
+\end{equation}
+and as shown for (\ref{u-contravariant}), coordinates transform as
+\begin{equation}
+\label{new-coordinates-introduction}
+\hat{x}^\nu = U^{\hat{\nu}}_\mu x^\mu, 
+\end{equation}
+and
+\begin{equation}
+x^\nu = U^\nu_{\hat{\mu}} \hat{x}^\mu,
+\end{equation}
+
+where obviously $U^{\hat{\nu}}_\mu U^\mu_{\hat{\sigma}} = \delta^\nu_\sigma$.
+
+
+Note that if we treat new coordinates as function of original coordinates, we have
+\begin{equation}
+\cfrac{\partial \hat{x}^\nu}{\partial x^\mu} = U^{\hat{\nu}}_\mu,
+\end{equation}
+thus
+\begin{equation}
+\hat{x}^\nu = \cfrac{\partial \hat{x}^\nu}{\partial x^\mu} x^\mu
+\end{equation}
+It will be sometimes useful to use the above notation.
+
+Let's assume that now we want describe our space in these new coordinates. E.g. we would like to know how to calulate the length of the vector $\Delta x$ if is given in a new coordinates $\Delta \hat{x}^\mu$.
+
+Note that
+\begin{align*}
+\Delta^2 x = \sum_{\mu} \Delta x^\mu \Delta x^\mu = 
+\sum_{\mu} U^\mu_{\hat{\nu}} \Delta \hat{x}^\nu U^\mu_{\hat{\sigma}} \Delta \hat{x}^\sigma = g_{\nu\sigma} \Delta \hat{x}^\nu \Delta \hat{x}^\sigma ,
+\end{align*}
+
+where
+\begin{equation}
+g_{\nu\sigma} \stackrel{def}{=} \sum_{\mu} U^\mu_{\hat{\nu}} U^\mu_{\hat{\sigma}}. 
+\end{equation}
+The above is not a surprise considering Theorem \ref{metric-transformation}. This justifies why such a bilinear form is called metric tensor.
+By (\ref{new-coordinates-introduction}), we have
+\begin{equation}
+g_{\nu\sigma} = \langle \hat{e}_\nu, \hat{e}_\sigma \rangle. 
+\end{equation}
+
+Which establishes a very nice relation between the length of the vector given in a new coordinates and scalar multiplication of the basis of the new coordinates system. Recall that $\langle \hat{e}_\nu, \hat{e}_\sigma \rangle = |\hat{e}_\nu||\hat{e}_\sigma| \cos\phi$, where $\phi$ is an angle between vectors $\hat{e}_\nu$ and $\hat{e}_\sigma$,
+thus also
+\begin{equation}
+g_{\nu\sigma} = |\hat{e}_\nu||\hat{e}_\sigma| \cos\phi.
+\end{equation}
 
 \section{Lie Groups and Lie Algebras}
 
@@ -1086,7 +1148,7 @@ A structure $(G, \cdot, \mathfrak{e})$ with $\cdot : G\times G\to G$ and $\mathf
 \end{equation}
 \end{definition}
 
-We can easily prove uniqness of unity element $\mathfrak{e}$.
+We can easily prove uniqness of neutral element $\mathfrak{e}$.
 
 \begin{proposition}
 Let $(G, \cdot, \mathfrak{e})$ be a group. If there exists $\mathfrak{e}'$ such that $x\mathfrak{e}' = \mathfrak{e}'x = x$ for all $x\in G$, then we have $\mathfrak{e}' = \mathfrak{e}$.

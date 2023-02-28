@@ -90,7 +90,6 @@ For a relativistic particle $E^2 = \bs{p}^2 + m^2$, there is an idea for relativ
 \begin{equation}
 i\hbar \cfrac{\partial}{\partial t}\ket{\phi(t)} =  \sqrt{\bs{P}^2 + m^2} \ket{\phi(t)}.
 \end{equation}
-
 which is a motivation for a "squared" version (we will set $\hbar=1$):
 \begin{equation}
 -\cfrac{\partial^2}{\partial t^2} = \bs{P}^2 + m^2,
@@ -237,7 +236,7 @@ The motivation of Dirac equation is to find a linear equation, which will imply 
 \begin{equation}
 i\gamma^\mu \partial_\mu - m = 0.
 \end{equation}
-The left side acts on differentiable ``in a good enough sense'' $\phi:\R^4 \to \C^n$, where $n$ is not necessarily determined yet and $\gamma^\mu$ is a matrix (i.e. $\gamma^\mu\in M_n(\C))$.
+The left side acts on differentiable ``in a good enough sense'' $\phi:\R^4 \to \C^d$, where integer $d$ is not necessarily determined yet and $\gamma^\mu$ is a matrix (i.e. $\gamma^\mu\in M_d(\C))$.
 
 We will try to work out conditions for $\gamma^\mu$ which are necessary to imply Klein-Gordon equation.
 
@@ -256,53 +255,76 @@ we will get
 
 Thus, the condition for $\gamma^\mu$ is
 \begin{equation}
+\label{condition-for-dirac-lambdas}
 \boxed{
 \{\gamma^\mu, \gamma^\nu\} = 2g^{\mu\nu}
 }
 \end{equation}
 
-\begin{lemma}
-Let $g$ be a diagonal tensor with $g^{\mu\mu}\not=0$. 
-Let $n$ be a positive integer and let $\gamma^\mu\in M_n(\C)$ 
-such that $\{\gamma^\mu, \gamma^\nu\} = 2g^{\mu\nu}$ for $\mu, \nu = 0, \dots, k$ where $k \geq 3$, then
+It is sometimes more convenient to see condition (\ref{condition-for-dirac-lambdas}) as split into the conjunction of two
 \begin{align}
-\label{dirac-trace-1}
-& \tr(\gamma^\mu)=0 \text{ for } \mu=1, \dots, k, \\
-\label{dirac-trace-2}
-& \tr(\gamma^\mu\gamma^\nu) = 0 \text{ for } \mu\not=\nu,\\
-\label{dirac-trace-3}
-& \tr(\gamma^\mu\gamma^\nu\gamma^\lambda) = 0 \text{ for } \mu, \nu, \lambda \text{ pairwise distinct},\\
-\label{dirac-trace-4}
-& \tr(\gamma^0\gamma^1\gamma^2\gamma^3) = 0.
+& \gamma^\mu\gamma^\nu = -\gamma^\nu\gamma^\mu \text{ for } \mu\not=\nu, \\ 
+& \gamma^\mu\gamma^\mu = g^{\mu\mu}.
 \end{align}
+
+We will attempt now to deduce from (\ref{condition-for-dirac-lambdas}) a few important properties of $\gamma^\mu$. Despite that all of this can be done in more generic way using Clifford algebras, we will currently follow a more elementary approach by Wolfgang Pauli presented in \cite{pauli1936}. 
+
+We will assume a convention where for a given multi-index $\alpha = (\alpha_1, \dots, \alpha_k)$, $\gamma^\alpha\stackrel{def}{=}\gamma^{\alpha_1}\dots\gamma^{\alpha_k}$.
+We will call $\alpha$ a multi-index without duplicates iff all indecies in $\alpha$ are pairwise distinct.
+
+\begin{lemma}
+\label{dirac-trace-lemma}
+Let $\Field$ be a field.
+Let $g$ be a diagonal tensor with $g^{\mu\mu}\not=0$. 
+Let $d$ be some positive integer and let $\gamma^\mu\in M_d(\Field)$ 
+such that $\{\gamma^\mu, \gamma^\nu\} = 2g^{\mu\nu}$ for $\mu, \nu = 0, \dots, n$ where $n \geq 2$ is an even integer, then for any multi-index $\alpha\in(\N\cap[1, n])^n$ such that at least one index appears in $\alpha$ for odd number of times, we have
+\begin{equation}
+\label{dirac-trace}
+tr(\gamma^\alpha) = 0.
+\end{equation}
 \end{lemma}
 \begin{proof}
-Take $\mu$ and $\nu\not = \mu$. Note that
-\begin{equation}
-\gamma^\mu \gamma^\nu \gamma^\nu = \gamma^\mu g^{\nu\nu},
-\end{equation}
-and
-\begin{equation}
--\gamma^\nu (\gamma^\mu \gamma^\nu) =\gamma^\nu \gamma^\nu \gamma^\mu = \gamma^\mu g^{\nu\nu}.
-\end{equation}
-Thus, we have
-\begin{equation}
-\cfrac{1}{2}\big((\gamma^\mu \gamma^\nu) \gamma^\nu - \gamma^\nu (\gamma^\mu \gamma^\nu)\big) = g^{\nu\nu}\gamma^\mu.
-\end{equation}
-Recall that for any two square matrices $A$ and $B$, we have $\tr(AB) = \tr(BA)$ (trace properties are shown in subsection \ref{trace-properties}). Hence, $\tr(g^{\nu\nu}\gamma^\mu) = g^{\nu\nu} \tr(\gamma^\mu) = 0$ which implies $\tr(\gamma^\mu)=0$. We have shown (\ref{dirac-trace-1}). 
+Let's assume that $\alpha$ is without duplicates.
+We will first show that (\ref{dirac-trace}) holds for $|\alpha|$ even. Indeed, assume $\alpha$ is a multi-index without duplicates where $|\alpha|$ is even. Then $\alpha = \beta\mu$ for some $\mu$ and multi-index $\beta$, where $|\beta|$ is odd. Note that $\gamma^\alpha = \gamma^\beta\gamma^\mu = - \gamma^\mu \gamma^\beta$. And since for any two square matrices $A$ and $B$, we have $\tr(AB) = \tr(BA)$ (trace properties are shown in subsection \ref{trace-properties}), it follows that $\tr(\gamma^\alpha)=0$.
 
-(\ref{dirac-trace-2}) follows from  $\gamma^\mu\gamma^\nu = - \gamma^\nu\gamma^\mu$ for $\mu\not=\nu$.
-
-Let $A = \gamma^\mu\gamma^\nu\gamma^\lambda\gamma^\sigma$ for $\mu, \nu, \lambda, \sigma$ pairwise distinct. Note that $\gamma^\sigma\gamma^\mu\gamma^\nu\gamma^\lambda = -A$. Then
+Now, let's assume that $\alpha$ is a multi-index without duplicates where $|\alpha|$ is odd. Then since $n$ is even, we always have a multi-index without duplicates $\beta$ such that $\beta = \alpha\mu$ for some index $\mu$. Note that $\gamma^\alpha\gamma^\mu = \gamma^\beta$ and $\gamma^\mu\gamma^\alpha = -\gamma^\beta$. Hence
 \begin{equation}
-\cfrac{1}{2}\big(A\gamma^\sigma - \gamma^\sigma A) = g^{\sigma\sigma} \gamma^\mu\gamma^\nu\gamma^\lambda
+\cfrac{1}{2}\big(\gamma^\beta\gamma^\mu - \gamma^\mu\gamma^\beta\big) = g^{\mu\mu}\gamma^\alpha,
 \end{equation}
-and therefore $\tr(\gamma^\mu\gamma^\nu\gamma^\lambda)=0$ which proves (\ref{dirac-trace-3}).
+and consequently $\tr(\gamma^\alpha)=0$.
 
-Note that $\gamma^0\gamma^1\gamma^2\gamma^3 = -\gamma^3\gamma^0\gamma^1\gamma^2$ but 
-$\tr(\gamma^0\gamma^1\gamma^2\gamma^3) = \tr(\gamma^3\gamma^0\gamma^1\gamma^2)$, thus
-$\tr(\gamma^0\gamma^1\gamma^2\gamma^3) = 0$.
+Now, if $\alpha$ is such that at least one index appers in $\alpha$ for odd number of times, then there exists such an multi-index $\beta$ without duplicates that $\gamma^\alpha = \kappa \gamma^\beta$ such that $\kappa\in \Field\setminus\{0\}$, which completes the proof. 
 \end{proof}
+
+For the benefit of the following Lemma we will say that multi-index without duplicates $\alpha$ is significantly different from other multi-index without duplicates $\alpha'$ if there is at least one index $\mu$ which does not belong to both of them.
+
+\begin{lemma}
+Let $\Field$ be a field.
+Let $g$ be a diagonal tensor with $g^{\mu\mu}\not=0$. 
+Let $d$ be some positive integer and let $\gamma^\mu\in M_d(\Field)$ 
+such that $\{\gamma^\mu, \gamma^\nu\} = 2g^{\mu\nu}$ for $\mu, \nu = 0, \dots, n$ where $n \geq 2$ is an even integer and let $W\subset (\N\cap[1, n])^n$ be a set of multi-indecies without duplicates pairwaise significantly different, then a set of matrices
+\begin{equation}
+\{I\}\cup\{\gamma^\alpha:\alpha\in W\}
+\end{equation}
+is linearly independent and $d \geq 2^{n/2}$.
+\end{lemma}
+\begin{proof}
+We will first show that $\{\gamma^\alpha:\alpha\in W\}$ is linearly independent. Assume that we have coefficients $c_\alpha$ such that
+\begin{equation}
+0 = \sum_{\alpha\in W} c_\alpha \gamma^\alpha.
+\end{equation}
+Take any $\beta\in W$, we have
+\begin{equation}
+0 = \sum_{\alpha\in W\setminus\{\beta\}} c_\alpha \gamma^\alpha \gamma^\beta 
++ \kappa c_\beta I = \sum_{\alpha\in W\setminus\{\beta\}} c_\alpha \gamma^{\alpha\beta} 
++ \kappa c_\beta I,
+\end{equation}
+where $\kappa\in \Field\setminus\{0\}$. 
+Since for all $\alpha\in W\setminus\{\beta\}$, $\alpha$ is significantly different than $\beta$ and both $\alpha$ and $\beta$ are without duplicates, $\alpha\beta$ must be a multi-index with at least one index $\mu$ which appears only once. Hence by Lemma \ref{dirac-trace-lemma}, $\tr(\gamma^{\alpha\beta}) = 0$ for all $\alpha\in W\setminus\{\beta\}$. 
+But this implies that $0 = \tr(\kappa c_\beta I) = d\kappa c_\beta$ and hence $c_\beta = 0$. We have shown that $\{\gamma^\alpha:\alpha\in W\}$ is linearly independent. Now, because $\tr(\gamma^\alpha) = 0$ for all $\alpha\in W$, $I$ can't be a linear combination of $\{\gamma^\alpha:\alpha\in W\}$, thus $\{I\}\cup\{\gamma^\alpha:\alpha\in W\}$ is linearly independent. The maximal count of $\{I\}\cup\{\gamma^\alpha:\alpha\in W\}$ must be equal to the number of all subsets of $\N\cap[1, n]$, hence $\dim M_d(\Field) = d^2 \geq 2^n$.
+\end{proof}
+
+In case of a Dirac equation $n = 4$, therefore $\gamma^\mu$ must belong to at least $M_4(\C)$.
  
 
 \subsection{Creation and anihilation algebra for bozons and fermions}
