@@ -122,7 +122,7 @@ Let $X$ be a real vector space where $\dim X = n$ and let $u_1, \dots, u_n$ and 
 and 
 \begin{equation}
 \label{functionals-transformation-law}
-u^\mu = U^{\mu}_{\hat{\nu}} u^\nu
+u^\mu = U^{\mu}_{\hat{\nu}} \hat{u}^\nu
 \end{equation}
 \end{theorem}
 \begin{proof}
@@ -306,7 +306,7 @@ which concludes proof by contradiction.
 \begin{definition}
 Let $X$ be a real vector space with $\dim X < +\infty$ with a metric tensor $g$. We will say that $g$ has a signature $(n, k)$ if for any orthonormal base $e_1, \dots, e_n$ we will have 
 \begin{equation}
-|\{i: g(e_i, e_i) = -1 \}| = n
+|\{i: g(e_i, e_i) = 1 \}| = n
 \end{equation}
 and
 \begin{equation}
@@ -568,7 +568,7 @@ By Theorem \ref{basis-functional-basis-relation} we have
 \end{equation}
 and 
 \begin{equation}
-u^\mu = U^{\mu}_{\hat{\nu}} u^\nu.
+u^\mu = U^{\mu}_{\hat{\nu}} \hat{u}^\nu.
 \end{equation}
 Note the following
 \begin{equation}
@@ -596,6 +596,26 @@ Thus
 \end{equation}
 
 Note that the coordinates $x_\mu$ transform with the same transformation matrix as vectors of basis - thus the name "covariant".
+
+Let's see how coordinates of matrix representing a linear operator transform under the change of coordinates. Recall that for any linear operator $A: X \to X$, we have
+\begin{equation}
+A^\mu_\nu \stackrel{def}{=}(Au_\nu)^\mu.
+\end{equation}
+
+Let's calculate
+\begin{align*}
+Ax = (A^\mu_\nu x^\nu)u_\mu = (A^\mu_\nu U^\nu_{\hat{\rho}} \hat{x}^\rho) U^{\hat{\sigma}}_\mu  \hat{u}_\sigma = (U^{\hat{\sigma}}_\mu A^\mu_\nu U^\nu_{\hat{\rho}} \hat{x}^\rho) \hat{u}_\sigma.
+\end{align*}
+Thus
+\begin{equation}
+\hat{A}^\sigma_\rho = U^{\hat{\sigma}}_\mu A^\mu_\nu U^\nu_{\hat{\rho}}.
+\end{equation}
+
+Note from the above, we can immediatelly conclude that determinant is an intristic property of linear operator independent on basis choice. Indeed,
+\begin{equation}
+\label{invariance-of-determinant}
+\det \hat{A} = \det(U^{\hat{\cdot}}A U_{\hat{\cdot}}) = \det(U^{\hat{\cdot}})\det(A) \det(U_{\hat{\cdot}}) = \det(A).
+\end{equation}   
 
 \subsection{Tensors}
 
@@ -1127,6 +1147,14 @@ thus also
 \begin{equation}
 g_{\nu\sigma} = |\hat{e}_\nu||\hat{e}_\sigma| \cos\phi.
 \end{equation}
+
+We know that metric tensor establishes a mapping between vectors in $\R^n$ and functionals on $\R^n$.
+\begin{align*}
+x^\mu e_\mu = \hat{x}^\mu \hat{e}_\mu \mapsto \hat{x}_\mu \hat{e}^\mu = g_{\nu\mu} \hat{x}^\nu \hat{e}^\mu = \sum_{\sigma} U^\sigma_{\hat{\nu}} U^\sigma_{\hat{\mu}} \hat{x}^\nu \hat{e}^\mu
+= \sum_{\sigma} x^\sigma U^\sigma_{\hat{\mu}} \hat{e}^\mu = \sum_{\sigma} x^\sigma e^\sigma.
+\end{align*}
+
+This isn't really surprising as $g$ understood as bilinear functional is still the same scalar product, just expressed in new coordinates.
 
 \section{Lie Groups and Lie Algebras}
 

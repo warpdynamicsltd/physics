@@ -1387,6 +1387,31 @@ det A = \sum\limits_{\sigma\in S_n} (-1)^\sigma \prod_{i=1}^n [A]^{\sigma^{-1}(i
 \end{equation}
 \end{proof}
 
+\begin{lemma}
+Let $V$ be a vector space over field $\Field$ and $\dim V = n$. If $f:V^n\to \Field$ is a multilinear function such that
+\begin{equation}
+f(x_{\sigma(1)},\ldots, x_{\sigma(k)}) = \sgn(\sigma)f(x_1,\ldots, x_k)
+\end{equation}
+for any $\sigma\in S_n$, then
+\begin{equation}
+f(A^\mu_1 x_\mu, \dots, A^\mu_n x_\mu) = \det(A) f(x_1, \dots, x_n).  
+\end{equation}
+\end{lemma}
+\begin{proof}
+\begin{align*}
+& f(A^\mu_1 x_\mu, \dots, A^\mu_n x_\mu) = A^{\mu_1}_1 \dots A^{\mu_n}_n 
+f(x_{\mu_1} \dots x_{\mu_n}) = \\
+& \sum_{\sigma\in S_n}(-1)^\sigma A^{\sigma(1)}_1 \dots A^{\sigma(n)}_n f(x_1, \dots, x_n).
+\end{align*}
+\end{proof}
+
+\begin{theorem}
+If $A$ and $B$ are matrices of size $n\times n$, then
+\begin{equation}
+\det(AB) = \det A\det B.
+\end{equation} 
+\end{theorem}
+
 \begin{definition}
 Let $A$ be a matrix of size $n\times n$. Let matrix $A^{\cancel{i}}_{\cancel{j}}$ be a matrix A with $i-th$ row and $j-th$ collumn removed.
 \end{definition}
