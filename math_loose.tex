@@ -1390,20 +1390,59 @@ det A = \sum\limits_{\sigma\in S_n} (-1)^\sigma \prod_{i=1}^n [A]^{\sigma^{-1}(i
 \begin{lemma}
 Let $V$ be a vector space over field $\Field$ and $\dim V = n$. If $f:V^n\to \Field$ is a multilinear function such that
 \begin{equation}
-f(x_{\sigma(1)},\ldots, x_{\sigma(k)}) = \sgn(\sigma)f(x_1,\ldots, x_k)
+f(x_{\sigma(1)},\ldots, x_{\sigma(n)}) = \sgn(\sigma)f(x_1,\ldots, x_n)
 \end{equation}
-for any $\sigma\in S_n$, then
+for any $\sigma\in S_n$ and for any $x_1, \dots, x_n\in V$, then
 \begin{equation}
-f(A^\mu_1 x_\mu, \dots, A^\mu_n x_\mu) = \det(A) f(x_1, \dots, x_n).  
+f(A^\mu_1 x_\mu, \dots, A^\mu_n x_\mu) = \det(A) f(x_1, \dots, x_n)  
 \end{equation}
+for any $x_1, \dots, x_n\in V$.
 \end{lemma}
 \begin{proof}
+Note that $f(\dots, x, \dots, x, \dots) = 0$ for arbitrary 2 positions for all $x\in V$.
 \begin{align*}
 & f(A^\mu_1 x_\mu, \dots, A^\mu_n x_\mu) = A^{\mu_1}_1 \dots A^{\mu_n}_n 
 f(x_{\mu_1} \dots x_{\mu_n}) = \\
-& \sum_{\sigma\in S_n}(-1)^\sigma A^{\sigma(1)}_1 \dots A^{\sigma(n)}_n f(x_1, \dots, x_n).
+& \sum_{\sigma\in S_n}A^{\sigma(1)}_1 \dots A^{\sigma(n)}_n f(x_{\sigma(1)}, \dots, x_{\sigma(n)})= \\ & \sum_{\sigma\in S_n}(-1)^\sigma A^{\sigma(1)}_1 \dots A^{\sigma(n)}_n f(x_1, \dots, x_n) = \det(A) f(x_1, \dots, x_n).
 \end{align*}
 \end{proof}
+
+We will show that the function $f$ from the above Lemama exists. For a given basis $u_1, \dots, u_n$, we can always request that on basis vectors
+\begin{equation}
+\begin{cases}
+& f(u_{\sigma(1)},\dots,u_{\sigma(n)}) = (-1)^\sigma \text{ for any } \sigma\in S_n,\\
+& f(\dots, u_k,\dots,u_k,\dots) = 0.
+\end{cases}
+\end{equation} 
+and then extend it to a multilinear function on $f:V^n\to\Field$. It is enough to prove the following.
+
+\begin{lemma}
+Let $V$ be a vector space over field $\Field$ and $\dim V = n$ with basis $u_1, \dots, u_n$.
+If $f:V^n\to \Field$ is a multilinear function such that
+on basis vectors
+\begin{equation}
+\begin{cases}
+& f(u_{\sigma(1)},\dots,u_{\sigma(n)}) = (-1)^\sigma \text{ for any } \sigma\in S_n,\\
+& f(\dots, u_k,\dots,u_k,\dots) = 0.
+\end{cases}
+\end{equation}
+then
+\begin{equation}
+f(x_{\sigma(1)},\ldots, x_{\sigma(n)}) = \sgn(\sigma)f(x_1,\ldots, x_n).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $x_\nu = X^\mu_\nu u_\mu$, then
+\begin{align*}
+& f(x_{\sigma(1)},\ldots, x_{\sigma(k)}) = f(X^\mu_{\sigma(1)}u_\mu, \dots, X^\mu_{\sigma(n)}u_\mu) = \\
+& X^{\mu_1}_{\sigma(1)}\dots X^{\mu_n}_{\sigma(1)}f(u_{\mu_1}, \dots, u_{\mu_n})
+= \sum_{\rho\in S_n} X^{\rho(1)}_{\sigma(1)}\dots X^{\rho(n)}_{\sigma(n)}
+f(u_{\rho(1)}, \dots, u_{\rho(n)}) = \\
+& (-1)^\sigma \sum_{\rho\in S_n} X^{\rho\sigma^{-1}(1)}_{1}\dots X^{\rho\sigma^{-1}(n)}_{n}
+f(u_{\rho\sigma^{-1}(1)}, \dots, u_{\rho\sigma^{-1}(n)}) = \\
+& (-1)^\sigma f(X^\mu_{1}u_\mu, \dots, X^\mu_{n}u_\mu) = (-1)^\sigma f(x_1,\ldots, x_n).
+\end{align*}
+\end{proof} 
 
 \begin{theorem}
 If $A$ and $B$ are matrices of size $n\times n$, then
@@ -1465,7 +1504,7 @@ Thus
 \\ = \det A \det B. 
 \\
 \end{multline*}
-\end{proof}
+\end{proof} 
 
 The idea of the proof of the theorem below comes from \cite{devito}
 
