@@ -1388,6 +1388,7 @@ det A = \sum\limits_{\sigma\in S_n} (-1)^\sigma \prod_{i=1}^n [A]^{\sigma^{-1}(i
 \end{proof}
 
 \begin{lemma}
+\label{alternative-determinant-def}
 Let $V$ be a vector space over field $\Field$ and $\dim V = n$. If $f:V^n\to \Field$ is a multilinear function such that
 \begin{equation}
 f(x_{\sigma(1)},\ldots, x_{\sigma(n)}) = \sgn(\sigma)f(x_1,\ldots, x_n)
@@ -1417,6 +1418,7 @@ We will show that the function $f$ from the above Lemama exists. For a given bas
 and then extend it to a multilinear function on $f:V^n\to\Field$. It is enough to prove the following.
 
 \begin{lemma}
+\label{det-esistence-2nd-way}
 Let $V$ be a vector space over field $\Field$ and $\dim V = n$ with basis $u_1, \dots, u_n$.
 If $f:V^n\to \Field$ is a multilinear function such that
 on basis vectors
@@ -1451,6 +1453,18 @@ If $A$ and $B$ are matrices of size $n\times n$, then
 \det(AB) = \det A\det B.
 \end{equation} 
 \end{theorem}
+\begin{proof}
+Let $u_1, \dots, u_n$ be basis vectors.
+Take function $f$ from Lemma \ref{det-esistence-2nd-way}. It is clear that such $f$ exists.
+By Lemma \ref{alternative-determinant-def} we have
+\begin{align*}
+&\det(AB) = f(A^\mu_\nu B^\nu_1 u_\mu, \dots, A^\mu_\nu B^\nu_n u_\mu) = \\
+&\det(B) f(A^\mu_1 u_\mu, \dots, A^\mu_n u_\mu) = \\
+&\det(A)\det(B) f(u_1, \dots, u_n) = \det(A)\det(B).
+\end{align*}
+\end{proof}
+
+As an direct conclusion from the above and (\ref{matrix-under-change-of-coordinates}), it follows that determinant is a intristic property of linear operator, which does not depend on matrix representation.
 
 \begin{definition}
 Let $A$ be a matrix of size $n\times n$. Let matrix $A^{\cancel{i}}_{\cancel{j}}$ be a matrix A with $i-th$ row and $j-th$ collumn removed.
