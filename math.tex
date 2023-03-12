@@ -141,6 +141,55 @@ Thus $A^\mu_\nu = U^{\hat{\mu}}_{\nu}$.
 We prove (\ref{functionals-transformation-law}) analogously.
 \end{proof}
 
+Note the following
+\begin{equation}
+\hat{x}^\nu \hat{u}_\nu = x^\mu u_\mu = x^\mu U^{\hat{\nu}}_\mu  \hat{u}_\nu.
+\end{equation}
+
+Thus
+\begin{equation}
+\hat{x}^\nu = U^{\hat{\nu}}_\mu x^\mu 
+\end{equation}
+
+Also from
+\begin{equation}
+x^\nu u_\nu = \hat{x}^\mu \hat{u}_\mu = \hat{x}^\mu U^\nu_{\hat{\mu}} u_\nu,
+\end{equation}
+
+we can write
+\begin{equation}
+x^\nu =   U^\nu_{\hat{\mu}} \hat{x}^\mu.
+\end{equation}
+
+This shows how coordinates of vector transform with the change of basis.
+
+Let's see how coordinates of matrix representing a linear operator transform under the change of basis. Recall that for any linear operator $A: X \to X$, we have
+\begin{equation}
+A^\mu_\nu \stackrel{def}{=}(Au_\nu)^\mu.
+\end{equation}
+
+Let's calculate
+\begin{align*}
+Ax = (A^\mu_\nu x^\nu)u_\mu = (A^\mu_\nu U^\nu_{\hat{\rho}} \hat{x}^\rho) U^{\hat{\sigma}}_\mu  \hat{u}_\sigma = (U^{\hat{\sigma}}_\mu A^\mu_\nu U^\nu_{\hat{\rho}} \hat{x}^\rho) \hat{u}_\sigma.
+\end{align*}
+Thus
+\begin{equation}
+\label{matrix-under-change-of-coordinates}
+\hat{A}^\sigma_\rho = U^{\hat{\sigma}}_\mu A^\mu_\nu U^\nu_{\hat{\rho}}.
+\end{equation}
+
+Note from the above, we can immediately conclude that determinant (subsection \ref{determinant}) is an intrinsic property of linear operator independent on basis choice. Indeed,
+\begin{equation}
+\label{invariance-of-determinant}
+\det \hat{A} = \det(U^{\hat{\cdot}}A U_{\hat{\cdot}}) = \det(U^{\hat{\cdot}})\det(A) \det(U_{\hat{\cdot}}) = \det(A).
+\end{equation}   
+
+Also, we can as easily conclude that trace (subsection \ref{trace}) is an intrinsic property of linear operator independent on basis choice. Indeed,
+
+\begin{equation}
+\label{invariance-of-trace}
+\tr \hat{A} = \tr(U^{\hat{\cdot}}A U_{\hat{\cdot}}) = \tr(U_{\hat{\cdot}} U^{\hat{\cdot}}A) = \tr(A).
+\end{equation} 
 
 \subsection{Metric Tensor}
 It is called otherwise inner product.
@@ -596,27 +645,6 @@ Thus
 \end{equation}
 
 Note that the coordinates $x_\mu$ transform with the same transformation matrix as vectors of basis - thus the name "covariant".
-
-Let's see how coordinates of matrix representing a linear operator transform under the change of coordinates. Recall that for any linear operator $A: X \to X$, we have
-\begin{equation}
-A^\mu_\nu \stackrel{def}{=}(Au_\nu)^\mu.
-\end{equation}
-
-Let's calculate
-\begin{align*}
-Ax = (A^\mu_\nu x^\nu)u_\mu = (A^\mu_\nu U^\nu_{\hat{\rho}} \hat{x}^\rho) U^{\hat{\sigma}}_\mu  \hat{u}_\sigma = (U^{\hat{\sigma}}_\mu A^\mu_\nu U^\nu_{\hat{\rho}} \hat{x}^\rho) \hat{u}_\sigma.
-\end{align*}
-Thus
-\begin{equation}
-\label{matrix-under-change-of-coordinates}
-\hat{A}^\sigma_\rho = U^{\hat{\sigma}}_\mu A^\mu_\nu U^\nu_{\hat{\rho}}.
-\end{equation}
-
-Note from the above, we can immediatelly conclude that determinant is an intristic property of linear operator independent on basis choice. Indeed,
-\begin{equation}
-\label{invariance-of-determinant}
-\det \hat{A} = \det(U^{\hat{\cdot}}A U_{\hat{\cdot}}) = \det(U^{\hat{\cdot}})\det(A) \det(U_{\hat{\cdot}}) = \det(A).
-\end{equation}   
 
 \subsection{Tensors}
 

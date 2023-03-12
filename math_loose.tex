@@ -1149,6 +1149,7 @@ Thus
 \end{proof}
 
 \subsection{Trace}
+\label{trace}
 \label{trace-properties}
 For any square matrix $A$ we can define its trace as 
 
@@ -1185,7 +1186,10 @@ If $A_0, A_1, \dots, A_k$ are square matrices, then
 \end{align*}
 \end{proof}
 
+As a direct conclusion from the above and (\ref{invariance-of-trace}) it follows that trace is an intrinsic property of a linear operator independent on choice of basis.
+
 \subsection{Determinant}
+\label{determinant}
 
 Let's denote by $S_n$ a set of all permutations of $[1, n]\cap\N$. Note that $|S_n| = n!$.
 \begin{definition}
@@ -1469,7 +1473,10 @@ As an direct conclusion from the above and (\ref{matrix-under-change-of-coordina
 \begin{lemma}
 Let $\Field$ be a field. If $A\in M_p(\Field)$ and $B\in M_q(\Field)$ where $p,q\geq 1$ and $C\in M_{p + q}(\Field)$ such that
 \begin{equation}
-C = A \oplus 0_q + 0_p \oplus B,
+C = A \oplus 0_q + 0_p \oplus B = \begin{bmatrix}
+    A &  0 \\
+    0 & B \\
+\end{bmatrix},
 \end{equation}
 then
 \begin{equation}
@@ -1486,6 +1493,30 @@ $A' =  A \oplus 0_q $ and $B' = 0_p \oplus B$.
 & \det((-\lambda)(C - \lambda I)) = (-\lambda)^{p + q} \det(C - \lambda I).
 \end{align*}
 \end{proof}
+
+The above can be alternatively proved using Theorem \ref{det-0}.
+
+\begin{definition}
+Let $V$ be a vector space and $A:V\to V$ be a linear operator.
+\begin{equation}
+\mathcal{E}_A(\lambda) = \{x\in V: Ax = \lambda x\}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}
+Let $V$ be a vector space over field $\C$ with $\dim V < +\infty$. If $A:V\to V$ is a linear operator, then there exist numbers $\lambda_1, \dots, \lambda_m\in\C$ such that $\mathcal{E}_A(\lambda_k)\not = \emptyset$ for $k=1,\dots, m$ and
+\begin{equation}
+V = \bigoplus_{k=1}^m \mathcal{E}_A(\lambda_k).
+\end{equation}
+Moreover,
+\begin{equation}
+\det A = \prod_{k=1}^m \lambda_k^{\dim \mathcal{E}(\lambda_k)},
+\end{equation}
+and
+\begin{equation}
+\tr A = \sum_{k=1}^m {\dim \mathcal{E}(\lambda_k)}\cdot \lambda_k.
+\end{equation}
+\end{theorem}
 
 \begin{definition}
 Let $A$ be a matrix of size $n\times n$. Let matrix $A^{\cancel{i}}_{\cancel{j}}$ be a matrix A with $i-th$ row and $j-th$ collumn removed.
