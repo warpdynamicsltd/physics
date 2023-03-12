@@ -1466,6 +1466,27 @@ By Lemma \ref{alternative-determinant-def} we have
 
 As an direct conclusion from the above and (\ref{matrix-under-change-of-coordinates}), it follows that determinant is a intristic property of linear operator, which does not depend on matrix representation.
 
+\begin{lemma}
+Let $\Field$ be a field. If $A\in M_p(\Field)$ and $B\in M_q(\Field)$ where $p,q\geq 1$ and $C\in M_{p + q}(\Field)$ such that
+\begin{equation}
+C = A \oplus 0_q + 0_p \oplus B,
+\end{equation}
+then
+\begin{equation}
+\label{direct-sum-determinants}
+\det(A - \lambda I)\det(B - \lambda I) = \det(C - \lambda I).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Note that for $\lambda = 0$ (\ref{direct-sum-determinants}) holds. Let's assume that $\lambda\not=0$. Let 
+$A' =  A \oplus 0_q $ and $B' = 0_p \oplus B$.
+\begin{align*}
+& (-\lambda)^q \det(A - \lambda I) (-\lambda)^p \det(B - \lambda I)  = \det(A' - \lambda I)\det(B' - \lambda I) = \\
+& \det((A' - \lambda I )(B' - \lambda I)) = \det(A'B' -\lambda A' - \lambda B' + \lambda^2 I) = \\
+& \det((-\lambda)(C - \lambda I)) = (-\lambda)^{p + q} \det(C - \lambda I).
+\end{align*}
+\end{proof}
+
 \begin{definition}
 Let $A$ be a matrix of size $n\times n$. Let matrix $A^{\cancel{i}}_{\cancel{j}}$ be a matrix A with $i-th$ row and $j-th$ collumn removed.
 \end{definition}
