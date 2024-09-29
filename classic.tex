@@ -455,14 +455,14 @@ m = \cfrac{m_1m_2}{m_1 + m_2}
 In a central force field $\vec{F} = - \cfrac{\partial V}{\partial \vec{r}}$. We call $m$ a reduced mass.
 \section{Statistical Mechanics}
 \subsection{Flux}
-Let $\rho(t,x)$ will be a density of a certain abstract continous entity in time $t$ and point $x\in\reals^n$. Let $\vec{v}(t,x)$ will be a velocity of an infinitesimal element of the continous entity in time $t$ at point $x\in\reals^n$.
-The current of the continous entity is
+Let $\rho(t,x)$ will be a density of a certain abstract continuous substance in time $t$ and point $x\in\reals^n$. Let $\vec{v}(t,x)$ will be a velocity of an infinitesimal element of the continuous substance in time $t$ at point $x\in\reals^n$.
+The current of the continuous substance is
 \begin{equation}
 \vec{j} = \rho \vec{v}.
 \end{equation}
-Imagine an infinitesimal $n-1$-dimentional almost hyperplanar surfice elment $dS$ with it's normal unit vector $\vec{n}$. We will try to calculate an amount of the continous entity $dm$ which flew through surface $dS$ in the direction of the arrow of $\vec{n}$ during infenitesimal time $\Delta t$.
+Imagine an infinitesimal $n-1$-dimensional almost hyperplanar surface element $dS$ with it's normal unit vector $\vec{n}$. We will try to calculate an amount of the continuous substance $dm$ which flew through surface $dS$ in the direction of the arrow of $\vec{n}$ during infinitesimal time $\Delta t$.
  
-If we consider an infenitesimal element of the entity, the component of its movement which is in a plane of $dS$ doesn't play any role in its going through surface element $dS$. Since $\vec{v}\cdot \vec{n}$ is a component of veliocity $\vec{v}$ which is perpendicular to $dS$, this is the velocity with which the entity passes through $dS$. Thus
+If we consider an infinitesimal element of the substance, the component of its movement which is in a plane of $dS$ doesn't play any role in its going through surface element $dS$. Since $\vec{v}\cdot \vec{n}$ is a component of velocity $\vec{v}$ which is perpendicular to $dS$, this is the velocity with which the substance passes through $dS$. Thus
 \begin{equation}
 \Delta m = \rho dS\Delta t(\vec{v}\cdot\vec{n}).
 \end{equation}
@@ -470,8 +470,8 @@ Hence
 \begin{equation}
 \Delta m = \vec{j}\cdot\vec{n} dS\Delta t.
 \end{equation}
-If we take any nice enough connected open $\Omega\subset \reals^n$ with compact clousure.
-We assume that entity is conserved in time, which simply means that it's not disapearing anywhere. Thus, the entity gain inside $\Omega$ during time $\Delta t$ must be equal to the negative total flux of the entity through $\partial \Omega$. Thus
+If we take any nice enough connected open $\Omega\subset \reals^n$ with compact closure.
+We assume that substance is conserved in time, which simply means that it's not disappearing anywhere. Thus, the substance gain inside $\Omega$ during time $\Delta t$ must be equal to the negative total flux of the substance through $\partial \Omega$. Thus
 \begin{equation}
 \int_\Omega \rho(t + \Delta t, x)dx - \int_\Omega \rho(t, x)dx = 
 -\int_{\partial \Omega} \Delta m = -\Delta t \int_{\partial \Omega} \vec{j}\cdot\vec{n} dS.
@@ -480,7 +480,7 @@ Hence
 \begin{equation}
 \int_\Omega \cfrac{\partial \rho}{\partial t} dx = -\int_{\partial \Omega} \vec{j}\cdot\vec{n} dS.
 \end{equation}
-Note that the reasoning above has sense, because by continuity of $\rho$ the change of $\rho$ during time $\Delta t$ is infinitesimal while at the same time $$\cfrac{\rho(t + \Delta t, x) - \rho(t, x)}{\Delta t} = \cfrac{\partial \rho}{\partial t}(x,t)$$ is a significant value because of differentiability of $\rho$ over $t$. We need as well assume continuity of $\cfrac{\partial \rho}{\partial t}(x,t)$ to be able to go with diffrentiation under the intergral.
+Note that the reasoning above has sense, because by continuity of $\rho$ the change of $\rho$ during time $\Delta t$ is infinitesimal while at the same time $$\cfrac{\rho(t + \Delta t, x) - \rho(t, x)}{\Delta t} = \cfrac{\partial \rho}{\partial t}(x,t)$$ is a significant value because of differentiability of $\rho$ over $t$. We need as well assume continuity of $\cfrac{\partial \rho}{\partial t}(x,t)$ to be able to go with differentiation under the intergral.
 
 Now by Theorem \ref{gauss-theorem-multidimensional} (Gauss's Theorem), we have
 \begin{equation}
@@ -490,7 +490,7 @@ Since $\Omega$ can be arbitrary, we have
 \begin{equation}
 \boxed{\cfrac{\partial \rho}{\partial t} = -\nabla \cdot \vec{j}}
 \end{equation}
-This is the relation between current and density of any continous entity which is conserved in time.
+This is the relation between current and density of any continuous substance which is conserved in time.
 
 \subsection{Liouville's equation}
 \label{liouville-equation}

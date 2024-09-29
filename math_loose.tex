@@ -1905,5 +1905,118 @@ Thus the above $\beta$ for analogous reasons as in case of ordinary linear regre
 
 \indent
 
-As a side note it's worth to notice that adding and epsilon penalty for the size of coefficients removes mathematical problem of dealings with $X$ when its columns are linearly dependent - and that was in fact a reason why Rige Regression was introduced in a first place. 
+As a side note it's worth to notice that adding and epsilon penalty for the size of coefficients removes mathematical problem of dealings with $X$ when its columns are linearly dependent - and that was in fact a reason why Rige Regression was introduced in a first place.
+
+\subsection{Neural Networks}
+
+\begin{definition}
+$(\mathcal{N}, <)$ a strictly partially ordered set will be called a finite net iff $\mathcal{N}$ is finite.
+\end{definition}
+
+\begin{definition}
+Let $\mathcal{N}$ be a finite net. Let $\alpha\in \mathcal{N}$
+\begin{equation}
+\text{par}(\alpha) \stackrel{def}{=} \{ \beta\in \mathcal{N}: \beta < \alpha \text{ and } \forall(\gamma\in\mathcal{N}) \neg(\beta<\gamma<\alpha)\}.
+\end{equation}
+
+\begin{equation}
+\text{child}(\alpha) \stackrel{def}{=} \{ \beta\in \mathcal{N}: \beta > \alpha \text{ and } \forall(\gamma\in\mathcal{N}) \neg(\beta > \gamma >\alpha)\}.
+\end{equation}
+
+\begin{equation}
+\text{input}(\mathcal{N}) \stackrel{def}{=} \{\alpha\in\mathcal{N}: \text{par}(\alpha)=\emptyset\}
+\end{equation}
+
+\begin{equation}
+\text{output}(\mathcal{N}) \stackrel{def}{=} \{\alpha\in\mathcal{N}: \text{child}(\alpha)=\emptyset\}
+\end{equation}
+\end{definition}
+Let $\mathcal{N}$ be a finite net. $\mathcal{N}$ is a connected in-out net iff 
+\begin{equation}
+\text{input}(\mathcal{N}) < \text{output}(\mathcal{N}).
+\end{equation}
+
+\begin{equation}
+\begin{cases}\
+& s_\alpha = y_\alpha = x_\alpha \text{ for } \alpha\in\text{input}(\mathcal{N}),\\
+& s_\alpha = \sum_{\beta\in\text{par}(\alpha)} w_{\beta\alpha} y_\beta \text{ for } \alpha\not\in\text{input}(\mathcal{N}),\\
+& y_\alpha = f_\alpha(s_\alpha) \text{ for } \alpha\not\in\text{input}(\mathcal{N}).
+\end{cases}
+\end{equation}
+
+For chosen $\beta_0\in\text{par}(\alpha_0)$ let $w$ denote $w_{\beta_0\alpha_0}$. 
+
+
+
+
+\begin{equation}
+\cfrac{\partial y_\alpha}{\partial w} = f'(s_\alpha) \cfrac{\partial y_\alpha}{\partial w}.
+\end{equation}
+
+Then note that for $\alpha \not= \alpha_0$
+
+\begin{equation}
+\cfrac{\partial y_\alpha}{\partial w} = f'(s_\alpha) \sum_{\beta\in\text{par}(\alpha)} w_{\beta\alpha} \cfrac{\partial y_\beta}{\partial w}.
+\end{equation}
+
+and
+
+\begin{equation}
+\cfrac{\partial y_{\alpha_0}}{\partial w} = f'(s_{\alpha_0}) y_{\beta_0}.
+\end{equation}
+
+Note that 
+\begin{equation}
+\cfrac{\partial y_\alpha}{\partial w} = 0 \text{ for } \alpha \not=\alpha_0 \text{ and } \neg(\alpha_0 < \alpha). 
+\end{equation}
+
+Let 
+\begin{equation}
+B_{\beta\alpha} \stackrel{def}{=} f'(s_\alpha) w_{\beta\alpha}.
+\end{equation}
+
+Note than for $\alpha > \alpha_0$, we have
+
+\begin{equation}
+\cfrac{\partial y_\alpha}{\partial w} = \sum_{\beta\in\text{par}(\alpha)} B_{\beta\alpha} \cfrac{\partial y_\beta}{\partial w}.
+\end{equation}
+
+Note that 
+\begin{equation}
+\cfrac{\partial y_\alpha}{\partial w} = \sum_{\beta\in\text{par}(\alpha) \text{ and } \beta \geq \alpha_0} B_{\beta\alpha} \cfrac{\partial y_\beta}{\partial w}.
+\end{equation}
+
+Thus
+
+\begin{multline}
+\cfrac{\partial y_\alpha}{\partial w} = 
+\sum B_{\alpha_k\alpha} B_{\alpha_{k-1}\alpha_k} 
+ \dots B_{\alpha_1\alpha_2} B_{\alpha_0 \alpha_1}
+ \cfrac{\partial y_{\alpha_0}}{\partial w} \\
+ = \cfrac{\partial y_{\alpha_0}}{\partial w}\sum B_{\alpha_k\alpha} B_{\alpha_{k-1}\alpha_k} 
+ \dots B_{\alpha_1\alpha_2} B_{\alpha_0 \alpha_1},\\
+\end{multline}
+where summation is over all paths $\alpha_0, \alpha_1, \dots, \alpha_k, \alpha$ which connects $\alpha_0$ and $\alpha$.
+
+Let's define
+
+\begin{equation}
+\begin{cases}
+A(\alpha;\zeta) = \sum_{\gamma\in\text{child}(\zeta)} B_{\zeta\gamma} A(\alpha; \gamma) \text{ for } \zeta < \alpha, \\
+A(\alpha;\alpha) = 1.
+\end{cases}
+\end{equation}
+
+Note that 
+\begin{equation}
+A(\alpha; \alpha_0) = \sum B_{\alpha_k\alpha} B_{\alpha_{k-1}\alpha_k} 
+ \dots B_{\alpha_1\alpha_2} B_{\alpha_0 \alpha_1},\\
+\end{equation}
+where summation is over all paths $\alpha_0, \alpha_1, \dots, \alpha_k, \alpha$ which connects $\alpha_0$ and $\alpha$.
+Thus
+
+\begin{equation}
+\cfrac{\partial y_\alpha}{\partial w} = f'(s_{\alpha_0}) y_{\beta_0} A(\alpha; \alpha_0).
+\end{equation}
+ 
 \end{document}
