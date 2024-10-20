@@ -2018,5 +2018,158 @@ Thus
 \begin{equation}
 \cfrac{\partial y_\alpha}{\partial w} = f'(s_{\alpha_0}) y_{\beta_0} A(\alpha; \alpha_0).
 \end{equation}
- 
+
+\subsection{Attention Head}
+
+Lets consider input as 3 sequences of row vectors
+\begin{multline}\\
+\mathbf{x}^q_i\in \R^{d^q_{\text{emb}}}$ for $i=1, \dots, n, \\
+\mathbf{x}^k_i\in \R^{d^k_{\text{emb}}}$ for $i=1, \dots, n, \\
+\mathbf{x}^v_i\in \R^{d^v_{\text{emb}}}$ for $i=1, \dots, n, \\
+\end{multline}
+Let
+\begin{equation}
+X^q \stackrel{def}{=} 
+\begin{bmatrix}
+\mathbf{x}^q_1 \\
+\vdots \\
+\mathbf{x}^q_n \\
+\end{bmatrix},
+\end{equation}
+
+\begin{equation}
+X^k \stackrel{def}{=} 
+\begin{bmatrix}
+\mathbf{x}^k_1 \\
+\vdots \\
+\mathbf{x}^k_n \\
+\end{bmatrix},
+\end{equation}
+
+\begin{equation}
+X^v \stackrel{def}{=} 
+\begin{bmatrix}
+\mathbf{x}^v_1 \\
+\vdots \\
+\mathbf{x}^v_n \\
+\end{bmatrix}.
+\end{equation}
+
+Note that 
+\begin{multline}
+\\
+\dim X^q = n \times d^q_{\text{emb}},\\
+\dim X^k = n \times d^k_{\text{emb}},\\
+\dim X^v = n \times d^v_{\text{emb}}.\\
+\end{multline}.
+
+Consider 3 matrices of weights:
+\begin{multline}
+\\
+W^Q \text{ with } \dim W^Q = d^q_{\text{emb}} \times d_q,\\
+W^K \text{ with } \dim W^K = d^k_{\text{emb}} \times d_k,\\
+W^V \text{ with } \dim W^V = d^v_{\text{emb}} \times d_v.\\
+\end{multline}
+
+Let's define
+\begin{multline}
+\\
+Q \stackrel{def}{=} X^q W^Q (\text{note that }\dim Q = n \times d_q),\\
+K \stackrel{def}{=} X^k W^K (\text{note that }\dim K = n \times d_k),\\
+V \stackrel{def}{=} X^v W^V (\text{note that }\dim V = n \times d_v).\\
+\end{multline}
+
+Note that
+\begin{equation}
+Q = \begin{bmatrix}
+\mathbf{x}^q_1 W^Q\\
+\vdots \\
+\mathbf{x}^q_n W^Q \\
+\end{bmatrix},
+\end{equation}
+
+\begin{equation}
+K = \begin{bmatrix}
+\mathbf{x}^k_1 W^K\\
+\vdots \\
+\mathbf{x}^k_n W^K \\
+\end{bmatrix},
+\end{equation}
+
+\begin{equation}
+V = \begin{bmatrix}
+\mathbf{x}^v_1 W^V\\
+\vdots \\
+\mathbf{x}^v_n W^V \\
+\end{bmatrix}.
+\end{equation}
+
+For the next step, we will require $d_k = d_q$.
+
+Note that
+\begin{equation}
+QK^T = \begin{bmatrix}
+    (\mathbf{x}^q_1 W^Q)\cdot (\mathbf{x}^k_1 W^K) &  \dots  & (\mathbf{x}^q_1 W^Q)\cdot (\mathbf{x}^k_n W^K) \\
+    \vdots &  \ddots & \vdots \\
+    (\mathbf{x}^q_n W^Q)\cdot (\mathbf{x}^k_1 W^K) &  \dots  & (\mathbf{x}^q_n W^Q)\cdot (\mathbf{x}^k_n W^K) 
+\end{bmatrix}
+\end{equation}
+
+Let's note that $(\mathbf{x}^q_i W^Q)\cdot (\mathbf{x}^k_j W^K)$ is maximised, when vectors $\mathbf{x}^q_i W^Q$ and $\mathbf{x}^k_j W^K$ are on the same line, which is certain measure of similarity.
+
+Thus our heuristic interpretation of $n\times n$ matrix
+
+\begin{equation}
+\text{softmax}(\cfrac{1}{\sqrt{d_k}} QK^T) \approx  \begin{bmatrix}
+    0 &  \dots & 0 & 0  & 1 & 0 & \dots & 0 \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+    0 &  \dots & 0 & 1 & 0 & 0 & \dots & 0 \end{bmatrix},
+\end{equation}
+
+where for each $i$-th row $1$ is in $j$-th column when a query $\mathbf{x}^q_i W^Q$ was most similar to a key $\mathbf{x}^k_j W^K$.
+
+Thus the matrix of dimension $n \times d_v$
+\begin{equation}
+\text{softmax}(\cfrac{1}{\sqrt{d_k}} QK^T)V \approx 
+\begin{bmatrix}
+\mathbf{x}^v_{j_1} W^V\\
+\vdots \\
+\mathbf{x}^v_{j_n} W^V \\
+\end{bmatrix},
+\end{equation}
+
+where for each $m=1, \dots, n$ for query $\mathbf{x}^q_m W^Q$ the most similar key in dot product similarity is $\mathbf{x}^k_{j_m} W^K$.
+
+\begin{definition}[Attention]
+\begin{equation}
+\text{Attention}(X^q, X^k, X^V) \stackrel{def}{=} \text{softmax}(\cfrac{1}{\sqrt{d_k}} QK^T)V.
+\end{equation}
+\end{definition}
+
+\begin{definition}[Masked attention]
+\begin{equation}
+\text{Attention}(X^q, X^k, X^V) \stackrel{def}{=} \text{softmax}(\cfrac{1}{\sqrt{d_k}} QK^T + M)V.
+\end{equation}
+\end{definition}
+
+If we consider
+\begin{equation}
+M_{\text{causal}} = \begin{bmatrix}
+0 & -\infty & -\infty & \dots  & -\infty \\
+0 & 0 & -\infty & \dots  & -\infty \\
+0 & 0 & 0 & \dots  & -\infty \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & \dots  & 0
+\end{bmatrix}
+\end{equation}
+this will replace with zeros all vectors for $j_m \geq m$ for $m=1, \dots, n$ 
+in result
+\begin{equation}
+\begin{bmatrix}
+\mathbf{x}^v_{j_1} W^V\\
+\vdots \\
+\mathbf{x}^v_{j_n} W^V \\
+\end{bmatrix}.
+\end{equation}
+If you are concerned by infinities in $M_{\text{causal}}$ just think about some extremely big real values.
 \end{document}
